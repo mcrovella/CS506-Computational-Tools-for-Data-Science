@@ -1,0 +1,354 @@
+\documentclass[11pt]{article}
+\pagestyle{empty}
+
+\setlength{\textheight}{8.5in}
+\setlength{\topmargin}{0.5in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+% %% \setlength{\footheight}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage{times}
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage{mathtools}
+\usepackage{mathptmx}
+\usepackage{amssymb}
+\usepackage{color}
+
+\begin{document}
+\sloppy 
+\begin{center}
+\LARGE CAS CS 505\\
+\Large Data Science in Python\\
+\Large\rm Fall 2016\\~\\
+\end{center}
+
+\noindent{\large\bf Meeting Place:} ??\\[\baselineskip]
+\noindent{\large\bf Meeting
+Time:} ??
+\\[\baselineskip] 
+
+\noindent{\large\bf Instructor:} Prof.\ Mark Crovella\\[0.75\baselineskip]
+\begin{minipage}[t]{0.60\textwidth}
+\begin{itemize}
+\item {\bf Office:} MCS-140E
+\item {\bf Office Hours:} {\small ??}
+\item {\bf Email:} crovella@bu.edu
+\end{itemize}
+\end{minipage}
+~\\~\\~\\~\\
+ \noindent{\large\bf Teaching Fellow:}??\\[0.75\baselineskip]
+ \begin{minipage}[t]{0.60\textwidth}
+ \begin{itemize}
+ \item {\bf Office Hours:} {\small ??}
+ \item {\bf Office Hours Location:} ??
+ \item {\bf Lab Tutoring Hours:} {\small ??.}
+ \item {\bf Email:} ??
+ \end{itemize}
+ \end{minipage}
+
+\section*{Overview of the Course}
+
+This course is targeted at students who require a basic level of
+proficiency in working with and analyzing data.  The course emphasizes
+practical skills in working with data, while introducing students to a
+wide range of techniques that are commonly used in the analysis of data,
+such as clustering, classification, regression, and network analysis.
+The goal of the class is to provide to students a hands-on understanding
+of classical data analysis techniques and to develop proficiency in
+applying these techniques in a modern programming language (Python). 
+
+Lectures will present the fundamentals of each technique; focus is not
+on the theoretical underpinnings of the methods, but rather on helping
+students understand the practical settings in which these methods are
+useful.  Class discussion will study use cases and will go over relevant
+Python packages that will enable the students to perform hands-on
+experiments with their data. 
+
+Prerequisites: Students taking this class must have some prior familiarity with
+programming, at the level of CS 105, 108, or 111, or equivalent.   CS
+132 or equivalent (MA 242, MA 442) is required.  CS 112 is also helpful.
+
+\section*{Readings} 
+
+There is no text.   Lecture notes will be posted online.
+
+Some recommended texts are:
+\begin{enumerate}
+\item Python for Data Analysis
+  (http://shop.oreilly.com/product/0636920023784.do)
+\item Programming Collective Intelligence (http://shop.oreilly.com/product/9780596529321.do)
+\end{enumerate}
+
+\section*{Web Resources} 
+
+The slides I use are actually executable python scripts, using the
+\texttt{ipython notebook.}   If you have ipython notebook, you can
+download and execute the examples on your own computer, and you can
+modify them any way you'd like, play around with them, experiment, etc.
+
+The slides I use in lecture are published on \texttt{github.}   The
+repository is
+\url{https://github.com/mcrovella/CS505-Data-Science-in-Python}.  If you want
+to access the repository using \texttt{git,} please feel free but you
+can simply download directly from the web site if you prefer.
+ 
+\section*{Homeworks and Project}
+
+\begin{enumerate}
+\item There will be one programming assignment each week.  In these
+assignments students will be given datasets which they will
+analyze using the tools and techniques presented during that particular week.  The
+weekly programming assignments will be very targeted and their goal will be
+to practice the material taught during the week. 
+
+\item In addition, there will be a final project.  For the project the students
+will use a dataset of their choice and will have to extract some
+knowledge or conclusions from the analysis of the dataset. The analysis
+will be done using a subset of the methods we described in class.
+
+The project will have three essential components: 1) a data collection
+piece (which may involve crawling or calls to an API, combining data
+from different sources etc), 2) a data analysis piece (which will
+involve applying different techniques we described in class for the
+analysis) and 3) a conclusion component (where the results of the data
+analysis will be drawn).  The students will submit a 5-page report
+explaining clearly all the three components of their project. Finally a
+poster presentation will be required where the students will be prepare
+to present their effort and results in front of their poster. 
+
+As an example, a student may choose to collect data from Twitter related
+to a specific topic (e.g., Ebola virus) and then measure the intensity
+of posts about a topic in different areas of the world etc.  Other
+examples of projects may include (but are not limited to): analysis of
+MBTA data, analysis of NYC data, crawling of YouTube (or other social
+media data) and analysis of social behavior like trolling, bullying
+etc. 
+
+The project is due by the end of the exam week. The project presentations will be
+given in the form of a final poster explaining components 1, 2 and 3 of
+the project. 
+
+Students are expected to work individually on homeworks and on the final
+project.  There will be no final exam.   
+
+\item Homeworks will be submitted via \emph{websubmit}.   The URL for
+  submitting an assignment is \url{http://cs-websubmit.bu.edu/main.py}.
+  If you have questions about homework submission or grading, please start by checking
+  with the TF, and if you still have questions, then feel free to direct them to me.
+\end{enumerate}
+
+\section*{Submitting Homework}
+For showing your analytical / mathematical work, there are three
+options, in increasing order of quality:
+\begin{enumerate}
+\item You can scan handwritten notes into PDF.    Note that these must
+  be \textbf{clear} and \textbf{neat} because the grader will simply
+  read them as best s/he can.
+\item You can write up your work in Word, using the built-in equation
+  editor for the mathematics.   Then save as PDF.   
+\item You can learn and use \LaTeX.   This is the tool that produces a
+  truly professional, publishable document.   It is what serious
+  computer scientists use.  You can learn to use it in a few hours,
+  starting from \url{http://www.latex-tutorial.com/.}   Eventually you will
+  find it useful for lots of your coursework, so it makes sense to learn it
+  now. 
+\end{enumerate}
+
+For showing your computational work, you will often submit code 
+and/or scripts showing your code runs.   For the code, simply
+submit them as .py files.   For the scripts showing your code executing,
+you can use the built-in logging system of ipython.   I recommend: 
+\begin{enumerate}
+\item \verb$%logstart -ort hwk-file.txt backup$
+\item run your code in the interpreter showing the output
+\item \verb$%logstop$.
+\end{enumerate}
+At which point the file \texttt{hwk-file.txt} will contain a record of
+the inputs and outputs of your code.   (Note that output from ``print'' statements
+will not show up however). 
+
+\section*{Piazza}
+
+We will be using Piazza for class discussion. The system is really well
+tuned to getting you help fast and efficiently from classmates, Mr.\ Bai,
+and myself. Rather than emailing questions to the teaching staff,
+I encourage you to post your questions on Piazza.   Our class Piazza
+page  is at: \url{https://piazza.com/bu/???}. 
+We will also use Piazza for distributing materials
+such as homeworks and solutions.
+
+When someone posts a question on Piazza, if you know the answer, please
+go ahead and post it.   However pleased \emph{don't} provide answers to homework
+questions on Piazza.   It's OK to tell people \emph{where to look} to
+get answers, or to correct mistakes;  just don't provide actual solutions
+to homeworks.
+
+\section*{Programming Environment}
+
+We will use \texttt{python} as the language for teaching and for
+assignments that require coding.    Instructions for installing and
+using Python are on Piazza.
+
+% \section*{Clickers}
+
+% We will be using ``Peer instruction'' as part of the lectures.  This
+% requires you to answer occasional questions during lecture, sometimes
+% after discussion with your classmates.   
+
+% To support this, we will use clickers for student feedback during lecture.  If you
+% don't already have one, you need to get one.  It is the Turning
+% Technologies Response Card RF (ISBN 9781934931394).  This is the
+% standard ``BU clicker'' and you can get it at
+% the BU Bookstore.   You will need to bring it to every lecture.
+% % register it on Blackboard 
+
+% Also, to encourage this interactive style of lecture, I will ask you to
+% put away laptops and phones during lecture.    Please note that I will
+% post copies of lecture slides online for you to consult after class if
+% you like.
+
+% You will also want to bring pencil and paper to lecture.   This isn't
+% absolutely critical, but you will find it easier if you can jot a note
+% or two while responding to clicker questions.
+
+\section*{Course and Grading Administration}
+
+Assignments will be submitted using \texttt{websubmit}.   Mr.\ Bai will
+explain how to submit assignments.  
+
+\emph{NOTE: IMPORTANT:} Late assignments \textbf{WILL NOT} be accepted.   However, your final
+grade will be based on the top 10 homeworks submitted (out of 12).   
+
+Final grades will be computed based on the following:
+\begin{description}
+\item[50\%] Homework assignments.  The top 10 homework grades (out of the
+  12 assigned) will be used to compute this score.
+\item[5\%] Attendance and In-class participation via clicker.
+\item[20\%] Midterm
+\item[25\%] Final (Cumulative)
+\end{description}
+
+To get full credit for class participation by clicker, you need to use
+the clicker on 85\% of the questions that are posed in lecture.   So if
+you miss a question here or there, or forget your clicker one day, don't
+worry as long as you come to lecture consistently.
+
+The exact cutoffs for final grades will be determined after the class is
+complete.
+
+You need to consistently work the problem sets each week.   Plan
+  to set aside a regular time each week to do them.
+
+\newpage
+
+\section*{Academic Honesty}
+
+You may discuss homework assignments with classmates, but you are 
+solely responsible for what you turn in. Collaboration in the form of
+discussion is allowed, but all forms of cheating (copying parts of a
+classmate's assignment, plagiarism from books or old posted solutions)
+are NOT allowed. We -- both teaching staff and students -- are expected
+to abide by the guidelines and rules of the Academic Code of Conduct
+(which is at
+\url{http://www.bu.edu/dos/policies/student-responsibilities/}).
+
+You can probably, if you try hard enough, find solutions for homework
+problems online.    Given the nature of the Internet, this is
+inevitable.   Let me make a couple of comments about that:
+\begin{enumerate}
+\item If you are looking online for an answer because you don't know how
+  to start thinking about a problem, talk to Mr.\ Bai or myself, who may be
+  able to give you pointers to get you started.  Piazza is great for
+  this -- you can usually get an answer in an hour if not a few minutes.
+\item If you are looking online for an answer because you want to see if
+  your solution is correct, ask yourself if there is some way to verify
+  the solution yourself.   Usually, there is.  You will understand what you have done
+  \emph{much} better if you do that.
+\item If you are looking online for an answer because you don't have
+  enough time and are getting close to the assignment deadline, think about this:
+  \begin{enumerate}
+  \item what you are doing is intellectually dishonest,
+  \item you are going to have to solve problems like this on the midterm
+    and final, and
+  \item you can miss up to two homeworks without penalty.
+  \end{enumerate}
+So ... it would be better to simply submit what you have at the deadline
+(without going online to cheat) and plan to allocate more time for
+homeworks in the future.
+\end{enumerate}
+
+\newpage
+\section*{Course Schedule}
+
+\small
+\begin{centering}
+\begin{tabular}{||l|p{3in}|l|l|l||}
+\hline\hline
+Date & Topics  & Reading & Assigned & Due  \\
+\hline\hline
+9/6 & Introduction to Python &  &  & \\
+9/8 & Git, Github, Python notebooks, Pandas & & & \\
+\hline
+
+9/13 & Intro to Probability and Statistics I & &  & \\
+9/15 & Intro to Probability and Statistics II & & & \\
+\hline
+
+9/20 & Numpy, Scikit-learn, Distance and Similarity Functions & &  & \\
+9/22 & Intro to Timeseries & & & \\ 
+\hline
+
+9/27 & Clustering, k-means & & & \\
+9/29 & Clustering II & & & \\ 
+\hline
+
+10/4 & Hierarchical Clustering & & & \\  
+10/6 & Expectation Maximization & & & \\ 
+\hline
+
+10/11 &  NO CLASS; Monday Schedule &  & &  \\   
+10/13 & Comparing Clustering Algorithms & & & \\
+\hline
+
+% 
+10/18 & Dimensionality Reduction - SVD I &&&\\
+10/20 & SVD II and Web Scraping & & & \\ 
+\hline
+
+10/25 & \textbf{Midterm} & &  & \\ 
+10/27 & Classification: Decision Trees & & & \\ 
+\hline
+
+11/1 & Classification: SVM, Naive Bayes &  &  &\\ 
+11/3 & Linear Regression & & & \\ 
+\hline
+
+11/8 & Logistic Regression & &  &\\ 
+11/10 & Linear Regression II & & & \\ 
+\hline
+
+11/15 & Recommendation Systems & &  &\\ 
+11/17 & Network Analysis I & & & \\
+\hline
+
+11/22 & Network Analysis II &  & &\\ 
+11/24 & NO CLASS; Thanksgiving Break  & & & \\ 
+ \hline
+
+11/29 & Graph Clustering &  &  & \\ 
+12/1 & Text Analysis and Topic Modeling && &\\
+\hline 
+
+12/6 & Wrapup & & & \\ 
+12/8 & Poster Session &  &  &\\ 
+\hline\hline
+
+
+\end{tabular}\\
+\end{centering}
+
+
+\end{document}
