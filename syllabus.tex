@@ -102,7 +102,7 @@ can simply download directly from the web site if you prefer.
 \section*{Homeworks and Project}
 
 \begin{enumerate}
-\item There will be six \textbf{But - TBD} programming assignments.  In a typical 
+\item There will nine homework assignments.  In a typical 
 assignment you will 
 analyze one or more datasets using the tools and techniques presented in
 class.
@@ -110,7 +110,9 @@ class.
 \item In addition, there will be a final project.  For the project you
   will extract some
 knowledge or conclusions from the analysis of dataset of your choice. The analysis
-will be done using a subset of the methods we described in class.
+will be done using a subset of the methods we described in class.  The
+final project will require a proposal, two progress reports, and a final
+presentation in poster form.
 
 The project will have three essential components: 1) a data collection
 piece (which may involve crawling or calls to an API, combining data
@@ -138,45 +140,7 @@ You are expected to work individually on homeworks and on the final
 project.  There will be no final exam.   
 
 \item Homeworks will be submitted via \texttt{github}.
-% \item Homeworks will be submitted via \emph{websubmit}.   The URL for
-%   submitting an assignment is \url{http://cs-websubmit.bu.edu/main.py}.
-%   If you have questions about homework submission or grading, please start by checking
-%   with the TF, and if you still have questions, then feel free to direct them to me.
 \end{enumerate}
-
-<<<<<<< HEAD
-% \section*{Submitting Homework}
-% For showing your analytical / mathematical work, there are three
-% options, in increasing order of quality:
-% \begin{enumerate}
-% \item You can scan handwritten notes into PDF.    Note that these must
-%   be \textbf{clear} and \textbf{neat} because the grader will simply
-%   read them as best s/he can.
-% \item You can write up your work in Word, using the built-in equation
-%   editor for the mathematics.   Then save as PDF.   
-% \item You can learn and use \LaTeX.   This is the tool that produces a
-%   truly professional, publishable document.   It is what serious
-%   computer scientists use.  You can learn to use it in a few hours,
-%   starting from \url{http://www.latex-tutorial.com/.}   Eventually you will
-%   find it useful for lots of your coursework, so it makes sense to learn it
-%   now. 
-% \end{enumerate}
-
-
-% \textbf{CHECK WITH KATHERINE.}
-
-% For showing your computational work, you will often submit code 
-% and/or scripts showing your code runs.   For the code, simply
-% submit them as .py files.   For the scripts showing your code executing,
-% you can use the built-in logging system of ipython.   I recommend: 
-% \begin{enumerate}
-% \item \verb$%logstart -ort hwk-file.txt backup$
-% \item run your code in the interpreter showing the output
-% \item \verb$%logstop$.
-% \end{enumerate}
-% At which point the file \texttt{hwk-file.txt} will contain a record of
-% the inputs and outputs of your code.   (Note that output from ``print'' statements
-% will not show up however). 
 
 \section*{Piazza}
 
@@ -304,11 +268,10 @@ Date & Topics  & Reading & Assigned & Due  \\
 % good material but need to integrate PDF and notebook
 % needs some additional examples too
  9/20 & Numpy, Scikit-learn, Distance and Similarity Functions & &  & \\
-& Data Exploration & & & \\
-\hline 
+% & Data Exploration & & & \\
 % current slides not really usable b/c they focus on dynamic time
 % warping.  some OK points, but needs a re-do based on books
-9/22 & Intro to Timeseries & & HW 1 & \\ 
+9/22 & Intro to Timeseries & & HW 1.1& \\ 
 % Homework 1 is OK here. - distance functions, APIs, timeseries.
 \hline
 
@@ -317,19 +280,22 @@ Date & Topics  & Reading & Assigned & Due  \\
 9/27 & Clustering, k-means & & & \\
 % this one is excellent - set in context of sklearn - practical and
 % includes examples
-9/29 & Clustering II & & & \\ 
+9/29 & Clustering II & &HW 1.2  & \\ 
+9/30 &&&& HW 1.1 \\
 \hline
 
 % pretty good PDF just need to convert to notebook
-10/4 & Hierarchical Clustering & & & HW 1 \\  
+10/4 & Hierarchical Clustering & & & \\  
 % EM and GMM; short but good and its already started as a notebook
-10/6 & Expectation Maximization and GMM & & HW 2 & \\ 
+10/6 & Expectation Maximization and GMM & & HW 2.1, 2.2 & \\ 
 % Homework 2 depends on k-means, hierarchical, and GMM clustering 
+10/7 &&&& HW 1.2 \\
 \hline
 
 10/11 &  NO CLASS; Monday Schedule &  & &  \\   
 % basically in OK shape; already a notebook, needs a smoothing pass
 10/13 & DB Clustering and Comparing Clustering Algorithms & & & \\
+10/7 &&&& HW 2.1 \\
 \hline
 
 % OK but key material is in PDF.  needs conversion to notebook
@@ -342,39 +308,52 @@ Date & Topics  & Reading & Assigned & Due  \\
 % also there is a guest lecture here by Davide on web scraping
 % need to figure out a replacement for him! (this is good stuff and
 % could be much earlier in course)
-10/20 & SVD II and Web Scraping & & & \\ 
+% HW 3.1 is scraping, 3.2 is regression
+10/20 & SVD II and Web Scraping & & HW 3.1, 3.2 & \\ 
+10/21 &&&& HW 2.2 \\
+
 \hline
 
 % should we hold a midterm?  I am skeptical.
 10/25 & Open & &  & \\ 
-10/27 & Classification: Decision Trees & & & Proj Proposals\\ 
+10/27 & Classification: Decision Trees & & & \\ 
+10/28 &&&& HW 3.1 \\
 \hline
 
 11/1 & Classification: SVM, Naive Bayes &  &  &\\ 
-11/3 & Regression: Linear Regression & & & Proj Proposals Finalized \\ 
+11/3 & Regression: Linear Regression & & &\\ 
+11/4 &&&& Proj Proposal\\
 \hline
 
-11/8 & Logistic Regression & & HW 3  &\\ 
+11/8 & Logistic Regression & & &\\ 
 % homework 3 OK here; scraping and logistic regression
 11/10 & Linear Regression II & & & \\ 
+% progr report here is "how much have you scraped?"
+11/11 &&&& Prog Report 1\\
 \hline
 
 11/15 & Recommendation Systems & & &\\ 
-
-11/17 & Network Analysis I & & HW 4 & HW 3\\
+11/17 & Network Analysis I & & HW 4 & \\
+% HW 3.2 is regression
+11/18 &&&& HW 3.2\\
 \hline
 
-11/22 & Network Analysis II &  & &Proj Proposals prog report \\ 
+% This prog report is the same as the single one last time
+11/22 & Network Analysis II &  & &Prog report 2\\ 
 11/24 & NO CLASS; Thanksgiving Break  & & & \\ 
  \hline
 
 % HW 5 is on map reduce; requires triangle counting
-11/29 & Graph Clustering &  & HW 5 & HW 4 \\ 
-12/1 & Text Analysis and Topic Modeling && &\\
+11/29 & Graph Clustering &  & & \\ 
+12/1 & Text Analysis and Topic Modeling &&HW 5 &\\
+12/2 &&&& HW 4\\
 \hline 
 
 12/6 & Wrapup & & & \\ 
 12/8 & Poster Session &  &  &\\ 
+\hline 
+12/12 &&&& HW 5\\
+
 \hline\hline
 
 
