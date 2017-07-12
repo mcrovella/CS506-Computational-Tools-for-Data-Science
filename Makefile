@@ -1,17 +1,14 @@
-DOCNAME = book
-
 SRCS = \
-L0Introduction.ipynb \
-L0Clickers.ipynb \
-L1LinearEquations.ipynb \
-L2RowReductions.ipynb \
-L3VectorEquations.ipynb
+01-Intro-to-Python.ipynb \
+02A-Getting-Started.ipynb \
+02B-Pandas.ipynb \
+03-Probability-and-Statistics-Refresher.ipynb \
+04-Linear-Algebra-Refresher.ipynb \
+05-Distances-Timeseries.ipynb 
 
-# TEXS=$(SRCS:.ipynb=.tex)
+TEXS=$(SRCS:.ipynb=.tex)
 
 TGTS=$(SRCS:.ipynb=.pdf)
-
-PUBLISHDIR = /cs-pub/www-dir/faculty/crovella/restricted/pebook
 
 ############################## shouldn't need to change below this line
 
