@@ -19,17 +19,23 @@ LATEX  = pdflatex
 %.tex: %.ipynb
 	/bin/rm -rf tmpFile
 	jupyter nbconvert $< --to latex
-	# this is fixing a bug in ipython nbconvert 3.0 - misnames graphics files
-	# sed 's/.jpe}/.jpeg}/g' < $@ > tmpFile
+# this is fixing a bug in ipython nbconvert 3.0 - misnames graphics files
+# sed 's/.jpe}/.jpeg}/g' < $@ > tmpFile
 	mv $@ tmpFile
 	python stripHiddenCode.py < tmpFile > $@
 	rm tmpFile
+
+# rules for creating pdf are chains, which means intermediate (.tex) file
+# would be automatically removed without the following
+.PRECIOUS: %.tex
 
 %.pdf: %.tex
 	$(LATEX) $<
 	rm $*.out $*.log $*.aux
 
 topleveltarget: $(TGTS)
+
+toc.pdf: $(TEXS)
 
 
 
