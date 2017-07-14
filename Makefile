@@ -29,11 +29,9 @@ TGTS=$(SRCS:.ipynb=.pdf)
 
 HDRS=$(TEXS:.tex=.hdrs)
 
-############################## shouldn't need to change below this line
-
 LATEX  = pdflatex
 
-.SUFFIXES: .ipynb .tex .pdf
+.SUFFIXES: .ipynb .tex .pdf .hdrs
 
 %.tex: %.ipynb
 	/bin/rm -rf tmpFile
@@ -55,12 +53,13 @@ LATEX  = pdflatex
 %.hdrs: %.tex
 	python stripheaders.py < $< > $@
 
-topleveltarget: $(TEXS)
-	echo $(TEXS)
+topleveltarget: $(TGTS)
 
 toc.pdf: $(HDRS)
 	cat preamble.tex $(HDRS) postamble.tex > toc.tex
 	$(LATEX) toc.tex
+	$(LATEX) toc.tex
+	rm toc.{out,log.aux}
 
 
 
