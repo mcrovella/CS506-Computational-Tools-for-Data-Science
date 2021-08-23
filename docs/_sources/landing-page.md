@@ -18,5 +18,7 @@ the github repository
 Each of the Chapters is based on a single notebook, and each forms the
 basis for one lecture (more or less).
 
+The book for this course is [here](http://mcrovella.github.io/CS506-Computational-Tools-for-Data-Science/).
+
 
 

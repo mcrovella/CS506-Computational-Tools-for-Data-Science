@@ -11,15 +11,7 @@ movefigures:
 
 book:
 	jupyter-book build .
-	github checkout gh-pages
-	github checkout 
-	#ssh crovella@csa2.bu.edu '/bin/rm -rf ~/www/cs132-book'
-	#scp -r _build/html crovella@csa2.bu.edu:www/cs132-book
-	#ssh crovella@csa2.bu.edu 'chmod -R a+rx ~/www/cs132-book'
-
-
-
-
-
-
-
+	cp -r _build/html/* docs
+	git add docs
+	git commit -am .
+	git push
