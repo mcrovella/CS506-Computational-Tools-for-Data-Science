@@ -1,0 +1,12 @@
+title: "Computational Tools for Data Science"
+author: "Mark Crovella"
+# logo: images/DiagramAR-icon.png
+only_build_toc_files: true
+copyright: '2021-2022'
+repository:
+        url: https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science
+html:
+        # favicon: images/DiagramAR-icon.png
+        use_repository_button: true
+execute:
+  execute_notebooks: "cache"

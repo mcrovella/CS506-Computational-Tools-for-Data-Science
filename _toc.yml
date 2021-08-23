@@ -1,0 +1,4 @@
+format: jb-book
+root: landing-page
+chapters:
+- file: 01-Intro-to-Python
