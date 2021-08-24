@@ -1,4 +1,13 @@
-format: jb-book
 root: landing-page
-chapters:
-- file: 01-Intro-to-Python
+format: jb-book
+parts:
+- caption: Introductory Material
+  chapters:
+  - file: 01-Intro-to-Python
+  - file: 02A-Getting-Started
+  - file: 02B-Pandas
+  - file: 03-Probability-and-Statistics-Refresher
+  - file: 04-Linear-Algebra-Refresher
+- caption: Clustering
+  chapters:
+  - file: 05-Distances-Timeseries
