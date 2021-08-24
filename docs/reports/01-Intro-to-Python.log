@@ -23,7 +23,7 @@ string[-1] = "y"  # This will generate and error as we attempt to modify the str
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-28-b5fa142bf995>[0m in [0;36m<module>[0;34m[0m
+[0;32m<ipython-input-26-b5fa142bf995>[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0mstring[0m [0;34m=[0m [0;34m"string"[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 2[0;31m [0mstring[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m [0;34m=[0m [0;34m"y"[0m  [0;31m# This will generate and error as we attempt to modify the string[0m[0;34m[0m[0;34m[0m[0m
 [0m
