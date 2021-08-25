@@ -6,8 +6,8 @@ parts:
   - file: 01-Intro-to-Python
   - file: 02A-Getting-Started
   - file: 02B-Pandas
-  - file: 03-Probability-and-Statistics-Refresher
   - file: 04-Linear-Algebra-Refresher
+  - file: 03-Probability-and-Statistics-Refresher 
 - caption: Clustering
   chapters:
   - file: 05-Distances-Timeseries
