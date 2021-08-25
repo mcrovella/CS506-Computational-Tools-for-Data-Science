@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Essential Tools: Python, Git, and Jupyter Notebook &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting to know your data with Pandas" href="02B-Pandas.html" />
+    <link rel="prev" title="Introduction to Python" href="01-Intro-to-Python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Essential Tools: Python, Git, and Jupyter Notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Getting to know your data with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/02A-Getting-Started.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/02A-Getting-Started.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-need-for-this-course">
+   What you will need for this course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-python">
+   Installing Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git">
+   Git
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-git">
+   Working with Git
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration">
+     Configuration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-repository">
+     Creating a Repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-a-file">
+     Changing a file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recovering-old-versions">
+     Recovering old versions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-information">
+     More information
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#essential-shortcuts">
+     Essential Shortcuts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-from-the-undergraduate-lab">
+     Working from the Undergraduate lab
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github">
+   GitHub
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-repositories">
+     Course repositories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clone-the-lecture-repository">
+     Clone the lecture repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-private-homework-repository">
+     Create a private homework repository
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice">
+   Practice
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="essential-tools-python-git-and-jupyter-notebook">
+<h1>Essential Tools: Python, Git, and Jupyter Notebook<a class="headerlink" href="#essential-tools-python-git-and-jupyter-notebook" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="http://scikit-learn.org/stable/tutorial/machine_learning_map/" src="https://scikit-learn.org/stable/_static/ml_map.png" /></p>
+<p><a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">https://scikit-learn.org/stable/tutorial/machine_learning_map/</a></p>
+<div class="section" id="what-you-will-need-for-this-course">
+<h2>What you will need for this course<a class="headerlink" href="#what-you-will-need-for-this-course" title="Permalink to this headline">¶</a></h2>
+<p>This course focuses on developing practical skills in working with data and providing students with a hands-on understanding of classical data analysis techniques.</p>
+<p>This will be a coding-intensive course.</p>
+<p>As discussed in Lecture 1, we are using <a class="reference external" href="https://www.python.org/">Python</a>, since it allows for fast prototyping and is supported by a great variety of scientific (and, specifically, data related) libraries.</p>
+<p>The materials of this course can be found under <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">this GitHub account</a>.</p>
+<p>Both the lectures and the homeworks of this course are in the format of <a class="reference external" href="http://ipython.org/notebook.html">Jupyter notebooks</a>.</p>
+</div>
+<div class="section" id="installing-python">
+<h2>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to install Python.</p>
+<p>The biggest challenge in installing Python is configuring the many different packages that can be used.</p>
+<p>For that reason, I recommend the free <strong>Anaconda Scientific Python</strong> distribution, which you can download from <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a>. This Python distribution contains most of the packages that we will be using throughout the course. It also includes an easy-to-use but powerful package install/update system, <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong>.</p>
+<p>Note that we are using Python 3 (get the latest version, which should be 3.5 or later).  Be sure to download the correct version.</p>
+<p>This is what is installed on the lab machines.</p>
+</div>
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+<p>One of the goals of this course is make you familiar with the workflow of code-versioning and collaboration.</p>
+<p>If you don’t have it already, you should download <strong>git</strong> from <a class="reference external" href="http://git-scm.com/downloads">here</a>.</p>
+<p>If you don’t already have one, you should also create an account on GitHub.</p>
+<p>You can find extensive documentation on how to use <strong>git</strong> on the <a class="reference external" href="https://help.github.com">Help Pages of Github</a>, on <a class="reference external" href="https://www.atlassian.com/git/tutorials/setting-up-a-repository">Atlassian</a>, on <a class="reference external" href="http://gitref.org/">GitRef</a> and many other sites.</p>
+</div>
+<div class="section" id="working-with-git">
+<h2>Working with Git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Alt text" src="_images/git-staging-area.png" /></p>
+<div class="section" id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>The first time we use <em>git</em> on a new machine, we need to configure our name and email</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name &quot;Mark Crovella&quot;
+$ git config --global user.mail &quot;crovella@bu.edu&quot;
+</pre></div>
+</div>
+<p>Use the email that you used for your GitHub account.</p>
+</div>
+<div class="section" id="creating-a-repository">
+<h3>Creating a Repository<a class="headerlink" href="#creating-a-repository" title="Permalink to this headline">¶</a></h3>
+<p>After installing Git, we can configure our first repository. First, let’s create a new directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir thoughts
+$ cd thoughts
+</pre></div>
+</div>
+<p>Now, we can create a <em>git</em> repository in this directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git init
+</pre></div>
+</div>
+<p>We can check that everything is set up correctly by asking <em>git</em> to tell us the status of our project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+Initial commit
+
+nothing to commit (create/copy files and use &quot;git add&quot; to track)
+</pre></div>
+</div>
+<p>Now, create a file named <code class="docutils literal notranslate"><span class="pre">science.txt</span></code>, edit it with your favorite text editor and add the following lines</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">to</span> <span class="n">think</span> <span class="n">about</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>If we check the status of our repository again, <em>git</em> tells us that there is a new file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+        science.txt
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</pre></div>
+</div>
+<p>The “untracked files” message means that there’s a file in the directory that <em>git</em> isn’t keeping track of. We can tell <em>git</em> that it should do so using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add science.txt
+</pre></div>
+</div>
+<p>and then check that the file is now being tracked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+        new file:   science.txt
+
+</pre></div>
+</div>
+<p><em>git</em> now knows that it’s supposed to keep track of <code class="docutils literal notranslate"><span class="pre">science.txt</span></code>, but it hasn’t yet recorded any changes for posterity as a commit.</p>
+<p>To get it to do that, we need to run one more command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git commit -m &quot;Preparing for science&quot;
+[master (root-commit) f516d22] Preparing for science
+ 1 file changed, 1 insertion(+)
+ create mode 100644 science.txt
+</pre></div>
+</div>
+<p>When we run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>, <em>git</em> takes everything we have told it to save by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and stores a copy permanently inside the special <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory.</p>
+<p>This permanent copy is called a <strong>revision</strong> and its short identifier is <em>f516d22</em>. (Your revision will have another identifier.)</p>
+<p>We use the -m flag (for “message”) to record a comment that will help us remember later on what we did and why.</p>
+<p>If we just run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> without the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, <em>git</em> will launch an editor such as <code class="docutils literal notranslate"><span class="pre">vim</span></code> (or whatever other editor we configured at the start) so that we can write a longer message.</p>
+<p>If you are using Windows and you are not familiar with <code class="docutils literal notranslate"><span class="pre">vim</span></code>, try installing <a class="reference external" href="https://github.com/github/GitPad">GitPad</a>.</p>
+<p>If we run git status now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+nothing to commit, working directory clean
+</pre></div>
+</div>
+<p>it tells us everything is up to date. If we want to know what we’ve done recently, we can ask <em>git</em> to show us the project’s history using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git log
+Author: Katherine Zhao &lt;kzhao@bu.edu&gt;
+Date:   Sun Jan 25 12:48:44 2015 -0500
+
+    Preparing for science
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-a-file">
+<h3>Changing a file<a class="headerlink" href="#changing-a-file" title="Permalink to this headline">¶</a></h3>
+<p>Now, suppose that we edit the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">to</span> <span class="n">think</span> <span class="n">about</span> <span class="n">data</span>
+<span class="n">I</span> <span class="n">need</span> <span class="n">to</span> <span class="n">attend</span> <span class="n">CS591</span>
+</pre></div>
+</div>
+<p>Now if we run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, <em>git</em> will tell us that a file that it is tracking has been modified:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   science.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<p>The last line is the key phrase: <em>“no changes added to commit”</em>.</p>
+<p>We have changed this file, but we haven’t told <em>git</em> we will want to save those changes (which we do with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>) much less actually saved them.</p>
+<p>Let’s double-check our work using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code>, which shows us the differences between the current state of the file and the most recently saved version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git diff
+diff --git a/science.txt b/science.txt
+index 0ac4b7b..c5b1b05 100644
+--- a/science.txt
++++ b/science.txt
+@@ -1 +1,2 @@
+ Starting to think about data
++I need to attend CS591
+</pre></div>
+</div>
+<p>OK, we are happy with that, so let’s commit our change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git commit -m &quot;Related course&quot;
+On branch master
+Changes not staged for commit:
+        modified:   science.txt
+
+no changes added to commit
+</pre></div>
+</div>
+<p><em>Whoops!</em> <em>Git</em> won’t commit the file because we didn’t use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> first. Let’s fix that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add science.txt
+$ git commit -m &quot;Related course&quot;
+[master 1bd7277] Related course
+ 1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<p><em>Git</em> insists that we add files to the set we want to commit before actually committing anything because we may not want to commit everything at once.</p>
+<p>For example, suppose we’re adding a few citations to our project. We might want to commit those additions, and the corresponding addition to the bibliography, but not commit the work we’re doing on the analysis (which we haven’t finished yet).</p>
+<p>To allow for this, <em>git</em> has a special staging area where it keeps track of things that have been added to the current change set but not yet committed. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> puts things in this area, and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> then copies them to long-term storage (as a commit):</p>
+<p><img alt="Alt text" src="_images/git-staging-area.png" /></p>
+</div>
+<div class="section" id="recovering-old-versions">
+<h3>Recovering old versions<a class="headerlink" href="#recovering-old-versions" title="Permalink to this headline">¶</a></h3>
+<p>We can save changes to files and see what we have changed. How can we restore older versions however? Let’s suppose we accidentally overwrite the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat science.txt
+Despair! Nothing works
+</pre></div>
+</div>
+<p>Now, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> tells us that the file has been changed, but those changes haven’t been staged:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   science.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<p>We can put things back the way they were by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout HEAD science.txt
+$ cat science.txt
+Starting to think about data
+I need to attend CS506
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-information">
+<h3>More information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h3>
+<p>You can find more information on <em>git</em> here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://swcarpentry.github.io/git-novice/01-backup.html">Software Carpentry</a></p></li>
+<li><p><a class="reference external" href="https://help.github.com/">GitHub Help</a></p></li>
+<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials/setting-up-a-repository">Atlassian Help</a></p></li>
+<li><p><a class="reference external" href="http://gitref.org/">GitRef</a></p></li>
+<li><p><a class="reference external" href="http://gitready.com/">Git Ready</a></p></li>
+</ul>
+<p>** IMPORTANT! **</p>
+<p>Never <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> sensitive files, e.g. <em>passwords</em>, <em>keys</em>, etc., unless you are really sure you need this.</p>
+</div>
+</div>
+<div class="section" id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>You should get used to developing your code <em>incrementally.</em></p>
+<p>If you typically are writing files that you then run from the command line, e.g., <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">code.py</span></code>, then you are not getting one of the main benefits of working in python.</p>
+<p>Instead you should interact with the interpreter.</p>
+<p>A simple way to do this is to write your code in a file, but then cut and paste pieces of it into the interpreter to test.</p>
+<p>To support this mode of work, use <code class="docutils literal notranslate"><span class="pre">IPython</span></code>.  It has become the standard for interactive computing in Python.</p>
+<p>There is no reason you shouldn’t be using <code class="docutils literal notranslate"><span class="pre">ipython</span></code> instead of the regular python interpreter.</p>
+<p>An even better alternative is to use <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code>.   This puts a browser front-end on <code class="docutils literal notranslate"><span class="pre">ipython</span></code>.</p>
+<p>These slides are actually just a Jupyter notebook.</p>
+<p>To run the Jupyter Notebook server from the command line, type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>. Your web browser will open and load the environment.</p>
+<p>In the notebook, you can type and run code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hey!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hey!
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use auto-complete (with the TAB key) and see the documentation (by adding  `?`):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;18-Regression-II-Logistic.pdf&#39;,
+ &#39;08A-Clustering-III-Hierarchical.pdf&#39;,
+ &#39;04-Linear-Algebra-Refresher.pdf&#39;,
+ &#39;17-Regression-I-Linear.ipynb&#39;,
+ &#39;03-Probability-and-Statistics-Refresher.ipynb&#39;,
+ &#39;laUtilities.py&#39;,
+ &#39;22A-Networks-I-Intro-Edited.pdf&#39;,
+ &#39;15B-Classification-II-Demo.ipynb&#39;,
+ &#39;02A-Getting-Started.ipynb&#39;,
+ &#39;23-Networks-II-Centrality.ipynb&#39;,
+ &#39;05-Distances-Timeseries.pdf&#39;,
+ &#39;10-Low-Rank-and-SVD.pdf&#39;,
+ &#39;13-Web-Scraping.pdf&#39;,
+ &#39;01-Intro-to-Python.pdf&#39;,
+ &#39;preamble.tex&#39;,
+ &#39;figs&#39;,
+ &#39;20-Recommender-Systems-Edited.pdf&#39;,
+ &#39;Makefile&#39;,
+ &#39;06B-Kmeans.pdf&#39;,
+ &#39;04-Linear-Algebra-Refresher.ipynb&#39;,
+ &#39;17-Regression-I-Linear.pdf&#39;,
+ &#39;16C-Classification-III-SVM-Demo.ipynb&#39;,
+ &#39;18-Regression-II-Logistic.ipynb&#39;,
+ &#39;16A-Classification-III-NB-SVM.pdf&#39;,
+ &#39;01-Intro-to-Python.ipynb&#39;,
+ &#39;stripHiddenCode.py&#39;,
+ &#39;img.jpg&#39;,
+ &#39;11-Dimensionality-Reduction-SVD-II.pdf&#39;,
+ &#39;02B-Pandas.ipynb&#39;,
+ &#39;22B-Networks-I-Intro-Demo.pdf&#39;,
+ &#39;23-Networks-II-Centrality.pdf&#39;,
+ &#39;Old&#39;,
+ &#39;stripheaders.py&#39;,
+ &#39;__pycache__&#39;,
+ &#39;docs&#39;,
+ &#39;15A-Classification-II-kNN.pdf&#39;,
+ &#39;09-Clustering-IV-GMM-EM.ipynb&#39;,
+ &#39;10-Low-Rank-and-SVD.ipynb&#39;,
+ &#39;15B-Classification-II-Demo.pdf&#39;,
+ &#39;postamble.tex&#39;,
+ &#39;README.md&#39;,
+ &#39;24-Networks-III-Clustering.pdf&#39;,
+ &#39;02B-Pandas.pdf&#39;,
+ &#39;19-Regression-III-More-Linear.ipynb&#39;,
+ &#39;_toc.yml&#39;,
+ &#39;06A-Clustering-Overview.ipynb&#39;,
+ &#39;CS505FinalProject-Fall2016.pdf&#39;,
+ &#39;22A-Networks-I-Intro.pdf&#39;,
+ &#39;24-Networks-III-Clustering.ipynb&#39;,
+ &#39;16C-Classification-III-SVM-Demo.pdf&#39;,
+ &#39;12-Anomaly-Detection-SVD-III.pdf&#39;,
+ &#39;16B-Classification-III-Random-Projection.ipynb&#39;,
+ &#39;20-Recommender-Systems.pdf&#39;,
+ &#39;foo&#39;,
+ &#39;_build&#39;,
+ &#39;_config.yml&#39;,
+ &#39;08B-Clustering-III.pdf&#39;,
+ &#39;07-Clustering-II.pdf&#39;,
+ &#39;25-Networks-MapReduce.pdf&#39;,
+ &#39;example.txt&#39;,
+ &#39;19-Regression-III-More-Linear.pdf&#39;,
+ &#39;22B-Networks-I-Intro-Demo.ipynb&#39;,
+ &#39;02A-Getting-Started.pdf&#39;,
+ &#39;.ipynb_checkpoints&#39;,
+ &#39;05-Distances-Timeseries.ipynb&#39;,
+ &#39;06A-Clustering-Overview.pdf&#39;,
+ &#39;09-Clustering-IV-GMM-EM.pdf&#39;,
+ &#39;14-Classification-Decision-Trees.pdf&#39;,
+ &#39;.git&#39;,
+ &#39;landing-page.md&#39;,
+ &#39;21A-MapReduce.pdf&#39;,
+ &#39;data&#39;,
+ &#39;07-Clustering-II.ipynb&#39;,
+ &#39;12-Anomaly-Detection-SVD-III.ipynb&#39;,
+ &#39;11-Dimensionality-Reduction-SVD-II.ipynb&#39;,
+ &#39;08B-Clustering-III.ipynb&#39;,
+ &#39;slideUtilities.py&#39;,
+ &#39;03-Probability-and-Statistics-Refresher.pdf&#39;,
+ &#39;21B-MapReduce-Demo.ipynb&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The errors are nicely formatted:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1/0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="essential-shortcuts">
+<h3>Essential Shortcuts<a class="headerlink" href="#essential-shortcuts" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><em>Esc / Enter</em>: Switch between edit and command mode</p></li>
+<li><p>Execute cells</p>
+<ul>
+<li><p><em>Shift-Enter</em>: Run and move to the next cell</p></li>
+<li><p><em>Alt-Enter</em>: Run and make new cell</p></li>
+<li><p><em>Ctrl-Enter</em>: Run in place</p></li>
+</ul>
+</li>
+<li><p><em>a / b</em> : Insert cell below / above</p></li>
+<li><p><em>d</em>: Delete cell</p></li>
+</ul>
+</div>
+<div class="section" id="working-from-the-undergraduate-lab">
+<h3>Working from the Undergraduate lab<a class="headerlink" href="#working-from-the-undergraduate-lab" title="Permalink to this headline">¶</a></h3>
+<p>Anaconda has been installed in the Linux machines of the Undergraduate lab as well. If you want to work from there, you need to follow the next steps:</p>
+<ol class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">conda</span></code> executable to your PATH</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PATH=/usr/local/anaconda/bin:$PATH
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Create a new environment (only do this once)</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create -p ~/envs/test numpy scipy networkx pandas  scikit-learn matplotlib beautiful-soup ipython-notebook=2.2
+</pre></div>
+</div>
+<p>You can change its name to something other than <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<ol class="simple">
+<li><p>Activate the environment</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source activate ~/envs/test
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Run IPython or IPython notebook</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook --ip=127.0.0.1
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Deactivate the environment</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source deactivate
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<p>Systems like <em>git</em> allow us to move work between any two repositories.</p>
+<p>In practice, though, it’s easiest to use one copy as a central hub, and to keep it on the web rather than on someone’s laptop. Most programmers use hosting services like <a class="reference external" href="https://github.com/">GitHub</a> or <a class="reference external" href="https://bitbucket.org/">BitBucket</a> to hold those master copies.</p>
+<p>For the purpose of our course, we will be using <a class="reference external" href="https://github.com/">GitHub</a> to host the course material.</p>
+<p>You will also submit your homeworks through this platform.</p>
+<p>Next, we will cover how you can fork and clone the course’s repository and how to submit your solutions to the homework.</p>
+<p>For more information on how to create your own repository on GitHub and upload code to it, please see the tutorial by <a class="reference external" href="http://swcarpentry.github.io/git-novice/02-collab.html">Software Carpentry</a>.</p>
+<div class="section" id="course-repositories">
+<h3>Course repositories<a class="headerlink" href="#course-repositories" title="Permalink to this headline">¶</a></h3>
+<p>The material of the course is hosted on GitHub, under <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">this account</a>.</p>
+</div>
+<div class="section" id="clone-the-lecture-repository">
+<h3>Clone the lecture repository<a class="headerlink" href="#clone-the-lecture-repository" title="Permalink to this headline">¶</a></h3>
+<p>In order to download a copy of the lectures and run them locally on your computer, you need to clone the lecture repository. To do that:</p>
+<ol class="simple">
+<li><p>Create a new folder for the course.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir cs506
+$ cd cs506
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Copy the clone url from the <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">repository’s website</a>.</p></li>
+<li><p>Clone the repository from <em>git</em>.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science.git
+</pre></div>
+</div>
+<p>You should now have a directory with the course material.</p>
+<p>To update the repository and download the <strong>new material</strong>, type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git pull
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-private-homework-repository">
+<h3>Create a private homework repository<a class="headerlink" href="#create-a-private-homework-repository" title="Permalink to this headline">¶</a></h3>
+<p>Each assignment will have its own private repository, on GitHub shared only by you and the instructors.</p>
+<p>The last commit time on the repo will be used as the submission time.</p>
+</div>
+</div>
+<div class="section" id="practice">
+<h2>Practice<a class="headerlink" href="#practice" title="Permalink to this headline">¶</a></h2>
+<p>Now, practice what we have seen today by solving and submitting Homework 0.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="01-Intro-to-Python.html" title="previous page">Introduction to Python</a>
+    <a class='right-next' id="next-link" href="02B-Pandas.html" title="next page">Getting to know your data with Pandas</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

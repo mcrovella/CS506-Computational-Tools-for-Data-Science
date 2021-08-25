@@ -54,6 +54,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Essential Tools: Python, Git, and Jupyter Notebook" href="02A-Getting-Started.html" />
     <link rel="prev" title="Preface" href="landing-page.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -89,10 +90,47 @@
   </a>
  </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Getting-Started.html">
+   Essential Tools: Python, Git, and Jupyter Notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Getting to know your data with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
   </a>
  </li>
 </ul>
@@ -197,8 +235,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#environment">
-   Environment
+  <a class="reference internal nav-link" href="#how-do-i-run-code">
+   How do I run code?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -238,7 +276,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lists">
-     Lists:
+     Lists
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -248,17 +286,17 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sets">
-     Sets:
+     Sets
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dictionaries">
-     Dictionaries:
+     Dictionaries
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tuples">
-     Tuples:
+     Tuples
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -347,29 +385,39 @@
 </div>
 <p>For those of you that know python, today’s class aims to refresh your memory.</p>
 <p>For those of you that don’t know python – but do know programming – this lecture is to give you an idea of how python is similar to, and different from, your favorite programming language.</p>
-<div class="section" id="environment">
-<h2>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-do-i-run-code">
+<h2>How do I run code?<a class="headerlink" href="#how-do-i-run-code" title="Permalink to this headline">¶</a></h2>
 <p>There are four ways to run python code:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>put your code in a file (say <a class="reference external" href="http://program.py">program.py</a>) and run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">program.py</span></code></p></li>
-<li><p>This is least desirable when you are first writing your code</p></li>
+</ol>
+<ul class="simple">
+<li><p>This is <strong>not a good idea</strong> when you are first writing your code</p></li>
 <li><p>Later, once your code is debugged, this is the way to go</p></li>
 </ul>
-<ul class="simple">
+<ol class="simple">
 <li><p>type your code into the python interpreter</p></li>
-<li><p>This allows you to interact with the interpreter and fix mistakes as they happen</p></li>
-<li><p>However you have to type everything by hand</p></li>
-</ul>
+</ol>
 <ul class="simple">
-<li><p>type, cut/paste, or run your code in <code class="docutils literal notranslate"><span class="pre">ipython</span></code></p></li>
-<li><p>This is a good method</p></li>
-<li><p>Allows you to cut/paste from a file you are working on</p></li>
+<li><p>This <strong>can really help in debugging</strong> since you interact with the interpreter and fix mistakes as they happen</p></li>
+<li><p>good for writing the first version of some new code</p></li>
+<li><p>Later you can put the code in a file</p></li>
 </ul>
+<ol class="simple">
+<li><p>type in an IDE (Spyder, VStudio) or cut/paste your code in <code class="docutils literal notranslate"><span class="pre">ipython</span></code></p></li>
+</ol>
 <ul class="simple">
+<li><p>This is a good method if you <strong>really</strong> use the IDE</p></li>
+<li><p>learn how to use the debugger!</p></li>
+<li><p>But otherwise it’s not better than option 1</p></li>
+</ul>
+<ol class="simple">
 <li><p>run <code class="docutils literal notranslate"><span class="pre">ipython</span></code> in a browser, called <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></p></li>
+</ol>
+<ul class="simple">
 <li><p>This is even better</p></li>
 <li><p>All the advantages of <code class="docutils literal notranslate"><span class="pre">ipython</span></code> plus interleaved documentation and graphical output</p></li>
-<li><p>That is what these slides are in</p></li>
+<li><p>That is what these slides are written in</p></li>
 </ul>
 </div>
 <div class="section" id="functions-and-methods">
@@ -731,8 +779,8 @@
 <p>To create a string with embedded objects use the <code class="docutils literal notranslate"><span class="pre">.format()</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course_name</span> <span class="o">=</span> <span class="s1">&#39;CS505&#39;</span>
-<span class="n">enrollment</span> <span class="o">=</span> <span class="mi">75</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course_name</span> <span class="o">=</span> <span class="s1">&#39;CS506&#39;</span>
+<span class="n">enrollment</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="n">percent_full</span> <span class="o">=</span> <span class="mf">100.0</span>
 <span class="s1">&#39;The course </span><span class="si">{}</span><span class="s1"> has an enrollment of </span><span class="si">{}</span><span class="s1"> and is </span><span class="si">{}</span><span class="s1"> percent full.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
     <span class="n">course_name</span><span class="p">,</span><span class="n">enrollment</span><span class="p">,</span><span class="n">percent_full</span><span class="p">)</span>
@@ -740,7 +788,20 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The course CS505 has an enrollment of 75 and is 100.0 percent full.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The course CS506 has an enrollment of 90 and is 100.0 percent full.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>A special formatting called an f-string allows you to print out variables very conveniently:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">&#39;The course </span><span class="si">{</span><span class="n">course_name</span><span class="si">}</span><span class="s1"> has an enrollment of </span><span class="si">{</span><span class="n">enrollment</span><span class="si">}</span><span class="s1"> and is </span><span class="si">{</span><span class="n">percent_full</span><span class="si">}</span><span class="s1"> percent full.&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The course CS506 has an enrollment of 90 and is 100.0 percent full.&#39;
 </pre></div>
 </div>
 </div>
@@ -845,8 +906,7 @@ This statement is within the i-loop, but not the j-loop
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">lines</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">words</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{}</span><span class="s2"> lines and </span><span class="si">{}</span><span class="s2"> words in the </span><span class="si">{}</span><span class="s2"> file.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-        <span class="n">lines</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">the_file</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="n">lines</span><span class="si">}</span><span class="s2"> lines and </span><span class="si">{</span><span class="n">words</span><span class="si">}</span><span class="s2"> words in the </span><span class="si">{</span><span class="n">the_file</span><span class="si">}</span><span class="s2"> file.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -861,7 +921,7 @@ This statement is within the i-loop, but not the j-loop
 <h2>Lists, Tuples, Sets and Dictionaries<a class="headerlink" href="#lists-tuples-sets-and-dictionaries" title="Permalink to this headline">¶</a></h2>
 <p>Number and strings alone are not enough! We need data types that can hold multiple values.</p>
 <div class="section" id="lists">
-<h3>Lists:<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
 <p>A list is a collection of data items, which can be of differing types.</p>
 <p>Here is an empty list:</p>
 <div class="cell docutils container">
@@ -970,7 +1030,8 @@ This statement is within the i-loop, but not the j-loop
 </div>
 <div class="section" id="list-comprehensions">
 <h3>List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Permalink to this headline">¶</a></h3>
-<p>A <strong>list comprehension</strong> makes a new list from an old list.  It is incredibly useful (learn how to use it!)</p>
+<p>A <strong>list comprehension</strong> makes a new list from an old list.</p>
+<p>It is <strong>incredibly</strong> useful (learn how to use it!)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groceries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;asparagus&#39;</span><span class="p">,</span> <span class="s1">&#39;meat&#39;</span><span class="p">,</span> <span class="s1">&#39;oranges&#39;</span><span class="p">]</span>
@@ -1013,8 +1074,8 @@ This statement is within the i-loop, but not the j-loop
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">L2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L1 is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L2 is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;L1 is </span><span class="si">{</span><span class="n">L1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;L2 is </span><span class="si">{</span><span class="n">L2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1063,8 +1124,9 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 <p>Notice how much more concise and clear the list comprehension is.  It’s more efficient too.</p>
 </div>
 <div class="section" id="sets">
-<h3>Sets:<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
-<p>A set is a collecton of items that cannot contain duplicates.  Sets handle operations like sets in mathematics.</p>
+<h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
+<p>A set is a collecton of items that cannot contain duplicates.</p>
+<p>Sets handle operations like sets in mathematics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1086,15 +1148,16 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 <p>Sets also support the use of union (|), and intersection (&amp;)</p>
 </div>
 <div class="section" id="dictionaries">
-<h3>Dictionaries:<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
-<p>A dictionary is a map of keys to values.  <strong>Keys must be unique</strong>.</p>
+<h3>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
+<p>A dictionary is a map of keys to values.</p>
+<p><strong>Keys must be unique</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="n">simple_dict</span><span class="p">[</span><span class="s1">&#39;cs505&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;data-mining tools&#39;</span>
+<span class="n">simple_dict</span><span class="p">[</span><span class="s1">&#39;cs506&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;data-mining tools&#39;</span>
 
-<span class="n">simple_dict</span><span class="p">[</span><span class="s1">&#39;cs505&#39;</span><span class="p">]</span>
+<span class="n">simple_dict</span><span class="p">[</span><span class="s1">&#39;cs506&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1108,7 +1171,7 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;cs505&#39;</span><span class="p">:</span> <span class="s1">&#39;data-mining tools&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cs506&#39;</span><span class="p">:</span> <span class="s1">&#39;data-mining tools&#39;</span><span class="p">,</span>
     <span class="s1">&#39;cs565&#39;</span><span class="p">:</span> <span class="s1">&#39;data-mining algorithms&#39;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1238,7 +1301,7 @@ George Kollios is interested in databases.
 </div>
 </div>
 <div class="section" id="tuples">
-<h3>Tuples:<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h3>
+<h3>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h3>
 <p>Tuples are an <strong>immutable</strong> type. Like strings, once you create them, you cannot change them.</p>
 <p>Because they are immutabile you can use them as keys in dictionaries.</p>
 <p>However, they are similar to lists in that they are a collection of data and that data can be of differing types.</p>
@@ -1421,7 +1484,8 @@ c
 </div>
 <div class="section" id="functional-programming">
 <h2>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">¶</a></h2>
-<img src=figs/Functional-Homer.png width=400/><p>Functional programming is particularly valuable and common when working with data.  We’ll see more sophisticated examples of this sort of programming later.</p>
+<img src=figs/Functional-Homer.png width=400/><p>Functional programming is particularly valuable and common when working with data.</p>
+<p>We’ll see more sophisticated examples of this sort of programming later.</p>
 <div class="section" id="lambda-functions">
 <h3>Lambda functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h3>
 <p>Python supports the creation of anonymous functions (i.e. functions that are not bound to a name) at runtime, using a construct called <code class="docutils literal notranslate"><span class="pre">lambda</span></code>.</p>
@@ -1715,7 +1779,8 @@ c
 </div>
 <div class="section" id="libraries">
 <h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
-<p>Python is a high-level open-source language.  But the <em>Python world</em> is inhabited by many packages or libraries that provide useful things like array operations, plotting functions, and much more. We can (and we will) import many different libraries of functions to expand the capabilities of Python in our programs.</p>
+<p>Python is a high-level open-source language.  But the <em>Python world</em> is inhabited by many packages or libraries that provide useful things like array operations, plotting functions, and much more.</p>
+<p>We can (and we will) import many different libraries of functions to expand the capabilities of Python in our programs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -1780,7 +1845,7 @@ c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/01-Intro-to-Python_176_0.jpg" src="_images/01-Intro-to-Python_176_0.jpg" />
+<img alt="_images/01-Intro-to-Python_178_0.jpg" src="_images/01-Intro-to-Python_178_0.jpg" />
 </div>
 </div>
 </div>
@@ -1812,6 +1877,7 @@ c
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="landing-page.html" title="previous page">Preface</a>
+    <a class='right-next' id="next-link" href="02A-Getting-Started.html" title="next page">Essential Tools: Python, Git, and Jupyter Notebook</a>
 
         </div>
         

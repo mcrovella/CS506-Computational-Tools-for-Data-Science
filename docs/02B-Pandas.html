@@ -1,0 +1,3816 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting to know your data with Pandas &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probability and Statistics Refresher" href="03-Probability-and-Statistics-Refresher.html" />
+    <link rel="prev" title="Essential Tools: Python, Git, and Jupyter Notebook" href="02A-Getting-Started.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Getting-Started.html">
+   Essential Tools: Python, Git, and Jupyter Notebook
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Getting to know your data with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/02B-Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/02B-Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas">
+   Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started">
+   Getting started
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fetching-storing-and-retrieving-your-data">
+   Fetching, storing and retrieving your data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-data-from-a-csv-file">
+     Reading data from a .csv file
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-data-columns">
+   Working with data columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-frame-methods">
+   Data Frame methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-methods">
+     Plotting methods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bulk-operations">
+     Bulk Operations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessing-rows-of-the-dataframe">
+     Accessing rows of the DataFrame
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering">
+   Filtering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-new-columns">
+   Creating new columns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping">
+   Grouping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-pandas-classes">
+   Other Pandas Classes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-multiple-stocks">
+   Comparing multiple stocks
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="getting-to-know-your-data-with-pandas">
+<h1>Getting to know your data with Pandas<a class="headerlink" href="#getting-to-know-your-data-with-pandas" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pandas">
+<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p>Pandas is the Python Data Analysis Library.</p>
+<p>Pandas is an extremely versatile tool for manipulating datasets.</p>
+<p>It also produces high quality plots with matplotlib, and integrates nicely with other libraries that expect NumPy arrays.</p>
+<p>The most important tool provided by Pandas is the <strong>data frame.</strong></p>
+<p>A data frame is a table in which each row and column is given a label.</p>
+<p>Pandas DataFrames are documented at:</p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html">http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html</a></p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1">#pd.__version__</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fetching-storing-and-retrieving-your-data">
+<h2>Fetching, storing and retrieving your data<a class="headerlink" href="#fetching-storing-and-retrieving-your-data" title="Permalink to this headline">¶</a></h2>
+<p>For demonstration purposes, we’ll use a library built-in to Pandas that fetches data from standard online sources, such as Yahoo! Finance.</p>
+<p>More information on what types of data you can fetch is at:
+<a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/remote_data.html">http://pandas.pydata.org/pandas-docs/stable/remote_data.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="s1">&#39;YELP&#39;</span>
+<span class="n">data_source</span> <span class="o">=</span> <span class="s1">&#39;yahoo&#39;</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">)</span>
+
+<span class="n">yahoo_stocks</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> <span class="n">data_source</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+<span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 252 entries, 2015-01-02 to 2015-12-31
+Data columns (total 6 columns):
+Open         252 non-null float64
+High         252 non-null float64
+Low          252 non-null float64
+Close        252 non-null float64
+Adj Close    252 non-null float64
+Volume       252 non-null int64
+dtypes: float64(5), int64(1)
+memory usage: 13.8 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-data-from-a-csv-file">
+<h3>Reading data from a .csv file<a class="headerlink" href="#reading-data-from-a-csv-file" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;yahoo_data.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;yahoo_data.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date,Open,High,Low,Close,Adj Close,Volume
+2015-01-02,55.459998999999996,55.599998,54.240002000000004,55.150002,55.150002,1664500
+2015-01-05,54.540001000000004,54.950001,52.330002,52.529999,52.529999,2023000
+2015-01-06,52.549999,53.93,50.75,52.439999,52.439999,3762800
+2015-01-07,53.32,53.75,51.759997999999996,52.209998999999996,52.209998999999996,1548200
+2015-01-08,52.59,54.139998999999996,51.759997999999996,53.830002,53.830002,2015300
+2015-01-09,55.959998999999996,56.990002000000004,54.720001,56.07,56.07,6222600
+2015-01-12,56.0,56.060001,53.43,54.02,54.02,2405100
+2015-01-13,54.470001,54.799999,52.52,53.18,53.18,1952100
+2015-01-14,52.799999,53.68,51.459998999999996,52.200001,52.200001,1854600
+2015-01-15,53.0,53.610001000000004,50.029999,50.119999,50.119999,2647800
+2015-01-16,50.18,51.490002000000004,50.029999,51.389998999999996,51.389998999999996,2183300
+2015-01-20,51.650002,51.779999,50.689999,51.41,51.41,1227600
+2015-01-21,51.200001,53.5,51.200001,53.41,53.41,3248100
+2015-01-22,53.869999,55.279999,53.119999,54.799999,54.799999,2295400
+2015-01-23,54.66,55.639998999999996,54.299999,55.189999,55.189999,1629000
+2015-01-26,55.119999,55.790001000000004,54.830002,55.41,55.41,1450300
+2015-01-27,56.060001,56.16,54.57,55.630001,55.630001,2410400
+2015-01-28,56.150002,56.150002,52.919998,53.0,53.0,2013100
+2015-01-29,52.849998,53.310001,51.41,52.93,52.93,1844100
+2015-01-30,52.59,53.419998,52.049999,52.470001,52.470001,1875400
+2015-02-02,52.939999,53.5,51.209998999999996,53.470001,53.470001,2105500
+2015-02-03,53.830002,55.93,53.41,55.779999,55.779999,2876400
+2015-02-04,55.529999,57.07,55.25,56.740002000000004,56.740002000000004,2498600
+2015-02-05,57.599998,57.700001,56.080002,57.470001,57.470001,4657300
+2015-02-06,47.700001,48.169998,44.860001000000004,45.110001000000004,45.110001000000004,25137400
+2015-02-09,44.91,45.040001000000004,42.099998,42.169998,42.169998,13079300
+2015-02-10,43.830002,45.549999,43.310001,44.66,44.66,11267700
+2015-02-11,45.389998999999996,46.43,44.810001,46.18,46.18,6359400
+2015-02-12,46.450001,47.84,45.950001,47.630001,47.630001,4375000
+2015-02-13,48.509997999999996,49.049999,47.220001,47.529999,47.529999,4713100
+2015-02-17,47.439999,48.619999,47.029999,48.189999,48.189999,2390100
+2015-02-18,47.939999,48.689999,47.200001,47.540001000000004,47.540001000000004,2529500
+2015-02-19,47.16,47.790001000000004,46.869999,47.34,47.34,1642200
+2015-02-20,47.400002,47.919998,47.099998,47.790001000000004,47.790001000000004,1688500
+2015-02-23,47.549999,47.740002000000004,46.529999,47.349998,47.349998,2086000
+2015-02-24,46.98,47.73,46.619999,47.290001000000004,47.290001000000004,1506500
+2015-02-25,46.939999,47.450001,46.5,47.150002,47.150002,1924600
+2015-02-26,48.630001,48.810001,47.560001,47.75,47.75,3059400
+2015-02-27,48.32,48.439999,47.049999,48.0,48.0,2118400
+2015-03-02,48.02,48.459998999999996,47.189999,47.860001000000004,47.860001000000004,1933700
+2015-03-03,47.75,48.98,47.330002,48.580002,48.580002,2352100
+2015-03-04,48.68,48.869999,47.310001,47.790001000000004,47.790001000000004,2218800
+2015-03-05,47.689999,48.700001,47.41,47.939999,47.939999,1696900
+2015-03-06,47.75,48.580002,46.919998,47.049999,47.049999,1994800
+2015-03-09,46.959998999999996,46.959998999999996,45.34,45.82,45.82,2554800
+2015-03-10,45.040001000000004,45.900002,44.25,45.23,45.23,2361400
+2015-03-11,45.080002,46.73,44.73,45.73,45.73,2227300
+2015-03-12,45.900002,46.82,45.540001000000004,46.799999,46.799999,1657400
+2015-03-13,46.759997999999996,47.5,46.130001,46.450001,46.450001,2259400
+2015-03-16,46.349998,46.75,45.599998,46.709998999999996,46.709998999999996,1607800
+2015-03-17,46.599998,47.59,46.310001,47.220001,47.220001,1723000
+2015-03-18,47.040001000000004,47.57,46.599998,46.82,46.82,2514800
+2015-03-19,46.669998,47.240002000000004,44.34,45.18,45.18,9280900
+2015-03-20,45.32,46.400002,44.860001000000004,44.939999,44.939999,4240400
+2015-03-23,44.860001000000004,47.150002,44.740002000000004,47.029999,47.029999,3658100
+2015-03-24,46.970001,47.360001000000004,46.529999,47.040001000000004,47.040001000000004,2266600
+2015-03-25,47.040001000000004,47.240002000000004,45.73,45.759997999999996,45.759997999999996,2524700
+2015-03-26,45.650002,46.599998,45.310001,45.709998999999996,45.709998999999996,1692000
+2015-03-27,45.82,47.349998,45.759997999999996,47.16,47.16,1885200
+2015-03-30,47.099998,48.240002000000004,46.709998999999996,47.389998999999996,47.389998999999996,3333800
+2015-03-31,47.029999,47.919998,46.790001000000004,47.349998,47.349998,1922500
+2015-04-01,47.25,47.369999,45.09,45.5,45.5,3670000
+2015-04-02,45.400002,47.5,45.32,47.139998999999996,47.139998999999996,2594600
+2015-04-06,46.25,47.82,46.080002,47.310001,47.310001,1560500
+2015-04-07,47.279999,48.169998,46.959998999999996,46.990002000000004,46.990002000000004,1434800
+2015-04-08,46.82,47.779999,46.369999,47.43,47.43,1856500
+2015-04-09,47.400002,48.099998,46.779999,47.0,47.0,1184400
+2015-04-10,47.049999,47.720001,46.549999,47.650002,47.650002,1407400
+2015-04-13,47.720001,48.34,47.27,47.400002,47.400002,1485900
+2015-04-14,47.360001000000004,47.950001,46.709998999999996,47.599998,47.599998,1692500
+2015-04-15,47.619999,50.200001,47.580002,49.57,49.57,5395300
+2015-04-16,49.330002,50.0,48.529999,49.369999,49.369999,2694500
+2015-04-17,48.91,49.009997999999996,47.939999,48.299999,48.299999,2068500
+2015-04-20,48.450001,48.490002000000004,47.830002,48.25,48.25,1112200
+2015-04-21,48.419998,49.75,48.150002,49.310001,49.310001,1686900
+2015-04-22,49.959998999999996,51.150002,49.790001000000004,50.450001,50.450001,2499300
+2015-04-23,50.509997999999996,50.75,49.700001,50.32,50.32,1457100
+2015-04-24,50.830002,51.220001,50.27,50.610001000000004,50.610001000000004,1433500
+2015-04-27,50.98,52.509997999999996,50.880001,51.02,51.02,2388300
+2015-04-28,51.299999,52.25,51.060001,51.220001,51.220001,2433700
+2015-04-29,51.0,51.73,50.380001,51.279999,51.279999,6480400
+2015-04-30,41.25,42.290001000000004,38.75,39.389998999999996,39.389998999999996,25307400
+2015-05-01,39.310001,39.889998999999996,38.540001000000004,39.759997999999996,39.759997999999996,5876800
+2015-05-04,39.689999,39.709998999999996,38.68,39.610001000000004,39.610001000000004,5171100
+2015-05-05,39.540001000000004,39.990002000000004,38.689999,38.880001,38.880001,2500500
+2015-05-06,38.799999,39.09,37.91,38.220001,38.220001,2689200
+2015-05-07,38.220001,48.73,38.220001,47.009997999999996,47.009997999999996,33831600
+2015-05-08,47.25,50.990002000000004,47.200001,49.93,49.93,24155600
+2015-05-11,49.360001000000004,50.290001000000004,47.880001,48.619999,48.619999,10430300
+2015-05-12,48.220001,49.860001000000004,48.150002,48.830002,48.830002,7587400
+2015-05-13,48.830002,49.349998,47.25,47.84,47.84,5577100
+2015-05-14,47.849998,48.470001,47.259997999999996,47.349998,47.349998,3539400
+2015-05-15,47.360001000000004,47.57,46.68,46.889998999999996,46.889998999999996,3567700
+2015-05-18,45.700001,46.619999,45.5,46.560001,46.560001,2890700
+2015-05-19,46.52,48.560001,46.0,46.459998999999996,46.459998999999996,4677600
+2015-05-20,46.549999,46.93,45.75,46.43,46.43,1605000
+2015-05-21,46.099998,46.880001,45.849998,46.139998999999996,46.139998999999996,1929800
+2015-05-22,46.0,46.830002,46.0,46.48,46.48,1373800
+2015-05-26,46.130001,46.810001,45.360001000000004,45.549999,45.549999,2142300
+2015-05-27,45.849998,46.68,44.830002,45.52,45.52,2544100
+2015-05-28,45.099998,47.919998,44.849998,47.75,47.75,4838900
+2015-05-29,47.16,48.689999,46.75,47.91,47.91,3600400
+2015-06-01,47.709998999999996,48.27,46.869999,47.41,47.41,2296200
+2015-06-02,47.450001,48.900002,47.310001,48.580002,48.580002,2060700
+2015-06-03,48.66,48.799999,47.279999,47.560001,47.560001,2200200
+2015-06-04,47.330002,47.860001000000004,46.790001000000004,47.150002,47.150002,3160400
+2015-06-05,47.529999,48.5,47.099998,48.220001,48.220001,2715200
+2015-06-08,47.900002,48.040001000000004,45.619999,45.669998,45.669998,3707000
+2015-06-09,45.970001,46.27,45.23,45.439999,45.439999,2635900
+2015-06-10,45.810001,45.810001,44.400002,44.459998999999996,44.459998999999996,3719400
+2015-06-11,44.610001000000004,44.860001000000004,43.41,43.540001000000004,43.540001000000004,5014700
+2015-06-12,43.380001,44.299999,43.25,44.040001000000004,44.040001000000004,3401900
+2015-06-15,43.490002000000004,44.389998999999996,43.490002000000004,44.0,44.0,2341400
+2015-06-16,43.939999,46.220001,43.830002,44.700001,44.700001,5072500
+2015-06-17,44.939999,45.189999,44.18,44.599998,44.599998,1711700
+2015-06-18,44.509997999999996,45.830002,44.360001000000004,45.439999,45.439999,2045600
+2015-06-19,45.060001,45.459998999999996,44.75,45.119999,45.119999,2302200
+2015-06-22,45.349998,46.02,44.830002,45.279999,45.279999,2115400
+2015-06-23,45.509997999999996,46.400002,45.080002,46.02,46.02,1833600
+2015-06-24,46.0,46.25,45.189999,45.25,45.25,1427000
+2015-06-25,45.540001000000004,45.849998,44.84,44.880001,44.880001,1368800
+2015-06-26,44.959998999999996,45.240002000000004,44.209998999999996,44.509997999999996,44.509997999999996,2859400
+2015-06-29,43.669998,44.32,42.32,42.470001,42.470001,2402100
+2015-06-30,42.970001,43.349998,42.540001000000004,43.029999,43.029999,1834600
+2015-07-01,43.360001000000004,43.490002000000004,42.049999,42.439999,42.439999,1696000
+2015-07-02,42.369999,42.369999,36.099998,38.18,38.18,13264600
+2015-07-06,37.709998999999996,38.34,36.650002,37.490002000000004,37.490002000000004,6536900
+2015-07-07,37.310001,37.360001000000004,35.099998,36.299999,36.299999,6272400
+2015-07-08,35.639998999999996,36.25,35.139998999999996,35.400002,35.400002,2428400
+2015-07-09,35.919998,36.060001,34.630001,34.75,34.75,2778900
+2015-07-10,35.099998,35.43,34.650002,34.73,34.73,2223300
+2015-07-13,34.84,35.700001,34.650002,35.43,35.43,4069800
+2015-07-14,35.43,36.040001000000004,34.73,35.990002000000004,35.990002000000004,2972400
+2015-07-15,35.799999,36.080002,34.849998,35.0,35.0,2763000
+2015-07-16,35.25,35.549999,34.549999,35.110001000000004,35.110001000000004,2186800
+2015-07-17,35.459998999999996,35.900002,34.669998,34.959998999999996,34.959998999999996,3014200
+2015-07-20,33.939999,35.349998,33.349998,34.549999,34.549999,4215400
+2015-07-21,34.549999,35.650002,34.5,35.57,35.57,2824500
+2015-07-22,34.950001,35.290001000000004,33.889998999999996,34.439999,34.439999,2852400
+2015-07-23,34.439999,35.450001,34.34,35.040001000000004,35.040001000000004,2188300
+2015-07-24,35.290001000000004,35.299999,34.0,34.560001,34.560001,2094600
+2015-07-27,33.98,34.32,33.529999,33.73,33.73,3470300
+2015-07-28,33.060001,33.799999,32.360001000000004,33.509997999999996,33.509997999999996,8529200
+2015-07-29,24.940001000000002,25.5,23.66,25.059998999999998,25.059998999999998,34598900
+2015-07-30,24.91,26.440001000000002,24.809998999999998,26.030001000000002,26.030001000000002,7878800
+2015-07-31,25.690001000000002,27.48,25.690001000000002,26.4,26.4,7889400
+2015-08-03,26.6,27.700001,25.559998999999998,25.92,25.92,6636900
+2015-08-04,25.879998999999998,26.32,25.4,26.18,26.18,3176900
+2015-08-05,26.290001,27.07,26.049999,26.129998999999998,26.129998999999998,2830200
+2015-08-06,26.02,26.23,25.040001,25.379998999999998,25.379998999999998,2389000
+2015-08-07,25.280001000000002,25.75,24.99,25.35,25.35,2167200
+2015-08-10,25.6,26.459999,25.530001000000002,26.0,26.0,2139100
+2015-08-11,25.65,25.969998999999998,24.91,25.35,25.35,2356000
+2015-08-12,24.93,25.629998999999998,24.57,25.469998999999998,25.469998999999998,2341800
+2015-08-13,25.52,25.75,24.51,24.540001,24.540001,2263600
+2015-08-14,25.26,26.139999,24.91,25.77,25.77,4242700
+2015-08-17,25.73,27.040001,25.5,26.639999,26.639999,4077300
+2015-08-18,26.610001,26.66,25.01,25.41,25.41,4037700
+2015-08-19,25.129998999999998,25.68,24.709999,25.25,25.25,2257700
+2015-08-20,24.719998999999998,25.040001,24.0,24.01,24.01,2930700
+2015-08-21,23.709999,23.719998999999998,22.67,23.09,23.09,5473700
+2015-08-24,21.66,24.23,20.5,22.98,22.98,4882000
+2015-08-25,23.870001000000002,24.15,22.719998999999998,22.75,22.75,2860500
+2015-08-26,23.34,23.51,22.51,23.379998999999998,23.379998999999998,3354500
+2015-08-27,24.040001,24.530001000000002,23.16,23.98,23.98,4050900
+2015-08-28,23.639999,24.33,23.639999,23.959999,23.959999,2625100
+2015-08-31,23.91,24.58,23.700001,24.280001000000002,24.280001000000002,2257200
+2015-09-01,23.59,24.389999,23.16,23.4,23.4,3158300
+2015-09-02,23.700001,24.290001,23.24,24.280001000000002,24.280001000000002,2358900
+2015-09-03,24.299999,24.48,23.879998999999998,24.17,24.17,1614900
+2015-09-04,23.700001,24.66,23.6,24.209999,24.209999,1894400
+2015-09-08,24.610001,24.610001,23.940001000000002,23.98,23.98,3224400
+2015-09-09,24.08,25.33,24.07,24.68,24.68,2660400
+2015-09-10,24.73,25.5,24.6,25.120001000000002,25.120001000000002,1786900
+2015-09-11,25.0,25.370001000000002,24.629998999999998,24.709999,24.709999,1702900
+2015-09-14,24.77,24.940001000000002,24.17,24.469998999999998,24.469998999999998,1678700
+2015-09-15,24.41,25.200001,24.299999,24.940001000000002,24.940001000000002,1316500
+2015-09-16,24.809998999999998,25.93,24.73,25.290001,25.290001,3299800
+2015-09-17,25.120001000000002,25.68,24.9,25.129998999999998,25.129998999999998,2011400
+2015-09-18,24.74,25.440001000000002,24.549999,24.75,24.75,2556500
+2015-09-21,24.860001,24.959999,24.1,24.23,24.23,2279600
+2015-09-22,23.92,24.49,23.209999,23.35,23.35,2394800
+2015-09-23,23.5,23.5,22.93,23.1,23.1,1655100
+2015-09-24,22.469998999999998,22.67,22.0,22.58,22.58,2778600
+2015-09-25,22.68,22.99,21.959999,22.17,22.17,1701300
+2015-09-28,22.15,22.32,21.370001000000002,21.379998999999998,21.379998999999998,1974700
+2015-09-29,21.67,21.969998999999998,21.0,21.139999,21.139999,2474400
+2015-09-30,21.49,22.110001,21.219998999999998,21.66,21.66,1933600
+2015-10-01,21.65,21.870001000000002,20.75,20.870001000000002,20.870001000000002,2769100
+2015-10-02,20.75,22.48,20.6,22.379998999999998,22.379998999999998,2248900
+2015-10-05,22.379998999999998,22.709999,22.059998999999998,22.68,22.68,1809300
+2015-10-06,22.719998999999998,23.190001000000002,22.51,22.68,22.68,1704300
+2015-10-07,22.879998999999998,23.530001000000002,22.459999,23.5,23.5,1527900
+2015-10-08,23.459999,23.870001000000002,22.879998999999998,23.610001,23.610001,1299600
+2015-10-09,23.610001,25.02,23.35,24.879998999999998,24.879998999999998,3320600
+2015-10-12,24.690001000000002,24.82,22.219998999999998,22.74,22.74,4755000
+2015-10-13,22.809998999999998,23.299999,22.469998999999998,22.49,22.49,1696300
+2015-10-14,22.48,22.879998999999998,21.870001000000002,21.98,21.98,2223100
+2015-10-15,22.200001,22.84,22.059998999999998,22.610001,22.610001,2083700
+2015-10-16,22.709999,22.799999,22.040001,22.65,22.65,1720600
+2015-10-19,22.51,22.84,22.309998999999998,22.6,22.6,1402900
+2015-10-20,22.58,23.120001000000002,22.129998999999998,22.52,22.52,1663800
+2015-10-21,22.52,22.75,22.190001000000002,22.389999,22.389999,1340800
+2015-10-22,22.51,23.0,22.07,22.52,22.52,2341200
+2015-10-23,22.799999,22.889999,22.110001,22.559998999999998,22.559998999999998,3188700
+2015-10-26,22.6,24.799999,22.32,24.43,24.43,6890700
+2015-10-27,24.299999,24.299999,22.01,22.9,22.9,6616200
+2015-10-28,21.639999,22.809998999999998,21.43,22.07,22.07,9403700
+2015-10-29,23.26,24.200001,22.41,22.950001,22.950001,9628800
+2015-10-30,23.110001,23.15,22.0,22.25,22.25,5010000
+2015-11-02,22.26,23.85,22.209999,23.799999,23.799999,6459600
+2015-11-03,23.67,24.450001,23.6,24.120001000000002,24.120001000000002,2482100
+2015-11-04,24.030001000000002,24.6,23.879998999999998,24.42,24.42,1698500
+2015-11-05,24.5,25.559998999999998,24.32,25.049999,25.049999,2794300
+2015-11-06,25.049999,25.530001000000002,24.5,25.5,25.5,2095400
+2015-11-09,25.34,25.65,24.629998999999998,24.959999,24.959999,1567200
+2015-11-10,24.85,25.360001,24.59,25.16,25.16,1267900
+2015-11-11,25.1,25.309998999999998,24.540001,24.98,24.98,1364400
+2015-11-12,25.18,27.219998999999998,24.9,25.9,25.9,5213300
+2015-11-13,26.719998999999998,27.49,26.120001000000002,27.1,27.1,4976000
+2015-11-16,27.0,27.59,26.469998999999998,27.440001000000002,27.440001000000002,3066700
+2015-11-17,27.34,27.610001,26.860001,27.540001,27.540001,2018000
+2015-11-18,27.540001,28.83,27.309998999999998,28.23,28.23,3091600
+2015-11-19,28.190001000000002,28.690001000000002,27.91,28.059998999999998,28.059998999999998,1487500
+2015-11-20,28.1,31.25,28.049999,31.209999,31.209999,6697500
+2015-11-23,30.58,30.809998999999998,29.15,29.860001,29.860001,4029900
+2015-11-24,29.459999,30.629998999999998,29.450001,30.01,30.01,2584500
+2015-11-25,29.790001,30.540001,29.709999,30.51,30.51,1287100
+2015-11-27,30.5,30.6,29.610001,30.18,30.18,1058900
+2015-11-30,30.110001,30.719998999999998,29.77,30.129998999999998,30.129998999999998,2015600
+2015-12-01,30.110001,30.459999,29.799999,30.309998999999998,30.309998999999998,1886000
+2015-12-02,30.299999,32.470001,30.290001,31.389999,31.389999,4650300
+2015-12-03,31.389999,32.240002000000004,30.48,30.629998999999998,30.629998999999998,2698900
+2015-12-04,30.530001000000002,30.860001,29.32,30.450001,30.450001,2313800
+2015-12-07,30.379998999999998,30.639999,29.629998999999998,30.040001,30.040001,1362300
+2015-12-08,29.809998999999998,31.379998999999998,29.5,30.92,30.92,1830200
+2015-12-09,30.98,31.139999,29.26,30.0,30.0,2238500
+2015-12-10,30.110001,31.299999,29.99,30.83,30.83,1251800
+2015-12-11,30.690001000000002,30.75,29.6,29.65,29.65,1415000
+2015-12-14,29.6,29.889999,28.85,29.58,29.58,2328600
+2015-12-15,29.68,30.0,26.459999,26.870001000000002,26.870001000000002,5759200
+2015-12-16,26.889999,28.24,26.26,28.030001000000002,28.030001000000002,2992100
+2015-12-17,28.139999,28.32,27.190001000000002,27.42,27.42,1483900
+2015-12-18,27.309998999999998,27.91,26.9,27.17,27.17,1299800
+2015-12-21,27.17,27.360001,26.030001000000002,26.25,26.25,1947600
+2015-12-22,26.25,28.700001,26.15,27.93,27.93,2952700
+2015-12-23,27.950001,28.42,27.440001000000002,28.15,28.15,1001000
+2015-12-24,28.27,28.59,27.9,28.4,28.4,587400
+2015-12-28,28.120001000000002,28.379998999999998,27.77,27.879998999999998,27.879998999999998,1004500
+2015-12-29,27.950001,28.540001,27.74,28.48,28.48,1103900
+2015-12-30,28.58,28.780001000000002,28.17,28.25,28.25,1068000
+2015-12-31,28.1,28.969998999999998,28.02,28.799999,28.799999,1301500
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;yahoo_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-01-02</td>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-01-05</td>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-01-06</td>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-01-07</td>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-01-08</td>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2015-01-09</td>
+      <td>55.959999</td>
+      <td>56.990002</td>
+      <td>54.720001</td>
+      <td>56.070000</td>
+      <td>56.070000</td>
+      <td>6222600</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2015-01-12</td>
+      <td>56.000000</td>
+      <td>56.060001</td>
+      <td>53.430000</td>
+      <td>54.020000</td>
+      <td>54.020000</td>
+      <td>2405100</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2015-01-13</td>
+      <td>54.470001</td>
+      <td>54.799999</td>
+      <td>52.520000</td>
+      <td>53.180000</td>
+      <td>53.180000</td>
+      <td>1952100</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2015-01-14</td>
+      <td>52.799999</td>
+      <td>53.680000</td>
+      <td>51.459999</td>
+      <td>52.200001</td>
+      <td>52.200001</td>
+      <td>1854600</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2015-01-15</td>
+      <td>53.000000</td>
+      <td>53.610001</td>
+      <td>50.029999</td>
+      <td>50.119999</td>
+      <td>50.119999</td>
+      <td>2647800</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2015-01-16</td>
+      <td>50.180000</td>
+      <td>51.490002</td>
+      <td>50.029999</td>
+      <td>51.389999</td>
+      <td>51.389999</td>
+      <td>2183300</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2015-01-20</td>
+      <td>51.650002</td>
+      <td>51.779999</td>
+      <td>50.689999</td>
+      <td>51.410000</td>
+      <td>51.410000</td>
+      <td>1227600</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2015-01-21</td>
+      <td>51.200001</td>
+      <td>53.500000</td>
+      <td>51.200001</td>
+      <td>53.410000</td>
+      <td>53.410000</td>
+      <td>3248100</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2015-01-22</td>
+      <td>53.869999</td>
+      <td>55.279999</td>
+      <td>53.119999</td>
+      <td>54.799999</td>
+      <td>54.799999</td>
+      <td>2295400</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2015-01-23</td>
+      <td>54.660000</td>
+      <td>55.639999</td>
+      <td>54.299999</td>
+      <td>55.189999</td>
+      <td>55.189999</td>
+      <td>1629000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2015-01-26</td>
+      <td>55.119999</td>
+      <td>55.790001</td>
+      <td>54.830002</td>
+      <td>55.410000</td>
+      <td>55.410000</td>
+      <td>1450300</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2015-01-27</td>
+      <td>56.060001</td>
+      <td>56.160000</td>
+      <td>54.570000</td>
+      <td>55.630001</td>
+      <td>55.630001</td>
+      <td>2410400</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2015-01-28</td>
+      <td>56.150002</td>
+      <td>56.150002</td>
+      <td>52.919998</td>
+      <td>53.000000</td>
+      <td>53.000000</td>
+      <td>2013100</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2015-01-29</td>
+      <td>52.849998</td>
+      <td>53.310001</td>
+      <td>51.410000</td>
+      <td>52.930000</td>
+      <td>52.930000</td>
+      <td>1844100</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2015-01-30</td>
+      <td>52.590000</td>
+      <td>53.419998</td>
+      <td>52.049999</td>
+      <td>52.470001</td>
+      <td>52.470001</td>
+      <td>1875400</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2015-02-02</td>
+      <td>52.939999</td>
+      <td>53.500000</td>
+      <td>51.209999</td>
+      <td>53.470001</td>
+      <td>53.470001</td>
+      <td>2105500</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2015-02-03</td>
+      <td>53.830002</td>
+      <td>55.930000</td>
+      <td>53.410000</td>
+      <td>55.779999</td>
+      <td>55.779999</td>
+      <td>2876400</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2015-02-04</td>
+      <td>55.529999</td>
+      <td>57.070000</td>
+      <td>55.250000</td>
+      <td>56.740002</td>
+      <td>56.740002</td>
+      <td>2498600</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2015-02-05</td>
+      <td>57.599998</td>
+      <td>57.700001</td>
+      <td>56.080002</td>
+      <td>57.470001</td>
+      <td>57.470001</td>
+      <td>4657300</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2015-02-06</td>
+      <td>47.700001</td>
+      <td>48.169998</td>
+      <td>44.860001</td>
+      <td>45.110001</td>
+      <td>45.110001</td>
+      <td>25137400</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2015-02-09</td>
+      <td>44.910000</td>
+      <td>45.040001</td>
+      <td>42.099998</td>
+      <td>42.169998</td>
+      <td>42.169998</td>
+      <td>13079300</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2015-02-10</td>
+      <td>43.830002</td>
+      <td>45.549999</td>
+      <td>43.310001</td>
+      <td>44.660000</td>
+      <td>44.660000</td>
+      <td>11267700</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2015-02-11</td>
+      <td>45.389999</td>
+      <td>46.430000</td>
+      <td>44.810001</td>
+      <td>46.180000</td>
+      <td>46.180000</td>
+      <td>6359400</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2015-02-12</td>
+      <td>46.450001</td>
+      <td>47.840000</td>
+      <td>45.950001</td>
+      <td>47.630001</td>
+      <td>47.630001</td>
+      <td>4375000</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2015-02-13</td>
+      <td>48.509998</td>
+      <td>49.049999</td>
+      <td>47.220001</td>
+      <td>47.529999</td>
+      <td>47.529999</td>
+      <td>4713100</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>222</th>
+      <td>2015-11-18</td>
+      <td>27.540001</td>
+      <td>28.830000</td>
+      <td>27.309999</td>
+      <td>28.230000</td>
+      <td>28.230000</td>
+      <td>3091600</td>
+    </tr>
+    <tr>
+      <th>223</th>
+      <td>2015-11-19</td>
+      <td>28.190001</td>
+      <td>28.690001</td>
+      <td>27.910000</td>
+      <td>28.059999</td>
+      <td>28.059999</td>
+      <td>1487500</td>
+    </tr>
+    <tr>
+      <th>224</th>
+      <td>2015-11-20</td>
+      <td>28.100000</td>
+      <td>31.250000</td>
+      <td>28.049999</td>
+      <td>31.209999</td>
+      <td>31.209999</td>
+      <td>6697500</td>
+    </tr>
+    <tr>
+      <th>225</th>
+      <td>2015-11-23</td>
+      <td>30.580000</td>
+      <td>30.809999</td>
+      <td>29.150000</td>
+      <td>29.860001</td>
+      <td>29.860001</td>
+      <td>4029900</td>
+    </tr>
+    <tr>
+      <th>226</th>
+      <td>2015-11-24</td>
+      <td>29.459999</td>
+      <td>30.629999</td>
+      <td>29.450001</td>
+      <td>30.010000</td>
+      <td>30.010000</td>
+      <td>2584500</td>
+    </tr>
+    <tr>
+      <th>227</th>
+      <td>2015-11-25</td>
+      <td>29.790001</td>
+      <td>30.540001</td>
+      <td>29.709999</td>
+      <td>30.510000</td>
+      <td>30.510000</td>
+      <td>1287100</td>
+    </tr>
+    <tr>
+      <th>228</th>
+      <td>2015-11-27</td>
+      <td>30.500000</td>
+      <td>30.600000</td>
+      <td>29.610001</td>
+      <td>30.180000</td>
+      <td>30.180000</td>
+      <td>1058900</td>
+    </tr>
+    <tr>
+      <th>229</th>
+      <td>2015-11-30</td>
+      <td>30.110001</td>
+      <td>30.719999</td>
+      <td>29.770000</td>
+      <td>30.129999</td>
+      <td>30.129999</td>
+      <td>2015600</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>2015-12-01</td>
+      <td>30.110001</td>
+      <td>30.459999</td>
+      <td>29.799999</td>
+      <td>30.309999</td>
+      <td>30.309999</td>
+      <td>1886000</td>
+    </tr>
+    <tr>
+      <th>231</th>
+      <td>2015-12-02</td>
+      <td>30.299999</td>
+      <td>32.470001</td>
+      <td>30.290001</td>
+      <td>31.389999</td>
+      <td>31.389999</td>
+      <td>4650300</td>
+    </tr>
+    <tr>
+      <th>232</th>
+      <td>2015-12-03</td>
+      <td>31.389999</td>
+      <td>32.240002</td>
+      <td>30.480000</td>
+      <td>30.629999</td>
+      <td>30.629999</td>
+      <td>2698900</td>
+    </tr>
+    <tr>
+      <th>233</th>
+      <td>2015-12-04</td>
+      <td>30.530001</td>
+      <td>30.860001</td>
+      <td>29.320000</td>
+      <td>30.450001</td>
+      <td>30.450001</td>
+      <td>2313800</td>
+    </tr>
+    <tr>
+      <th>234</th>
+      <td>2015-12-07</td>
+      <td>30.379999</td>
+      <td>30.639999</td>
+      <td>29.629999</td>
+      <td>30.040001</td>
+      <td>30.040001</td>
+      <td>1362300</td>
+    </tr>
+    <tr>
+      <th>235</th>
+      <td>2015-12-08</td>
+      <td>29.809999</td>
+      <td>31.379999</td>
+      <td>29.500000</td>
+      <td>30.920000</td>
+      <td>30.920000</td>
+      <td>1830200</td>
+    </tr>
+    <tr>
+      <th>236</th>
+      <td>2015-12-09</td>
+      <td>30.980000</td>
+      <td>31.139999</td>
+      <td>29.260000</td>
+      <td>30.000000</td>
+      <td>30.000000</td>
+      <td>2238500</td>
+    </tr>
+    <tr>
+      <th>237</th>
+      <td>2015-12-10</td>
+      <td>30.110001</td>
+      <td>31.299999</td>
+      <td>29.990000</td>
+      <td>30.830000</td>
+      <td>30.830000</td>
+      <td>1251800</td>
+    </tr>
+    <tr>
+      <th>238</th>
+      <td>2015-12-11</td>
+      <td>30.690001</td>
+      <td>30.750000</td>
+      <td>29.600000</td>
+      <td>29.650000</td>
+      <td>29.650000</td>
+      <td>1415000</td>
+    </tr>
+    <tr>
+      <th>239</th>
+      <td>2015-12-14</td>
+      <td>29.600000</td>
+      <td>29.889999</td>
+      <td>28.850000</td>
+      <td>29.580000</td>
+      <td>29.580000</td>
+      <td>2328600</td>
+    </tr>
+    <tr>
+      <th>240</th>
+      <td>2015-12-15</td>
+      <td>29.680000</td>
+      <td>30.000000</td>
+      <td>26.459999</td>
+      <td>26.870001</td>
+      <td>26.870001</td>
+      <td>5759200</td>
+    </tr>
+    <tr>
+      <th>241</th>
+      <td>2015-12-16</td>
+      <td>26.889999</td>
+      <td>28.240000</td>
+      <td>26.260000</td>
+      <td>28.030001</td>
+      <td>28.030001</td>
+      <td>2992100</td>
+    </tr>
+    <tr>
+      <th>242</th>
+      <td>2015-12-17</td>
+      <td>28.139999</td>
+      <td>28.320000</td>
+      <td>27.190001</td>
+      <td>27.420000</td>
+      <td>27.420000</td>
+      <td>1483900</td>
+    </tr>
+    <tr>
+      <th>243</th>
+      <td>2015-12-18</td>
+      <td>27.309999</td>
+      <td>27.910000</td>
+      <td>26.900000</td>
+      <td>27.170000</td>
+      <td>27.170000</td>
+      <td>1299800</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>2015-12-21</td>
+      <td>27.170000</td>
+      <td>27.360001</td>
+      <td>26.030001</td>
+      <td>26.250000</td>
+      <td>26.250000</td>
+      <td>1947600</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>2015-12-22</td>
+      <td>26.250000</td>
+      <td>28.700001</td>
+      <td>26.150000</td>
+      <td>27.930000</td>
+      <td>27.930000</td>
+      <td>2952700</td>
+    </tr>
+    <tr>
+      <th>246</th>
+      <td>2015-12-23</td>
+      <td>27.950001</td>
+      <td>28.420000</td>
+      <td>27.440001</td>
+      <td>28.150000</td>
+      <td>28.150000</td>
+      <td>1001000</td>
+    </tr>
+    <tr>
+      <th>247</th>
+      <td>2015-12-24</td>
+      <td>28.270000</td>
+      <td>28.590000</td>
+      <td>27.900000</td>
+      <td>28.400000</td>
+      <td>28.400000</td>
+      <td>587400</td>
+    </tr>
+    <tr>
+      <th>248</th>
+      <td>2015-12-28</td>
+      <td>28.120001</td>
+      <td>28.379999</td>
+      <td>27.770000</td>
+      <td>27.879999</td>
+      <td>27.879999</td>
+      <td>1004500</td>
+    </tr>
+    <tr>
+      <th>249</th>
+      <td>2015-12-29</td>
+      <td>27.950001</td>
+      <td>28.540001</td>
+      <td>27.740000</td>
+      <td>28.480000</td>
+      <td>28.480000</td>
+      <td>1103900</td>
+    </tr>
+    <tr>
+      <th>250</th>
+      <td>2015-12-30</td>
+      <td>28.580000</td>
+      <td>28.780001</td>
+      <td>28.170000</td>
+      <td>28.250000</td>
+      <td>28.250000</td>
+      <td>1068000</td>
+    </tr>
+    <tr>
+      <th>251</th>
+      <td>2015-12-31</td>
+      <td>28.100000</td>
+      <td>28.969999</td>
+      <td>28.020000</td>
+      <td>28.799999</td>
+      <td>28.799999</td>
+      <td>1301500</td>
+    </tr>
+  </tbody>
+</table>
+<p>252 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>The number of rows in the DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-data-columns">
+<h2>Working with data columns<a class="headerlink" href="#working-with-data-columns" title="Permalink to this headline">¶</a></h2>
+<p>The columns or “features” in your data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;IBM&#39;, &#39;MSFT&#39;, &#39;ORCL&#39;, &#39;TSLA&#39;, &#39;YELP&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Selecting a single column from your data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Open&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      55.459999
+1      54.540001
+2      52.549999
+3      53.320000
+4      52.590000
+5      55.959999
+6      56.000000
+7      54.470001
+8      52.799999
+9      53.000000
+10     50.180000
+11     51.650002
+12     51.200001
+13     53.869999
+14     54.660000
+15     55.119999
+16     56.060001
+17     56.150002
+18     52.849998
+19     52.590000
+20     52.939999
+21     53.830002
+22     55.529999
+23     57.599998
+24     47.700001
+25     44.910000
+26     43.830002
+27     45.389999
+28     46.450001
+29     48.509998
+         ...    
+222    27.540001
+223    28.190001
+224    28.100000
+225    30.580000
+226    29.459999
+227    29.790001
+228    30.500000
+229    30.110001
+230    30.110001
+231    30.299999
+232    31.389999
+233    30.530001
+234    30.379999
+235    29.809999
+236    30.980000
+237    30.110001
+238    30.690001
+239    29.600000
+240    29.680000
+241    26.889999
+242    28.139999
+243    27.309999
+244    27.170000
+245    26.250000
+246    27.950001
+247    28.270000
+248    28.120001
+249    27.950001
+250    28.580000
+251    28.100000
+Name: Open, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another way of selecting a single column from your data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Open</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      55.459999
+1      54.540001
+2      52.549999
+3      53.320000
+4      52.590000
+5      55.959999
+6      56.000000
+7      54.470001
+8      52.799999
+9      53.000000
+10     50.180000
+11     51.650002
+12     51.200001
+13     53.869999
+14     54.660000
+15     55.119999
+16     56.060001
+17     56.150002
+18     52.849998
+19     52.590000
+20     52.939999
+21     53.830002
+22     55.529999
+23     57.599998
+24     47.700001
+25     44.910000
+26     43.830002
+27     45.389999
+28     46.450001
+29     48.509998
+         ...    
+222    27.540001
+223    28.190001
+224    28.100000
+225    30.580000
+226    29.459999
+227    29.790001
+228    30.500000
+229    30.110001
+230    30.110001
+231    30.299999
+232    31.389999
+233    30.530001
+234    30.379999
+235    29.809999
+236    30.980000
+237    30.110001
+238    30.690001
+239    29.600000
+240    29.680000
+241    26.889999
+242    28.139999
+243    27.309999
+244    27.170000
+245    26.250000
+246    27.950001
+247    28.270000
+248    28.120001
+249    27.950001
+250    28.580000
+251    28.100000
+Name: Open, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>Close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>55.459999</td>
+      <td>55.150002</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>54.540001</td>
+      <td>52.529999</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>52.549999</td>
+      <td>52.439999</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53.320000</td>
+      <td>52.209999</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>52.590000</td>
+      <td>53.830002</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2015-01-02
+1    2015-01-05
+2    2015-01-06
+3    2015-01-07
+4    2015-01-08
+5    2015-01-09
+6    2015-01-12
+7    2015-01-13
+8    2015-01-14
+9    2015-01-15
+Name: Date, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>242    2015-12-17
+243    2015-12-18
+244    2015-12-21
+245    2015-12-22
+246    2015-12-23
+247    2015-12-24
+248    2015-12-28
+249    2015-12-29
+250    2015-12-30
+251    2015-12-31
+Name: Date, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changing the column names:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">new_column_names</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 252 entries, 0 to 251
+Data columns (total 7 columns):
+date         252 non-null object
+open         252 non-null float64
+high         252 non-null float64
+low          252 non-null float64
+close        252 non-null float64
+adj_close    252 non-null float64
+volume       252 non-null int64
+dtypes: float64(5), int64(1), object(1)
+memory usage: 13.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now <strong>all</strong> columns can be accessed using the <strong>dot</strong> notation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">adj_close</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    55.150002
+1    52.529999
+2    52.439999
+3    52.209999
+4    53.830002
+Name: adj_close, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-frame-methods">
+<h2>Data Frame methods<a class="headerlink" href="#data-frame-methods" title="Permalink to this headline">¶</a></h2>
+<p>A DataFrame object has many useful methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         3.728766e+01
+high         3.805464e+01
+low          3.656373e+01
+close        3.729917e+01
+adj_close    3.729917e+01
+volume       3.490978e+06
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         1.128093e+01
+high         1.138111e+01
+low          1.113097e+01
+close        1.125233e+01
+adj_close    1.125233e+01
+volume       4.145025e+06
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         3.796500e+01
+high         3.871500e+01
+low          3.637500e+01
+close        3.783500e+01
+adj_close    3.783500e+01
+volume       2.354050e+06
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">open</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.287658698412692
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">high</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.054642952380952
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-methods">
+<h3>Plotting methods<a class="headerlink" href="#plotting-methods" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">adj_close</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;adj&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;close&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1159356d8&gt;
+</pre></div>
+</div>
+<img alt="_images/02B-Pandas_37_1.png" src="_images/02B-Pandas_37_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">adj_close</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x117cc12e8&gt;
+</pre></div>
+</div>
+<img alt="_images/02B-Pandas_38_1.png" src="_images/02B-Pandas_38_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="bulk-operations">
+<h3>Bulk Operations<a class="headerlink" href="#bulk-operations" title="Permalink to this headline">¶</a></h3>
+<p>Methods like <strong>sum( )</strong> and <strong>std( )</strong> work on entire columns.</p>
+<p>We can run our own functions across all values in a column (or row) using <strong>apply( )</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 252 entries, 0 to 251
+Data columns (total 7 columns):
+Date         252 non-null object
+Open         252 non-null float64
+High         252 non-null float64
+Low          252 non-null float64
+Close        252 non-null float64
+Adj Close    252 non-null float64
+Volume       252 non-null int64
+dtypes: float64(5), int64(1), object(1)
+memory usage: 13.9+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2015-01-02
+1    2015-01-05
+2    2015-01-06
+3    2015-01-07
+4    2015-01-08
+Name: Date, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>values</strong> property of the column returns a list of values for the column. Inspecting the first value reveals that these are strings with a particular format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">first_date</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2015-01-02&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">first_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2015, 1, 2, 0, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   2015-01-02
+1   2015-01-05
+2   2015-01-06
+3   2015-01-07
+4   2015-01-08
+Name: date, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each row in a DataFrame is associated with an index, which is a label that uniquely identifies a row.</p>
+<p>The row indices so far have been auto-generated by pandas, and are simply integers starting from 0.</p>
+<p>From now on we will use dates instead of integers for indices – the benefits of this will show later.</p>
+<p>Overwriting the index is as easy as assigning to the <strong><code class="docutils literal notranslate"><span class="pre">index</span></code></strong> property of the DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>2015-01-02</td>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>2015-01-05</td>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>2015-01-06</td>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>2015-01-07</td>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>2015-01-08</td>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now that we have made an index based on date, we can drop the original <code class="docutils literal notranslate"><span class="pre">date</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 252 entries, 2015-01-02 to 2015-12-31
+Data columns (total 6 columns):
+open         252 non-null float64
+high         252 non-null float64
+low          252 non-null float64
+close        252 non-null float64
+adj_close    252 non-null float64
+volume       252 non-null int64
+dtypes: float64(5), int64(1)
+memory usage: 13.8 KB
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="accessing-rows-of-the-dataframe">
+<h3>Accessing rows of the DataFrame<a class="headerlink" href="#accessing-rows-of-the-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>So far we’ve seen how to access a column of the DataFrame.  To access a row we use a different notation.</p>
+<p>To access a row by its index value, use the <strong><code class="docutils literal notranslate"><span class="pre">.loc()</span></code></strong> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         5.466000e+01
+high         5.564000e+01
+low          5.430000e+01
+close        5.519000e+01
+adj_close    5.519000e+01
+volume       1.629000e+06
+Name: 2015-01-23 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>To access a row by its sequence number (ie, like an array index), use <strong><code class="docutils literal notranslate"><span class="pre">.iloc()</span></code></strong> (‘Integer Location’)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         5.546000e+01
+high         5.560000e+01
+low          5.424000e+01
+close        5.515000e+01
+adj_close    5.515000e+01
+volume       1.664500e+06
+Name: 2015-01-02 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>To iterate over the rows, use <strong><code class="docutils literal notranslate"><span class="pre">.iterrows()</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_positive_days</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span><span class="p">:</span>
+        <span class="n">num_positive_days</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total number of positive-gain days is </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_positive_days</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of positive-gain days is 126.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
+<p>It is very easy to select interesting rows from the data.</p>
+<p>All these operations below return a new DataFrame, which itself can be treated the same way as all DataFrames we have seen so far.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_high</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">high</span> <span class="o">&gt;</span> <span class="mi">55</span>
+<span class="n">tmp_high</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
+2015-01-02     True
+2015-01-05    False
+2015-01-06    False
+2015-01-07    False
+2015-01-08    False
+Name: high, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Summing a Boolean array is the same as counting the number of <strong><code class="docutils literal notranslate"><span class="pre">True</span></code></strong> values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">tmp_high</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s select only the rows of <strong><code class="docutils literal notranslate"><span class="pre">df1</span></code></strong> that correspond to <strong><code class="docutils literal notranslate"><span class="pre">tmp_high</span></code></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">tmp_high</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+    </tr>
+    <tr>
+      <th>2015-01-09</th>
+      <td>55.959999</td>
+      <td>56.990002</td>
+      <td>54.720001</td>
+      <td>56.070000</td>
+      <td>56.070000</td>
+      <td>6222600</td>
+    </tr>
+    <tr>
+      <th>2015-01-12</th>
+      <td>56.000000</td>
+      <td>56.060001</td>
+      <td>53.430000</td>
+      <td>54.020000</td>
+      <td>54.020000</td>
+      <td>2405100</td>
+    </tr>
+    <tr>
+      <th>2015-01-22</th>
+      <td>53.869999</td>
+      <td>55.279999</td>
+      <td>53.119999</td>
+      <td>54.799999</td>
+      <td>54.799999</td>
+      <td>2295400</td>
+    </tr>
+    <tr>
+      <th>2015-01-23</th>
+      <td>54.660000</td>
+      <td>55.639999</td>
+      <td>54.299999</td>
+      <td>55.189999</td>
+      <td>55.189999</td>
+      <td>1629000</td>
+    </tr>
+    <tr>
+      <th>2015-01-26</th>
+      <td>55.119999</td>
+      <td>55.790001</td>
+      <td>54.830002</td>
+      <td>55.410000</td>
+      <td>55.410000</td>
+      <td>1450300</td>
+    </tr>
+    <tr>
+      <th>2015-01-27</th>
+      <td>56.060001</td>
+      <td>56.160000</td>
+      <td>54.570000</td>
+      <td>55.630001</td>
+      <td>55.630001</td>
+      <td>2410400</td>
+    </tr>
+    <tr>
+      <th>2015-01-28</th>
+      <td>56.150002</td>
+      <td>56.150002</td>
+      <td>52.919998</td>
+      <td>53.000000</td>
+      <td>53.000000</td>
+      <td>2013100</td>
+    </tr>
+    <tr>
+      <th>2015-02-03</th>
+      <td>53.830002</td>
+      <td>55.930000</td>
+      <td>53.410000</td>
+      <td>55.779999</td>
+      <td>55.779999</td>
+      <td>2876400</td>
+    </tr>
+    <tr>
+      <th>2015-02-04</th>
+      <td>55.529999</td>
+      <td>57.070000</td>
+      <td>55.250000</td>
+      <td>56.740002</td>
+      <td>56.740002</td>
+      <td>2498600</td>
+    </tr>
+    <tr>
+      <th>2015-02-05</th>
+      <td>57.599998</td>
+      <td>57.700001</td>
+      <td>56.080002</td>
+      <td>57.470001</td>
+      <td>57.470001</td>
+      <td>4657300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Putting it all together, we have the following commonly-used patterns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positive_days</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">df</span><span class="o">.</span><span class="n">open</span><span class="p">]</span>
+<span class="n">positive_days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-08</th>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+    </tr>
+    <tr>
+      <th>2015-01-09</th>
+      <td>55.959999</td>
+      <td>56.990002</td>
+      <td>54.720001</td>
+      <td>56.070000</td>
+      <td>56.070000</td>
+      <td>6222600</td>
+    </tr>
+    <tr>
+      <th>2015-01-16</th>
+      <td>50.180000</td>
+      <td>51.490002</td>
+      <td>50.029999</td>
+      <td>51.389999</td>
+      <td>51.389999</td>
+      <td>2183300</td>
+    </tr>
+    <tr>
+      <th>2015-01-21</th>
+      <td>51.200001</td>
+      <td>53.500000</td>
+      <td>51.200001</td>
+      <td>53.410000</td>
+      <td>53.410000</td>
+      <td>3248100</td>
+    </tr>
+    <tr>
+      <th>2015-01-22</th>
+      <td>53.869999</td>
+      <td>55.279999</td>
+      <td>53.119999</td>
+      <td>54.799999</td>
+      <td>54.799999</td>
+      <td>2295400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">very_positive_days</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">close</span><span class="o">-</span><span class="n">df</span><span class="o">.</span><span class="n">open</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">very_positive_days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-05-07</th>
+      <td>38.220001</td>
+      <td>48.73</td>
+      <td>38.220001</td>
+      <td>47.009998</td>
+      <td>47.009998</td>
+      <td>33831600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="creating-new-columns">
+<h2>Creating new columns<a class="headerlink" href="#creating-new-columns" title="Permalink to this headline">¶</a></h2>
+<p>To create a new column, simply assign values to it.  Think of the columns as a dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;profit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">open</span> <span class="o">&lt;</span> <span class="n">df</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+      <th>profit</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;negative&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">open</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;small_gain&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">open</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;medium_gain&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;large_gain&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+      <th>profit</th>
+      <th>gain</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here is another, more “functional”, way to accomplish the same thing.</p>
+<p>Define a function that classifies rows, and <strong><code class="docutils literal notranslate"><span class="pre">apply</span></code></strong> it to each row.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">namerow</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;negative&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">open</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;small_gain&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">open</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;medium_gain&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;large_gain&#39;</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;test_column&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">namerow</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+      <th>profit</th>
+      <th>gain</th>
+      <th>test_column</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+      <td>False</td>
+      <td>small_gain</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+      <td>False</td>
+      <td>medium_gain</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+      <td>False</td>
+      <td>small_gain</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+      <td>False</td>
+      <td>medium_gain</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+      <td>True</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>OK, point made, let’s get rid of that extraneous <code class="docutils literal notranslate"><span class="pre">test_column</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;test_column&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>open</th>
+      <th>high</th>
+      <th>low</th>
+      <th>close</th>
+      <th>adj_close</th>
+      <th>volume</th>
+      <th>profit</th>
+      <th>gain</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2015-01-02</th>
+      <td>55.459999</td>
+      <td>55.599998</td>
+      <td>54.240002</td>
+      <td>55.150002</td>
+      <td>55.150002</td>
+      <td>1664500</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-05</th>
+      <td>54.540001</td>
+      <td>54.950001</td>
+      <td>52.330002</td>
+      <td>52.529999</td>
+      <td>52.529999</td>
+      <td>2023000</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-06</th>
+      <td>52.549999</td>
+      <td>53.930000</td>
+      <td>50.750000</td>
+      <td>52.439999</td>
+      <td>52.439999</td>
+      <td>3762800</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-07</th>
+      <td>53.320000</td>
+      <td>53.750000</td>
+      <td>51.759998</td>
+      <td>52.209999</td>
+      <td>52.209999</td>
+      <td>1548200</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-08</th>
+      <td>52.590000</td>
+      <td>54.139999</td>
+      <td>51.759998</td>
+      <td>53.830002</td>
+      <td>53.830002</td>
+      <td>2015300</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-09</th>
+      <td>55.959999</td>
+      <td>56.990002</td>
+      <td>54.720001</td>
+      <td>56.070000</td>
+      <td>56.070000</td>
+      <td>6222600</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-12</th>
+      <td>56.000000</td>
+      <td>56.060001</td>
+      <td>53.430000</td>
+      <td>54.020000</td>
+      <td>54.020000</td>
+      <td>2405100</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-13</th>
+      <td>54.470001</td>
+      <td>54.799999</td>
+      <td>52.520000</td>
+      <td>53.180000</td>
+      <td>53.180000</td>
+      <td>1952100</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-14</th>
+      <td>52.799999</td>
+      <td>53.680000</td>
+      <td>51.459999</td>
+      <td>52.200001</td>
+      <td>52.200001</td>
+      <td>1854600</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-15</th>
+      <td>53.000000</td>
+      <td>53.610001</td>
+      <td>50.029999</td>
+      <td>50.119999</td>
+      <td>50.119999</td>
+      <td>2647800</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-16</th>
+      <td>50.180000</td>
+      <td>51.490002</td>
+      <td>50.029999</td>
+      <td>51.389999</td>
+      <td>51.389999</td>
+      <td>2183300</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-20</th>
+      <td>51.650002</td>
+      <td>51.779999</td>
+      <td>50.689999</td>
+      <td>51.410000</td>
+      <td>51.410000</td>
+      <td>1227600</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-21</th>
+      <td>51.200001</td>
+      <td>53.500000</td>
+      <td>51.200001</td>
+      <td>53.410000</td>
+      <td>53.410000</td>
+      <td>3248100</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-22</th>
+      <td>53.869999</td>
+      <td>55.279999</td>
+      <td>53.119999</td>
+      <td>54.799999</td>
+      <td>54.799999</td>
+      <td>2295400</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-23</th>
+      <td>54.660000</td>
+      <td>55.639999</td>
+      <td>54.299999</td>
+      <td>55.189999</td>
+      <td>55.189999</td>
+      <td>1629000</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-26</th>
+      <td>55.119999</td>
+      <td>55.790001</td>
+      <td>54.830002</td>
+      <td>55.410000</td>
+      <td>55.410000</td>
+      <td>1450300</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-27</th>
+      <td>56.060001</td>
+      <td>56.160000</td>
+      <td>54.570000</td>
+      <td>55.630001</td>
+      <td>55.630001</td>
+      <td>2410400</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-28</th>
+      <td>56.150002</td>
+      <td>56.150002</td>
+      <td>52.919998</td>
+      <td>53.000000</td>
+      <td>53.000000</td>
+      <td>2013100</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-01-29</th>
+      <td>52.849998</td>
+      <td>53.310001</td>
+      <td>51.410000</td>
+      <td>52.930000</td>
+      <td>52.930000</td>
+      <td>1844100</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-01-30</th>
+      <td>52.590000</td>
+      <td>53.419998</td>
+      <td>52.049999</td>
+      <td>52.470001</td>
+      <td>52.470001</td>
+      <td>1875400</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-02-02</th>
+      <td>52.939999</td>
+      <td>53.500000</td>
+      <td>51.209999</td>
+      <td>53.470001</td>
+      <td>53.470001</td>
+      <td>2105500</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-03</th>
+      <td>53.830002</td>
+      <td>55.930000</td>
+      <td>53.410000</td>
+      <td>55.779999</td>
+      <td>55.779999</td>
+      <td>2876400</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-04</th>
+      <td>55.529999</td>
+      <td>57.070000</td>
+      <td>55.250000</td>
+      <td>56.740002</td>
+      <td>56.740002</td>
+      <td>2498600</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-05</th>
+      <td>57.599998</td>
+      <td>57.700001</td>
+      <td>56.080002</td>
+      <td>57.470001</td>
+      <td>57.470001</td>
+      <td>4657300</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-02-06</th>
+      <td>47.700001</td>
+      <td>48.169998</td>
+      <td>44.860001</td>
+      <td>45.110001</td>
+      <td>45.110001</td>
+      <td>25137400</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-02-09</th>
+      <td>44.910000</td>
+      <td>45.040001</td>
+      <td>42.099998</td>
+      <td>42.169998</td>
+      <td>42.169998</td>
+      <td>13079300</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-02-10</th>
+      <td>43.830002</td>
+      <td>45.549999</td>
+      <td>43.310001</td>
+      <td>44.660000</td>
+      <td>44.660000</td>
+      <td>11267700</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-11</th>
+      <td>45.389999</td>
+      <td>46.430000</td>
+      <td>44.810001</td>
+      <td>46.180000</td>
+      <td>46.180000</td>
+      <td>6359400</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-12</th>
+      <td>46.450001</td>
+      <td>47.840000</td>
+      <td>45.950001</td>
+      <td>47.630001</td>
+      <td>47.630001</td>
+      <td>4375000</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-02-13</th>
+      <td>48.509998</td>
+      <td>49.049999</td>
+      <td>47.220001</td>
+      <td>47.529999</td>
+      <td>47.529999</td>
+      <td>4713100</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2015-11-18</th>
+      <td>27.540001</td>
+      <td>28.830000</td>
+      <td>27.309999</td>
+      <td>28.230000</td>
+      <td>28.230000</td>
+      <td>3091600</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-11-19</th>
+      <td>28.190001</td>
+      <td>28.690001</td>
+      <td>27.910000</td>
+      <td>28.059999</td>
+      <td>28.059999</td>
+      <td>1487500</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-11-20</th>
+      <td>28.100000</td>
+      <td>31.250000</td>
+      <td>28.049999</td>
+      <td>31.209999</td>
+      <td>31.209999</td>
+      <td>6697500</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-11-23</th>
+      <td>30.580000</td>
+      <td>30.809999</td>
+      <td>29.150000</td>
+      <td>29.860001</td>
+      <td>29.860001</td>
+      <td>4029900</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-11-24</th>
+      <td>29.459999</td>
+      <td>30.629999</td>
+      <td>29.450001</td>
+      <td>30.010000</td>
+      <td>30.010000</td>
+      <td>2584500</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-11-25</th>
+      <td>29.790001</td>
+      <td>30.540001</td>
+      <td>29.709999</td>
+      <td>30.510000</td>
+      <td>30.510000</td>
+      <td>1287100</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-11-27</th>
+      <td>30.500000</td>
+      <td>30.600000</td>
+      <td>29.610001</td>
+      <td>30.180000</td>
+      <td>30.180000</td>
+      <td>1058900</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-11-30</th>
+      <td>30.110001</td>
+      <td>30.719999</td>
+      <td>29.770000</td>
+      <td>30.129999</td>
+      <td>30.129999</td>
+      <td>2015600</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-01</th>
+      <td>30.110001</td>
+      <td>30.459999</td>
+      <td>29.799999</td>
+      <td>30.309999</td>
+      <td>30.309999</td>
+      <td>1886000</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-02</th>
+      <td>30.299999</td>
+      <td>32.470001</td>
+      <td>30.290001</td>
+      <td>31.389999</td>
+      <td>31.389999</td>
+      <td>4650300</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-03</th>
+      <td>31.389999</td>
+      <td>32.240002</td>
+      <td>30.480000</td>
+      <td>30.629999</td>
+      <td>30.629999</td>
+      <td>2698900</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-04</th>
+      <td>30.530001</td>
+      <td>30.860001</td>
+      <td>29.320000</td>
+      <td>30.450001</td>
+      <td>30.450001</td>
+      <td>2313800</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-07</th>
+      <td>30.379999</td>
+      <td>30.639999</td>
+      <td>29.629999</td>
+      <td>30.040001</td>
+      <td>30.040001</td>
+      <td>1362300</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-08</th>
+      <td>29.809999</td>
+      <td>31.379999</td>
+      <td>29.500000</td>
+      <td>30.920000</td>
+      <td>30.920000</td>
+      <td>1830200</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-09</th>
+      <td>30.980000</td>
+      <td>31.139999</td>
+      <td>29.260000</td>
+      <td>30.000000</td>
+      <td>30.000000</td>
+      <td>2238500</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-10</th>
+      <td>30.110001</td>
+      <td>31.299999</td>
+      <td>29.990000</td>
+      <td>30.830000</td>
+      <td>30.830000</td>
+      <td>1251800</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-11</th>
+      <td>30.690001</td>
+      <td>30.750000</td>
+      <td>29.600000</td>
+      <td>29.650000</td>
+      <td>29.650000</td>
+      <td>1415000</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-14</th>
+      <td>29.600000</td>
+      <td>29.889999</td>
+      <td>28.850000</td>
+      <td>29.580000</td>
+      <td>29.580000</td>
+      <td>2328600</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-15</th>
+      <td>29.680000</td>
+      <td>30.000000</td>
+      <td>26.459999</td>
+      <td>26.870001</td>
+      <td>26.870001</td>
+      <td>5759200</td>
+      <td>False</td>
+      <td>medium_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-16</th>
+      <td>26.889999</td>
+      <td>28.240000</td>
+      <td>26.260000</td>
+      <td>28.030001</td>
+      <td>28.030001</td>
+      <td>2992100</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-17</th>
+      <td>28.139999</td>
+      <td>28.320000</td>
+      <td>27.190001</td>
+      <td>27.420000</td>
+      <td>27.420000</td>
+      <td>1483900</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-18</th>
+      <td>27.309999</td>
+      <td>27.910000</td>
+      <td>26.900000</td>
+      <td>27.170000</td>
+      <td>27.170000</td>
+      <td>1299800</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-21</th>
+      <td>27.170000</td>
+      <td>27.360001</td>
+      <td>26.030001</td>
+      <td>26.250000</td>
+      <td>26.250000</td>
+      <td>1947600</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-22</th>
+      <td>26.250000</td>
+      <td>28.700001</td>
+      <td>26.150000</td>
+      <td>27.930000</td>
+      <td>27.930000</td>
+      <td>2952700</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-23</th>
+      <td>27.950001</td>
+      <td>28.420000</td>
+      <td>27.440001</td>
+      <td>28.150000</td>
+      <td>28.150000</td>
+      <td>1001000</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-24</th>
+      <td>28.270000</td>
+      <td>28.590000</td>
+      <td>27.900000</td>
+      <td>28.400000</td>
+      <td>28.400000</td>
+      <td>587400</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-28</th>
+      <td>28.120001</td>
+      <td>28.379999</td>
+      <td>27.770000</td>
+      <td>27.879999</td>
+      <td>27.879999</td>
+      <td>1004500</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-29</th>
+      <td>27.950001</td>
+      <td>28.540001</td>
+      <td>27.740000</td>
+      <td>28.480000</td>
+      <td>28.480000</td>
+      <td>1103900</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2015-12-30</th>
+      <td>28.580000</td>
+      <td>28.780001</td>
+      <td>28.170000</td>
+      <td>28.250000</td>
+      <td>28.250000</td>
+      <td>1068000</td>
+      <td>False</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
+      <th>2015-12-31</th>
+      <td>28.100000</td>
+      <td>28.969999</td>
+      <td>28.020000</td>
+      <td>28.799999</td>
+      <td>28.799999</td>
+      <td>1301500</td>
+      <td>True</td>
+      <td>negative</td>
+    </tr>
+  </tbody>
+</table>
+<p>252 rows × 8 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="grouping">
+<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+<p>An <strong>extremely</strong> powerful DataFrame method is <strong><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></strong>.</p>
+<p>This is entirely analagous to <strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong> in SQL.</p>
+<p>It will group the rows of a DataFrame by the values in one (or more) columns, and let you iterate through each group.</p>
+<p>Here we will look at the average gain among the  categories of gains (negative, small, medium and large) we defined above and stored in column <code class="docutils literal notranslate"><span class="pre">gain</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Essentially, <strong><code class="docutils literal notranslate"><span class="pre">gain_groups</span></code></strong> behaves like a dictionary</p>
+<ul class="simple">
+<li><p>whose keys are the unique values found in the <code class="docutils literal notranslate"><span class="pre">gain</span></code> column, and</p></li>
+<li><p>whose values are DataFrames that contain only the rows having the corresponding unique values.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gain</span><span class="p">,</span> <span class="n">gain_data</span> <span class="ow">in</span> <span class="n">gain_groups</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gain</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gain_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=============================&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>medium_gain
+                 open       high        low      close  adj_close   volume  \
+date                                                                         
+2015-01-05  54.540001  54.950001  52.330002  52.529999  52.529999  2023000   
+2015-01-07  53.320000  53.750000  51.759998  52.209999  52.209999  1548200   
+2015-01-12  56.000000  56.060001  53.430000  54.020000  54.020000  2405100   
+2015-01-13  54.470001  54.799999  52.520000  53.180000  53.180000  1952100   
+2015-01-15  53.000000  53.610001  50.029999  50.119999  50.119999  2647800   
+
+           profit         gain  test_column  
+date                                         
+2015-01-05  False  medium_gain  medium_gain  
+2015-01-07  False  medium_gain  medium_gain  
+2015-01-12  False  medium_gain  medium_gain  
+2015-01-13  False  medium_gain  medium_gain  
+2015-01-15  False  medium_gain  medium_gain  
+=============================
+negative
+                 open       high        low      close  adj_close   volume  \
+date                                                                         
+2015-01-08  52.590000  54.139999  51.759998  53.830002  53.830002  2015300   
+2015-01-09  55.959999  56.990002  54.720001  56.070000  56.070000  6222600   
+2015-01-16  50.180000  51.490002  50.029999  51.389999  51.389999  2183300   
+2015-01-21  51.200001  53.500000  51.200001  53.410000  53.410000  3248100   
+2015-01-22  53.869999  55.279999  53.119999  54.799999  54.799999  2295400   
+
+           profit      gain test_column  
+date                                     
+2015-01-08   True  negative    negative  
+2015-01-09   True  negative    negative  
+2015-01-16   True  negative    negative  
+2015-01-21   True  negative    negative  
+2015-01-22   True  negative    negative  
+=============================
+small_gain
+                 open       high        low      close  adj_close   volume  \
+date                                                                         
+2015-01-02  55.459999  55.599998  54.240002  55.150002  55.150002  1664500   
+2015-01-06  52.549999  53.930000  50.750000  52.439999  52.439999  3762800   
+2015-01-14  52.799999  53.680000  51.459999  52.200001  52.200001  1854600   
+2015-01-20  51.650002  51.779999  50.689999  51.410000  51.410000  1227600   
+2015-01-27  56.060001  56.160000  54.570000  55.630001  55.630001  2410400   
+
+           profit        gain test_column  
+date                                       
+2015-01-02  False  small_gain  small_gain  
+2015-01-06  False  small_gain  small_gain  
+2015-01-14  False  small_gain  small_gain  
+2015-01-20  False  small_gain  small_gain  
+2015-01-27  False  small_gain  small_gain  
+=============================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gain</span><span class="p">,</span> <span class="n">gain_data</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;gain&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average closing value for the </span><span class="si">{}</span><span class="s1"> group is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gain</span><span class="p">,</span>
+                                                           <span class="n">gain_data</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average closing value for the medium_gain group is 41.008888629629645
+The average closing value for the negative group is 37.21357140476189
+The average closing value for the small_gain group is 36.39636363636364
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="other-pandas-classes">
+<h2>Other Pandas Classes<a class="headerlink" href="#other-pandas-classes" title="Permalink to this headline">¶</a></h2>
+<p>A DataFrame is essentially an annotated 2-D array.</p>
+<p>Pandas also has annotated versions of 1-D and 3-D arrays.</p>
+<p>A 1-D array in Pandas is called a <strong><code class="docutils literal notranslate"><span class="pre">Series</span></code></strong>.</p>
+<p>A 3-D array in Pandas is called a <strong><code class="docutils literal notranslate"><span class="pre">Panel</span></code></strong>.</p>
+<p>To use these, read the documentation!</p>
+</div>
+<div class="section" id="comparing-multiple-stocks">
+<h2>Comparing multiple stocks<a class="headerlink" href="#comparing-multiple-stocks" title="Permalink to this headline">¶</a></h2>
+<p>As a last task, we will use the experience we obtained so far – and learn some new things – in order to compare the performance of different stocks we obtained from Yahoo finance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ORCL&#39;</span><span class="p">,</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="s1">&#39;IBM&#39;</span><span class="p">,</span><span class="s1">&#39;YELP&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">]</span>
+<span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Close&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> 
+                    <span class="n">data_source</span><span class="p">,</span>                               
+                    <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+                    <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))[</span><span class="n">attr</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>IBM</th>
+      <th>MSFT</th>
+      <th>ORCL</th>
+      <th>TSLA</th>
+      <th>YELP</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2014-12-31</th>
+      <td>160.440002</td>
+      <td>46.450001</td>
+      <td>44.970001</td>
+      <td>222.410004</td>
+      <td>54.730000</td>
+    </tr>
+    <tr>
+      <th>2014-12-30</th>
+      <td>160.050003</td>
+      <td>47.020000</td>
+      <td>45.340000</td>
+      <td>222.229996</td>
+      <td>54.240002</td>
+    </tr>
+    <tr>
+      <th>2014-12-29</th>
+      <td>160.509995</td>
+      <td>47.450001</td>
+      <td>45.610001</td>
+      <td>225.710007</td>
+      <td>53.009998</td>
+    </tr>
+    <tr>
+      <th>2014-12-26</th>
+      <td>162.339996</td>
+      <td>47.880001</td>
+      <td>46.099998</td>
+      <td>227.820007</td>
+      <td>52.939999</td>
+    </tr>
+    <tr>
+      <th>2014-12-24</th>
+      <td>161.820007</td>
+      <td>48.139999</td>
+      <td>46.230000</td>
+      <td>222.259995</td>
+      <td>53.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">ORCL</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;oracle&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">TSLA</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;tesla&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">IBM</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ibm&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">MSFT</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;msft&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">YELP</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;yelp&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02B-Pandas_89_0.png" src="_images/02B-Pandas_89_0.png" />
+</div>
+</div>
+<p>Next, we will calculate returns over a period of length <span class="math notranslate nohighlight">\(T\)</span>, defined as:</p>
+<div class="math notranslate nohighlight">
+\[r(t) = \frac{f(t)-f(t-T)}{f(t)} \]</div>
+<p>The returns can be computed with a simple DataFrame method <strong><code class="docutils literal notranslate"><span class="pre">pct_change()</span></code></strong>.  Note that for the first <span class="math notranslate nohighlight">\(T\)</span> timesteps, this value is not defined (of course):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">rets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">35</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>IBM</th>
+      <th>MSFT</th>
+      <th>ORCL</th>
+      <th>TSLA</th>
+      <th>YELP</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2014-11-24</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014-11-21</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014-11-20</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014-11-19</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014-11-18</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2014-11-17</th>
+      <td>0.023186</td>
+      <td>0.064801</td>
+      <td>-0.084723</td>
+      <td>0.141945</td>
+      <td>0.059748</td>
+    </tr>
+    <tr>
+      <th>2014-11-14</th>
+      <td>0.025679</td>
+      <td>0.054445</td>
+      <td>-0.099250</td>
+      <td>0.164019</td>
+      <td>0.102876</td>
+    </tr>
+    <tr>
+      <th>2014-11-13</th>
+      <td>0.014205</td>
+      <td>0.045522</td>
+      <td>-0.107213</td>
+      <td>0.115148</td>
+      <td>0.096020</td>
+    </tr>
+    <tr>
+      <th>2014-11-12</th>
+      <td>-0.002587</td>
+      <td>0.018797</td>
+      <td>-0.129284</td>
+      <td>0.093407</td>
+      <td>0.144314</td>
+    </tr>
+    <tr>
+      <th>2014-11-11</th>
+      <td>0.009146</td>
+      <td>0.015164</td>
+      <td>-0.124594</td>
+      <td>0.129668</td>
+      <td>0.175660</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we’ll plot the timeseries of the returns of the different stocks.</p>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values are gracefully dropped by the plotting function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span><span class="o">.</span><span class="n">ORCL</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;oracle&#39;</span><span class="p">)</span>
+<span class="n">rets</span><span class="o">.</span><span class="n">TSLA</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;tesla&#39;</span><span class="p">)</span>
+<span class="n">rets</span><span class="o">.</span><span class="n">IBM</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ibm&#39;</span><span class="p">)</span>
+<span class="n">rets</span><span class="o">.</span><span class="n">MSFT</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;msft&#39;</span><span class="p">)</span>
+<span class="n">rets</span><span class="o">.</span><span class="n">YELP</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;yelp&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02B-Pandas_94_0.png" src="_images/02B-Pandas_94_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">TSLA</span><span class="p">,</span> <span class="n">rets</span><span class="o">.</span><span class="n">YELP</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;TESLA 30-day returns&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;YELP 30-day returns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02B-Pandas_95_0.png" src="_images/02B-Pandas_95_0.png" />
+</div>
+</div>
+<p>There appears to be some (fairly strong) correlation between the movement of TSLA and YELP stocks.  Let’s measure this.</p>
+<p>The correlation coefficient between variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{Corr}(X,Y) = \frac{E\left[(X-\mu_X)(Y-\mu_Y)\right]}{\sigma_X\sigma_Y}\]</div>
+<p>Pandas provides a DataFrame method to compute the correlation coefficient of all pairs of columns: <strong><code class="docutils literal notranslate"><span class="pre">corr()</span></code></strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>IBM</th>
+      <th>MSFT</th>
+      <th>ORCL</th>
+      <th>TSLA</th>
+      <th>YELP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>IBM</th>
+      <td>1.000000</td>
+      <td>0.321583</td>
+      <td>0.042213</td>
+      <td>0.208735</td>
+      <td>0.103837</td>
+    </tr>
+    <tr>
+      <th>MSFT</th>
+      <td>0.321583</td>
+      <td>1.000000</td>
+      <td>0.130515</td>
+      <td>0.492674</td>
+      <td>0.282827</td>
+    </tr>
+    <tr>
+      <th>ORCL</th>
+      <td>0.042213</td>
+      <td>0.130515</td>
+      <td>1.000000</td>
+      <td>0.032724</td>
+      <td>-0.065211</td>
+    </tr>
+    <tr>
+      <th>TSLA</th>
+      <td>0.208735</td>
+      <td>0.492674</td>
+      <td>0.032724</td>
+      <td>1.000000</td>
+      <td>0.800936</td>
+    </tr>
+    <tr>
+      <th>YELP</th>
+      <td>0.103837</td>
+      <td>0.282827</td>
+      <td>-0.065211</td>
+      <td>0.800936</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>It takes a bit of time to examine that table and draw conclusions.</p>
+<p>To speed that process up it helps to visualize the table.</p>
+<p>We will learn more about visualization later, but for now this is a simple example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02B-Pandas_100_0.png" src="_images/02B-Pandas_100_0.png" />
+</div>
+</div>
+<p>Finally, it is important to know that the plotting performed by Pandas is just a layer on top of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (i.e., the <code class="docutils literal notranslate"><span class="pre">plt</span></code> package).</p>
+<p>So Panda’s plots can (and should) be replaced or improved by using additional functions from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<p>For example, suppose we want to know both the returns as well as the standard deviation of the returns of a stock (i.e., its risk).</p>
+<p>Here is visualization of the result of such an analysis, and we construct the plot using only functions from <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">rets</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="c1"># plt.xlabel(&#39;Expected returns&#39;)</span>
+<span class="c1"># plt.ylabel(&#39;Standard Deviation (Risk)&#39;)</span>
+<span class="c1"># for label, x, y in zip(rets.columns, rets.mean(), rets.std()):</span>
+<span class="c1">#    plt.annotate(</span>
+<span class="c1">#        label, </span>
+<span class="c1">#        xy = (x, y), xytext = (20, -20),</span>
+<span class="c1">#        textcoords = &#39;offset points&#39;, ha = &#39;right&#39;, va = &#39;bottom&#39;,</span>
+<span class="c1">#        bbox = dict(boxstyle = &#39;round,pad=0.5&#39;, fc = &#39;yellow&#39;, alpha = 0.5),</span>
+<span class="c1">#        arrowprops = dict(arrowstyle = &#39;-&gt;&#39;, connectionstyle = &#39;arc3,rad=0&#39;))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/02B-Pandas_103_0.png" src="_images/02B-Pandas_103_0.png" />
+</div>
+</div>
+<p>To understand what these functions are doing, (especially the <code class="docutils literal notranslate"><span class="pre">annotate</span></code> function), you will need to consult the online documentation for matplotlib.  Just use Google to find it.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="02A-Getting-Started.html" title="previous page">Essential Tools: Python, Git, and Jupyter Notebook</a>
+    <a class='right-next' id="next-link" href="03-Probability-and-Statistics-Refresher.html" title="next page">Probability and Statistics Refresher</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

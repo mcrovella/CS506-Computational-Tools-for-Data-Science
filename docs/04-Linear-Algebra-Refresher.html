@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear Algebra Refresher &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
+    <link rel="prev" title="Probability and Statistics Refresher" href="03-Probability-and-Statistics-Refresher.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Getting-Started.html">
+   Essential Tools: Python, Git, and Jupyter Notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Getting to know your data with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Linear Algebra Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-Linear-Algebra-Refresher.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/04-Linear-Algebra-Refresher.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectors-and-matrices">
+   Vectors and Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-addition-geometrically">
+   Vector Addition, Geometrically
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-multiplication">
+   Matrix Multiplication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inner-product">
+   Inner Product
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-norm">
+   Vector Norm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distance-in-r-n">
+   Distance in
+   <span class="math notranslate nohighlight">
+    \(\R^n\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orthogonal-vectors">
+   Orthogonal Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-angle-between-two-vectors">
+   The Angle Between Two Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-squares">
+   Least Squares
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigendecomposition">
+   Eigendecomposition
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-algebra-refresher">
+<h1>Linear Algebra Refresher<a class="headerlink" href="#linear-algebra-refresher" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">slideUtilities</span> <span class="k">as</span> <span class="nn">sl</span>
+<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+ <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">slides</span> <span class="p">.</span><span class="nc">celltoolbar</span><span class="o">,</span> <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">slides</span> <span class="p">.</span><span class="nc">hide-in-slideshow</span> <span class="p">{</span>
+    <span class="k">display</span><span class="p">:</span> <span class="n">None</span> <span class="o">!</span> <span class="n">important</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+ .container.slides .celltoolbar, .container.slides .hide-in-slideshow {
+    display: None ! important;
+}
+</style>
+</div></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\newcommand{\mat}[1]{\left[\begin{array}#1\end{array}\right]}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vx}{{\mathbf x}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\hx}{\hat{\mathbf x}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vbt}{{\mathbf\beta}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vy}{{\mathbf y}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vz}{{\mathbf z}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\R}{{\mathbb{R}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vu}{{\mathbf u}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vv}{{\mathbf v}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vw}{{\mathbf w}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\col}{{\operatorname{Col}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\nul}{{\operatorname{Nul}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vb}{{\mathbf b}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\va}{{\mathbf a}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\ve}{{\mathbf e}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\setb}{{\mathcal{B}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\rank}{{\operatorname{rank}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vp}{{\mathbf p}}\)</span></p>
+<p>Today we’ll review the essentials of linear algebra.  Given the prerequisites for this course, I assume that you learned all of this once.  What I want to do today is bring the material back into your mind fresh.</p>
+<div class="section" id="vectors-and-matrices">
+<h2>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>matrix</strong> is a rectangular array of numbers, for example:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \left[\begin{array}{rrr}
+    1  &amp; -2  &amp; 1 \\
+    0 &amp; 2 &amp;  - 8 \\
+    6 &amp; 5 &amp;9 
+\end{array}
+\right]\end{split}\]</div>
+<p>A matrix with only one column is called a <strong>column vector</strong>, or simply a <strong>vector</strong>.</p>
+<p>Here are some examples.</p>
+<p>These are vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>:
+$<span class="math notranslate nohighlight">\(
+\begin{array}{ccc}
+{\bf u} = \mat{{r}3\\-1} &amp;
+{\bf v} = \mat{{c}.2\\.3} &amp;
+{\bf w} = \mat{{c}w_1\\w_2}
+\end{array}
+\)</span>$</p>
+<p>and these are vectors in <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccc}
+{\bf u} = \left[\begin{array}{c}2\\3\\4\end{array}\right] &amp;
+{\bf v} = \left[\begin{array}{r}-1\\0\\2\end{array}\right] &amp;
+{\bf w} = \left[\begin{array}{c}w_1\\w_2\\w_3\end{array}\right]
+\end{array}
+\end{split}\]</div>
+<p>We will use uppercase letters (<span class="math notranslate nohighlight">\(X\)</span>) for matrices and lowercase <strong>bold</strong> leters for vectors (<span class="math notranslate nohighlight">\(\vu\)</span>).</p>
+<p>A vector like <span class="math notranslate nohighlight">\(\left[\begin{array}{c}-2\\-1\end{array}\right]\)</span> (also denoted <span class="math notranslate nohighlight">\((-2,-1)\)</span>) can be thought of as a point on the plane.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># No need to study this code unless you want to.</span>
+<span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;$(3,-1)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="s1">&#39;$(2,2)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;$(-2,-1)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="2cd5e64864c3d676"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#2cd5e64864c3d676");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science/laUtilities.py:80: MatplotlibDeprecationWarning: 
+The set_smart_bounds function was deprecated in Matplotlib 3.2 and will be removed two minor releases later.
+  ax.spines[&#39;left&#39;].set_smart_bounds(True)
+/Users/markcrovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science/laUtilities.py:81: MatplotlibDeprecationWarning: 
+The set_smart_bounds function was deprecated in Matplotlib 3.2 and will be removed two minor releases later.
+  ax.spines[&#39;bottom&#39;].set_smart_bounds(True)
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_12_3.png" src="_images/04-Linear-Algebra-Refresher_12_3.png" />
+</div>
+</div>
+<p>Sometimes we draw an arrow from the origin to the point.  This comes from physics, but can be a helpful visualization in any case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">4</span> <span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;$(3,-1)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="s1">&#39;$(2,2)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">3.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="s1">&#39;$(-2,-1)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="d877e1a89f599e54"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#d877e1a89f599e54");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_14_2.png" src="_images/04-Linear-Algebra-Refresher_14_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="vector-addition-geometrically">
+<h2>Vector Addition, Geometrically<a class="headerlink" href="#vector-addition-geometrically" title="Permalink to this headline">¶</a></h2>
+<p>A geometric interpretation of vector sum is as a parallelogram.  If <span class="math notranslate nohighlight">\({\bf u}\)</span> and <span class="math notranslate nohighlight">\({\bf v}\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> are represented as points in the plane, then <span class="math notranslate nohighlight">\({\bf u} + {\bf v}\)</span> corresponds to the fourth vertex of the parallelogram whose other vertices are <span class="math notranslate nohighlight">\({\bf u}, 0,\)</span> and <span class="math notranslate nohighlight">\({\bf v}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">5.25</span><span class="p">,</span><span class="mf">3.25</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;${\bf u}$+${\bf v}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;${\bf u}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">4.75</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;${\bf v}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="52964c37967e3211"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#52964c37967e3211");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_17_2.png" src="_images/04-Linear-Algebra-Refresher_17_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="matrix-multiplication">
+<h2>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>Using addition and multiplication by scalars, we can create equations using vectors.</p>
+<p>Then we make the follow equivalence:</p>
+<p>A vector equation
+$<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ... + x_n{\bf a_n} = {\bf b} \)</span>$</p>
+<p>Can also be written as</p>
+<div class="math notranslate nohighlight">
+\[ A\vx = \vb\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[ A = [{\bf a_1} \; {\bf a_2} \; ... \; {\bf a_n}] \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vx = \left[\begin{array}{c}x_1\\x_2\\\vdots\\x_n\end{array}\right]\end{split}\]</div>
+<p>We then extend this to define matrix multiplication as</p>
+<p><strong>Definition.</strong>  If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(n \times p\)</span> matrix with columns <span class="math notranslate nohighlight">\({\bf b_1},\dots,{\bf b_p},\)</span> then the product <span class="math notranslate nohighlight">\(AB\)</span> is defined as the <span class="math notranslate nohighlight">\(m \times p\)</span> matrix whose columns are <span class="math notranslate nohighlight">\(A{\bf b_1}, \dots, A{\bf b_p}.\)</span>  That is,</p>
+<div class="math notranslate nohighlight">
+\[ AB = A[{\bf b_1} \; \dots \; {\bf b_p}] = [A{\bf b_1} \; \dots \; A{\bf b_p}]. \]</div>
+<p>Continuing on, we can define the <strong>inverse</strong> of a matrix.</p>
+<p>We have to recognize that this inverse does not exist for all matrices.</p>
+<ul class="simple">
+<li><p>It only exists for square matrices</p></li>
+<li><p>And not even for all square matrices – only those that are “invertible.”</p></li>
+</ul>
+<p>A matrix that is not invertible is called a <strong>singular</strong> matrix.</p>
+<p><strong>Definition.</strong> A matrix <span class="math notranslate nohighlight">\(A\)</span> is called <strong>invertible</strong> if there exists a matrix <span class="math notranslate nohighlight">\(C\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[ AC = I \mbox{  and  } CA = I. \]</div>
+<p>In that case <span class="math notranslate nohighlight">\(C\)</span> is called the <em>inverse</em> of <span class="math notranslate nohighlight">\(A\)</span>.   Clearly, <span class="math notranslate nohighlight">\(C\)</span> must also be square and the same size as <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The inverse of <span class="math notranslate nohighlight">\(A\)</span> is denoted <span class="math notranslate nohighlight">\(A^{-1}.\)</span></p>
+</div>
+<div class="section" id="inner-product">
+<h2>Inner Product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
+<p>Now we introduce the <strong>inner product</strong>, also called the <strong>dot product.</strong></p>
+<p>The inner product is defined for two vectors, in which one is transposed to be a single row.  It returns a single number.</p>
+<p>For example, the expression</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[3\;5\;1] \left[\begin{array}{c}2\\-1\\4\end{array}\right]\end{split}\]</div>
+<p>is the same as</p>
+<div class="math notranslate nohighlight">
+\[(3\cdot 2) + (5\cdot -1) + (1 \cdot 4)\]</div>
+<p>which is the sum of the products of the corresponding entries, and yields the scalar value 5.</p>
+<p>This is the inner product of the two vectors.</p>
+<p>Thus the inner product of <span class="math notranslate nohighlight">\(\vx\)</span> and <span class="math notranslate nohighlight">\(\vy\)</span> is <span class="math notranslate nohighlight">\(\vx^T \vy = \vy^T \vx\)</span>.</p>
+<p>The general definition of the inner product is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[x_1\;x_2\;\dots\;x_n] \left[\begin{array}{c}y_1\\y_2\\\vdots\\y_n\end{array}\right] = \sum_{i=1}^n x_i y_i\end{split}\]</div>
+</div>
+<div class="section" id="vector-norm">
+<h2>Vector Norm<a class="headerlink" href="#vector-norm" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\vv\)</span> is in <span class="math notranslate nohighlight">\(\R^n\)</span>, with entries <span class="math notranslate nohighlight">\(v_1,\dots,v_n,\)</span> then the square root of <span class="math notranslate nohighlight">\(\vv^T\vv\)</span> is defined because <span class="math notranslate nohighlight">\(\vv^T\vv\)</span> is nonnegative.</p>
+<p><strong>Definition.</strong> The <strong><span class="math notranslate nohighlight">\(\ell_2\)</span> norm</strong> of <span class="math notranslate nohighlight">\(\vv\)</span> is the nonnegative scalar <span class="math notranslate nohighlight">\(\Vert\vv\Vert_2\)</span> defined by</p>
+<div class="math notranslate nohighlight">
+\[\Vert\vv\Vert_2 = \sqrt{\vv^T\vv} = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2} = \sqrt{\sum_{i=1}^n{v_i}^2}.\]</div>
+<p>If we leave the <span class="math notranslate nohighlight">\(_2\)</span> subscript off, it is implied.</p>
+<p>The (<span class="math notranslate nohighlight">\(\ell_2)\)</span> norm of <span class="math notranslate nohighlight">\(\vv\)</span> is its <strong>length</strong> in the usual sense.</p>
+<p>This follows directly from the Pythagorean theorem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">pt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">pt</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mf">0.75</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$|v_1|$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">4.25</span><span class="p">,</span><span class="mf">1.4</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$|v_2|$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\sqrt{v_1^2+v_2^2}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\mathbf</span><span class="si">{v}</span><span class="s1">$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="18612853253e00bd"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#18612853253e00bd");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_37_2.png" src="_images/04-Linear-Algebra-Refresher_37_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">f</span><span class="p">,</span><span class="mi">6</span><span class="o">*</span><span class="n">f</span><span class="p">]</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotCube</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\bf v$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">zs</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">zs</span><span class="o">=</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\sqrt{v_1^2+v_2^2+v_3^2}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="a94089224d285272"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#a94089224d285272");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_38_2.png" src="_images/04-Linear-Algebra-Refresher_38_2.png" />
+</div>
+</div>
+<p>A vector of length 1 is called a <strong>unit vector</strong>.</p>
+<p>If we divide a nonzero vector <span class="math notranslate nohighlight">\(\vv\)</span> by its length – that is, multiply by <span class="math notranslate nohighlight">\(1/\Vert\vv\Vert\)</span> – we obtain a unit vector <span class="math notranslate nohighlight">\(\vu\)</span>.</p>
+<p>We say that we have <em>normalized</em> <span class="math notranslate nohighlight">\(\vv\)</span>, and that <span class="math notranslate nohighlight">\(\vu\)</span> is <em>in the same direction</em> as <span class="math notranslate nohighlight">\(\vv.\)</span></p>
+</div>
+<div class="section" id="distance-in-r-n">
+<h2>Distance in <span class="math notranslate nohighlight">\(\R^n\)</span><a class="headerlink" href="#distance-in-r-n" title="Permalink to this headline">¶</a></h2>
+<p>It’s very useful to be able to talk about the <strong>distance</strong> between two points (or vectors) in <span class="math notranslate nohighlight">\(\R^n\)</span>.</p>
+<p><strong>Definition.</strong>  For <span class="math notranslate nohighlight">\(\vu\)</span> and <span class="math notranslate nohighlight">\(\vv\)</span> in <span class="math notranslate nohighlight">\(\R^n,\)</span> the <strong>distance between <span class="math notranslate nohighlight">\(\vu\)</span> and <span class="math notranslate nohighlight">\(\vv\)</span>,</strong> written as <span class="math notranslate nohighlight">\(\mbox{dist}(\vu,\vv),\)</span> is the length of the vector <span class="math notranslate nohighlight">\(\vu-\vv\)</span>.  That is,</p>
+<div class="math notranslate nohighlight">
+\[\mbox{dist}(\vu,\vv) = \Vert\vu-\vv\Vert.\]</div>
+<p>This definition agrees with the usual formulas for the Euclidean distance between two points.  The usual formula is</p>
+<div class="math notranslate nohighlight">
+\[\mbox{dist}(\vu,\vv) = \sqrt{(v_1-u_1)^2 + (v_2-u_2)^2 + \dots + (v_n-u_n)^2}.\]</div>
+<p>Which you can see is equal to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Vert\vu-\vv\Vert = \sqrt{(\vu-\vv)^T(\vu-\vv)} = \sqrt{\mat{{cccc}u_1-v_1&amp;u_2-v_2&amp;\dots&amp;u_n-v_n}\mat{{c}u_1-v_1\\u_2-v_2\\\vdots\\u_n-v_n}}\end{split}\]</div>
+<p>There is another important reformulation of distance.    Consider the squared distance:</p>
+<div class="math notranslate nohighlight">
+\[\Vert\vu-\vv\Vert^2 = (\vu-\vv)^T(\vu-\vv)\]</div>
+<p>Expanding this out, we get:</p>
+<div class="math notranslate nohighlight">
+\[\Vert\vu-\vv\Vert^2 = \vu^T\vu + \vv^T\vv - 2\vu^T\vv.\]</div>
+<div class="math notranslate nohighlight">
+\[= \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\vu^T\vv.\]</div>
+<p>This is an important formula because it relates <strong>distance</strong> between two points to their <strong>lengths</strong> and _<em>inner product.</em></p>
+</div>
+<div class="section" id="orthogonal-vectors">
+<h2>Orthogonal Vectors<a class="headerlink" href="#orthogonal-vectors" title="Permalink to this headline">¶</a></h2>
+<p>Now we turn to another familiar notion from 2D geometry, which we’ll generalize to <span class="math notranslate nohighlight">\(\R^n\)</span>: the notion of being <strong>perpendicular.</strong></p>
+<p>You may recall the classic method from Euclid for how to construct a line perpendicular to another line at a point:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># image credit: Lay 4th edition figure 5 in Ch 6.1</span>
+<span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/Lay-fig-6-1-5.jpg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="88327f5543219b3b"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#88327f5543219b3b");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/04-Linear-Algebra-Refresher_52_1.jpg" src="_images/04-Linear-Algebra-Refresher_52_1.jpg" />
+</div>
+</div>
+<p>One constructs an isoceles triangle centered at the point.  Because the sides are equal, the two inner triangles are right triangles.</p>
+<p>So the two blue lines are perpendicular if and only if the distance from <span class="math notranslate nohighlight">\(\vu\)</span> to <span class="math notranslate nohighlight">\(\vv\)</span> is equal to the distance from <span class="math notranslate nohighlight">\(\vu\)</span> to <span class="math notranslate nohighlight">\(-\vv.\)</span></p>
+<p>This is the same as requiring the squares of their distances to be equal.</p>
+<p>We have already seen that the distance from <span class="math notranslate nohighlight">\(\vu\)</span> to <span class="math notranslate nohighlight">\(\vv\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[[\mbox{dist}(\vu,\vv)]^2 = \Vert\vu-\vv\Vert^2\]</div>
+<div class="math notranslate nohighlight">
+\[ = \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\vu^T\vv\]</div>
+<p>Similarly, the distance from <span class="math notranslate nohighlight">\(\vu\)</span> to <span class="math notranslate nohighlight">\(-\vv\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ = \Vert\vu\Vert^2 + \Vert\vv\Vert^2 + 2\vu^T\vv\]</div>
+<p>So <span class="math notranslate nohighlight">\(\mbox{dist}(\vu,\vv) = \mbox{dist}(\vu,-\vv)\)</span> if and only if <span class="math notranslate nohighlight">\(\vu^T\vv = 0\)</span>.</p>
+<p>So now we can define perpendicularity in <span class="math notranslate nohighlight">\(\R^n\)</span>:</p>
+<p><strong>Definition.</strong>  Two vectors <span class="math notranslate nohighlight">\(\vu\)</span> and <span class="math notranslate nohighlight">\(\vv\)</span> in <span class="math notranslate nohighlight">\(\R^n\)</span> are <strong>orthogonal</strong> to each other if <span class="math notranslate nohighlight">\(\vu^T\vv = 0.\)</span></p>
+</div>
+<div class="section" id="the-angle-between-two-vectors">
+<h2>The Angle Between Two Vectors<a class="headerlink" href="#the-angle-between-two-vectors" title="Permalink to this headline">¶</a></h2>
+<p>There is an important connection between the inner product of two vectors and the <strong>angle</strong> between them.</p>
+<p>This connection is very useful (eg, in visualizing data mining operations).</p>
+<p>We start from the <strong>law of cosines:</strong></p>
+<div class="math notranslate nohighlight">
+\[ c^2 = a^2 + b^2 - 2ab\cos\gamma\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># image credit: Lay 4th edition figure 5 in Ch 6.1</span>
+<span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/law_of_cosines.jpg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="1e57616575de3fd0"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#1e57616575de3fd0");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/04-Linear-Algebra-Refresher_61_1.jpg" src="_images/04-Linear-Algebra-Refresher_61_1.jpg" />
+</div>
+</div>
+<p>Now let’s interpret this law in terms of vectors <span class="math notranslate nohighlight">\(\vu\)</span> and <span class="math notranslate nohighlight">\(\vv\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">pt</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">u</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">m</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">mm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span><span class="n">mm</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\Vert{\bf u-v}\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\Vert{\bf u}\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\Vert{\bf v}\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                <span class="c1">#bbox=dict(boxstyle=&quot;round&quot;, fc=&quot;0.8&quot;),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arrowstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;simple&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;fc&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> 
+                                <span class="s1">&#39;ec&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;connectionstyle&#39;</span> <span class="p">:</span> <span class="s1">&#39;arc3,rad=0.5&#39;</span><span class="p">},</span>
+                <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="73a6cb45ba520a7c"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#73a6cb45ba520a7c");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_63_2.png" src="_images/04-Linear-Algebra-Refresher_63_2.png" />
+</div>
+</div>
+<p>Applying the law of cosines we get:</p>
+<div class="math notranslate nohighlight">
+\[\Vert\vu-\vv\Vert^2 = \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\Vert\vu\Vert\Vert\vv\Vert\cos\theta\]</div>
+<p>And by definition:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert\vu-\vv\Vert^2 = \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\vu^T\vv\]</div>
+<p>So</p>
+<div class="math notranslate nohighlight">
+\[ \vu^T\vv = \Vert\vu\Vert\Vert\vv\Vert\cos\theta\]</div>
+<p>This is a <strong>very</strong> important connection between the notion of inner product and trigonometry.</p>
+<p>One implication in particular concerns <strong>unit vectors.</strong></p>
+<div class="math notranslate nohighlight">
+\[ \vu^T\vv = \Vert\vu\Vert\Vert\vv\Vert\cos\theta\]</div>
+<p>So</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\vu^T\vv}{\Vert\vu\Vert\Vert\vv\Vert} = \cos\theta\]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{\vu^T}{\Vert\vu\Vert}\frac{\vv}{\Vert\vv\Vert} = \cos\theta\]</div>
+<p>So we have the very simple rule, that for two unit vectors, their inner product is the cosine of the angle between them!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mf">0.95</span><span class="p">))])</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="o">-</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">))</span><span class="o">/</span><span class="mf">100.0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">),</span><span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">head_width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">head_width</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">length_includes_head</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>  <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.3</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+                <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                <span class="c1">#bbox=dict(boxstyle=&quot;round&quot;, fc=&quot;0.8&quot;),</span>
+                <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arrowstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;simple&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;fc&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> 
+                                <span class="s1">&#39;ec&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;connectionstyle&#39;</span> <span class="p">:</span> <span class="s1">&#39;arc3,rad=0.5&#39;</span><span class="p">})</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">mid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">mid</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(</span><span class="si">%0.2f</span><span class="s1">,</span><span class="si">%0.2f</span><span class="s1">)$&#39;</span><span class="o">%</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(</span><span class="si">%0.2f</span><span class="s1">,</span><span class="si">%0.2f</span><span class="s1">)$&#39;</span><span class="o">%</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="c60f3c89085837f7"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#c60f3c89085837f7");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_72_2.png" src="_images/04-Linear-Algebra-Refresher_72_2.png" />
+</div>
+</div>
+<p>Here <span class="math notranslate nohighlight">\(\vu = \mat{{c}0.95\\0.31},\)</span> and <span class="math notranslate nohighlight">\(\vv = \mat{{c}0.20\\0.98}.\)</span></p>
+<p>So <span class="math notranslate nohighlight">\(\vu^T\vv = (0.95\cdot 0.20) + (0.31 \cdot 0.98) = 0.5\)</span></p>
+<p>So <span class="math notranslate nohighlight">\(\cos\theta = 0.5.\)</span></p>
+<p>So <span class="math notranslate nohighlight">\(\theta = 60\)</span> degrees.</p>
+</div>
+<div class="section" id="least-squares">
+<h2>Least Squares<a class="headerlink" href="#least-squares" title="Permalink to this headline">¶</a></h2>
+<p>In many cases we have a linear system</p>
+<div class="math notranslate nohighlight">
+\[ A \vx = \vb\]</div>
+<p>that has no solution – perhaps due to noise or measurement error.</p>
+<p>In such as case, we generally look for an <span class="math notranslate nohighlight">\(\vx\)</span> such that <span class="math notranslate nohighlight">\(A\vx\)</span> makes a good <strong>approximation</strong> to <span class="math notranslate nohighlight">\(\vb.\)</span></p>
+<p>We can think of the quality of the approximation of <span class="math notranslate nohighlight">\(A\vx\)</span> to <span class="math notranslate nohighlight">\(\vb\)</span> as the distance from <span class="math notranslate nohighlight">\(A\vx\)</span> to <span class="math notranslate nohighlight">\(\vb,\)</span> which is</p>
+<div class="math notranslate nohighlight">
+\[\Vert A\vx - \vb\Vert.\]</div>
+<p>The <strong>general least-squares problem</strong> is to find an <span class="math notranslate nohighlight">\(\vx\)</span> that makes <span class="math notranslate nohighlight">\(\Vert A\vx-\vb\Vert\)</span> as small as possible.</p>
+<p>Just to make this explicit: say that we denote <span class="math notranslate nohighlight">\(A\vx\)</span> by <span class="math notranslate nohighlight">\(\vy\)</span>.    Then</p>
+<div class="math notranslate nohighlight">
+\[\Vert A\vx-\vb\Vert^2 = \sum_i (y_i-b_i)^2\]</div>
+<p>Where we interpret <span class="math notranslate nohighlight">\(y_i\)</span> as the <em>estimated value</em> and <span class="math notranslate nohighlight">\(b_i\)</span> as the <em>measured value.</em></p>
+<p>So this expression is the <strong>sum of squared error.</strong>   This is the most common measure of error used in statistics.   Note that we could also say we are minimizing the <span class="math notranslate nohighlight">\(\ell_2\)</span> norm of the error.</p>
+<p>This is a key principle!</p>
+<p><strong>Minimizing the length of <span class="math notranslate nohighlight">\(A\vx - \vb\)</span> is the same as minimizing the sum of squared error.</strong></p>
+<p>An equivalent (and more common) way to express this is:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\vx} = \arg\min_\vx \Vert A\vx - \vb\Vert.\]</div>
+<p>which emphasizes that this is a minimization problem, also called an <em>optimization</em> problem.</p>
+<p>We can find <span class="math notranslate nohighlight">\(\hat{\vx}\)</span> using either</p>
+<ul class="simple">
+<li><p>geometric arguments (based on projecting <span class="math notranslate nohighlight">\(\vb\)</span> on the column space of <span class="math notranslate nohighlight">\(A\)</span>), or</p></li>
+<li><p>by calculus (taking the derivative of the rhs expression above and setting it equal to zero).</p></li>
+</ul>
+<p>Either way, we get the result that:</p>
+<p><span class="math notranslate nohighlight">\(\hat{\vx}\)</span> is the solution of:</p>
+<div class="math notranslate nohighlight">
+\[A^TA\hx = A^T\vb\]</div>
+<p>And we can then prove that <span class="math notranslate nohighlight">\(A^TA\)</span> is always invertible, and so solve <span class="math notranslate nohighlight">\(A^TA\vx = A^T\vb\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\hx = (A^TA)^{-1}A^T\vb\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup3d</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">13.0</span><span class="p">,</span><span class="o">-</span><span class="mf">3.0</span><span class="p">])</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">bhat</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\bf a_1$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\bf a_2$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\bf b$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bhat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$A\mathbf{\hat</span><span class="si">{x}</span><span class="s1">} = \mathbf{\hat</span><span class="si">{b}</span><span class="s1">}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1">#ax.text(1,-4,-10,r&#39;Span{$\bf a,b$}&#39;,size=16)</span>
+<span class="c1">#ax.text(0.2,0.2,-4,r&#39;$\bf 0$&#39;,size=20)</span>
+<span class="c1"># plotting the span of v</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotSpan3d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="s1">&#39;Green&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint3d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint3d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint3d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotPoint3d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bhat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;b--&#39;</span><span class="p">,</span><span class="n">zs</span><span class="o">=</span><span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">bhat</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#ut.plotPoint3d(ax,0,0,0,&#39;b&#39;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="mf">26.0</span><span class="p">,</span><span class="n">elev</span><span class="o">=-</span><span class="mf">77.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="7044c93727687a30"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#7044c93727687a30");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/04-Linear-Algebra-Refresher_85_1.png" src="_images/04-Linear-Algebra-Refresher_85_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="eigendecomposition">
+<h2>Eigendecomposition<a class="headerlink" href="#eigendecomposition" title="Permalink to this headline">¶</a></h2>
+<p>Consider a square matrix <span class="math notranslate nohighlight">\(A\)</span>.   An <strong>eigenvector</strong> of <span class="math notranslate nohighlight">\(A\)</span> is a special vector which <strong>does not change its direction</strong> when multiplied by <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Example.</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A = \mat{{rr}3&amp;-2\\1&amp;0}, \vu = \mat{{r}-1\\1}, \vv=\mat{{r}2\\1}.\)</span>  The images of <span class="math notranslate nohighlight">\(\vu\)</span> and <span class="math notranslate nohighlight">\(\vv\)</span> under multiplication by <span class="math notranslate nohighlight">\(A\)</span> are shown here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">reload</span><span class="p">(</span><span class="n">ut</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">#</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotArrowVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotArrowVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;${\bf v}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$A{\bf v}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotArrowVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Red&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotArrowVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;${\bf u}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.3</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$A{\bf u}$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="c1cf5eb8e68b75ac"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#c1cf5eb8e68b75ac");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science/laUtilities.py:80: MatplotlibDeprecationWarning: 
+The set_smart_bounds function was deprecated in Matplotlib 3.2 and will be removed two minor releases later.
+  ax.spines[&#39;left&#39;].set_smart_bounds(True)
+/Users/markcrovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science/laUtilities.py:81: MatplotlibDeprecationWarning: 
+The set_smart_bounds function was deprecated in Matplotlib 3.2 and will be removed two minor releases later.
+  ax.spines[&#39;bottom&#39;].set_smart_bounds(True)
+</pre></div>
+</div>
+<img alt="_images/04-Linear-Algebra-Refresher_89_3.png" src="_images/04-Linear-Algebra-Refresher_89_3.png" />
+</div>
+</div>
+<p><strong>Definition.</strong></p>
+<p>An <strong>eigenvector</strong> of an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is a nonzero vector <span class="math notranslate nohighlight">\(\vx\)</span> such that <span class="math notranslate nohighlight">\(A\vx = \lambda\vx\)</span> for some scalar <span class="math notranslate nohighlight">\(\lambda.\)</span></p>
+<p>A scalar <span class="math notranslate nohighlight">\(\lambda\)</span> is called an <strong>eigenvalue</strong> of <span class="math notranslate nohighlight">\(A\)</span> if there is a nontrivial solution <span class="math notranslate nohighlight">\(\vx\)</span> of <span class="math notranslate nohighlight">\(A\vx = \lambda\vx.\)</span></p>
+<p>Such an <span class="math notranslate nohighlight">\(\vx\)</span> is called an <em>eigenvector corresponding to <span class="math notranslate nohighlight">\(\lambda.\)</span></em></p>
+<p>An <span class="math notranslate nohighlight">\(n \times n\)</span> matrix has at most <span class="math notranslate nohighlight">\(n\)</span> distinct eigenvectors and at most <span class="math notranslate nohighlight">\(n\)</span> distinct eigenvalues.</p>
+<p>In some cases, the matrix may be <strong>factorable</strong> using it eigenvectors and eigenvalues.</p>
+<p>This is called <strong>diagonalization.</strong></p>
+<p>A square matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be <strong>diagonalizable</strong> if it can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[A = PDP^{-1}\]</div>
+<p>for some invertible matrix <span class="math notranslate nohighlight">\(P\)</span> and some diagonal matrix <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<p>In fact, <span class="math notranslate nohighlight">\(A = PDP^{-1},\)</span> with <span class="math notranslate nohighlight">\(D\)</span> a diagonal matrix, if and only if the columns of <span class="math notranslate nohighlight">\(P\)</span> are <span class="math notranslate nohighlight">\(n\)</span> <strong>linearly independent eigenvectors</strong> of <span class="math notranslate nohighlight">\(A.\)</span></p>
+<p>In that case, <span class="math notranslate nohighlight">\(D\)</span> holds the corresponding eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>That is,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}D = \mat{{cccc}\lambda_1&amp;0&amp;\cdots&amp;0\\0&amp;\lambda_2&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;\lambda_n}\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ P = [\vv_1\;\vv_2\;\cdots\;\vv_n].\]</div>
+<p>A special case occurs when <span class="math notranslate nohighlight">\(A\)</span> is <strong>symmetric,</strong> i.e., <span class="math notranslate nohighlight">\(A = A^T.\)</span></p>
+<p>In that case, the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> are all mutually <strong>orthogonal.</strong></p>
+<p>That is, any two distinct eigenvectors have inner product zero.</p>
+<p>Furthermore, we can scale each eigenvector to have unit norm, in which case we say that the eigenvectors are <strong>orthonormal.</strong></p>
+<p>So, let’s put this all together.</p>
+<ul class="simple">
+<li><p>The diagonal of <span class="math notranslate nohighlight">\(D\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>The columns of <span class="math notranslate nohighlight">\(P\)</span> are the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+<p>For a symmetric matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<ul class="simple">
+<li><p>distinct columns of <span class="math notranslate nohighlight">\(P\)</span> are orthogonal</p></li>
+<li><p>each column of <span class="math notranslate nohighlight">\(P\)</span> has unit norm</p></li>
+</ul>
+<p>Hence, we find that the diagonal elements of <span class="math notranslate nohighlight">\(PP^T\)</span> are 1, and the off-diagonal elements are 0.</p>
+<p>Hence <span class="math notranslate nohighlight">\(PP^T = I\)</span>.</p>
+<p>So <span class="math notranslate nohighlight">\(P^{-1} = P^T.\)</span></p>
+<p>So, in the special case of a symmetric matrix, we can decompose <span class="math notranslate nohighlight">\(A\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[A = PDP^T.\]</div>
+<p>This amazing fact is known as the <strong>spectral theorem.</strong></p>
+<p>This decomposition of <span class="math notranslate nohighlight">\(A\)</span> is its <strong>spectral decomposition.</strong></p>
+<p>(The eigenvalues of a matrix are also called its <strong>spectrum.</strong>)</p>
+<p>These facts will be key to understanding the <strong>Singular Value Decomposition,</strong> which we will study later on.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="03-Probability-and-Statistics-Refresher.html" title="previous page">Probability and Statistics Refresher</a>
+    <a class='right-next' id="next-link" href="05-Distances-Timeseries.html" title="next page">Distances and Timeseries</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

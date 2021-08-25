@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distances and Timeseries &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Linear Algebra Refresher" href="04-Linear-Algebra-Refresher.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Getting-Started.html">
+   Essential Tools: Python, Git, and Jupyter Notebook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Getting to know your data with Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Distances and Timeseries
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/05-Distances-Timeseries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/05-Distances-Timeseries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-space-representation">
+   Feature space representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-representation">
+   Matrix representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norms">
+   Norms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-norms">
+   Useful Norms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#similarity-and-dissimilarity">
+   Similarity and Dissimilarity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bit-vectors-and-sets">
+   Bit vectors and Sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series">
+   Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#similarity-of-time-series">
+   Similarity of Time Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norm-based-similarity-measures">
+   Norm-based Similarity Measures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering">
+   Feature Engineering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-time-warping">
+   Dynamic Time Warping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-related-notion">
+   A related notion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="distances-and-timeseries">
+<h1>Distances and Timeseries<a class="headerlink" href="#distances-and-timeseries" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+<span class="c1"># import libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">slideUtilities</span> <span class="k">as</span> <span class="nn">sl</span>
+<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+ <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">slides</span> <span class="p">.</span><span class="nc">celltoolbar</span><span class="o">,</span> <span class="p">.</span><span class="nc">container</span><span class="p">.</span><span class="nc">slides</span> <span class="p">.</span><span class="nc">hide-in-slideshow</span> <span class="p">{</span>
+    <span class="k">display</span><span class="p">:</span> <span class="n">None</span> <span class="o">!</span> <span class="n">important</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+ .container.slides .celltoolbar, .container.slides .hide-in-slideshow {
+    display: None ! important;
+}
+</style>
+</div></div>
+</div>
+<p><span class="math notranslate nohighlight">\(\newcommand{\mat}[1]{\left[\begin{array}#1\end{array}\right]}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vx}{{\mathbf x}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\hx}{\hat{\mathbf x}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vbt}{{\mathbf\beta}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vy}{{\mathbf y}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vz}{{\mathbf z}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\R}{{\mathbb{R}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vu}{{\mathbf u}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vv}{{\mathbf v}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vw}{{\mathbf w}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\col}{{\operatorname{Col}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\nul}{{\operatorname{Nul}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vb}{{\mathbf b}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\va}{{\mathbf a}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\ve}{{\mathbf e}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\setb}{{\mathcal{B}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\rank}{{\operatorname{rank}}}\)</span>
+<span class="math notranslate nohighlight">\(\newcommand{\vp}{{\mathbf p}}\)</span></p>
+<p>Today we will start building some tools for making comparisons of data objects, with particular attention to timeseries.</p>
+<p>Working with data, we can encounter a wide variety of different data objects:</p>
+<ul class="simple">
+<li><p>Records of users</p></li>
+<li><p>Graphs</p></li>
+<li><p>Images</p></li>
+<li><p>Videos</p></li>
+<li><p>Text (webpages, books)</p></li>
+<li><p>Strings (DNA sequences)</p></li>
+<li><p>Timeseries</p></li>
+<li><p>…</p></li>
+</ul>
+<p>How can we compare them?</p>
+<div class="section" id="feature-space-representation">
+<h2>Feature space representation<a class="headerlink" href="#feature-space-representation" title="Permalink to this headline">¶</a></h2>
+<p>Usually a data object consists of a set of attributes.</p>
+<p>These are also commonly called <strong>features.</strong></p>
+<ul class="simple">
+<li><p>(“J. Smith”, 25, $ 200,000)</p></li>
+<li><p>(“M. Jones”, 47, $ 45,000)</p></li>
+</ul>
+<p>If all d dimensions are real-valued then we can visualize each data object as a point in a vector space.</p>
+<ul class="simple">
+<li><p>(25, USD 200,000) <span class="math notranslate nohighlight">\(\rightarrow \mat{{c}25\\200000}\)</span>.</p></li>
+</ul>
+<p>Likewise If all features are binary then we can think of each data object as a binary vector in vector space.</p>
+<p>The space is called <strong>feature space.</strong></p>
+<p>We then are naturally interested in how <strong>similar</strong> or <strong>dissimilar</strong> two objects are.</p>
+<p>A dissimilarity function takes two objects as input, and returns a large value when then two objects are not very similar.</p>
+<p>Often we put restrictions on the dissimilarity function.</p>
+<p>One of the most common is that it be a <strong>metric.</strong></p>
+<p>The dissimilarity <span class="math notranslate nohighlight">\(d(x, y)\)</span> between two objects <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is a
+<strong>metric</strong> if</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(i, j) = 0 \leftrightarrow i == j\;\;\;\;\;\;\;\;\)</span> (identity of indiscernables)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(i, j) = d(j, i)\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\)</span> (symmetry)</p></li>
+<li><p><span class="math notranslate nohighlight">\(d(i, j) \leq d(i, h)+d(h, j)\;\;\)</span> (triangle inequality)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/TriangleInequality.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">350</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="c52278eaf29d45ad"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#c52278eaf29d45ad");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1292</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1293</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1294</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj, include, exclude)</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span> 
+<span class="g g-Whitespace">    </span><span class="mi">969</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">970</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_repr_mimebundle_</span><span class="nt">(self, include, exclude)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1281</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span>             <span class="n">mimetype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mimetype</span>
+<span class="ne">-&gt; </span><span class="mi">1283</span>             <span class="n">data</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">(</span><span class="n">always_both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span>             <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1285</span>                 <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="n">metadata</span><span class="p">}</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1294</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1295</span>             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">1296</span>                 <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1297</span>         <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1298</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;figs/TriangleInequality.png&#39;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1292</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1293</span>             <span class="n">b64_data</span> <span class="o">=</span> <span class="n">b2a_base64</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1294</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: a bytes-like object is required, not &#39;str&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_repr_png_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1311</span>     <span class="k">def</span> <span class="nf">_repr_png_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1312</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FMT_PNG</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1313</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_and_metadata</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1314</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1315</span>     <span class="k">def</span> <span class="nf">_repr_jpeg_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/IPython/core/display.py</span> in <span class="ni">_data_and_metadata</span><span class="nt">(self, always_both)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1294</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1295</span>             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">1296</span>                 <span class="s2">&quot;No such file or directory: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1297</span>         <span class="n">md</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">   </span><span class="mi">1298</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: No such file or directory: &#39;figs/TriangleInequality.png&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>By WhiteTimberwolf, Brews ohare (PNG version) - PNG version, CC BY-SA 3.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=26047092">https://commons.wikimedia.org/w/index.php?curid=26047092</a></p>
+<p>A metric is also commonly called a <strong>distance</strong>.</p>
+<p>Sometimes we will use “distance” informally, ie, to refer to a dissimilarity function even if we are not sure it is a metric.   We’ll try to say “dissimilarity” in those cases though.</p>
+<p>Why is it important or valuable for a dissimilarity to be a metric?</p>
+<p>The additional constraints allow us to reason about and more easily visualize the data.</p>
+<p>The main way this happens is through the triangle inequality.</p>
+<p>The triangle inequality basically says, if two objects are “close” to another object, then they are “close” to each other.</p>
+<p>This is not always the case for real data, but when it is true, it can really help.</p>
+<p>Definitions of distance or dissimilarity functions are usually
+diferent for real, boolean, categorical, and ordinal
+variables.</p>
+<p>Weights may be associated with diferent variables
+based on applications and data semantics.</p>
+</div>
+<div class="section" id="matrix-representation">
+<h2>Matrix representation<a class="headerlink" href="#matrix-representation" title="Permalink to this headline">¶</a></h2>
+<p>Very often we will manage data conveniently in matrix form.</p>
+<p>The standard way of doing this is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mbox{$m$ data objects}\left\{\begin{array}{c}\;\\\;\\\;\\\;\\\;\end{array}\right.\;\;\overbrace{\left[\begin{array}{ccccc}
+\begin{array}{c}x_{11}\\\vdots\\x_{i1}\\\vdots\\x_{m1}\end{array}&amp;
+\begin{array}{c}\dots\\\ddots\\\dots\\\ddots\\\dots\end{array}&amp;
+\begin{array}{c}x_{1j}\\\vdots\\x_{ij}\\\vdots\\x_{mj}\end{array}&amp;
+\begin{array}{c}\dots\\\ddots\\\dots\\\ddots\\\dots\end{array}&amp;
+\begin{array}{c}x_{1n}\\\vdots\\x_{in}\\\vdots\\x_{mn}\end{array}
+\end{array}\right]}^{\mbox{$n$ features}} \end{split}\]</div>
+<p>Where we typically use symbols <span class="math notranslate nohighlight">\(m\)</span> for number of rows (objects) and <span class="math notranslate nohighlight">\(n\)</span> for number of columns (features).</p>
+<p>When we are working with distances, the matrix representation is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mbox{$m$ data objects}\left\{\begin{array}{c}\;\\\;\\\;\\\;\end{array}\right.\;\;
+\overbrace{\left[\begin{array}{cccc}
+\begin{array}{c}0\\d(1,2)\\d(1,3)\\\vdots\\d(1,m)\end{array} &amp;
+\begin{array}{c}\;\\0\\d(2,3)\\\vdots\\d(2,m)\end{array} &amp;
+\begin{array}{c}\;\\\;\\\ddots\\\vdots\\\dots\end{array} &amp;
+\begin{array}{c}\;\\\;\\\;\\\;\\0\end{array} \\
+\end{array}\right]}^{\mbox{$m$ data objects}} \end{split}\]</div>
+</div>
+<div class="section" id="norms">
+<h2>Norms<a class="headerlink" href="#norms" title="Permalink to this headline">¶</a></h2>
+<p>Assume some function <span class="math notranslate nohighlight">\(p(\vv)\)</span> which measures the “size” of the vector <span class="math notranslate nohighlight">\(\vv\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(p()\)</span> is called a <strong>norm</strong> if:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(a\vv) = |a|\; p(\vv)\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\)</span> (absolute scaling)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\vu + \vv) \leq p(\vu) + p(\vv)\;\;\;\;\;\;\;\;\;\;\)</span>  (subadditivity)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\vv) = 0 \leftrightarrow \vv\)</span> is the zero vector <span class="math notranslate nohighlight">\(\;\;\;\;\)</span>(separates points)</p></li>
+</ul>
+<p>Norms are important for this reason, among others:</p>
+<p><strong>Every norm defines a corresponding metric.</strong></p>
+<p>That is, if <span class="math notranslate nohighlight">\(p()\)</span> is a norm, then <span class="math notranslate nohighlight">\(d(\vx, \vy) = p(\vx-\vy)\)</span> is a metric.</p>
+</div>
+<div class="section" id="useful-norms">
+<h2>Useful Norms<a class="headerlink" href="#useful-norms" title="Permalink to this headline">¶</a></h2>
+<p><strong><span class="math notranslate nohighlight">\(\ell_p\)</span></strong> Norm, where <span class="math notranslate nohighlight">\(p \geq 1.\)</span></p>
+<p>Defines the <em>Minkowski distance.</em></p>
+<div class="math notranslate nohighlight">
+\[ L_p(\vx, \vy) = \left(\sum_{i=1}^d |x_i - y_i|^p\right)^{\frac{1}{p}} \]</div>
+<p>A special case of this isthe <span class="math notranslate nohighlight">\(\ell_2\)</span> norm that we’ve already studied, which defines the <strong>Euclidean</strong> norm.</p>
+<p>It is equal to the euclidean distance between the vectors.</p>
+<div class="math notranslate nohighlight">
+\[ L_2(\vx, \vy) = \sqrt{\sum_{i=1}^d (x_i - y_i)^2}\]</div>
+<p>Another important special case is the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm.</p>
+<p>This defines the <strong>Manhattan</strong> distance, or (for binary vectors), the <strong>Hamming</strong> distance:</p>
+<div class="math notranslate nohighlight">
+\[ L_1(\vx, \vy) = \sum_{i=1} |x_i - y_i| \]</div>
+<p>If we take the limit of the <span class="math notranslate nohighlight">\(\ell_p\)</span> norm as <span class="math notranslate nohighlight">\(p\)</span> gets large (<span class="math notranslate nohighlight">\(\lim_{p\rightarrow \infty}L_p\)</span>) we get the <span class="math notranslate nohighlight">\(\ell_\infty\)</span> norm.</p>
+<p>The value of the <span class="math notranslate nohighlight">\(\ell_\infty\)</span> norm is simply the <strong>largest element</strong> in a vector.</p>
+<p>What is the metric that this norm induces?</p>
+<p>Another related idea is the <span class="math notranslate nohighlight">\(\ell_0\)</span> “norm,” which is not a norm, but is in a sense what we get from the <span class="math notranslate nohighlight">\(p\)</span>-norm for <span class="math notranslate nohighlight">\(p = 0\)</span>.</p>
+<p>Note that this is <strong>not</strong> a norm, but it gets called that anyway.</p>
+<p>This “norm” simply counts the number of <strong>nonzero</strong> elements in a vector.</p>
+<p>This is called the vector’s <strong>sparsity.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-Vector-Norms.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="b48125b2470432c8"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#b48125b2470432c8");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_33_1.png" src="_images/05-Distances-Timeseries_33_1.png" />
+</div>
+</div>
+<p><a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=678101">https://commons.wikimedia.org/w/index.php?curid=678101</a></p>
+</div>
+<div class="section" id="similarity-and-dissimilarity">
+<h2>Similarity and Dissimilarity<a class="headerlink" href="#similarity-and-dissimilarity" title="Permalink to this headline">¶</a></h2>
+<p>We’ve already seen that the inner product of two vectors can be used to compute the <strong>cosine of the angle</strong> between them:</p>
+<div class="math notranslate nohighlight">
+\[ \cos(\vx, \vy) = \frac{\vx^T\vy}{\Vert\vx\Vert \Vert\vy\Vert} \]</div>
+<p>Note that this value is <strong>large</strong> when <span class="math notranslate nohighlight">\(\vx \approx \vy.\)</span>  So it is a <strong>similarity</strong> function.</p>
+<p>We often find that we have a similarity function and need to convert it to a dissimilarity function.   Two straightforward ways of doing that are:</p>
+<div class="math notranslate nohighlight">
+\[d(x,y) = 1/s(x,y)\]</div>
+<div class="math notranslate nohighlight">
+\[d(x,y) = k - s(x,y)\]</div>
+<p>For some properly chosen <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>For cosine similarity, one often uses:</p>
+<div class="math notranslate nohighlight">
+\[ d(\vx, \vy) = 1 - \cos(\vx, \vy)\]</div>
+<p>Note however that this is <strong>not a metric!</strong></p>
+<p>However if we recover the actual angle beween <span class="math notranslate nohighlight">\(\vx\)</span> and <span class="math notranslate nohighlight">\(\vy\)</span>, that is a metric.</p>
+</div>
+<div class="section" id="bit-vectors-and-sets">
+<h2>Bit vectors and Sets<a class="headerlink" href="#bit-vectors-and-sets" title="Permalink to this headline">¶</a></h2>
+<p>When working with bit vectors, the <span class="math notranslate nohighlight">\(\ell_1\)</span> metric is commonly used and called the <strong>Hamming</strong> distance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-hamming-1.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="3c845574e65aeb8b"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#3c845574e65aeb8b");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_43_1.png" src="_images/05-Distances-Timeseries_43_1.png" />
+</div>
+</div>
+<p>This has a natural interpretation: “how well do the two vectors match?”</p>
+<p>Or: “What is the smallest number of bit flips that will convert one vector into the other?”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-hamming-2.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="68718b6310cf8606"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#68718b6310cf8606");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_45_1.png" src="_images/05-Distances-Timeseries_45_1.png" />
+</div>
+</div>
+<p>In other cases, the Hamming distance is not a very appropriate metric.</p>
+<p>Consider the case in which the bit vector is being used to represent a set.</p>
+<p>In that case, Hamming distance measures the <strong>size of the set difference.</strong></p>
+<p>For example, consider two documents.   We will use bit vectors to represent the sets of words in each document.</p>
+<ul class="simple">
+<li><p>Case 1: both documents are large, almost identical, but differ in 10 words.</p></li>
+<li><p>Case 2: both documents are small, disjoint, have 5 words each.</p></li>
+</ul>
+<p>The situation can be represented as this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-jaccard-1.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="1ce9dbca22c9240a"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#1ce9dbca22c9240a");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_49_1.png" src="_images/05-Distances-Timeseries_49_1.png" />
+</div>
+</div>
+<p>What matters is not just the size of the set difference, but the size of the intersection as well.</p>
+<p>This leads to the <em>Jaccard</em> similarity:</p>
+<div class="math notranslate nohighlight">
+\[JSim(\vx, \vy) = \frac{|\vx \cap \vy|}{|\vx \cup \vy|}\]</div>
+<p>This takes on values from 0 to 1, so a natural dissimilarity metric is <span class="math notranslate nohighlight">\(1 - JSim().\)</span></p>
+<p>In fact, this is a <strong>metric!</strong>:</p>
+<div class="math notranslate nohighlight">
+\[JDist(\vx, \vy) = 1- \frac{|\vx \cap \vy|}{|\vx \cup \vy|}\]</div>
+<p>Consider our two cases:</p>
+<p>Case 1: (very large almost identical documents)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-jaccard-2.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="1e3a640ee03377de"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#1e3a640ee03377de");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_55_1.png" src="_images/05-Distances-Timeseries_55_1.png" />
+</div>
+</div>
+<p>Here <span class="math notranslate nohighlight">\(JSim(\vx, \vy)\)</span> is almost 1.</p>
+<p>Case 2: (small disjoint documents)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-jaccard-3.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="0085cc4afea46c28"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#0085cc4afea46c28");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_58_1.png" src="_images/05-Distances-Timeseries_58_1.png" />
+</div>
+</div>
+<p>Here <span class="math notranslate nohighlight">\(JSim(\vx, \vy)\)</span> is 0.</p>
+</div>
+<div class="section" id="time-series">
+<h2>Time Series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h2>
+<p>A time series is a sequence of real numbers, representing the measurements of a real variable at (equal) time intervals.</p>
+<ul class="simple">
+<li><p>Stock prices</p></li>
+<li><p>Volume of sales over time</p></li>
+<li><p>Daily temperature readings</p></li>
+</ul>
+<p>A time series database is a large collection of time series.</p>
+</div>
+<div class="section" id="similarity-of-time-series">
+<h2>Similarity of Time Series<a class="headerlink" href="#similarity-of-time-series" title="Permalink to this headline">¶</a></h2>
+<p>How should we measure the “similarity” of two timeseries?</p>
+<p>We will assume they are the same length.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Find companies with similar stock price movements over a time interval</p></li>
+<li><p>Find similar DNA sequences</p></li>
+<li><p>Find users with similar credit usage patterns</p></li>
+</ul>
+<p>Two Problems:</p>
+<ol class="simple">
+<li><p>Defining a meaningful similarity (or distance) function.</p></li>
+<li><p>Finding an efficient algorithm to compute it.</p></li>
+</ol>
+</div>
+<div class="section" id="norm-based-similarity-measures">
+<h2>Norm-based Similarity Measures<a class="headerlink" href="#norm-based-similarity-measures" title="Permalink to this headline">¶</a></h2>
+<p>We could just view each sequence as a vector.</p>
+<p>Then we could use a <span class="math notranslate nohighlight">\(p\)</span>-norm, eg <span class="math notranslate nohighlight">\(\ell_1, \ell_2,\)</span> or <span class="math notranslate nohighlight">\(\ell_p\)</span> to measure similarity.</p>
+<p>Advantages:</p>
+<ol class="simple">
+<li><p>Easy to compute - linear in the length of the time series (O(n)).</p></li>
+<li><p>It is a metric.</p></li>
+</ol>
+<p>Disadvantage:</p>
+<ol class="simple">
+<li><p>May not be <strong>meaningful!</strong></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-ts-euclidean.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="38a212a169ed7ded"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#38a212a169ed7ded");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_68_1.png" src="_images/05-Distances-Timeseries_68_1.png" />
+</div>
+</div>
+<p>It is clear that ts1 and ts2 are “more similar.”</p>
+<p>However, according to Euclidean distance: d(ts1, ts2) = 26.9, while d(ts1, ts3) = 23.2.</p>
+<p>Not good!</p>
+</div>
+<div class="section" id="feature-engineering">
+<h2>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
+<p>In general, there may be different aspects of a timeseries that are important in different settings.</p>
+<p>The first step therefore is to ask yourself “what is important about timeseries in my application?”</p>
+<p>This is an example of <strong>feature engineering.</strong></p>
+<p>Namely, the art of computing some derived measure from your data object that makes its important properties usable in a subsequent step.</p>
+<p>A reasonable approach may then to be:</p>
+<ul class="simple">
+<li><p>extract the relevant features</p></li>
+<li><p>use a simple method (eg, a norm) to define similarity over those features.</p></li>
+</ul>
+<p>In the case above, one might think of using</p>
+<ul class="simple">
+<li><p>Fourier coefficients (to capture periodicity)</p></li>
+<li><p>Histograms</p></li>
+<li><p>Or something else!</p></li>
+</ul>
+</div>
+<div class="section" id="dynamic-time-warping">
+<h2>Dynamic Time Warping<a class="headerlink" href="#dynamic-time-warping" title="Permalink to this headline">¶</a></h2>
+<p>One case that arises often is something like the following:  “bump hunting”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-DTW-1.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="06a58fa430838042"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#06a58fa430838042");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_77_1.png" src="_images/05-Distances-Timeseries_77_1.png" />
+</div>
+</div>
+<p>Both timeseries have the same key characteristics: four bumps.</p>
+<p>But a one-one match (ala Euclidean distance) will not detect this.</p>
+<p>A solution to this is called <strong>dynamic time warping.</strong></p>
+<p>The basic idea is to allow acceleration or deceleration of signals along the time dimension.</p>
+<p>Classic applications:</p>
+<ul class="simple">
+<li><p>Speech recognition</p></li>
+<li><p>Signature recognition</p></li>
+</ul>
+<p>Specifically:</p>
+<ul class="simple">
+<li><p>Consider <span class="math notranslate nohighlight">\(X = x_1, x_2, \dots, x_n\)</span> and <span class="math notranslate nohighlight">\(Y = y_1, y_2, \dots, y_n\)</span>.</p></li>
+<li><p>We are allowed to extend each sequence by repeating elements to form <span class="math notranslate nohighlight">\(X'\)</span> and <span class="math notranslate nohighlight">\(Y'\)</span>.</p></li>
+<li><p>We then calculate, eg, Euclidean distance between the extended sequnces <span class="math notranslate nohighlight">\(X'\)</span> and <span class="math notranslate nohighlight">\(Y'\)</span></p></li>
+</ul>
+<p>There is a simple way to visualize this algorithm.</p>
+<p>Consider a matrix <span class="math notranslate nohighlight">\(M\)</span> where <span class="math notranslate nohighlight">\(M_{ij} = |x_i - y_j|\)</span> (or some other error measure).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl</span><span class="o">.</span><span class="n">hide_code_in_slideshow</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L5-DTW-2.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="b338bb8f3b5494f3"></div>
+    <script type="text/javascript">
+        $(function(){
+            var p = $("#b338bb8f3b5494f3");
+            if (p.length==0) return;
+
+            while (!p.hasClass("cell")) {
+                p=p.parent();
+
+                if (p.prop("tagName") =="body") return;
+            }
+            var cell = p;
+            cell.find(".input").addClass("hide-in-slideshow")
+        });
+    </script></div><img alt="_images/05-Distances-Timeseries_83_1.png" src="_images/05-Distances-Timeseries_83_1.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(M\)</span> measures the amount of error we get if we match <span class="math notranslate nohighlight">\(x_i\)</span> with <span class="math notranslate nohighlight">\(y_j\)</span>.</p>
+<p>So we seek a <strong>path through <span class="math notranslate nohighlight">\(M\)</span> that minimizes the total error.</strong></p>
+<p>We need to start in the lower left and work our way up via a continuous path.</p>
+<p>Basic restrictions on path:</p>
+<ul class="simple">
+<li><p>Montonicity</p>
+<ul>
+<li><p>path should not go down or to the left</p></li>
+</ul>
+</li>
+<li><p>Continuity</p>
+<ul>
+<li><p>No elements may be skipped in sequence</p></li>
+</ul>
+</li>
+</ul>
+<p>This can be solved via dynamic programming.  However, the algorithm is still quadratic in <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Hence, we may choose to put a restriction on the amount that the path can deviate from the diagonal.</p>
+<p>The basic algorithm looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">D[0,</span> <span class="pre">0]</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(n):</span>&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">j</span> <span class="pre">in</span> <span class="pre">range</span> <span class="pre">(m):</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">D[i,j]</span> <span class="pre">=</span> <span class="pre">M[i,j]</span> <span class="pre">+</span> <span class="pre">min(</span> <span class="pre">D[i-1,</span> <span class="pre">j],</span>&#160; <span class="pre">#</span> <span class="pre">insertion</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">D[i,</span> <span class="pre">j-1],</span>&#160; <span class="pre">#</span> <span class="pre">deletion</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">D[i-1,</span> <span class="pre">j-1])</span> <span class="pre">#</span> <span class="pre">match</span></code></p>
+<p>Unfortunately, the algorithm is still quadratic in <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\((O(nm))\)</span>.</p>
+<p>Hence, we may choose to put a restriction on the amount that the path can deviate from the diagonal.</p>
+<p>This is implemented by not allowing the path to pass through locations where <span class="math notranslate nohighlight">\(|i - j| &gt; w\)</span>.</p>
+<p>Then the algorithm is <span class="math notranslate nohighlight">\(O(nw)\)</span>.</p>
+</div>
+<div class="section" id="a-related-notion">
+<h2>A related notion<a class="headerlink" href="#a-related-notion" title="Permalink to this headline">¶</a></h2>
+<p>A closely related idea concerns strings.</p>
+<p>(Strings are just sequences, like timeseries).</p>
+<p>Given two strings, one way to define a ‘distance’ between them as the minimum number of edit operations that are needed to transform one string into the other.</p>
+<p>Edit operations are insertion, deletion, and substitution of single characters.</p>
+<p>This is called <strong>edit distance</strong> or <strong>Levenshtein distance.</strong></p>
+<p>A very similar dynamic programming algorithm can be used to find this distance.</p>
+<p>In bioinformatics this algorithm is called “Smith-Waterman” sequence alignment.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="04-Linear-Algebra-Refresher.html" title="previous page">Linear Algebra Refresher</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
