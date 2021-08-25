@@ -22,7 +22,6 @@ import pandas_datareader.data as web
 from pandas import Series, DataFrame
 
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 import seaborn as sns
 
 from datetime import datetime
@@ -34,7 +33,7 @@ from datetime import datetime
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-f4e8e1c0dcb4>[0m in [0;36m<module>[0;34m[0m
+[0;32m<ipython-input-1-105ad0516313>[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 2[0;31m [0;32mimport[0m [0mpandas_datareader[0m[0;34m.[0m[0mdata[0m [0;32mas[0m [0mweb[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      3[0m [0;32mfrom[0m [0mpandas[0m [0;32mimport[0m [0mSeries[0m[0;34m,[0m [0mDataFrame[0m[0;34m[0m[0;34m[0m[0m

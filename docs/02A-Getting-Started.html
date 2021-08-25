@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Essential Tools: Python, Git, and Jupyter Notebook &#8212; Computational Tools for Data Science</title>
+    <title>Essential Tools: Python, Git, and Jupyter &#8212; Computational Tools for Data Science</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting to know your data with Pandas" href="02B-Pandas.html" />
+    <link rel="next" title="Pandas" href="02B-Pandas.html" />
     <link rel="prev" title="Introduction to Python" href="01-Intro-to-Python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -101,12 +101,12 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Essential Tools: Python, Git, and Jupyter Notebook
+   Essential Tools: Python, Git, and Jupyter
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02B-Pandas.html">
-   Getting to know your data with Pandas
+   Pandas
   </a>
  </li>
  <li class="toctree-l1">
@@ -233,13 +233,13 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-you-will-need-for-this-course">
-   What you will need for this course
+  <a class="reference internal nav-link" href="#critical-course-tools">
+   Critical Course Tools
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-python">
-   Installing Python
+  <a class="reference internal nav-link" href="#python">
+   Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -272,11 +272,6 @@
      Recovering old versions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-information">
-     More information
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -287,11 +282,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#essential-shortcuts">
      Essential Shortcuts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#working-from-the-undergraduate-lab">
-     Working from the Undergraduate lab
     </a>
    </li>
   </ul>
@@ -334,54 +324,58 @@
         
               <div>
                 
-  <div class="section" id="essential-tools-python-git-and-jupyter-notebook">
-<h1>Essential Tools: Python, Git, and Jupyter Notebook<a class="headerlink" href="#essential-tools-python-git-and-jupyter-notebook" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="essential-tools-python-git-and-jupyter">
+<h1>Essential Tools: Python, Git, and Jupyter<a class="headerlink" href="#essential-tools-python-git-and-jupyter" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
-<span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">run</span> -i common.py
+<span class="o">%</span><span class="k">run</span> -i ln_preamble.py
 <span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#notebook { padding-top:0px !important; } .container { width:100% !important; } .CodeMirror { width:100% !important;}.end_space { min-height:0px !important; } .terminal-app #terminado-container { width:100%; }div.mywarn { background-color: #fcf2f2;border-color: #dFb5b4; border-left: 5px solid #dfb5b4; padding: 0.5em;}button { background-color: #cccccc00; }</style></div></div>
 </div>
 <p><img alt="http://scikit-learn.org/stable/tutorial/machine_learning_map/" src="https://scikit-learn.org/stable/_static/ml_map.png" /></p>
 <p><a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">https://scikit-learn.org/stable/tutorial/machine_learning_map/</a></p>
-<div class="section" id="what-you-will-need-for-this-course">
-<h2>What you will need for this course<a class="headerlink" href="#what-you-will-need-for-this-course" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="critical-course-tools">
+<h2>Critical Course Tools<a class="headerlink" href="#critical-course-tools" title="Permalink to this headline">¶</a></h2>
 <p>This course focuses on developing practical skills in working with data and providing students with a hands-on understanding of classical data analysis techniques.</p>
 <p>This will be a coding-intensive course.</p>
-<p>As discussed in Lecture 1, we are using <a class="reference external" href="https://www.python.org/">Python</a>, since it allows for fast prototyping and is supported by a great variety of scientific (and, specifically, data related) libraries.</p>
+<p>Instruction in this course will use <a class="reference external" href="https://www.python.org/">Python</a>, since it allows for fast prototyping and is supported by a great variety of scientific (and, specifically, data related) libraries.</p>
 <p>The materials of this course can be found under <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">this GitHub account</a>.</p>
-<p>Both the lectures and the homeworks of this course are in the format of <a class="reference external" href="http://ipython.org/notebook.html">Jupyter notebooks</a>.</p>
+<p>Both the lectures and the homeworks of this course are in the format of <a class="reference external" href="https://jupyter.org">Jupyter notebooks</a>.</p>
+<p><strong>Today’s Agenda</strong> is a quick review of essential tools you will need for this course.</p>
+<p>We are <strong>not</strong> providing a comprehensive introduction to these tools.</p>
+<p>They are all <strong>extensively</strong> documented online and you will need to familiarize with online resources to learn what you need.</p>
+<p>Stack overflow, etc, is also your friend – but as a reference, not as a way to solve homework problems!</p>
+<p><strong>The key tools you will need</strong> are:</p>
+<ol class="simple">
+<li><p>Git</p></li>
+<li><p>Jupyter</p></li>
+<li><p>Pandas</p></li>
+</ol>
 </div>
-<div class="section" id="installing-python">
-<h2>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>We will not be teaching you python in this course.</p>
+<p>You are assumed to be proficient in python.</p>
+<p>If you need to refresh your memory, there is a quick review of Python in the online lecture notes.</p>
 <p>There are many ways to install Python.</p>
 <p>The biggest challenge in installing Python is configuring the many different packages that can be used.</p>
 <p>For that reason, I recommend the free <strong>Anaconda Scientific Python</strong> distribution, which you can download from <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a>. This Python distribution contains most of the packages that we will be using throughout the course. It also includes an easy-to-use but powerful package install/update system, <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong>.</p>
-<p>Note that we are using Python 3 (get the latest version, which should be 3.5 or later).  Be sure to download the correct version.</p>
-<p>This is what is installed on the lab machines.</p>
+<p>Note that we are using Python 3 (get the latest version, which should be 3.7 or later).  Be sure to download the correct version.</p>
 </div>
 <div class="section" id="git">
 <h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
-<p>One of the goals of this course is make you familiar with the workflow of code-versioning and collaboration.</p>
-<p>If you don’t have it already, you should download <strong>git</strong> from <a class="reference external" href="http://git-scm.com/downloads">here</a>.</p>
-<p>If you don’t already have one, you should also create an account on GitHub.</p>
-<p>You can find extensive documentation on how to use <strong>git</strong> on the <a class="reference external" href="https://help.github.com">Help Pages of Github</a>, on <a class="reference external" href="https://www.atlassian.com/git/tutorials/setting-up-a-repository">Atlassian</a>, on <a class="reference external" href="http://gitref.org/">GitRef</a> and many other sites.</p>
+<p>One of the goals of this course is make you familiar with the modern workflow of code-versioning and collaboration.</p>
+<p>If you don’t have it already, download <strong>git</strong> from <a class="reference external" href="http://git-scm.com/downloads">here</a>.</p>
+<p>If you don’t already have one, you <strong>must</strong> also create an account on GitHub.</p>
+<p>You can find extensive documentation on how to use <strong>git</strong> on the <a class="reference external" href="https://docs.github.com/en/get-started/quickstart">Help Pages of Github</a>, on <a class="reference external" href="https://www.atlassian.com/git/tutorials/setting-up-a-repository">Atlassian</a>, and many other sites.</p>
 </div>
 <div class="section" id="working-with-git">
 <h2>Working with Git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
@@ -397,6 +391,23 @@ $ git config --global user.mail &quot;crovella@bu.edu&quot;
 </div>
 <div class="section" id="creating-a-repository">
 <h3>Creating a Repository<a class="headerlink" href="#creating-a-repository" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
+<iframe
+    width="100%"
+    height="600"
+    src="/terminals/1"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
 <p>After installing Git, we can configure our first repository. First, let’s create a new directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir thoughts
 $ cd thoughts
@@ -410,10 +421,27 @@ $ cd thoughts
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
 On branch master
 
-Initial commit
+No commits yet
 
 nothing to commit (create/copy files and use &quot;git add&quot; to track)
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
+<iframe
+    width="100%"
+    height="600"
+    src="/terminals/1"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 <p>Now, create a file named <code class="docutils literal notranslate"><span class="pre">science.txt</span></code>, edit it with your favorite text editor and add the following lines</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">to</span> <span class="n">think</span> <span class="n">about</span> <span class="n">data</span>
@@ -423,7 +451,7 @@ nothing to commit (create/copy files and use &quot;git add&quot; to track)
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
 On branch master
 
-Initial commit
+No commits yet
 
 Untracked files:
   (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
@@ -432,6 +460,23 @@ Untracked files:
 
 nothing added to commit but untracked files present (use &quot;git add&quot; to track)
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
+<iframe
+    width="100%"
+    height="600"
+    src="/terminals/1"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 <p>The “untracked files” message means that there’s a file in the directory that <em>git</em> isn’t keeping track of. We can tell <em>git</em> that it should do so using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add science.txt
@@ -458,6 +503,23 @@ Changes to be committed:
  create mode 100644 science.txt
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
+<iframe
+    width="100%"
+    height="600"
+    src="/terminals/1"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
 <p>When we run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>, <em>git</em> takes everything we have told it to save by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and stores a copy permanently inside the special <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory.</p>
 <p>This permanent copy is called a <strong>revision</strong> and its short identifier is <em>f516d22</em>. (Your revision will have another identifier.)</p>
 <p>We use the -m flag (for “message”) to record a comment that will help us remember later on what we did and why.</p>
@@ -482,7 +544,7 @@ Date:   Sun Jan 25 12:48:44 2015 -0500
 <h3>Changing a file<a class="headerlink" href="#changing-a-file" title="Permalink to this headline">¶</a></h3>
 <p>Now, suppose that we edit the file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">to</span> <span class="n">think</span> <span class="n">about</span> <span class="n">data</span>
-<span class="n">I</span> <span class="n">need</span> <span class="n">to</span> <span class="n">attend</span> <span class="n">CS591</span>
+<span class="n">I</span> <span class="n">need</span> <span class="n">to</span> <span class="n">attend</span> <span class="n">CS506</span>
 </pre></div>
 </div>
 <p>Now if we run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, <em>git</em> will tell us that a file that it is tracking has been modified:</p>
@@ -507,7 +569,7 @@ index 0ac4b7b..c5b1b05 100644
 +++ b/science.txt
 @@ -1 +1,2 @@
  Starting to think about data
-+I need to attend CS591
++I need to attend CS506
 </pre></div>
 </div>
 <p>OK, we are happy with that, so let’s commit our change:</p>
@@ -558,19 +620,6 @@ I need to attend CS506
 </pre></div>
 </div>
 </div>
-<div class="section" id="more-information">
-<h3>More information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h3>
-<p>You can find more information on <em>git</em> here:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://swcarpentry.github.io/git-novice/01-backup.html">Software Carpentry</a></p></li>
-<li><p><a class="reference external" href="https://help.github.com/">GitHub Help</a></p></li>
-<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials/setting-up-a-repository">Atlassian Help</a></p></li>
-<li><p><a class="reference external" href="http://gitref.org/">GitRef</a></p></li>
-<li><p><a class="reference external" href="http://gitready.com/">Git Ready</a></p></li>
-</ul>
-<p>** IMPORTANT! **</p>
-<p>Never <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> sensitive files, e.g. <em>passwords</em>, <em>keys</em>, etc., unless you are really sure you need this.</p>
-</div>
 </div>
 <div class="section" id="jupyter-notebook">
 <h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
@@ -620,6 +669,7 @@ I need to attend CS506
  &#39;13-Web-Scraping.pdf&#39;,
  &#39;01-Intro-to-Python.pdf&#39;,
  &#39;preamble.tex&#39;,
+ &#39;.#ln_preamble.py&#39;,
  &#39;figs&#39;,
  &#39;20-Recommender-Systems-Edited.pdf&#39;,
  &#39;Makefile&#39;,
@@ -636,6 +686,7 @@ I need to attend CS506
  &#39;02B-Pandas.ipynb&#39;,
  &#39;22B-Networks-I-Intro-Demo.pdf&#39;,
  &#39;23-Networks-II-Centrality.pdf&#39;,
+ &#39;git-demo&#39;,
  &#39;Old&#39;,
  &#39;stripheaders.py&#39;,
  &#39;__pycache__&#39;,
@@ -654,6 +705,7 @@ I need to attend CS506
  &#39;CS505FinalProject-Fall2016.pdf&#39;,
  &#39;22A-Networks-I-Intro.pdf&#39;,
  &#39;24-Networks-III-Clustering.ipynb&#39;,
+ &#39;common.py&#39;,
  &#39;16C-Classification-III-SVM-Demo.pdf&#39;,
  &#39;12-Anomaly-Detection-SVD-III.pdf&#39;,
  &#39;16B-Classification-III-Random-Projection.ipynb&#39;,
@@ -664,6 +716,8 @@ I need to attend CS506
  &#39;08B-Clustering-III.pdf&#39;,
  &#39;07-Clustering-II.pdf&#39;,
  &#39;25-Networks-MapReduce.pdf&#39;,
+ &#39;thoughts&#39;,
+ &#39;ln_preamble.py&#39;,
  &#39;example.txt&#39;,
  &#39;19-Regression-III-More-Linear.pdf&#39;,
  &#39;22B-Networks-I-Intro-Demo.ipynb&#39;,
@@ -710,41 +764,6 @@ I need to attend CS506
 <li><p><em>a / b</em> : Insert cell below / above</p></li>
 <li><p><em>d</em>: Delete cell</p></li>
 </ul>
-</div>
-<div class="section" id="working-from-the-undergraduate-lab">
-<h3>Working from the Undergraduate lab<a class="headerlink" href="#working-from-the-undergraduate-lab" title="Permalink to this headline">¶</a></h3>
-<p>Anaconda has been installed in the Linux machines of the Undergraduate lab as well. If you want to work from there, you need to follow the next steps:</p>
-<ol class="simple">
-<li><p>Add the <code class="docutils literal notranslate"><span class="pre">conda</span></code> executable to your PATH</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PATH=/usr/local/anaconda/bin:$PATH
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Create a new environment (only do this once)</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create -p ~/envs/test numpy scipy networkx pandas  scikit-learn matplotlib beautiful-soup ipython-notebook=2.2
-</pre></div>
-</div>
-<p>You can change its name to something other than <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
-<ol class="simple">
-<li><p>Activate the environment</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source activate ~/envs/test
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Run IPython or IPython notebook</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook --ip=127.0.0.1
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Deactivate the environment</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source deactivate
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="github">
@@ -820,7 +839,7 @@ $ cd cs506
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="01-Intro-to-Python.html" title="previous page">Introduction to Python</a>
-    <a class='right-next' id="next-link" href="02B-Pandas.html" title="next page">Getting to know your data with Pandas</a>
+    <a class='right-next' id="next-link" href="02B-Pandas.html" title="next page">Pandas</a>
 
         </div>
         
