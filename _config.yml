@@ -10,3 +10,6 @@ html:
         use_repository_button: true
 execute:
   execute_notebooks: "cache"
+parse:
+  myst_enable_extensions:
+    - html_image

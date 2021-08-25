@@ -76,15 +76,19 @@ except IndexError:
 
 #from IPython.display import Javascript
 
-#var ipkernel = IPython.notebook.kernel;
-#var stringHostName = window.location.hostname
-#var ipcommand = "NB_HOST = " + "'"+stringHostName+"'";
-#ipkernel.execute(ipcommand);
-#"""
+js_code = """
+var ipkernel = IPython.notebook.kernel;
+var stringHostName = window.location.hostname
+var ipcommand = "NB_HOST = " + "'"+stringHostName+"'";
+ipkernel.execute(ipcommand);
+"""
 #
 #display(Javascript(js_code))
 
 # cusomization of ccs to make slides look better 
+
+# MEC: removed for now - replace with per-notebook CSS in metadata
+"""
 display(HTML(
     '<style>'
         '#notebook { padding-top:0px !important; } ' 
@@ -97,6 +101,7 @@ display(HTML(
         'button { background-color: #cccccc00; }'
     '</style>'
 ))
+"""
 
 # show Terminal where TERMNAME is one of the terminals we created below
 def showTerm(TERMNAME, title, w, h):
