@@ -50,7 +50,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -73,6 +73,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
@@ -112,13 +114,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
   </a>
  </li>
 </ul>
@@ -383,8 +385,8 @@
 </div>
 </div>
 </div>
-<p>For those of you that know python, today’s class aims to refresh your memory.</p>
-<p>For those of you that don’t know python – but do know programming – this lecture is to give you an idea of how python is similar to, and different from, your favorite programming language.</p>
+<p>This chapter will not be covered in lecture.  It’s here to refresh the memory of those who haven’t used python in a while.</p>
+<p>For those that don’t know python – but do know programming – this chapter will give you an idea of how python is similar to, and different from, your favorite programming language.</p>
 <div class="section" id="how-do-i-run-code">
 <h2>How do I run code?<a class="headerlink" href="#how-do-i-run-code" title="Permalink to this headline">¶</a></h2>
 <p>There are four ways to run python code:</p>
@@ -412,7 +414,7 @@
 <li><p>But otherwise it’s not better than option 1</p></li>
 </ul>
 <ol class="simple">
-<li><p>run <code class="docutils literal notranslate"><span class="pre">ipython</span></code> in a browser, called <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></p></li>
+<li><p>run <code class="docutils literal notranslate"><span class="pre">ipython</span></code> in a browser, using the system called <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></p></li>
 </ol>
 <ul class="simple">
 <li><p>This is even better</p></li>
@@ -1213,7 +1215,7 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;cs505&#39;, &#39;cs565&#39;, &#39;cs530&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;cs506&#39;, &#39;cs565&#39;, &#39;cs530&#39;])
 </pre></div>
 </div>
 </div>
@@ -1239,7 +1241,7 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;cs505&#39;, &#39;data-mining tools&#39;), (&#39;cs565&#39;, &#39;data-mining algorithms&#39;), (&#39;cs530&#39;, &#39;algorithms&#39;)])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;cs506&#39;, &#39;data-mining tools&#39;), (&#39;cs565&#39;, &#39;data-mining algorithms&#39;), (&#39;cs530&#39;, &#39;algorithms&#39;)])
 </pre></div>
 </div>
 </div>
@@ -1253,7 +1255,7 @@ L2 is [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cs505 data-mining tools
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cs506 data-mining tools
 cs565 data-mining algorithms
 cs530 algorithms
 </pre></div>
@@ -1341,7 +1343,7 @@ George Kollios is interested in databases.
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">107</span><span class="o">-</span><span class="mi">9</span><span class="n">f9c178174f0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">61</span><span class="o">-</span><span class="mi">9</span><span class="n">f9c178174f0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">groceries</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;milk&#39;</span>
 
 <span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
@@ -1484,7 +1486,8 @@ c
 </div>
 <div class="section" id="functional-programming">
 <h2>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">¶</a></h2>
-<img src=figs/Functional-Homer.png width=400/><p>Functional programming is particularly valuable and common when working with data.</p>
+<a class="reference internal image-reference" href="_images/Functional-Homer.png"><img alt="_images/Functional-Homer.png" src="_images/Functional-Homer.png" style="width: 400px;" /></a>
+<p>Functional programming is particularly valuable and common when working with data.</p>
 <p>We’ll see more sophisticated examples of this sort of programming later.</p>
 <div class="section" id="lambda-functions">
 <h3>Lambda functions<a class="headerlink" href="#lambda-functions" title="Permalink to this headline">¶</a></h3>
@@ -1685,7 +1688,10 @@ c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;filter object at 0x7fd620ab9550&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;filter object at 0x7fb5b90a1890&gt;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2,
@@ -1790,7 +1796,7 @@ c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>109
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
@@ -1805,7 +1811,7 @@ c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 4, 1, 8, 5, 3, 7, 0, 9, 6]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 4, 6, 0, 2, 9, 8, 7, 1, 5]
 </pre></div>
 </div>
 </div>

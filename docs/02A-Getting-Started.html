@@ -72,6 +72,8 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
+      
       
       <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
       
@@ -110,13 +112,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
   </a>
  </li>
 </ul>
@@ -275,18 +277,6 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyter-notebook">
-   Jupyter Notebook
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#essential-shortcuts">
-     Essential Shortcuts
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#github">
    GitHub
   </a>
@@ -297,11 +287,6 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clone-the-lecture-repository">
-     Clone the lecture repository
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-a-private-homework-repository">
      Create a private homework repository
     </a>
@@ -309,8 +294,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#practice">
-   Practice
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
   </a>
  </li>
 </ul>
@@ -337,8 +322,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#notebook { padding-top:0px !important; } .container { width:100% !important; } .CodeMirror { width:100% !important;}.end_space { min-height:0px !important; } .terminal-app #terminado-container { width:100%; }div.mywarn { background-color: #fcf2f2;border-color: #dFb5b4; border-left: 5px solid #dfb5b4; padding: 0.5em;}button { background-color: #cccccc00; }</style></div></div>
 </div>
 <p><img alt="http://scikit-learn.org/stable/tutorial/machine_learning_map/" src="https://scikit-learn.org/stable/_static/ml_map.png" /></p>
 <p><a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">https://scikit-learn.org/stable/tutorial/machine_learning_map/</a></p>
@@ -367,8 +350,8 @@
 <p>If you need to refresh your memory, there is a quick review of Python in the online lecture notes.</p>
 <p>There are many ways to install Python.</p>
 <p>The biggest challenge in installing Python is configuring the many different packages that can be used.</p>
-<p>For that reason, I recommend the free <strong>Anaconda Scientific Python</strong> distribution, which you can download from <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a>. This Python distribution contains most of the packages that we will be using throughout the course. It also includes an easy-to-use but powerful package install/update system, <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong>.</p>
-<p>Note that we are using Python 3 (get the latest version, which should be 3.7 or later).  Be sure to download the correct version.</p>
+<p>For that reason, I recommend the free <strong>Anaconda Scientific Python</strong> distribution, which you can find via Google. This Python distribution contains most of the packages that we will be using throughout the course. It also includes an easy-to-use but powerful package install/update system, <strong><code class="docutils literal notranslate"><span class="pre">conda</span></code></strong>.</p>
+<p>Note that we are using Python 3 (get the latest version, which should be 3.7 or later).</p>
 </div>
 <div class="section" id="git">
 <h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
@@ -379,7 +362,6 @@
 </div>
 <div class="section" id="working-with-git">
 <h2>Working with Git<a class="headerlink" href="#working-with-git" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Alt text" src="_images/git-staging-area.png" /></p>
 <div class="section" id="configuration">
 <h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
 <p>The first time we use <em>git</em> on a new machine, we need to configure our name and email</p>
@@ -391,23 +373,6 @@ $ git config --global user.mail &quot;crovella@bu.edu&quot;
 </div>
 <div class="section" id="creating-a-repository">
 <h3>Creating a Repository<a class="headerlink" href="#creating-a-repository" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
-<iframe
-    width="100%"
-    height="600"
-    src="/terminals/1"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
-</div>
 <p>After installing Git, we can configure our first repository. First, let’s create a new directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir thoughts
 $ cd thoughts
@@ -425,23 +390,6 @@ No commits yet
 
 nothing to commit (create/copy files and use &quot;git add&quot; to track)
 </pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
-<iframe
-    width="100%"
-    height="600"
-    src="/terminals/1"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
 </div>
 <p>Now, create a file named <code class="docutils literal notranslate"><span class="pre">science.txt</span></code>, edit it with your favorite text editor and add the following lines</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">to</span> <span class="n">think</span> <span class="n">about</span> <span class="n">data</span>
@@ -461,23 +409,10 @@ Untracked files:
 nothing added to commit but untracked files present (use &quot;git add&quot; to track)
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
-<iframe
-    width="100%"
-    height="600"
-    src="/terminals/1"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
-</div>
+<p>To give you precise control about what changes are included in each revision, <em>git</em> has a special staging area.</p>
+<p>In the staging area it keeps track of things that you have added to the current change set but not yet committed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> puts things in this area, and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> then copies them to long-term storage (as a commit):</p>
+<p><img alt="Alt text" src="_images/git-staging-area.png" /></p>
 <p>The “untracked files” message means that there’s a file in the directory that <em>git</em> isn’t keeping track of. We can tell <em>git</em> that it should do so using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add science.txt
 </pre></div>
@@ -486,7 +421,7 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
 On branch master
 
-Initial commit
+No commits yet
 
 Changes to be committed:
   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
@@ -503,37 +438,19 @@ Changes to be committed:
  create mode 100644 science.txt
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showET</span><span class="p">(</span><span class="s2">&quot;Command Line&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><b>Command Line</b></div><div class="output text_html">
-<iframe
-    width="100%"
-    height="600"
-    src="/terminals/1"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
-</div>
 <p>When we run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>, <em>git</em> takes everything we have told it to save by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and stores a copy permanently inside the special <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory.</p>
 <p>This permanent copy is called a <strong>revision</strong> and its short identifier is <em>f516d22</em>. (Your revision will have another identifier.)</p>
 <p>We use the -m flag (for “message”) to record a comment that will help us remember later on what we did and why.</p>
 <p>If we just run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> without the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, <em>git</em> will launch an editor such as <code class="docutils literal notranslate"><span class="pre">vim</span></code> (or whatever other editor we configured at the start) so that we can write a longer message.</p>
-<p>If you are using Windows and you are not familiar with <code class="docutils literal notranslate"><span class="pre">vim</span></code>, try installing <a class="reference external" href="https://github.com/github/GitPad">GitPad</a>.</p>
 <p>If we run git status now:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
 On branch master
-nothing to commit, working directory clean
+nothing to commit, working tree clean
 </pre></div>
 </div>
 <p>it tells us everything is up to date. If we want to know what we’ve done recently, we can ask <em>git</em> to show us the project’s history using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git log
-Author: Katherine Zhao &lt;kzhao@bu.edu&gt;
+Author: Mark Crovella &lt;crovella@bu.edu&gt;
 Date:   Sun Jan 25 12:48:44 2015 -0500
 
     Preparing for science
@@ -590,8 +507,6 @@ $ git commit -m &quot;Related course&quot;
 </div>
 <p><em>Git</em> insists that we add files to the set we want to commit before actually committing anything because we may not want to commit everything at once.</p>
 <p>For example, suppose we’re adding a few citations to our project. We might want to commit those additions, and the corresponding addition to the bibliography, but not commit the work we’re doing on the analysis (which we haven’t finished yet).</p>
-<p>To allow for this, <em>git</em> has a special staging area where it keeps track of things that have been added to the current change set but not yet committed. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> puts things in this area, and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> then copies them to long-term storage (as a commit):</p>
-<p><img alt="Alt text" src="_images/git-staging-area.png" /></p>
 </div>
 <div class="section" id="recovering-old-versions">
 <h3>Recovering old versions<a class="headerlink" href="#recovering-old-versions" title="Permalink to this headline">¶</a></h3>
@@ -621,16 +536,61 @@ I need to attend CS506
 </div>
 </div>
 </div>
+<div class="section" id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<p>Systems like <em>git</em> allow us to move work between any two repositories.</p>
+<p>In practice, though, it’s easiest to use one copy as a central hub, and to keep it on the web rather than on someone’s laptop. Most programmers use hosting services like <a class="reference external" href="https://github.com/">GitHub</a> or <a class="reference external" href="https://bitbucket.org/">BitBucket</a> to hold those master copies.</p>
+<p>For the purpose of our course, we will be using <a class="reference external" href="https://github.com/">GitHub</a> to host the course material.</p>
+<p>You will also submit your homeworks through this platform.</p>
+<p>Next, we will cover how you can clone the course’s repository and how to submit your solutions to the homework.</p>
+<p>For more information on how to create your own repository on GitHub and upload code to it, please see the tutorial by <a class="reference external" href="http://swcarpentry.github.io/git-novice/">Software Carpentry</a>.</p>
+<a class="reference internal image-reference" href="_images/github-workflow.jpg"><img alt="Drawing" src="_images/github-workflow.jpg" style="width: 500px;" /></a>
+<p>This workflow shows you the essential new commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p></li>
+</ul>
+<p>And when you first copy a remote repository, you will use:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code></p></li>
+</ul>
+<div class="section" id="course-repositories">
+<h3>Course repositories<a class="headerlink" href="#course-repositories" title="Permalink to this headline">¶</a></h3>
+<p>The material of the course is hosted on GitHub, under <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">this account</a>.</p>
+<p>In order to download a copy of the lectures and run them locally on your computer, you need to clone the lecture repository. To do that:</p>
+<ol class="simple">
+<li><p>Create a new folder for the course.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir cs506
+$ cd cs506
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Copy the clone url from the <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">repository’s website</a>.</p></li>
+<li><p>Clone the repository from <em>git</em>.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science.git
+</pre></div>
+</div>
+<p>You should now have a directory with the course material.</p>
+<p>To update the repository and download the <strong>new material</strong>, type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git pull
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-private-homework-repository">
+<h3>Create a private homework repository<a class="headerlink" href="#create-a-private-homework-repository" title="Permalink to this headline">¶</a></h3>
+<p>Each assignment will have its own private repository, on GitHub shared only by you and the instructors.</p>
+<p>The last commit time on the repo will be used as the submission time.</p>
+</div>
+</div>
 <div class="section" id="jupyter-notebook">
 <h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
 <p>You should get used to developing your code <em>incrementally.</em></p>
 <p>If you typically are writing files that you then run from the command line, e.g., <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">code.py</span></code>, then you are not getting one of the main benefits of working in python.</p>
-<p>Instead you should interact with the interpreter.</p>
-<p>A simple way to do this is to write your code in a file, but then cut and paste pieces of it into the interpreter to test.</p>
-<p>To support this mode of work, use <code class="docutils literal notranslate"><span class="pre">IPython</span></code>.  It has become the standard for interactive computing in Python.</p>
-<p>There is no reason you shouldn’t be using <code class="docutils literal notranslate"><span class="pre">ipython</span></code> instead of the regular python interpreter.</p>
-<p>An even better alternative is to use <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code>.   This puts a browser front-end on <code class="docutils literal notranslate"><span class="pre">ipython</span></code>.</p>
-<p>These slides are actually just a Jupyter notebook.</p>
+<p>Instead you should <strong>interact with the interpreter.</strong></p>
+<p>An ideal wat to do this is to use <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code>.   This puts a browser front-end on <code class="docutils literal notranslate"><span class="pre">ipython</span></code>.</p>
+<p>In fact, these slides are actually just a Jupyter notebook.</p>
 <p>To run the Jupyter Notebook server from the command line, type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>. Your web browser will open and load the environment.</p>
 <p>In the notebook, you can type and run code:</p>
 <div class="cell docutils container">
@@ -669,7 +629,6 @@ I need to attend CS506
  &#39;13-Web-Scraping.pdf&#39;,
  &#39;01-Intro-to-Python.pdf&#39;,
  &#39;preamble.tex&#39;,
- &#39;.#ln_preamble.py&#39;,
  &#39;figs&#39;,
  &#39;20-Recommender-Systems-Edited.pdf&#39;,
  &#39;Makefile&#39;,
@@ -750,66 +709,6 @@ I need to attend CS506
 </div>
 </div>
 </div>
-<div class="section" id="essential-shortcuts">
-<h3>Essential Shortcuts<a class="headerlink" href="#essential-shortcuts" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><em>Esc / Enter</em>: Switch between edit and command mode</p></li>
-<li><p>Execute cells</p>
-<ul>
-<li><p><em>Shift-Enter</em>: Run and move to the next cell</p></li>
-<li><p><em>Alt-Enter</em>: Run and make new cell</p></li>
-<li><p><em>Ctrl-Enter</em>: Run in place</p></li>
-</ul>
-</li>
-<li><p><em>a / b</em> : Insert cell below / above</p></li>
-<li><p><em>d</em>: Delete cell</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="github">
-<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
-<p>Systems like <em>git</em> allow us to move work between any two repositories.</p>
-<p>In practice, though, it’s easiest to use one copy as a central hub, and to keep it on the web rather than on someone’s laptop. Most programmers use hosting services like <a class="reference external" href="https://github.com/">GitHub</a> or <a class="reference external" href="https://bitbucket.org/">BitBucket</a> to hold those master copies.</p>
-<p>For the purpose of our course, we will be using <a class="reference external" href="https://github.com/">GitHub</a> to host the course material.</p>
-<p>You will also submit your homeworks through this platform.</p>
-<p>Next, we will cover how you can fork and clone the course’s repository and how to submit your solutions to the homework.</p>
-<p>For more information on how to create your own repository on GitHub and upload code to it, please see the tutorial by <a class="reference external" href="http://swcarpentry.github.io/git-novice/02-collab.html">Software Carpentry</a>.</p>
-<div class="section" id="course-repositories">
-<h3>Course repositories<a class="headerlink" href="#course-repositories" title="Permalink to this headline">¶</a></h3>
-<p>The material of the course is hosted on GitHub, under <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">this account</a>.</p>
-</div>
-<div class="section" id="clone-the-lecture-repository">
-<h3>Clone the lecture repository<a class="headerlink" href="#clone-the-lecture-repository" title="Permalink to this headline">¶</a></h3>
-<p>In order to download a copy of the lectures and run them locally on your computer, you need to clone the lecture repository. To do that:</p>
-<ol class="simple">
-<li><p>Create a new folder for the course.</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir cs506
-$ cd cs506
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Copy the clone url from the <a class="reference external" href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science">repository’s website</a>.</p></li>
-<li><p>Clone the repository from <em>git</em>.</p></li>
-</ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science.git
-</pre></div>
-</div>
-<p>You should now have a directory with the course material.</p>
-<p>To update the repository and download the <strong>new material</strong>, type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git pull
-</pre></div>
-</div>
-</div>
-<div class="section" id="create-a-private-homework-repository">
-<h3>Create a private homework repository<a class="headerlink" href="#create-a-private-homework-repository" title="Permalink to this headline">¶</a></h3>
-<p>Each assignment will have its own private repository, on GitHub shared only by you and the instructors.</p>
-<p>The last commit time on the repo will be used as the submission time.</p>
-</div>
-</div>
-<div class="section" id="practice">
-<h2>Practice<a class="headerlink" href="#practice" title="Permalink to this headline">¶</a></h2>
-<p>Now, practice what we have seen today by solving and submitting Homework 0.</p>
 </div>
 </div>
 

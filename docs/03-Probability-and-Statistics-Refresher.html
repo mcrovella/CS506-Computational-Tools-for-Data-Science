@@ -50,12 +50,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Linear Algebra Refresher" href="04-Linear-Algebra-Refresher.html" />
-    <link rel="prev" title="Pandas" href="02B-Pandas.html" />
+    <link rel="next" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
+    <link rel="prev" title="Linear Algebra Refresher" href="04-Linear-Algebra-Refresher.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -73,6 +73,8 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
@@ -111,14 +113,14 @@
    Pandas
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Probability and Statistics Refresher
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
    Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Probability and Statistics Refresher
   </a>
  </li>
 </ul>
@@ -1512,13 +1514,14 @@ zero) we choose <span class="math notranslate nohighlight">\(k = z_{0.95}\)</spa
 in some fixed-size interval centered on the true mean, if and only if the true
 mean is also in
 a fixed-size interval (of the same size) centered on the sample mean.</p>
-<p>This means that:
-\begin{eqnarray*}
-1-\alpha &amp; = &amp; P[\mu-z_{1-\alpha/2}\sigma/\sqrt{N} &lt; \bar{x} &lt;
-\mu+z_{1-\alpha/2}\sigma/\sqrt{N}]\
+<p>This means that:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+  1-\alpha &amp; = &amp; P[\mu-z_{1-\alpha/2}\sigma/\sqrt{N} &lt; \bar{x} &lt;
+\mu+z_{1-\alpha/2}\sigma/\sqrt{N}]\\
 &amp; = &amp; P[\bar{x}-k\sigma\sqrt{N} &lt; \mu &lt; \bar{x}+k\sigma/\sqrt{N}].
-\end{eqnarray*}
-This latter expression defines the <strong><span class="math notranslate nohighlight">\(1-\alpha\)</span> confidence interval
+\end{eqnarray*}\]</div>
+<p>This latter expression defines the <strong><span class="math notranslate nohighlight">\(1-\alpha\)</span> confidence interval
 for the mean.</strong></p>
 <p>We are done, except for estimating <span class="math notranslate nohighlight">\(\sigma\)</span>.  We do this
 directly from the data: <span class="math notranslate nohighlight">\(\hat{\sigma} = s\)</span>
@@ -1615,8 +1618,8 @@ F_{n,p}(2) \geq 0.95\)</span>.  The order statistics are:</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="02B-Pandas.html" title="previous page">Pandas</a>
-    <a class='right-next' id="next-link" href="04-Linear-Algebra-Refresher.html" title="next page">Linear Algebra Refresher</a>
+    <a class='left-prev' id="prev-link" href="04-Linear-Algebra-Refresher.html" title="previous page">Linear Algebra Refresher</a>
+    <a class='right-next' id="next-link" href="05-Distances-Timeseries.html" title="next page">Distances and Timeseries</a>
 
         </div>
         
