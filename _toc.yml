@@ -4,7 +4,7 @@ parts:
 - caption: Introductory Material
   chapters:
   - file: 01-Intro-to-Python
-  - file: 02A-Getting-Started
+  - file: 02A-Git-Jupyter
   - file: 02B-Pandas
   - file: 04-Linear-Algebra-Refresher
   - file: 03-Probability-and-Statistics-Refresher 
