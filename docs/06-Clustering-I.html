@@ -1,0 +1,731 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clustering I: \(k\)-means &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06-Clustering-I.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/06-Clustering-I.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-is-unsupervised-learning">
+   Clustering is Unsupervised Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-clustering-problem">
+   The Clustering Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-k-means-problem">
+   The
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-k-means-algorithm">
+   The
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means Algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations-of-k-means">
+   Limitations of
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-a-good-initialization">
+     Choosing a Good Initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-the-right-k">
+     Choosing the right
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-scaling">
+     Feature Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="clustering-i-k-means">
+<h1>Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#clustering-i-k-means" title="Permalink to this headline">¶</a></h1>
+<p><strong>1854:</strong> Cholera outbreak in Soho, London.</p>
+<p>Common wisdom at the time was that disease spread by breathing “foul air” (miasma).</p>
+<p>In 10 days, 500 people in the area died.</p>
+<p>John Snow: local physician.</p>
+<p>Sewer system had not yet reached Soho.  Most homes had cesspits under the floor.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-Snow-cholera-map-1.png"><img alt="Figure" src="_images/L6-Snow-cholera-map-1.png" style="width: 500px;" /></a>
+</center><p>By John Snow - Published by C.F. Cheffins, Lith, Southhampton Buildings, London, England, 1854 in Snow, John. On the Mode of Communication of Cholera, 2nd Ed, John Churchill, New Burlington Street, London, England, 1855.</p>
+<p>(This image was originally from <a class="external text" href="http://en.wikipedia.org">en.wikipedia</a>; description page is/was <a class="external text" href="http://en.wikipedia.org/w/index.php?title=Image%3ASnow-cholera-map-1.jpg">here</a>. Image copied from <a rel="nofollow" class="external free" href="http://matrix.msu.edu/~johnsnow/images/online_companion/chapter_images/fig12-5.jpg">http://matrix.msu.edu/~johnsnow/images/online_companion/chapter_images/fig12-5.jpg</a>), Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=2278605">https://commons.wikimedia.org/w/index.php?curid=2278605</a></p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-John_Snow_memorial_and_pub.png"><img alt="Figure" src="_images/L6-John_Snow_memorial_and_pub.png" style="width: 400px;" /></a>
+</center><p><a href="http://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=357998">https://commons.wikimedia.org/w/index.php?curid=357998</a></p>
+<div class="section" id="clustering-is-unsupervised-learning">
+<h2>Clustering is Unsupervised Learning<a class="headerlink" href="#clustering-is-unsupervised-learning" title="Permalink to this headline">¶</a></h2>
+<p>Clustering is a very important way of discovering <strong>structure</strong> in data.</p>
+<p>It is so important because it is <strong>common</strong> for data to show clusters.</p>
+<ul class="simple">
+<li><p>Locations where millionaires live</p></li>
+<li><p>The number of hours people work each week</p></li>
+<li><p>Demographics (“soccer moms”, “bored retirees”, “unemployed millenials”, etc)</p></li>
+</ul>
+<p>We can often simplify or compress our data if we recognize the existence of clusters.</p>
+<p>Further, we can often interpret clusters by assigning them labels.</p>
+<p>However, note that these categories or “labels” are assigned <strong>after</strong> the fact.</p>
+<p>And, we may <strong>not</strong> be able to interpret clusters or assign them labels in some cases.</p>
+<p>That is, clustering represents the first example we will see of <strong>unsupervised</strong> learning.</p>
+<p><strong>Supervised</strong> methods:  Data items have labels, and we want to learn a function that correctly assigns labels to new data items.</p>
+<p><strong>Unsupervised</strong> methods:  Data items do not have labels, and we want to learn a function that extracts  important patterns from the data.</p>
+<p><strong>Applications of Clustering:</strong></p>
+<ul class="simple">
+<li><p>Image Processing</p>
+<ul>
+<li><p>Cluster images based on their visual content</p></li>
+<li><p>Compress images based on color clusters</p></li>
+</ul>
+</li>
+<li><p>Web Mining</p>
+<ul>
+<li><p>Cluster groups of users based on webpage access patterns</p></li>
+<li><p>Cluster web pages based on their content</p></li>
+</ul>
+</li>
+<li><p>Bioinformatics</p>
+<ul>
+<li><p>Cluster similar proteins together (by structure or function)</p></li>
+<li><p>Cluster cell types (by gene activity)</p></li>
+</ul>
+</li>
+<li><p>And many more …</p></li>
+</ul>
+</div>
+<div class="section" id="the-clustering-problem">
+<h2>The Clustering Problem<a class="headerlink" href="#the-clustering-problem" title="Permalink to this headline">¶</a></h2>
+<p>When we do clustering, what problem are we trying to solve?</p>
+<p>We will answer this question informally at first.</p>
+<p>(But soon we will look at formal criteria!)</p>
+<p>Informally, a <strong>clustering</strong> is:</p>
+<blockquote>
+<div><p>a grouping of data objects, such that the objects within a group are similar (or near) to one another and dissimilar (or far) from the objects in other groups.</p>
+</div></blockquote>
+<p>(keep in mind that if we use a distance function as a dissimilarity measure, then “far” implies “different”)</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-clustering-1.png"><img alt="Figure" src="_images/L06-clustering-1.png" style="width: 350px;" /></a>
+</center><p>So we want our clustering algorithm to:</p>
+<ul class="simple">
+<li><p><font color = "blue">minimize</font> intra-cluster distances</p></li>
+<li><p><font color = "red">maximize</font> inter-cluster distances</p></li>
+</ul>
+<p>Here are the basic questions we need to ask about clustering:</p>
+<ul class="simple">
+<li><p>What is the right kind of <font color = "blue">”similarity”</font> to use?</p></li>
+<li><p>What is a <font color="blue">”good” partition</font> of objects?</p>
+<ul>
+<li><p>ie, how is the quality of a solution measured?</p></li>
+</ul>
+</li>
+<li><p><font color = "blue">How to find</font> a good partition?</p>
+<ul>
+<li><p>are there efficient algorithms?</p></li>
+<li><p>are there algorithms that are guaranteed to find good clusters?</p></li>
+</ul>
+</li>
+</ul>
+<p>Now note that even with our more-formal discussion, the criteria for deciding on a “best” clustering can still be ambiguous.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-clustering-2.png"><img alt="Figure" src="_images/L06-clustering-2.png" style="width: 600px;" /></a>
+</center><p>To accommodate the ambiguity here, one approach is to seek a <strong>hierarchical</strong> clustering:</p>
+<p>That is, as set of nested clusters organized in a tree.</p>
+<p>We’ll discuss hierarchical cluster in an upcoming lecture.</p>
+<p>For today, we’ll focus on <strong>partitional</strong> clustering:</p>
+<p>in a partitional clustering, the points are divided into a set of <strong>non-overlapping</strong> groups.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-partitional-clustering.png"><img alt="Figure" src="_images/L06-partitional-clustering.png" style="width: 600px;" /></a>
+</center><p>In a partitional clustering:</p>
+<ul class="simple">
+<li><p>Each object belongs to <strong>one</strong>, and only one, cluster</p></li>
+<li><p>The set of clusters covers all the objects</p></li>
+</ul>
+<p>We are going to assume for now that the number of clusters is given in advance.</p>
+<p>We will denote the number of clusters as <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</div>
+<div class="section" id="the-k-means-problem">
+<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Problem<a class="headerlink" href="#the-k-means-problem" title="Permalink to this headline">¶</a></h2>
+<p>Now, we are ready to state our first formalization of the clustering problem.</p>
+<p>We will assume that</p>
+<ul class="simple">
+<li><p>data items are represented by points in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>.   (In other words, each data item has <span class="math notranslate nohighlight">\(d\)</span> features.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> points are given</p></li>
+<li><p>the number of clusters <span class="math notranslate nohighlight">\(k\)</span> is given</p></li>
+</ul>
+<p><strong><span class="math notranslate nohighlight">\(k\)</span>-means Problem:</strong></p>
+<p>Find <span class="math notranslate nohighlight">\(k\)</span> points <span class="math notranslate nohighlight">\(c_1, \dots, c_k\)</span> (called <em>centers</em> or <em>means</em>) so that the cost</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=1}^n \min_j \ell_2^2(x_i, c_j) = \sum_{i=1}^n \min_j \Vert x_i-c_j\Vert^2_2 \]</div>
+<p>is minimized.</p>
+<p><strong>Equivalently:</strong> we can think in terms of the partition itself.</p>
+<p>Consider the set <span class="math notranslate nohighlight">\(X = \{x_1, \dots, x_n\}\)</span> where <span class="math notranslate nohighlight">\(x_i \in \mathbb{R}^n\)</span>.</p>
+<p>Find <span class="math notranslate nohighlight">\(k\)</span> points <span class="math notranslate nohighlight">\(c_1, \dots, c_k\)</span> (called <em>centers</em> or <em>means</em>)</p>
+<p>and partition <span class="math notranslate nohighlight">\(X\)</span> into subsets <span class="math notranslate nohighlight">\(\{X_1, \dots, X_k\}\)</span> by assigning each point <span class="math notranslate nohighlight">\(x_i\)</span> in <span class="math notranslate nohighlight">\(X\)</span> to its nearst cluster center,</p>
+<p>so that the cost</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i=1}^n \min_j \Vert x_i-c_j\Vert^2_2 = \sum_{j=1}^k \sum_{x \in X_j} \Vert x - c_j \Vert^2_2 \]</div>
+<p>is minimized.</p>
+<p>We now have a <font color="blue">formal</font> definition of a clustering.</p>
+<p>This is not the only definition possible, but it is an intuitive and simple one.</p>
+<p>How hard is it to solve this problem?</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k=1\)</span> and <span class="math notranslate nohighlight">\(k=n\)</span> are easy special cases (why?)</p></li>
+<li><p>But, this problem is <strong>NP-hard</strong> if the dimension of the data is at least 2</p>
+<ul>
+<li><p>We don’t expect that there is any exact, efficient algorithm in general</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Nonetheless,</strong> there is a simple algorithm that works quite well in practice!</p>
+</div>
+<div class="section" id="the-k-means-algorithm">
+<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>There is a “classic” algorithm for this problem.</p>
+<p>It was voted among the <strong>top-10 algorithms</strong> in data mining!</p>
+<p>It is such a good idea that it has been independently discovered multiple times.</p>
+<p>It was first discovered by Lloyd in 1957, so it is often called Lloyd’s algorithm.</p>
+<p>It is called the “<span class="math notranslate nohighlight">\(k\)</span>-means algorithm”</p>
+<p>(not to be confused with the <span class="math notranslate nohighlight">\(k\)</span>-means problem!)</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-top-ten-algorithms-cover.png"><img alt="Figure" src="_images/L06-top-ten-algorithms-cover.png" style="width: 300px;" /></a>
+</center><p>The <span class="math notranslate nohighlight">\(k\)</span>-means algorithm:</p>
+<ol class="simple">
+<li><p>Pick <span class="math notranslate nohighlight">\(k\)</span> cluster centers <span class="math notranslate nohighlight">\(\{c_1, \dots, c_k\}\)</span>.  These can be chosen randomly, or by some other method.</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(j\)</span>, define the cluster <span class="math notranslate nohighlight">\(X_j\)</span> as the set of points in <span class="math notranslate nohighlight">\(X\)</span> that are <font color="blue">closest to center</font> <span class="math notranslate nohighlight">\(c_k\)</span>.<br />
+(Nearer to <span class="math notranslate nohighlight">\(c_k\)</span> than to any other center.)</p></li>
+<li><p>For each <span class="math notranslate nohighlight">\(j\)</span>, let <span class="math notranslate nohighlight">\(c_j\)</span> be <font color="blue">the center of mass of cluster</font> <span class="math notranslate nohighlight">\(X_j\)</span>.<br />
+(In other words, <span class="math notranslate nohighlight">\(c_j\)</span> is the mean of the vectors in <span class="math notranslate nohighlight">\(X_j\)</span>.)</p></li>
+<li><p>Repeat (ie, go to Step 2) until convergence.</p></li>
+</ol>
+<p>Let’s see this in practice:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-kmeans-example.png"><img alt="Figure" src="_images/L06-kmeans-example.png" style="width: 600px;" /></a>
+</center></div>
+<div class="section" id="limitations-of-k-means">
+<h2>Limitations of <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#limitations-of-k-means" title="Permalink to this headline">¶</a></h2>
+<p>As you can see, <span class="math notranslate nohighlight">\(k\)</span>-means can work very well.</p>
+<p>However, we don’t have any guarantees on the performance of <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
+<p>In particular, there are various settings in which <span class="math notranslate nohighlight">\(k\)</span>-means can fail to do a good job.</p>
+<ol class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means tries to find spherical clusters</strong>.</p></li>
+</ol>
+<p>Because each point is assigned to its closest center, the points in a cluster are implicitly assumed to be arranged in a sphere around the center.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-kmeans-nonspherical-clusters.png"><img alt="Figure" src="_images/L06-kmeans-nonspherical-clusters.png" style="width: 600px;" /></a>
+</center><ol class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means tries to find equal-sized clusters.</strong></p></li>
+</ol>
+<p>For the same reason, the sizes of clusters are implicitly assumed to be approximately equal.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-kmeans-cluster-size.png"><img alt="Figure" src="_images/L06-kmeans-cluster-size.png" style="width: 600px;" /></a>
+</center><ol class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means is sensitive to the starting cluster centers.</strong></p></li>
+</ol>
+<p>If the initial guess (Step 1) is a bad one, <span class="math notranslate nohighlight">\(k\)</span>-means may get “stuck” in a bad solution.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L06-kmeans-bad-initialization.png"><img alt="Figure" src="_images/L06-kmeans-bad-initialization.png" style="width: 600px;" /></a>
+</center><div class="section" id="choosing-a-good-initialization">
+<h3>Choosing a Good Initialization<a class="headerlink" href="#choosing-a-good-initialization" title="Permalink to this headline">¶</a></h3>
+<p>How can we avoid the kind of bad initialization we just saw?</p>
+<p>A good strategy is to pick points that are distant to each other.</p>
+<p>This strategy is called “<span class="math notranslate nohighlight">\(k\)</span>-means++”.</p>
+<p>It works very well in practice, and the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> implementation uses it by default.</p>
+<p>(We will explore it in the next lecture.)</p>
+</div>
+<div class="section" id="choosing-the-right-k">
+<h3>Choosing the right <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#choosing-the-right-k" title="Permalink to this headline">¶</a></h3>
+<p>Generally, we would say that, given some <span class="math notranslate nohighlight">\(k\)</span>, the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm “learns” the cluster centers – that is, the parameters of the model.</p>
+<p>But we have not yet considered how to choose the right number of clusters.</p>
+<p>That’s typically <strong>not</strong> something one knows in advance.</p>
+<p>As an aside:</p>
+<ul class="simple">
+<li><p>This parameter (<span class="math notranslate nohighlight">\(k\)</span>) is the first example we have seen of a <strong>hyperparameter</strong>.</p></li>
+<li><p>A hyperparameter is a parameter that must be set before the model parameters can be learned.</p></li>
+</ul>
+<p>Our basic strategy will be to</p>
+<ul class="simple">
+<li><p>Iterate through different <span class="math notranslate nohighlight">\(k\)</span> and use some criterion to decide which <span class="math notranslate nohighlight">\(k\)</span> is most appropriate.</p></li>
+<li><p>We will discuss this more in the next lecture.</p></li>
+</ul>
+</div>
+<div class="section" id="feature-scaling">
+<h3>Feature Scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h3>
+<p>Finally, given the tendency of <span class="math notranslate nohighlight">\(k\)</span>-means to look for spherical clusters, we should consider the scales of the various features.</p>
+<p>In fact, in general when constructing or selecting a distance metric, one needs to think carefully about the scale of the features being used.</p>
+<p>For example, consider the case where we are clustering people based on their age, income, and gender.</p>
+<p>We might use age in years, income in dollars, and assign gender to the values <span class="math notranslate nohighlight">\(\{0, 1\}\)</span>.</p>
+<p>Thus, the following records:</p>
+<ul class="simple">
+<li><p>Joe Smith, age 27, income USD 75,000, male</p></li>
+<li><p>Eve Jones, age 45, income USD 42,000, female</p></li>
+</ul>
+<p>Would be encoded in feature space as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}27\\75000\\0\end{bmatrix},\begin{bmatrix}45\\42000\\1\end{bmatrix} \end{split}\]</div>
+<p>What would happen if we used Euclidean distance as our dissimilarity metric in this feature space?</p>
+<p>(This is what <span class="math notranslate nohighlight">\(k\)</span>-means uses.)</p>
+<p>Clearly, the influence of income would dominate the other two features.  For example, a difference of gender is about as significant as a difference of one dollar of yearly income.</p>
+<p>We are unlikely to expose gender-based differences if we cluster using this representation.</p>
+<p>The most common way to handle this is <strong>feature scaling.</strong></p>
+<p>The basic idea is to rescale each feature separately, so that its range of values is about the same as all other features.</p>
+<p>For example, one may choose to:</p>
+<ul class="simple">
+<li><p>shift each feature independently by subtracting the mean over all observed values</p>
+<ul>
+<li><p>This means that each feature is now centered on zero</p></li>
+</ul>
+</li>
+<li><p>then rescale each feature so that the standard deviation overall observed values is 1.</p>
+<ul>
+<li><p>This means that the feature will have about the same range of values as all the others.</p></li>
+</ul>
+</li>
+</ul>
+<p>For example, let’s work with Bortkiewicz’s famous horse-kick data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># source: http://www.randomservices.org/random/data/HorseKicks.html</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;data/HorseKicks.txt&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year
+1875.0     3.0
+1876.0     5.0
+1877.0     7.0
+1878.0     9.0
+1879.0    10.0
+1880.0    18.0
+1881.0     6.0
+1882.0    14.0
+1883.0    11.0
+1884.0     9.0
+1885.0     5.0
+1886.0    11.0
+1887.0    15.0
+1888.0     6.0
+1889.0    11.0
+1890.0    17.0
+1891.0    12.0
+1892.0    15.0
+1893.0     8.0
+1894.0     4.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="n">xlabelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-Clustering-I_64_0.png" src="_images/06-Clustering-I_64_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>To standardize to zero mean and unit standard deviation, we can use tools from the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> library.</p>
+<p>(We will discuss scikit-learn more in upcoming lectures.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="n">counts_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">counts</span><span class="p">))</span>
+<span class="n">counts_scaled</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="n">xlabelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-Clustering-I_67_0.png" src="_images/06-Clustering-I_67_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.33226763e-16])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that values that used to be zero have now become negative.</p>
+<p>In some situations it may not be sensible to change zeros into something else.  It may make more sense to map all values into a fixed range, for example <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_max_scaler</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">counts_minmax</span> <span class="o">=</span> <span class="n">min_max_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">counts_minmax</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts_minmax</span><span class="p">)</span>
+<span class="n">counts_minmax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="n">xlabelsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-Clustering-I_70_0.png" src="_images/06-Clustering-I_70_0.png" />
+</div>
+</div>
+<p><strong>Example Output from k-means.</strong></p>
+<p>Here is a simple example of how <span class="math notranslate nohighlight">\(k\)</span>-means can be used for data compression.</p>
+<p>Consider the following image.  Each color in the image is represented by an integer.  Typically we might use 24 bits for each integer (8 bits for R, G, and B).</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-annie19980405.jpg"><img alt="Figure" src="_images/L6-annie19980405.jpg" style="width: 350px;" /></a>
+</center><p>Now cluster the pixels by their color value, and replace each pixel by its cluster center.</p>
+<p>Because there are a smaller number of colors used, we can use fewer bits for each pixel.</p>
+<p>Here, we use 4 bits (16 colors) for a compression ratio around 6<span class="math notranslate nohighlight">\(\times\)</span>.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-annie_016.png"><img alt="Figure" src="_images/L6-annie_016.png" style="width: 500px;" /></a>
+</center><p>Here, we use 3 bits (8 colors) for a compression ratio around 8<span class="math notranslate nohighlight">\(\times\)</span>.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-annie_008.png"><img alt="Figure" src="_images/L6-annie_008.png" style="width: 500px;" /></a>
+</center><p>Here, we use 2 bits (4 colors) for a compression ratio around 12<span class="math notranslate nohighlight">\(\times\)</span>.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-annie_004.png"><img alt="Figure" src="_images/L6-annie_004.png" style="width: 500px;" /></a>
+</center><p>Finally, we use 1 bit (2 colors) for a compression ratio around 24<span class="math notranslate nohighlight">\(\times\)</span>.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L6-annie_002.png"><img alt="Figure" src="_images/L6-annie_002.png" style="width: 500px;" /></a>
+</center></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="05-Distances-Timeseries.html" title="previous page">Distances and Timeseries</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
