@@ -11,3 +11,4 @@ parts:
 - caption: Clustering
   chapters:
   - file: 05-Distances-Timeseries
+  - file: 06-Clustering-I
