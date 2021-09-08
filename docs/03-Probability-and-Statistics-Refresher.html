@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
@@ -83,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -137,7 +136,11 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06-Clustering-I.html">
-   Clustering
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
   </a>
  </li>
 </ul>
@@ -239,7 +242,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probability">
@@ -420,10 +423,16 @@
 <p>… the <strong>rules</strong> that we use for computing probabilities should be <strong>exactly the same.</strong></p>
 <p>In most cases in this course we will use frequentist language and examples when talking about probability.</p>
 <p>But in point of fact, it’s often really a “state of knowledge” that we are really talking about when we use probability models in this course.</p>
+<blockquote>
+<div><p>A thing appears random only through the incompleteness of our knowledge</p>
+</div></blockquote>
+<p>– Spinoza</p>
 <p>In other words, we use probability as an abstraction that <strong>hides details</strong> we don’t want to deal with.</p>
 <p>(This is a time-honored use of probability.)</p>
 <p>So it’s important to recognize that both frequentist and Bayesian views are <strong>valid</strong> and <strong>useful</strong> views of probability.</p>
-<p>So, now, let’s talk about rules for computing probabilities.</p>
+<center>
+<a class="reference internal image-reference" href="_images/Bayes-Frequentism.png"><img alt="_images/Bayes-Frequentism.png" src="_images/Bayes-Frequentism.png" style="width: 500px;" /></a>
+</center><p>So, now, let’s talk about rules for computing probabilities.</p>
 <div class="section" id="probability-and-conditioning">
 <h3>Probability and Conditioning<a class="headerlink" href="#probability-and-conditioning" title="Permalink to this headline">¶</a></h3>
 <p><strong>Definition.</strong>  Consider a set <span class="math notranslate nohighlight">\(\Omega\)</span>, referred to as the
@@ -482,7 +491,7 @@ less than or equal to <span class="math notranslate nohighlight">\(x\)</span>, t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_28_0.png" src="_images/03-Probability-and-Statistics-Refresher_28_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_30_0.png" src="_images/03-Probability-and-Statistics-Refresher_30_0.png" />
 </div>
 </div>
 <p>Now, consider this CDF of some random variable:</p>
@@ -499,7 +508,7 @@ less than or equal to <span class="math notranslate nohighlight">\(x\)</span>, t
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_30_0.png" src="_images/03-Probability-and-Statistics-Refresher_30_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_32_0.png" src="_images/03-Probability-and-Statistics-Refresher_32_0.png" />
 </div>
 </div>
 <p>What does it mean when the slope is steeper for some <span class="math notranslate nohighlight">\(x\)</span> values?</p>
@@ -537,7 +546,7 @@ points of discontinuity of the CDF.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_37_0.png" src="_images/03-Probability-and-Statistics-Refresher_37_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_39_0.png" src="_images/03-Probability-and-Statistics-Refresher_39_0.png" />
 </div>
 </div>
 </div>
@@ -599,7 +608,7 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_48_0.png" src="_images/03-Probability-and-Statistics-Refresher_48_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_50_0.png" src="_images/03-Probability-and-Statistics-Refresher_50_0.png" />
 </div>
 </div>
 <p>Treating these two timeseries as random variables, we are interested in how they vary <strong>together</strong>.</p>
@@ -637,7 +646,7 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_55_0.png" src="_images/03-Probability-and-Statistics-Refresher_55_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_57_0.png" src="_images/03-Probability-and-Statistics-Refresher_57_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -881,7 +890,7 @@ occur?</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_81_0.png" src="_images/03-Probability-and-Statistics-Refresher_81_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_83_0.png" src="_images/03-Probability-and-Statistics-Refresher_83_0.png" />
 </div>
 </div>
 </div>
@@ -912,7 +921,7 @@ will be <span class="math notranslate nohighlight">\(k\)</span> successes?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_86_0.png" src="_images/03-Probability-and-Statistics-Refresher_86_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_88_0.png" src="_images/03-Probability-and-Statistics-Refresher_88_0.png" />
 </div>
 </div>
 </div>
@@ -942,7 +951,7 @@ will be <span class="math notranslate nohighlight">\(k\)</span> successes?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_90_0.png" src="_images/03-Probability-and-Statistics-Refresher_90_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_92_0.png" src="_images/03-Probability-and-Statistics-Refresher_92_0.png" />
 </div>
 </div>
 <p>Notice how the Exponential is the <strong>continuous analog</strong> of the Geometric:</p>
@@ -966,7 +975,7 @@ will be <span class="math notranslate nohighlight">\(k\)</span> successes?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_92_0.png" src="_images/03-Probability-and-Statistics-Refresher_92_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_94_0.png" src="_images/03-Probability-and-Statistics-Refresher_94_0.png" />
 </div>
 </div>
 </div>
@@ -996,7 +1005,7 @@ number of trials goes to infinity, happening at some rate <span class="math notr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_96_0.png" src="_images/03-Probability-and-Statistics-Refresher_96_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_98_0.png" src="_images/03-Probability-and-Statistics-Refresher_98_0.png" />
 </div>
 </div>
 <p>The Poisson distribution has an interesting role in our perception of randomness (which you can read more about <a class="reference external" href="http://www.empiricalzeal.com/2012/12/21/what-does-randomness-look-like/#more-2450">here</a>).</p>
@@ -1104,7 +1113,7 @@ there were sometimes 4 such deaths in a single year. Was this just coincidence?<
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_99_0.png" src="_images/03-Probability-and-Statistics-Refresher_99_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_101_0.png" src="_images/03-Probability-and-Statistics-Refresher_101_0.png" />
 </div>
 </div>
 <p>The message here is that when events occur at random, we actually tend to perceive them as clustered.</p>
@@ -1133,7 +1142,7 @@ there were sometimes 4 such deaths in a single year. Was this just coincidence?<
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_105_0.png" src="_images/03-Probability-and-Statistics-Refresher_105_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_107_0.png" src="_images/03-Probability-and-Statistics-Refresher_107_0.png" />
 </div>
 </div>
 <p>There is an important relationship between the uniform and Poisson distributions.</p>
@@ -1147,13 +1156,21 @@ there were sometimes 4 such deaths in a single year. Was this just coincidence?<
 <h3>The Gaussian Distribution<a class="headerlink" href="#the-gaussian-distribution" title="Permalink to this headline">¶</a></h3>
 <p>The Gaussian Distribution is also called the Normal Distribution.</p>
 <p>We will make <strong>extensive</strong> use of Gaussian distribution, for a number of reasons.</p>
-<p>One of reasons we will use it so much is that it is a good guess for how errors are distributed in data.</p>
+<center>
+<a class="reference internal image-reference" href="_images/Gauss-on-Deutschemark.png"><img alt="_images/Gauss-on-Deutschemark.png" src="_images/Gauss-on-Deutschemark.png" style="width: 500px;" /></a>
+</center><p>One of reasons we will use it so much is that it is a good guess for how errors are distributed in data.</p>
 <p>This comes from the celebrated <strong>Central Limit Theorem</strong>.   Informally,</p>
 <blockquote>
 <div><p><em>The sum of a large number of independent observations from any
 distribution with finite variance tends to have a Gaussian
 distribution.</em></p>
 </div></blockquote>
+<center>
+<a class="reference internal image-reference" href="_images/Galton-Bean-Machine.png"><img alt="_images/Galton-Bean-Machine.png" src="_images/Galton-Bean-Machine.png" style="width: 350px;" /></a>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Francis Galton&#39;s &quot;Bean Machine&quot;
+</pre></div>
+</div>
+</center>
 <p>As a special case, the sum of <span class="math notranslate nohighlight">\(n\)</span> independent Gaussian variates is Gaussian.</p>
 <p>Thus Gaussian processes remain Gaussian after passing through linear
 systems.</p>
@@ -1181,7 +1198,7 @@ of 1.   The pdf of the standard Gaussian is:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_113_0.png" src="_images/03-Probability-and-Statistics-Refresher_113_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_117_0.png" src="_images/03-Probability-and-Statistics-Refresher_117_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1196,7 +1213,7 @@ of 1.   The pdf of the standard Gaussian is:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_114_0.png" src="_images/03-Probability-and-Statistics-Refresher_114_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_118_0.png" src="_images/03-Probability-and-Statistics-Refresher_118_0.png" />
 </div>
 </div>
 <p>For an arbitrary Gaussian distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance
@@ -1248,7 +1265,7 @@ distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_121_0.png" src="_images/03-Probability-and-Statistics-Refresher_121_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_125_0.png" src="_images/03-Probability-and-Statistics-Refresher_125_0.png" />
 </div>
 </div>
 <p>The variance of the Pareto distribution is infinite.  (The corresponding
@@ -1454,7 +1471,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_139_0.png" src="_images/03-Probability-and-Statistics-Refresher_139_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_143_0.png" src="_images/03-Probability-and-Statistics-Refresher_143_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1468,7 +1485,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_140_0.png" src="_images/03-Probability-and-Statistics-Refresher_140_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_144_0.png" src="_images/03-Probability-and-Statistics-Refresher_144_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1498,7 +1515,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_143_0.png" src="_images/03-Probability-and-Statistics-Refresher_143_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_147_0.png" src="_images/03-Probability-and-Statistics-Refresher_147_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1512,7 +1529,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_144_0.png" src="_images/03-Probability-and-Statistics-Refresher_144_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_148_0.png" src="_images/03-Probability-and-Statistics-Refresher_148_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1540,7 +1557,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_147_0.png" src="_images/03-Probability-and-Statistics-Refresher_147_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_151_0.png" src="_images/03-Probability-and-Statistics-Refresher_151_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1554,7 +1571,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_148_0.png" src="_images/03-Probability-and-Statistics-Refresher_148_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_152_0.png" src="_images/03-Probability-and-Statistics-Refresher_152_0.png" />
 </div>
 </div>
 <p>Finally, let’s look at our stock data:</p>
@@ -1567,7 +1584,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_150_0.png" src="_images/03-Probability-and-Statistics-Refresher_150_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_154_0.png" src="_images/03-Probability-and-Statistics-Refresher_154_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1579,7 +1596,7 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_151_0.png" src="_images/03-Probability-and-Statistics-Refresher_151_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_155_0.png" src="_images/03-Probability-and-Statistics-Refresher_155_0.png" />
 </div>
 </div>
 <p>Recall that the correlation between these two stocks was about 0.137.</p>
@@ -1726,7 +1743,7 @@ zero) we choose <span class="math notranslate nohighlight">\(k = z_{0.95}\)</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_180_0.png" src="_images/03-Probability-and-Statistics-Refresher_180_0.png" />
+<img alt="_images/03-Probability-and-Statistics-Refresher_184_0.png" src="_images/03-Probability-and-Statistics-Refresher_184_0.png" />
 </div>
 </div>
 <p>Turning back to <span class="math notranslate nohighlight">\(\bar{x}\)</span>, the
@@ -1783,12 +1800,32 @@ confidence interval for the population mean is given by</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="04-Linear-Algebra-Refresher.html" title="previous page">Linear Algebra Refresher</a>
-    <a class='right-next' id="next-link" href="05-Distances-Timeseries.html" title="next page">Distances and Timeseries</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="04-Linear-Algebra-Refresher.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear Algebra Refresher</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="05-Distances-Timeseries.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Distances and Timeseries</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Algebra Refresher" href="04-Linear-Algebra-Refresher.html" />
@@ -83,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -137,7 +136,11 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06-Clustering-I.html">
-   Clustering
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
   </a>
  </li>
 </ul>
@@ -239,7 +242,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#getting-started">
@@ -357,6 +360,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3986406259.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas_datareader&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="fetching-storing-and-retrieving-your-data">
@@ -376,90 +393,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1434363640.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">stocks</span> <span class="o">=</span> <span class="s1">&#39;YELP&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">data_source</span> <span class="o">=</span> <span class="s1">&#39;yahoo&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Open</th>
-      <th>Close</th>
-      <th>Volume</th>
-      <th>Adj Close</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;datetime&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>This is a typical example of a dataframe.</p>
 <p>Notice how each row has a label and each column has a label.</p>
@@ -472,19 +418,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-DatetimeIndex: 252 entries, 2015-01-02 to 2015-12-31
-Data columns (total 6 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   High       252 non-null    float64
- 1   Low        252 non-null    float64
- 2   Open       252 non-null    float64
- 3   Close      252 non-null    float64
- 4   Volume     252 non-null    int64  
- 5   Adj Close  252 non-null    float64
-dtypes: float64(5), int64(1)
-memory usage: 13.8 KB
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2498236401.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;yahoo_stocks&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -498,6 +437,16 @@ memory usage: 13.8 KB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">392546018.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;yahoo_data.csv&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;yahoo_stocks&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -506,16 +455,7 @@ memory usage: 13.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date,High,Low,Open,Close,Volume,Adj Close
-2015-01-02,55.599998474121094,54.2400016784668,55.459999084472656,55.150001525878906,1664500,55.150001525878906
-2015-01-05,54.95000076293945,52.33000183105469,54.540000915527344,52.529998779296875,2023000,52.529998779296875
-2015-01-06,53.93000030517578,50.75,52.54999923706055,52.439998626708984,3762800,52.439998626708984
-2015-01-07,53.75,51.7599983215332,53.31999969482422,52.209999084472656,1548200,52.209999084472656
-2015-01-08,54.13999938964844,51.7599983215332,52.59000015258789,53.83000183105469,2015300,53.83000183105469
-2015-01-09,56.9900016784668,54.720001220703125,55.959999084472656,56.06999969482422,6224200,56.06999969482422
-2015-01-12,56.060001373291016,53.43000030517578,56.0,54.02000045776367,2407700,54.02000045776367
-2015-01-13,54.79999923706055,52.52000045776367,54.470001220703125,53.18000030517578,1958400,53.18000030517578
-2015-01-14,53.68000030517578,51.459999084472656,52.79999923706055,52.20000076293945,1854600,52.20000076293945
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>head: yahoo_data.csv: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -529,87 +469,72 @@ memory usage: 13.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2578297218.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;yahoo_data.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Open</th>
-      <th>Close</th>
-      <th>Volume</th>
-      <th>Adj Close</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2015-01-02</td>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2015-01-05</td>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2015-01-06</td>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2015-01-07</td>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2015-01-08</td>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>             <span class="n">memory_map</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>             <span class="n">storage_options</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="ne">--&gt; </span><span class="mi">229</span>             <span class="n">errors</span><span class="o">=</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span> 
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>                 <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>                 <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>                 <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;yahoo_data.csv&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -623,7 +548,12 @@ memory usage: 13.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Date&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Open&#39;, &#39;Close&#39;, &#39;Volume&#39;, &#39;Adj Close&#39;], dtype=&#39;object&#39;)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3289350417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -636,18 +566,12 @@ memory usage: 13.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      55.459999
-1      54.540001
-2      52.549999
-3      53.320000
-4      52.590000
-         ...    
-247    28.270000
-248    28.120001
-249    27.950001
-250    28.580000
-251    28.100000
-Name: Open, Length: 252, dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1863745335.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Open&#39;</span><span class="p">]</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -661,18 +585,12 @@ Name: Open, Length: 252, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      55.459999
-1      54.540001
-2      52.549999
-3      53.320000
-4      52.590000
-         ...    
-247    28.270000
-248    28.120001
-249    27.950001
-250    28.580000
-251    28.100000
-Name: Open, Length: 252, dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">4150516886.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">Open</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -685,57 +603,15 @@ Name: Open, Length: 252, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3344258420.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Open&#39;</span><span class="p">,</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Open</th>
-      <th>Close</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>55.459999</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>54.540001</td>
-      <td>52.529999</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>52.549999</td>
-      <td>52.439999</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>53.320000</td>
-      <td>52.209999</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>52.590000</td>
-      <td>53.830002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Putting things together – make sure this syntax is clear to you:</p>
 <div class="cell docutils container">
@@ -745,17 +621,12 @@ Name: Open, Length: 252, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2015-01-02
-1    2015-01-05
-2    2015-01-06
-3    2015-01-07
-4    2015-01-08
-5    2015-01-09
-6    2015-01-12
-7    2015-01-13
-8    2015-01-14
-9    2015-01-15
-Name: Date, dtype: object
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3837309662.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -767,17 +638,12 @@ Name: Date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>242    2015-12-17
-243    2015-12-18
-244    2015-12-21
-245    2015-12-22
-246    2015-12-23
-247    2015-12-24
-248    2015-12-28
-249    2015-12-29
-250    2015-12-30
-251    2015-12-31
-Name: Date, dtype: object
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2917473241.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -793,20 +659,14 @@ Name: Date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 252 entries, 0 to 251
-Data columns (total 7 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   date       252 non-null    object 
- 1   high       252 non-null    float64
- 2   low        252 non-null    float64
- 3   open       252 non-null    float64
- 4   close      252 non-null    float64
- 5   volume     252 non-null    int64  
- 6   adj_close  252 non-null    float64
-dtypes: float64(5), int64(1), object(1)
-memory usage: 13.9+ KB
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">4105993708.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">new_column_names</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -820,12 +680,12 @@ memory usage: 13.9+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    55.150002
-1    52.529999
-2    52.439999
-3    52.209999
-4    53.830002
-Name: adj_close, dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1342823964.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">adj_close</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -843,13 +703,12 @@ Name: adj_close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.805464e+01
-low          3.656373e+01
-open         3.728766e+01
-close        3.729917e+01
-volume       3.492407e+06
-adj_close    3.729917e+01
-dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3698961737.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -861,13 +720,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         1.138111e+01
-low          1.113097e+01
-open         1.128093e+01
-close        1.125233e+01
-volume       4.146378e+06
-adj_close    1.125233e+01
-dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3390915376.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -879,13 +737,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.871500e+01
-low          3.637500e+01
-open         3.796500e+01
-close        3.783500e+01
-volume       2.354050e+06
-adj_close    3.783500e+01
-dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">530051474.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -897,7 +754,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.28765870654394
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2090116466.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">open</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -909,7 +771,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.05464292707897
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2778498816.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">high</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -930,7 +797,18 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_44_0.png" src="_images/02B-Pandas_44_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3829118956.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">high</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;High&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Low&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;YELP Stock Price&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dollars&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -943,7 +821,17 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_45_0.png" src="_images/02B-Pandas_45_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1623038133.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">adj_close</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Adjusted Closing Price&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dollars&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;YELP&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -963,7 +851,18 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_49_0.png" src="_images/02B-Pandas_49_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3829118956.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">high</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;High&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Low&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;YELP Stock Price&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dollars&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>It’s <strong>almost</strong> perfect.  The only problem is the <span class="math notranslate nohighlight">\(x\)</span>-axis: it should show time.</p>
@@ -976,12 +875,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2015-01-02
-1    2015-01-05
-2    2015-01-06
-3    2015-01-07
-4    2015-01-08
-Name: date, dtype: object
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">962840778.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -995,7 +894,13 @@ Name: date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2015-01-02&#39;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3255855428.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">first_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">first_date</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1008,7 +913,12 @@ Name: date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2015, 1, 2, 0, 0)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1553678389.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">first_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;datetime&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1023,12 +933,14 @@ Name: date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   2015-01-02
-1   2015-01-05
-2   2015-01-06
-3   2015-01-07
-4   2015-01-08
-Name: date, dtype: datetime64[ns]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1062952103.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">new_df</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">new_df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1044,97 +956,16 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">932035225.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">date</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>2015-01-02</td>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>2015-01-05</td>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>2015-01-06</td>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>2015-01-07</td>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>2015-01-08</td>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now that we have made an index based on a real date, we can drop the original <code class="docutils literal notranslate"><span class="pre">date</span></code> column.</p>
 <div class="cell docutils container">
@@ -1145,90 +976,16 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1795125976.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we can see that Pandas handles these dates quite nicely:</p>
 <div class="cell docutils container">
@@ -1242,7 +999,18 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_65_0.png" src="_images/02B-Pandas_65_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1556656611.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">high</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;High&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">new_df</span><span class="o">.</span><span class="n">low</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Low&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;YELP Stock Price&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Dollars&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1257,13 +1025,12 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         5.564000e+01
-low          5.430000e+01
-open         5.466000e+01
-close        5.519000e+01
-volume       1.636400e+06
-adj_close    5.519000e+01
-Name: 2015-01-23 00:00:00, dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">548037488.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1276,13 +1043,12 @@ Name: 2015-01-23 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         5.560000e+01
-low          5.424000e+01
-open         5.546000e+01
-close        5.515000e+01
-volume       1.664500e+06
-adj_close    5.515000e+01
-Name: 2015-01-02 00:00:00, dtype: float64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3333886158.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1300,7 +1066,16 @@ Name: 2015-01-02 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of positive-gain days is 126.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3056157680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">num_positive_days</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">num_positive_days</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1319,13 +1094,13 @@ Name: 2015-01-02 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
-2015-01-02     True
-2015-01-05    False
-2015-01-06    False
-2015-01-07    False
-2015-01-08    False
-Name: high, dtype: bool
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3150569132.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp_high</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">high</span> <span class="o">&gt;</span> <span class="mi">55</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp_high</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1338,7 +1113,12 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">414999746.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tmp_high</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;tmp_high&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1351,144 +1131,15 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2900344326.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="p">[</span><span class="n">tmp_high</span><span class="p">]</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-    </tr>
-    <tr>
-      <th>2015-01-09</th>
-      <td>56.990002</td>
-      <td>54.720001</td>
-      <td>55.959999</td>
-      <td>56.070000</td>
-      <td>6224200</td>
-      <td>56.070000</td>
-    </tr>
-    <tr>
-      <th>2015-01-12</th>
-      <td>56.060001</td>
-      <td>53.430000</td>
-      <td>56.000000</td>
-      <td>54.020000</td>
-      <td>2407700</td>
-      <td>54.020000</td>
-    </tr>
-    <tr>
-      <th>2015-01-22</th>
-      <td>55.279999</td>
-      <td>53.119999</td>
-      <td>53.869999</td>
-      <td>54.799999</td>
-      <td>2295400</td>
-      <td>54.799999</td>
-    </tr>
-    <tr>
-      <th>2015-01-23</th>
-      <td>55.639999</td>
-      <td>54.299999</td>
-      <td>54.660000</td>
-      <td>55.189999</td>
-      <td>1636400</td>
-      <td>55.189999</td>
-    </tr>
-    <tr>
-      <th>2015-01-26</th>
-      <td>55.790001</td>
-      <td>54.830002</td>
-      <td>55.119999</td>
-      <td>55.410000</td>
-      <td>1450300</td>
-      <td>55.410000</td>
-    </tr>
-    <tr>
-      <th>2015-01-27</th>
-      <td>56.160000</td>
-      <td>54.570000</td>
-      <td>56.060001</td>
-      <td>55.630001</td>
-      <td>2410400</td>
-      <td>55.630001</td>
-    </tr>
-    <tr>
-      <th>2015-01-28</th>
-      <td>56.150002</td>
-      <td>52.919998</td>
-      <td>56.150002</td>
-      <td>53.000000</td>
-      <td>2013100</td>
-      <td>53.000000</td>
-    </tr>
-    <tr>
-      <th>2015-02-03</th>
-      <td>55.930000</td>
-      <td>53.410000</td>
-      <td>53.830002</td>
-      <td>55.779999</td>
-      <td>2885400</td>
-      <td>55.779999</td>
-    </tr>
-    <tr>
-      <th>2015-02-04</th>
-      <td>57.070000</td>
-      <td>55.250000</td>
-      <td>55.529999</td>
-      <td>56.740002</td>
-      <td>2498600</td>
-      <td>56.740002</td>
-    </tr>
-    <tr>
-      <th>2015-02-05</th>
-      <td>57.700001</td>
-      <td>56.080002</td>
-      <td>57.599998</td>
-      <td>57.470001</td>
-      <td>4657300</td>
-      <td>57.470001</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Putting it all together, we have the following commonly-used patterns:</p>
 <div class="cell docutils container">
@@ -1499,90 +1150,16 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3720134516.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">positive_days</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[</span><span class="n">new_df</span><span class="o">.</span><span class="n">close</span> <span class="o">&gt;</span> <span class="n">new_df</span><span class="o">.</span><span class="n">open</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">positive_days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-    </tr>
-    <tr>
-      <th>2015-01-09</th>
-      <td>56.990002</td>
-      <td>54.720001</td>
-      <td>55.959999</td>
-      <td>56.070000</td>
-      <td>6224200</td>
-      <td>56.070000</td>
-    </tr>
-    <tr>
-      <th>2015-01-16</th>
-      <td>51.490002</td>
-      <td>50.029999</td>
-      <td>50.180000</td>
-      <td>51.389999</td>
-      <td>2183300</td>
-      <td>51.389999</td>
-    </tr>
-    <tr>
-      <th>2015-01-21</th>
-      <td>53.500000</td>
-      <td>51.200001</td>
-      <td>51.200001</td>
-      <td>53.410000</td>
-      <td>3248100</td>
-      <td>53.410000</td>
-    </tr>
-    <tr>
-      <th>2015-01-22</th>
-      <td>55.279999</td>
-      <td>53.119999</td>
-      <td>53.869999</td>
-      <td>54.799999</td>
-      <td>2295400</td>
-      <td>54.799999</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1592,54 +1169,16 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2491995314.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">very_positive_days</span> <span class="o">=</span> <span class="n">new_df</span><span class="p">[(</span><span class="n">new_df</span><span class="o">.</span><span class="n">close</span> <span class="o">-</span> <span class="n">new_df</span><span class="o">.</span><span class="n">open</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">very_positive_days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-05-07</th>
-      <td>48.73</td>
-      <td>38.220001</td>
-      <td>38.220001</td>
-      <td>47.009998</td>
-      <td>33831600</td>
-      <td>47.009998</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="creating-new-columns">
@@ -1653,97 +1192,16 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1950854752.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;profit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_df</span><span class="o">.</span><span class="n">open</span> <span class="o">&lt;</span> <span class="n">new_df</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-      <th>profit</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s give each row a <code class="docutils literal notranslate"><span class="pre">gain</span></code> value as a categorical variable:</p>
 <div class="cell docutils container">
@@ -1762,104 +1220,19 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3450788274.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">new_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">close</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">new_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;negative&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">elif</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">close</span> <span class="o">-</span> <span class="n">row</span><span class="o">.</span><span class="n">open</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="n">new_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="s1">&#39;gain&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;small_gain&#39;</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-      <th>profit</th>
-      <th>gain</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-      <td>True</td>
-      <td>medium_gain</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here is another, more “functional”, way to accomplish the same thing.</p>
 <p>Define a function that classifies rows, and <strong><code class="docutils literal notranslate"><span class="pre">apply</span></code></strong> it to each row.</p>
@@ -1879,6 +1252,18 @@ Name: high, dtype: bool
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">4092305816.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="k">return</span> <span class="s1">&#39;large_gain&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">new_df</span><span class="p">[</span><span class="s1">&#39;test_column&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">namerow</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1887,111 +1272,15 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3195309914.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-      <th>profit</th>
-      <th>gain</th>
-      <th>test_column</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-      <td>False</td>
-      <td>negative</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-      <td>False</td>
-      <td>negative</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-      <td>False</td>
-      <td>negative</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-      <td>False</td>
-      <td>negative</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-      <td>True</td>
-      <td>medium_gain</td>
-      <td>medium_gain</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>OK, point made, let’s get rid of that extraneous <code class="docutils literal notranslate"><span class="pre">test_column</span></code>:</p>
 <div class="cell docutils container">
@@ -2001,171 +1290,15 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3118921672.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;test_column&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>high</th>
-      <th>low</th>
-      <th>open</th>
-      <th>close</th>
-      <th>volume</th>
-      <th>adj_close</th>
-      <th>profit</th>
-      <th>gain</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2015-01-02</th>
-      <td>55.599998</td>
-      <td>54.240002</td>
-      <td>55.459999</td>
-      <td>55.150002</td>
-      <td>1664500</td>
-      <td>55.150002</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-05</th>
-      <td>54.950001</td>
-      <td>52.330002</td>
-      <td>54.540001</td>
-      <td>52.529999</td>
-      <td>2023000</td>
-      <td>52.529999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-06</th>
-      <td>53.930000</td>
-      <td>50.750000</td>
-      <td>52.549999</td>
-      <td>52.439999</td>
-      <td>3762800</td>
-      <td>52.439999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-07</th>
-      <td>53.750000</td>
-      <td>51.759998</td>
-      <td>53.320000</td>
-      <td>52.209999</td>
-      <td>1548200</td>
-      <td>52.209999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-01-08</th>
-      <td>54.139999</td>
-      <td>51.759998</td>
-      <td>52.590000</td>
-      <td>53.830002</td>
-      <td>2015300</td>
-      <td>53.830002</td>
-      <td>True</td>
-      <td>medium_gain</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2015-12-24</th>
-      <td>28.590000</td>
-      <td>27.900000</td>
-      <td>28.270000</td>
-      <td>28.400000</td>
-      <td>587400</td>
-      <td>28.400000</td>
-      <td>True</td>
-      <td>small_gain</td>
-    </tr>
-    <tr>
-      <th>2015-12-28</th>
-      <td>28.379999</td>
-      <td>27.770000</td>
-      <td>28.120001</td>
-      <td>27.879999</td>
-      <td>1004500</td>
-      <td>27.879999</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-12-29</th>
-      <td>28.540001</td>
-      <td>27.740000</td>
-      <td>27.950001</td>
-      <td>28.480000</td>
-      <td>1103900</td>
-      <td>28.480000</td>
-      <td>True</td>
-      <td>small_gain</td>
-    </tr>
-    <tr>
-      <th>2015-12-30</th>
-      <td>28.780001</td>
-      <td>28.170000</td>
-      <td>28.580000</td>
-      <td>28.250000</td>
-      <td>1068000</td>
-      <td>28.250000</td>
-      <td>False</td>
-      <td>negative</td>
-    </tr>
-    <tr>
-      <th>2015-12-31</th>
-      <td>28.969999</td>
-      <td>28.020000</td>
-      <td>28.100000</td>
-      <td>28.799999</td>
-      <td>1301500</td>
-      <td>28.799999</td>
-      <td>True</td>
-      <td>small_gain</td>
-    </tr>
-  </tbody>
-</table>
-<p>252 rows × 8 columns</p>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="grouping">
@@ -2177,6 +1310,16 @@ Name: high, dtype: bool
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_groups</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2494009713.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">gain_groups</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2196,66 +1339,15 @@ Name: high, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>large_gain
-             high        low       open      close    volume  adj_close  \
-date                                                                      
-2015-05-07  48.73  38.220001  38.220001  47.009998  33831600  47.009998   
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">245974145.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">gain</span><span class="p">,</span> <span class="n">gain_data</span> <span class="ow">in</span> <span class="n">gain_groups</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="n">gain</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="n">gain_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=============================&#39;</span><span class="p">)</span>
 
-            profit        gain test_column  
-date                                        
-2015-05-07    True  large_gain  large_gain  
-=============================
-medium_gain
-                 high        low       open      close   volume  adj_close  \
-date                                                                         
-2015-01-08  54.139999  51.759998  52.590000  53.830002  2015300  53.830002   
-2015-01-16  51.490002  50.029999  50.180000  51.389999  2183300  51.389999   
-2015-01-21  53.500000  51.200001  51.200001  53.410000  3248100  53.410000   
-2015-02-03  55.930000  53.410000  53.830002  55.779999  2885400  55.779999   
-2015-02-04  57.070000  55.250000  55.529999  56.740002  2498600  56.740002   
-
-            profit         gain  test_column  
-date                                          
-2015-01-08    True  medium_gain  medium_gain  
-2015-01-16    True  medium_gain  medium_gain  
-2015-01-21    True  medium_gain  medium_gain  
-2015-02-03    True  medium_gain  medium_gain  
-2015-02-04    True  medium_gain  medium_gain  
-=============================
-negative
-                 high        low       open      close   volume  adj_close  \
-date                                                                         
-2015-01-02  55.599998  54.240002  55.459999  55.150002  1664500  55.150002   
-2015-01-05  54.950001  52.330002  54.540001  52.529999  2023000  52.529999   
-2015-01-06  53.930000  50.750000  52.549999  52.439999  3762800  52.439999   
-2015-01-07  53.750000  51.759998  53.320000  52.209999  1548200  52.209999   
-2015-01-12  56.060001  53.430000  56.000000  54.020000  2407700  54.020000   
-
-            profit      gain test_column  
-date                                      
-2015-01-02   False  negative    negative  
-2015-01-05   False  negative    negative  
-2015-01-06   False  negative    negative  
-2015-01-07   False  negative    negative  
-2015-01-12   False  negative    negative  
-=============================
-small_gain
-                 high        low       open      close   volume  adj_close  \
-date                                                                         
-2015-01-09  56.990002  54.720001  55.959999  56.070000  6224200  56.070000   
-2015-01-22  55.279999  53.119999  53.869999  54.799999  2295400  54.799999   
-2015-01-23  55.639999  54.299999  54.660000  55.189999  1636400  55.189999   
-2015-01-26  55.790001  54.830002  55.119999  55.410000  1450300  55.410000   
-2015-01-29  53.310001  51.410000  52.849998  52.930000  1844100  52.930000   
-
-            profit        gain test_column  
-date                                        
-2015-01-09    True  small_gain  small_gain  
-2015-01-22    True  small_gain  small_gain  
-2015-01-23    True  small_gain  small_gain  
-2015-01-26    True  small_gain  small_gain  
-2015-01-29    True  small_gain  small_gain  
-=============================
+<span class="ne">NameError</span>: name &#39;gain_groups&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2269,10 +1361,14 @@ date
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average closing value for the large_gain group is 47.0099983215332
-The average closing value for the medium_gain group is 39.72307696709266
-The average closing value for the negative group is 37.38476184057811
-The average closing value for the small_gain group is 36.45555554014264
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2031032007.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">gain</span><span class="p">,</span> <span class="n">gain_data</span> <span class="ow">in</span> <span class="n">new_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;gain&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The average closing value for the </span><span class="si">{}</span><span class="s1"> group is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gain</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                                            <span class="n">gain_data</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+
+<span class="ne">NameError</span>: name &#39;new_df&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2302,83 +1398,19 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1584298715.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">stocks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ORCL&#39;</span><span class="p">,</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="s1">&#39;IBM&#39;</span><span class="p">,</span><span class="s1">&#39;YELP&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Close&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">stock_df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                     <span class="n">data_source</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                     <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>ORCL</th>
-      <th>TSLA</th>
-      <th>IBM</th>
-      <th>YELP</th>
-      <th>MSFT</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2014-01-02</th>
-      <td>37.840000</td>
-      <td>30.020000</td>
-      <td>185.529999</td>
-      <td>67.919998</td>
-      <td>37.160000</td>
-    </tr>
-    <tr>
-      <th>2014-01-03</th>
-      <td>37.619999</td>
-      <td>29.912001</td>
-      <td>186.639999</td>
-      <td>67.660004</td>
-      <td>36.910000</td>
-    </tr>
-    <tr>
-      <th>2014-01-06</th>
-      <td>37.470001</td>
-      <td>29.400000</td>
-      <td>186.000000</td>
-      <td>71.720001</td>
-      <td>36.130001</td>
-    </tr>
-    <tr>
-      <th>2014-01-07</th>
-      <td>37.849998</td>
-      <td>29.872000</td>
-      <td>189.710007</td>
-      <td>72.660004</td>
-      <td>36.410000</td>
-    </tr>
-    <tr>
-      <th>2014-01-08</th>
-      <td>37.720001</td>
-      <td>30.256001</td>
-      <td>187.970001</td>
-      <td>78.419998</td>
-      <td>35.759998</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;web&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2387,7 +1419,14 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_104_0.png" src="_images/02B-Pandas_104_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1695944629.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+
+<span class="ne">NameError</span>: name &#39;stock_df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>Next, we will calculate returns over a period of length <span class="math notranslate nohighlight">\(T,\)</span> defined as:</p>
@@ -2402,123 +1441,16 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2043765227.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rets</span> <span class="o">=</span> <span class="n">stock_df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rets</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">35</span><span class="p">]</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>ORCL</th>
-      <th>TSLA</th>
-      <th>IBM</th>
-      <th>YELP</th>
-      <th>MSFT</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2014-02-07</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2014-02-10</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2014-02-11</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2014-02-12</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2014-02-13</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2014-02-14</th>
-      <td>0.003700</td>
-      <td>0.320653</td>
-      <td>-0.009918</td>
-      <td>0.321849</td>
-      <td>0.012379</td>
-    </tr>
-    <tr>
-      <th>2014-02-18</th>
-      <td>0.009304</td>
-      <td>0.361995</td>
-      <td>-0.018485</td>
-      <td>0.355897</td>
-      <td>0.013817</td>
-    </tr>
-    <tr>
-      <th>2014-02-19</th>
-      <td>0.010675</td>
-      <td>0.317279</td>
-      <td>-0.016398</td>
-      <td>0.254880</td>
-      <td>0.038195</td>
-    </tr>
-    <tr>
-      <th>2014-02-20</th>
-      <td>0.011096</td>
-      <td>0.405798</td>
-      <td>-0.028728</td>
-      <td>0.257501</td>
-      <td>0.036803</td>
-    </tr>
-    <tr>
-      <th>2014-02-21</th>
-      <td>0.010074</td>
-      <td>0.385510</td>
-      <td>-0.027558</td>
-      <td>0.170875</td>
-      <td>0.062081</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;stock_df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now we’ll plot the timeseries of the returns of the different stocks.</p>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values are gracefully dropped by the plotting function.</p>
@@ -2529,7 +1461,14 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_109_0.png" src="_images/02B-Pandas_109_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1300178553.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rets</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+
+<span class="ne">NameError</span>: name &#39;rets&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -2541,7 +1480,16 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_110_0.png" src="_images/02B-Pandas_110_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">460465963.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">TSLA</span><span class="p">,</span> <span class="n">rets</span><span class="o">.</span><span class="n">YELP</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;TESLA 30-day returns&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;YELP 30-day returns&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;plt&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>There appears to be some (fairly strong) correlation between the movement of TSLA and YELP stocks.  Let’s measure this.</p>
@@ -2556,83 +1504,15 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">2256934998.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rets</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>ORCL</th>
-      <th>TSLA</th>
-      <th>IBM</th>
-      <th>YELP</th>
-      <th>MSFT</th>
-    </tr>
-    <tr>
-      <th>Symbols</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>ORCL</th>
-      <td>1.000000</td>
-      <td>0.000981</td>
-      <td>0.025742</td>
-      <td>-0.084176</td>
-      <td>0.114090</td>
-    </tr>
-    <tr>
-      <th>TSLA</th>
-      <td>0.000981</td>
-      <td>1.000000</td>
-      <td>0.196504</td>
-      <td>0.768509</td>
-      <td>0.415746</td>
-    </tr>
-    <tr>
-      <th>IBM</th>
-      <td>0.025742</td>
-      <td>0.196504</td>
-      <td>1.000000</td>
-      <td>0.104776</td>
-      <td>0.340422</td>
-    </tr>
-    <tr>
-      <th>YELP</th>
-      <td>-0.084176</td>
-      <td>0.768509</td>
-      <td>0.104776</td>
-      <td>1.000000</td>
-      <td>0.262595</td>
-    </tr>
-    <tr>
-      <th>MSFT</th>
-      <td>0.114090</td>
-      <td>0.415746</td>
-      <td>0.340422</td>
-      <td>0.262595</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;rets&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>It takes a bit of time to examine that table and draw conclusions.</p>
 <p>To speed that process up it helps to visualize the table.</p>
@@ -2644,7 +1524,14 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_115_0.png" src="_images/02B-Pandas_115_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">1588042759.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;sns&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>Finally, it is important to know that the plotting performed by Pandas is just a layer on top of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (i.e., the <code class="docutils literal notranslate"><span class="pre">plt</span></code> package).</p>
@@ -2669,7 +1556,18 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_118_0.png" src="_images/02B-Pandas_118_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17309</span><span class="o">/</span><span class="mf">3982190403.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># plt.scatter(rets.mean(), rets.std());</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Expected returns&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Standard Deviation (Risk)&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.05</span><span class="p">,</span><span class="mf">.1</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">.3</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;plt&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>To understand what these functions are doing, (especially the <code class="docutils literal notranslate"><span class="pre">annotate</span></code> function), you will need to consult the online documentation for matplotlib.  Just use Google to find it.</p>
@@ -2699,12 +1597,32 @@ The average closing value for the small_gain group is 36.45555554014264
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="02A-Git-Jupyter.html" title="previous page">Essential Tools: Git and Jupyter</a>
-    <a class='right-next' id="next-link" href="04-Linear-Algebra-Refresher.html" title="next page">Linear Algebra Refresher</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="02A-Git-Jupyter.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Essential Tools: Git and Jupyter</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="04-Linear-Algebra-Refresher.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Linear Algebra Refresher</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
