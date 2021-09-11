@@ -16,7 +16,7 @@
 # get server info so that we can make api calls when runing direclty on a
 # jupyter notebook server
 servers=list(list_running_servers())
-# note that this assumes only on server is running on this host
+# note that this assumes only one server is running on this host
 # also that there is no left over garbage in Library/Jupyter/runtime
 info=next(list_running_servers())
 # localhost_url used for explicit calls to my server
