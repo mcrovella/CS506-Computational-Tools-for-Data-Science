@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
@@ -83,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -154,6 +153,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="13-Learning-From-Data.html">
    Introduction to Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
   </a>
  </li>
 </ul>
@@ -255,7 +259,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probability">
@@ -621,7 +625,52 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_50_0.png" src="_images/03-Probability-and-Statistics-Refresher_50_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py:272: SymbolWarning: Failed to read symbol: &#39;TSLA&#39;, replacing with NaN.
+  warnings.warn(msg.format(sym), SymbolWarning)
+/Users/markcrovella/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py:272: SymbolWarning: Failed to read symbol: &#39;YELP&#39;, replacing with NaN.
+  warnings.warn(msg.format(sym), SymbolWarning)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RemoteDataError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">2307430351.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Close&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">data_source</span> <span class="o">=</span> <span class="s1">&#39;yahoo&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                     <span class="n">data_source</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                     <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>                     <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">207</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span> 
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/data.py</span> in <span class="ni">DataReader</span><span class="nt">(name, data_source, start, end, retry_count, pause, session, api_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span> 
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="k">if</span> <span class="n">data_source</span> <span class="o">==</span> <span class="s2">&quot;yahoo&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">370</span>         <span class="k">return</span> <span class="n">YahooDailyReader</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>             <span class="n">symbols</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>             <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py</span> in <span class="ni">read</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dl_mult_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">258</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dl_mult_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>         <span class="k">return</span> <span class="n">df</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> 
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py</span> in <span class="ni">_dl_mult_symbols</span><span class="nt">(self, symbols)</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">passed</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;No data fetched using </span><span class="si">{0!r}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">277</span>             <span class="k">raise</span> <span class="n">RemoteDataError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stocks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">passed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="ne">RemoteDataError</span>: No data fetched using &#39;YahooDailyReader&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Treating these two timeseries as random variables, we are interested in how they vary <strong>together</strong>.</p>
@@ -659,7 +708,46 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_57_0.png" src="_images/03-Probability-and-Statistics-Refresher_57_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RemoteDataError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">2307430351.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Close&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">data_source</span> <span class="o">=</span> <span class="s1">&#39;yahoo&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                     <span class="n">data_source</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                     <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>                     <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">207</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span> 
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/data.py</span> in <span class="ni">DataReader</span><span class="nt">(name, data_source, start, end, retry_count, pause, session, api_key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span> 
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="k">if</span> <span class="n">data_source</span> <span class="o">==</span> <span class="s2">&quot;yahoo&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">370</span>         <span class="k">return</span> <span class="n">YahooDailyReader</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>             <span class="n">symbols</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">372</span>             <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py</span> in <span class="ni">read</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dl_mult_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">258</span>             <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dl_mult_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>         <span class="k">return</span> <span class="n">df</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> 
+
+<span class="nn">~/anaconda3/lib/python3.8/site-packages/pandas_datareader/base.py</span> in <span class="ni">_dl_mult_symbols</span><span class="nt">(self, symbols)</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">passed</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;No data fetched using </span><span class="si">{0!r}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">277</span>             <span class="k">raise</span> <span class="n">RemoteDataError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stocks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">passed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="ne">RemoteDataError</span>: No data fetched using &#39;YahooDailyReader&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -669,47 +757,15 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">1545644723.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>TSLA</th>
-      <th>YELP</th>
-    </tr>
-    <tr>
-      <th>Symbols</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>TSLA</th>
-      <td>34.335263</td>
-      <td>9.537516</td>
-    </tr>
-    <tr>
-      <th>YELP</th>
-      <td>9.537516</td>
-      <td>140.309496</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>In the case of Tesla (<span class="math notranslate nohighlight">\(X\)</span>) and Yelp (<span class="math notranslate nohighlight">\(Y\)</span>) above, we find that</p>
 <div class="math notranslate nohighlight">
@@ -722,47 +778,15 @@ observations are highly variable.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">1134722465.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>TSLA</th>
-      <th>YELP</th>
-    </tr>
-    <tr>
-      <th>Symbols</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>TSLA</th>
-      <td>1.000000</td>
-      <td>0.137411</td>
-    </tr>
-    <tr>
-      <th>YELP</th>
-      <td>0.137411</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>So:</p>
 <div class="math notranslate nohighlight">
@@ -1336,93 +1360,15 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">1396537375.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Symbols</th>
-      <th>TSLA</th>
-      <th>YELP</th>
-    </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2014-01-02</th>
-      <td>30.020000</td>
-      <td>67.919998</td>
-    </tr>
-    <tr>
-      <th>2014-01-03</th>
-      <td>29.912001</td>
-      <td>67.660004</td>
-    </tr>
-    <tr>
-      <th>2014-01-06</th>
-      <td>29.400000</td>
-      <td>71.720001</td>
-    </tr>
-    <tr>
-      <th>2014-01-07</th>
-      <td>29.872000</td>
-      <td>72.660004</td>
-    </tr>
-    <tr>
-      <th>2014-01-08</th>
-      <td>30.256001</td>
-      <td>78.419998</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2014-12-24</th>
-      <td>44.452000</td>
-      <td>53.000000</td>
-    </tr>
-    <tr>
-      <th>2014-12-26</th>
-      <td>45.563999</td>
-      <td>52.939999</td>
-    </tr>
-    <tr>
-      <th>2014-12-29</th>
-      <td>45.141998</td>
-      <td>53.009998</td>
-    </tr>
-    <tr>
-      <th>2014-12-30</th>
-      <td>44.445999</td>
-      <td>54.240002</td>
-    </tr>
-    <tr>
-      <th>2014-12-31</th>
-      <td>44.481998</td>
-      <td>54.730000</td>
-    </tr>
-  </tbody>
-</table>
-<p>252 rows × 2 columns</p>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Each column can be treated as a vector.</p>
 <p>So:</p>
@@ -1597,7 +1543,16 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_154_0.png" src="_images/03-Probability-and-Statistics-Refresher_154_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">3046399427.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">JointGrid</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;YELP&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">g</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;TSLA&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;YELP&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1609,7 +1564,16 @@ statistic in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Probability-and-Statistics-Refresher_155_0.png" src="_images/03-Probability-and-Statistics-Refresher_155_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13737</span><span class="o">/</span><span class="mf">4013065385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">JointGrid</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;YELP&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">g</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;TSLA&#39;</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;YELP&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <p>Recall that the correlation between these two stocks was about 0.137.</p>
@@ -1813,12 +1777,32 @@ confidence interval for the population mean is given by</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="04-Linear-Algebra-Refresher.html" title="previous page">Linear Algebra Refresher</a>
-    <a class='right-next' id="next-link" href="05-Distances-Timeseries.html" title="next page">Distances and Timeseries</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="04-Linear-Algebra-Refresher.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear Algebra Refresher</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="05-Distances-Timeseries.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Distances and Timeseries</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

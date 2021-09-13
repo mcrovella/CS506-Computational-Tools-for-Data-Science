@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Trees &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction to Learning From Data" href="13-Learning-From-Data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I.html">
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Introduction to Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Decision Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/14-Classification-I-Decision-Trees.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/14-Classification-I-Decision-Trees.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees-in-action">
+   Decision Trees in Action
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-a-decision-tree">
+   Learning a Decision Tree
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hunt-s-algorithm">
+   Hunt’s Algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#specifying-the-test-condition">
+     Specifying the Test Condition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determining-the-best-split">
+     Determining the Best Split
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#computing-gini">
+     Computing GINI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-to-stop-splitting">
+   When to Stop Splitting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advantages-of-decision-trees">
+   Advantages of Decision Trees
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="decision-trees">
+<h1>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h1>
+<p>Today we start our study of <strong>classification</strong> methods.</p>
+<p>Recall that in a classification problem, we have data tuples <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> in which the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> are the features, and the <span class="math notranslate nohighlight">\(y\)</span> values are <strong>categorical</strong> data.</p>
+<p>We typically call the <span class="math notranslate nohighlight">\(y\)</span> values “labels” or “classes.”</p>
+<p>Some examples of classification tasks:</p>
+<ul class="simple">
+<li><p>Predicting tumor cells as malignant or benign</p></li>
+<li><p>Classifying credit card transactions as legitimate or fraudulent</p></li>
+<li><p>Classifying secondary structures of a protein as alpha-helix, beta-sheet, or other</p></li>
+<li><p>Categorizing news stories as finance, weather, entertainment, sports, etc</p></li>
+</ul>
+<p>The first classification method we will consider is called the <strong>decision tree.</strong></p>
+<p>It is a <strong>very</strong> popular method, and has some nice properties as we will see.</p>
+<div class="section" id="decision-trees-in-action">
+<h2>Decision Trees in Action<a class="headerlink" href="#decision-trees-in-action" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section and a number of following sections are based on slides by Tan, Steinbach, and Kumar (2004)</p>
+</div>
+<p>We will start by describing how a decision tree works.</p>
+<p>We are assuming a decision tree has been built to solve the following classification problem:</p>
+<center>
+<font color = "blue">Given an individual's Tax Refund Status, Marital Status, and Taxable Income, predict whether they will repay a loan.</font>
+</center><center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-1.png"><img alt="Figure" src="_images/L14-DT-Example-1.png" style="width: 800px;" /></a>
+</center><p>We then step through the tree, making a decision at each node that takes us to another node in the tree.</p>
+<p>Each decision examines a single feature in the item being classified.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-2.png"><img alt="Figure" src="_images/L14-DT-Example-2.png" style="width: 800px;" /></a>
+</center><center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-3.png"><img alt="Figure" src="_images/L14-DT-Example-3.png" style="width: 800px;" /></a>
+</center><center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-4.png"><img alt="Figure" src="_images/L14-DT-Example-4.png" style="width: 800px;" /></a>
+</center><center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-5.png"><img alt="Figure" src="_images/L14-DT-Example-5.png" style="width: 800px;" /></a>
+</center><center>
+<a class="reference internal image-reference" href="_images/L14-DT-Example-6.png"><img alt="Figure" src="_images/L14-DT-Example-6.png" style="width: 800px;" /></a>
+</center><p>We conclude that this record is classified as “Not Repay” is “No”.</p>
+<p>Note also that decision trees can be used to predict numeric values, so they are used for regression as well.</p>
+<p>The general term “Classification and Regression Tree” (CART) is sometimes used – although this term also refers to a specific decision tree learning algorithm.</p>
+</div>
+<div class="section" id="learning-a-decision-tree">
+<h2>Learning a Decision Tree<a class="headerlink" href="#learning-a-decision-tree" title="Permalink to this headline">¶</a></h2>
+<center>
+<a class="reference internal image-reference" href="_images/L14-DT-Overview.png"><img alt="Figure" src="_images/L14-DT-Overview.png" style="width: 800px;" /></a>
+</center><p>We’ve discussed how to apply a decision tree to data (lower portion of this figure).</p>
+<p>But how does one train a decision tree?   What algorithm can we use?</p>
+<p>A number of algorithms have been proposed for building decision trees:</p>
+<ul class="simple">
+<li><p>Hunt’s algorithm (one of the earliest)</p></li>
+<li><p>CART</p></li>
+<li><p>ID3, C4.5</p></li>
+<li><p>SLIQ, SPRINT</p></li>
+<li><p>etc</p></li>
+</ul>
+</div>
+<div class="section" id="hunt-s-algorithm">
+<h2>Hunt’s Algorithm<a class="headerlink" href="#hunt-s-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>We build the tree node by node, starting from the root.</p>
+<p>As we build the tree, we divide the training data up.</p>
+<div style = "float: left; width: 55%;">
+<p>Let <span class="math notranslate nohighlight">\(D_t\)</span> be the set of training records that reach node <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(D_t\)</span> contains records that all belong to a single class <span class="math notranslate nohighlight">\(y_t\)</span>, then <span class="math notranslate nohighlight">\(t\)</span> is a leaf node labeled as <span class="math notranslate nohighlight">\(y_t\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(D_t\)</span> is an empty set, then <span class="math notranslate nohighlight">\(t\)</span> is a leaf node labeled by the default class <span class="math notranslate nohighlight">\(y_d\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(D_t\)</span> contains records that belong to more than one class, use an attribute to split <span class="math notranslate nohighlight">\(D_t\)</span> into smaller subsets, and assign that splitting-rule to node <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+</ul>
+<p>Recursively apply the above procedure until a stopping criterion is met.</p>
+</div>
+<a class="reference internal image-reference" href="_images/L14-DT-Data-Example.png"><img alt="Figure" src="_images/L14-DT-Data-Example.png" style="width: 40%;" /></a>
+<p>So as Hunt’s algorithm progresses, records are divided up and assigned to leaf nodes.   The most challenging step in Hunt’s algorithm is deciding which leaf node to split next, and how to specify the split.</p>
+<p>In general, we use a greedy strategy.  We will split a set of records based on an attribute test that optimizes some criterion.</p>
+<p>We choose the set to split that provides the largest improvement in our criterion.</p>
+<p>Once we have chosen the set to split, the remaining questions are:</p>
+<ul class="simple">
+<li><p>Determining how to split the record set</p>
+<ul>
+<li><p>How should we specify the attribute test condition?</p></li>
+<li><p>How should we determine the best split for a set based on a given attribute?</p></li>
+</ul>
+</li>
+<li><p>Determining when to stop splitting.</p></li>
+</ul>
+<div class="section" id="specifying-the-test-condition">
+<h3>Specifying the Test Condition<a class="headerlink" href="#specifying-the-test-condition" title="Permalink to this headline">¶</a></h3>
+<p>How we specify a test condition depends on the attribute type:</p>
+<ul class="simple">
+<li><p>Nominal (Categorical)</p></li>
+<li><p>Ordinal (eg, Small, Medium, Large)</p></li>
+<li><p>Continuous</p></li>
+</ul>
+<p>And depends on the number of ways to split - <strong>multi-way</strong> or <strong>binary</strong>:</p>
+<p>For a <strong>Nominal</strong> attribute:</p>
+<ul class="simple">
+<li><p>In a <strong>Multi-way split</strong> we can use as many partitions as there are distinct values of the attribute:</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-1.png"><img alt="Figure" src="_images/L14-split-1.png" style="width: 300px;" /></a>
+</center><ul class="simple">
+<li><p>In a <strong>Binary split</strong> we divide the values into two groups.  In this case, we need to find an optimal partitioning of values into groups.</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-2.png"><img alt="Figure" src="_images/L14-split-2.png" style="width: 600px;" /></a>
+</center><p>An <strong>Ordinal</strong> attribute is similar to a Nominal attribute, except that since attributes have an ordering, we can specify the test in terms of a threshold.  This simplifies the search for a good paritition.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-3.png"><img alt="Figure" src="_images/L14-split-3.png" style="width: 600px;" /></a>
+</center><p>A <strong>Continuous</strong> attribute can be handled two ways:</p>
+<ul class="simple">
+<li><p>It can be <strong>discretized</strong> to form an ordinal categorical attribute</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-4.png"><img alt="Figure" src="_images/L14-split-4.png" style="width: 400px;" /></a>
+</center><ul class="simple">
+<li><p>Or it can be partitioned via a threshold to form for a binary split.</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-5.png"><img alt="Figure" src="_images/L14-split-5.png" style="width: 200px;" /></a>
+</center><p>Note that finding good partitions for nominal attributes can be expensive, possibly involving combinatorial searching of groupings.</p>
+<p>However for ordinal or continuous attributes, sweeping through a range of threshold values can be more efficient.</p>
+</div>
+<div class="section" id="determining-the-best-split">
+<h3>Determining the Best Split<a class="headerlink" href="#determining-the-best-split" title="Permalink to this headline">¶</a></h3>
+<p>Our algorithmic strategy is to split record sets so as to improve classification accuracy on the training data.</p>
+<p>When is classification accuracy maximized?   When each leaf node contains records that all have the same label.</p>
+<p>Consider this case:</p>
+<p>At some node in the tree, before splitting that node’s records, we have</p>
+<ul class="simple">
+<li><p>10 records from class 0, and</p></li>
+<li><p>10 records from class 1</p></li>
+</ul>
+<p>There are three attributes we can split on.   Which split is best?</p>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-6.png"><img alt="Figure" src="_images/L14-split-6.png" style="width: 700px;" /></a>
+</center><p>The “Car Type” attribute yields more homogeneous splits.</p>
+<p>Using the “Student ID” attribute yields perfect accuracy on the training data.</p>
+<p>… but what would it do on the test data?</p>
+<p>… using the “Student ID” attribute would lead to <strong>overfitting</strong></p>
+<p>We’ll talk about how to avoid overfitting shortly.</p>
+<p>For now, let’s just focus on maximizing the homogeneity of splits.</p>
+<p>We need a measure of homogeneity:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L14-split-7.png"><img alt="Figure" src="_images/L14-split-7.png" style="width: 700px;" /></a>
+</center><p>A number of measures have been proposed:</p>
+<ul class="simple">
+<li><p>GINI Index</p></li>
+<li><p>Entropy</p></li>
+<li><p>Misclassification Error</p></li>
+</ul>
+<p>We will review GINI, as it is a typical measure.</p>
+<p>It’s used, for example, in CART, SLIQ, and SPRINT.</p>
+</div>
+<div class="section" id="computing-gini">
+<h3>Computing GINI<a class="headerlink" href="#computing-gini" title="Permalink to this headline">¶</a></h3>
+<p>The GINI coefficient measures the degree of “balance” in a distribution.</p>
+<p>As nodes are split in building the tree, we will be decreasing the GINI score.</p>
+<p>For a given node <span class="math notranslate nohighlight">\(t\)</span>, we will use <span class="math notranslate nohighlight">\(p(j\,|\,t)\)</span> to denote the frequency of class <span class="math notranslate nohighlight">\(j\)</span> at node <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Then:</p>
+<div class="math notranslate nohighlight">
+\[ \text{GINI}(t) = 1 - \sum_j [p(j\,|\,t)]^2 \]</div>
+<center>
+<a class="reference internal image-reference" href="_images/L14-GINI-1.png"><img alt="Figure" src="_images/L14-GINI-1.png" style="width: 80%;" /></a>
+</center><p>Now, how do we compute the improvement in GINI when a node is split?</p>
+<p>Remember that we would like to create large, homogeneous nodes.</p>
+<p>So we will weight each node’s GINI score by the number of records it contains.</p>
+<p>So the improvement in GINI score when splitting a node <span class="math notranslate nohighlight">\(t\)</span> with <span class="math notranslate nohighlight">\(n\)</span> records will be computed as:</p>
+<div class="math notranslate nohighlight">
+\[ \text{GINI}_{\text{new}} = \sum_i \frac{n_i}{n}\; \text{GINI}(i) \]</div>
+<p>where new node <span class="math notranslate nohighlight">\(i\)</span> contains <span class="math notranslate nohighlight">\(n_i\)</span> records;</p>
+<p>and the improvement in GINI score will be defined as</p>
+<div class="math notranslate nohighlight">
+\[  \text{GINI}(t) - \text{GINI}_{\text{new}} \]</div>
+<p><strong>GINI for Binary Partitions</strong></p>
+<p>Here is an example of computing the new GINI score for a partition:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L14-GINI-2.png"><img alt="Figure" src="_images/L14-GINI-2.png" style="width: 80%;" /></a>
+</center>   <p><strong>GINI for Nominal Attributes</strong></p>
+<ul class="simple">
+<li><p>For each distinct value, gather counts for each class in the dataset</p></li>
+<li><p>Use the count matrix to evaluate groupings</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-GINI-3.png"><img alt="Figure" src="_images/L14-GINI-3.png" style="width: 80%;" /></a>
+</center>  <p><strong>GINI for Continuous Attributes</strong></p>
+<p>To find the best threshold efficiently:</p>
+<ul class="simple">
+<li><p>Sort the attribute on values</p></li>
+<li><p>Linearly scan the values,</p>
+<ul>
+<li><p>each time updating a count matrix and</p></li>
+<li><p>computing the new GINI score</p></li>
+</ul>
+</li>
+<li><p>Choose the split position with the smallest GINI index</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L14-GINI-4.png"><img alt="Figure" src="_images/L14-GINI-4.png" style="width: 80%;" /></a>
+</center>  </div>
+</div>
+<div class="section" id="when-to-stop-splitting">
+<h2>When to Stop Splitting<a class="headerlink" href="#when-to-stop-splitting" title="Permalink to this headline">¶</a></h2>
+<p>We now see how the decision tree is built, node by node, by splitting nodes in a way that steadily improves the overall GINI score.</p>
+<p>Clearly, we could keep on splitting nodes until every leaf node contains only unique training records.</p>
+<p>For example, each leaf node could contain just a single training record - a fully-grown tree.</p>
+<p>This would certainly be overfitting!</p>
+<p>We would have as many leaf nodes (parameters) as training data records.</p>
+<p>And we would not expect the decision tree to generalize well.</p>
+<p>There are two strategies that can be used to control the complexity of a decision tree:</p>
+<ol class="simple">
+<li><p>Early-stopping: stop the algorithm before the tree becomes fully-grown</p></li>
+<li><p>Post-pruning: grow decision tree fully, then prune nodes from leaves upward</p></li>
+</ol>
+<p><strong>Early Stopping</strong></p>
+<p>Do not expand the current node, even though it still has multiple records.</p>
+<p>Default stopping conditions include:</p>
+<ul class="simple">
+<li><p>Stop if all records belong to the same class</p></li>
+<li><p>Stop if all the records have the same attributes</p></li>
+</ul>
+<p>More restrictive stopping conditions include:</p>
+<ul class="simple">
+<li><p>Stop if number of records is less than a specified value</p></li>
+<li><p>Stop if expanding the current node does not improve homogeneity (eg, GINI score)</p></li>
+</ul>
+<p><strong>Post-pruning</strong></p>
+<p>Assumes that we can assess generalization error</p>
+<ul class="simple">
+<li><p>For example, using held-out data</p></li>
+</ul>
+<p>Then:</p>
+<ul class="simple">
+<li><p>Grow decision tree to its entirety</p></li>
+<li><p>Trim the nodes of the tree in bottom-up fashion</p></li>
+<li><p>If generalization error improves after trimming, replace sub-tree by a leaf node</p></li>
+<li></li>
+</ul>
+</div>
+<div class="section" id="advantages-of-decision-trees">
+<h2>Advantages of Decision Trees<a class="headerlink" href="#advantages-of-decision-trees" title="Permalink to this headline">¶</a></h2>
+<p>Decision Trees are a very popular technique.</p>
+<p>They have a number of advantages:</p>
+<ul class="simple">
+<li><p>They are relatively inexpensive to construct</p></li>
+<li><p>They are extremely fast at classifying unknown data</p></li>
+<li><p>Their accuracy can be quite good in many cases</p></li>
+<li><p>And oftentimes they are <strong>interpretable</strong></p></li>
+</ul>
+<p><strong>Interpretability</strong> —</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="13-Learning-From-Data.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to Learning From Data</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
