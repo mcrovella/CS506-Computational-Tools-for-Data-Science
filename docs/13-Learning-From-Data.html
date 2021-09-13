@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Learning From Data &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Clustering I: \(k\)-means" href="06-Clustering-I.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L9-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introductory Material
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I.html">
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to Learning From Data
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/13-Learning-From-Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/13-Learning-From-Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-supervised-learning-problem">
+   The Supervised Learning Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-toy-example">
+   A Toy Example
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-fitting">
+     Model Fitting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-selection">
+     Model Selection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-training-data">
+     More Training Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parameters-and-hyperparameters">
+     Parameters and Hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#holding-out-data">
+     Holding Out Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-learning-from-data">
+<h1>Introduction to Learning From Data<a class="headerlink" href="#introduction-to-learning-from-data" title="Permalink to this headline">¶</a></h1>
+<p>We are now beginnging to discuss how to learn from data.</p>
+<p>The idea of learning from data is one of the most important shifts in thinking about computing to come about in the past 50 years.</p>
+<p>Consider the commonly heard phrase:</p>
+<blockquote>
+<div><p>“Computers can only do what we tell them to do.”</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p>“Computers can not create anything new.  They can only do what we already know how to do.”</p>
+</div></blockquote>
+<p>This line of argument goes back to Lady Ada Lovelace, often credited as the first programmer.</p>
+<p>Working with Charles Babbage, she wrote about the Analytical Engine:</p>
+<blockquote>
+<div><p>The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform. It can follow analysis; but it has no power of anticipating any analytical relations or truths.</p>
+</div></blockquote>
+<p>Ada Augusta Lovelace, Commentary on “Sketch of the Analytical Engine” (1843)</p>
+<p>However, it is clear that this viewpoint is entirely <strong>wrong.</strong></p>
+<p>All around us today, computers solve problems that humans do not know how to solve.</p>
+<p>Computers routinely beat the world’s experts in games of chess, go, etc.    They perform tasks such as facial recognition, speech synthesis, automatic language translation, and so forth.</p>
+<p>In each case, the programmers who wrote the programs may not themselves know how to perform these tasks.</p>
+<p>Instead, those programmers have written programs that <strong>learn from data.</strong></p>
+<p>However, the best methods for learning from data have taken decades to develop.</p>
+<p>So we will spend some time now talking about the general problem of learning from data.</p>
+<div class="section" id="the-supervised-learning-problem">
+<h2>The Supervised Learning Problem<a class="headerlink" href="#the-supervised-learning-problem" title="Permalink to this headline">¶</a></h2>
+<p>The supervised learning problem in general is:</p>
+<p>You are given some example data, which we’ll think of abstractly as tuples <span class="math notranslate nohighlight">\(\{(\mathbf{x}_i, y_i)\,|\,i = 1,\dots,N\}\)</span>.</p>
+<p>Your goal is to learn a rule that allows you to predict <span class="math notranslate nohighlight">\(y_j\)</span> for some <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> that is not in the example data you were given.</p>
+<p>Typically <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector.</p>
+<p>We use the term “features” to refer to the components of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>The collection <span class="math notranslate nohighlight">\(\{(\mathbf{x}_i, y_i)\,|\,i = 1,\dots,N\}\)</span> is called the <strong>training data.</strong></p>
+<p>If <span class="math notranslate nohighlight">\(y\)</span> is a discrete value (a label, for example) then the problem is called <strong>classification.</strong></p>
+<p>For example, in image recognition, the features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could be a vector that represents the pixels of the image, and <span class="math notranslate nohighlight">\(y\)</span> could be a label such as “tiger,” “tree,” etc.</p>
+<p>If <span class="math notranslate nohighlight">\(y\)</span> is a continuous (numeric) value, then the problem is called <strong>regression.</strong></p>
+<p>For example, in predicting housing prices, the features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could be a vector containing lot size, square footage, number of bathrooms, etc., and <span class="math notranslate nohighlight">\(y\)</span> could be the sale price of the house.</p>
+<p>In the regression case, you will usually be satisfied if your prediction is <strong>close</strong> to the true <span class="math notranslate nohighlight">\(y\)</span> (it doesn’t have to be exact to be useful).</p>
+<p>What do we have to assume to make this problem tractable?</p>
+<p>We assume two things:</p>
+<ol class="simple">
+<li><p>There is a set of functions (“rules”) that could be used to predict <span class="math notranslate nohighlight">\(y_i\)</span> from <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>.   This allows us to turn the learning problem into one that searches through this set for the “right” function.   However, this set is probably <strong>very</strong> large!</p></li>
+</ol>
+<ol class="simple">
+<li><p>The rule for predicting <span class="math notranslate nohighlight">\(y_i\)</span> from <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the same as the rule for predicting <span class="math notranslate nohighlight">\(y_j\)</span> from the new item <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span>. Speaking probabilistically, we say that <span class="math notranslate nohighlight">\((\mathbf{x}_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((\mathbf{x}_j, y_j)\)</span> are drawn from the <strong>same distribution.</strong></p></li>
+</ol>
+</div>
+<div class="section" id="a-toy-example">
+<h2>A Toy Example<a class="headerlink" href="#a-toy-example" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following is based on <em>Pattern Recognition and Machine Learning,</em> Christopher Bishop (2006), Section 1.1.</p>
+</div>
+<p>In order to explore these ideas a bit, we’ll use a toy example: a regression problem.</p>
+<p>This is a very artificial example, but it will expose some important wrinkles in the supervised learning problem.</p>
+<p>We will consider polynomial curve fitting.</p>
+<p>Suppose we are given a training set comprising <span class="math notranslate nohighlight">\(N\)</span> observations of a scalar value <span class="math notranslate nohighlight">\(x_i\)</span>, which we’ll collect into the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>For each <span class="math notranslate nohighlight">\(x_i\)</span> we have a corresponding numeric value <span class="math notranslate nohighlight">\(y_i\)</span>, and these form <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
+<p>Here is a plot of the 10 training points:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
+<span class="c1"># plt.figure(figsize = (3, 2))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_19_0.png" src="_images/13-Learning-From-Data_19_0.png" />
+</div>
+</div>
+<p>The way we generated these points was to take <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as equal spaced points on the range 0 to 1,</p>
+<p>and for each <span class="math notranslate nohighlight">\(x_i\)</span>, we take <span class="math notranslate nohighlight">\(y_i = \sin(2\pi x_i)\)</span> <strong>plus</strong> a sample of a Gaussian random variable.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">cx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_21_0.png" src="_images/13-Learning-From-Data_21_0.png" />
+</div>
+</div>
+<p>Many data sets are like this!</p>
+<p>In many cases, there is some component of <span class="math notranslate nohighlight">\(y\)</span> that depends on <span class="math notranslate nohighlight">\(x\)</span>, and some component that we treat as random, called “noise.”</p>
+<p>The “noise” component is typically not <strong>really</strong> random, but rather depends on features that we cannot see.</p>
+<p>(Remember, probability is useful for exactly this case.)</p>
+<p>Now for this toy example, we “happen” to know that the <strong>correct</strong> rule to use for prediction is:</p>
+<div class="math notranslate nohighlight">
+\[ y = \sin(2\pi x) \]</div>
+<p>and the Gaussian random addition does not depend on <span class="math notranslate nohighlight">\(x\)</span> so we cannot hope to predict it.</p>
+<p>OK, let’s learn from this data.</p>
+<p>We will consider a simple approach based on curve fitting.</p>
+<p>The class of models we will consider are polynomials.   They are of the form:</p>
+<div class="math notranslate nohighlight">
+\[ y(x, \mathbf{w}) = w_0 + w_1 x + w_2 x^2 + \dots + w_k x^k = \sum_{j = 0}^k w_jx^j \]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the <em>order</em> of the polynomial.</p>
+<p>If we are given some <span class="math notranslate nohighlight">\(k\)</span>, then what we want to learn are the <span class="math notranslate nohighlight">\(w_i\)</span>s, that is, <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(w_i\)</span>s are the <strong>parameters</strong> of the model.</p>
+<p>Note that this function <span class="math notranslate nohighlight">\(y(x, \mathbf{w})\)</span> is a nonlinear function in <span class="math notranslate nohighlight">\(x\)</span> … but it is <strong>linear</strong> in <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.  That is, all the <span class="math notranslate nohighlight">\(w_i\)</span>s appear only raised to the first power.</p>
+<p>This model is linear in its parameters – it is called a <strong>linear model.</strong></p>
+<p>Linear models are particularly easy to fit to data.</p>
+<div class="section" id="model-fitting">
+<h3>Model Fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
+<p>How will we fit our model, that is, learn the best parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>?</p>
+<p>We will use a objective function to guide our search through the space of model parameters.</p>
+<p>The objective function we will use is called the <strong>least squares criterion</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ E(\mathbf{w}) = \sum_{n=1}^N [y(x_n, \mathbf{w}) - y_n]^2 \]</div>
+<p>This is a nonnegative function which is zero if the polynomial passes through every point exactly.</p>
+<p>We often write <span class="math notranslate nohighlight">\(\hat{y}_n\)</span> for <span class="math notranslate nohighlight">\(y(x_n, \mathbf{w})\)</span>.</p>
+<p>Then:</p>
+<div class="math notranslate nohighlight">
+\[ E(\mathbf{w}) = \Vert \hat{\mathbf{y}} - \mathbf{y} \Vert^2. \]</div>
+<p>In other words, the error function <span class="math notranslate nohighlight">\(E(\cdot)\)</span> measures the distance or dissimilarity between the data and the predictions.</p>
+<p>Finding a <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that minimizes <span class="math notranslate nohighlight">\(E(\mathbf{w})\)</span> is a least-squares problem, and we can solve it in closed form (details later in the course).</p>
+<p>The resulting solution <span class="math notranslate nohighlight">\(\mathbf{w}^*\)</span> is the set of parameters that <strong>minimizes the error on the training data.</strong></p>
+</div>
+<div class="section" id="model-selection">
+<h3>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h3>
+<p>So we are done, correct?</p>
+<p>Wait … what about choosing <span class="math notranslate nohighlight">\(k\)</span>, the order of the polynomial?</p>
+<p>The problem of choosing <span class="math notranslate nohighlight">\(k\)</span> is called <strong>model selection.</strong></p>
+<p>That is, a polynomial of order 3 (a cubic) is a <strong>different model</strong> from a polynomial of order 2 (a quadratic).</p>
+<p>Let’s look at constant (order 0), linear (order 1), and cubic (order 3) models.</p>
+<p>We will fit each one using the least squares criterion:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y = Aw, A is design matrix 1, [1, x^T], [1, x^T, x^T^2], etc, and w-hat = (A^TA)^-1 A^Ty</span>
+<span class="k">def</span> <span class="nf">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">A</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">A</span>
+
+<span class="k">def</span> <span class="nf">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">w_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">w_hat</span>
+
+<span class="n">w_hat_0</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">w_hat_1</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">w_hat_3</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="p">[</span><span class="n">w_hat_0</span><span class="p">]</span>
+<span class="n">pred_y</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="p">[</span><span class="n">w_hat_0</span><span class="p">]</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$k$ = 0&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$ = 0, constant&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$E(\mathbf</span><span class="si">{w}</span><span class="s1">)$ =&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">{:0.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">pred_y</span><span class="p">)))</span>
+<span class="c1">#axs[0].legend(loc = &#39;best&#39;, fontsize = 16)</span>
+<span class="c1">#</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_1</span>
+<span class="n">pred_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_1</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$k$ = 1&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$ = 1, linear&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$E(\mathbf</span><span class="si">{w}</span><span class="s1">)$ =&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">{:0.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">pred_y</span><span class="p">)))</span>
+<span class="c1">#axs[1].legend(loc = &#39;best&#39;, fontsize = 16)</span>
+<span class="c1">#</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_3</span>
+<span class="n">pred_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_3</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$k$ = 3&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$k$ = 3, cubic&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$E(\mathbf</span><span class="si">{w}</span><span class="s1">)$ =&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">{:0.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">pred_y</span><span class="p">)))</span>
+<span class="c1">#axs[2].legend(loc = &#39;best&#39;, fontsize = 16)</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_38_0.png" src="_images/13-Learning-From-Data_38_0.png" />
+</div>
+</div>
+<p>So it looks like a third-order polynomial (<span class="math notranslate nohighlight">\(k\)</span> = 3) is a good fit!</p>
+<p>How do we know it’s good?   Well, the training error <span class="math notranslate nohighlight">\(E(\mathbf{w})\)</span> is small.</p>
+<p>But … can we make the training error <strong>smaller</strong>?</p>
+<p>Yes, we can, if we increase the order of the polynomial.</p>
+<p>In fact, we can reduce the error to zero!</p>
+<p>By setting <span class="math notranslate nohighlight">\(k = 9\)</span>, we get the following polynomial fit to the data:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_hat_9</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">cy</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_9</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$k$ = 9&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$ = 9&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$E(\mathbf</span><span class="si">{w}</span><span class="s1">)$ =&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">{:0.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_42_0.png" src="_images/13-Learning-From-Data_42_0.png" />
+</div>
+</div>
+<p>So … is the 9th order polynomial a “better” model for this dataset?</p>
+<p><strong>Absolutely not!</strong></p>
+<p>Why?</p>
+<p>Informally, the model is very “wiggly”.  It seems unlikely that the real data generation process is governed by this curve.</p>
+<p>In other words, we don’t expect that, if we had <strong>more</strong> data from the same source, that this model would do a good job of fitting the additional data.</p>
+<p>We want the model to do a good job of predicting on <strong>future</strong> data.  This is called
+the model’s <strong>generalization</strong> ability.</p>
+<p>The 9th degree polynomial would seem to have poor generalization ability.</p>
+<p>Let’s assess generalization error.   For each polynomial (value of <span class="math notranslate nohighlight">\(k\)</span>) we will use new data, called <strong>test</strong> data.  This is data that was <strong>not</strong> used to train the model, but comes from the same source.</p>
+<p>In our case, we know how the data is generated – <span class="math notranslate nohighlight">\(\sin(2\pi x)\)</span> plus noise – so we can easily generate more.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
+<span class="n">max_k</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">train_err</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">N</span> <span class="o">*</span> <span class="p">[</span><span class="n">w_hat_0</span><span class="p">])]</span>
+<span class="n">test_err</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_y</span> <span class="o">-</span> <span class="n">N</span> <span class="o">*</span> <span class="p">[</span><span class="n">w_hat_0</span><span class="p">])]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_k</span><span class="p">):</span>
+    <span class="n">w_hat</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">pred_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat</span>
+    <span class="n">train_err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">pred_y</span><span class="p">))</span>
+    <span class="n">test_err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_y</span> <span class="o">-</span> <span class="n">pred_y</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">max_k</span><span class="p">),</span> <span class="n">test_err</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Testing Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">max_k</span><span class="p">),</span> <span class="n">train_err</span><span class="p">,</span> <span class="s1">&#39;bo-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Training Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$E(\mathbf</span><span class="si">{w}</span><span class="s1">^*)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_48_0.png" src="_images/13-Learning-From-Data_48_0.png" />
+</div>
+</div>
+<p>Notice that as we increase the order of the polynomial, the training error always declines.</p>
+<p>Eventually, the training error reaches zero.</p>
+<p>However, the test error does not – it reaches its smallest value at <span class="math notranslate nohighlight">\(k = 3\)</span>, a cubic polynomial.</p>
+<p>The phenomenon in which training error declines, but testing error does not, is called <strong>overfitting.</strong></p>
+<p>In a sense we are fitting the training data “too well”.</p>
+<p>There are two ways to think about overfitting:</p>
+<ol class="simple">
+<li><p>The number of parameters in the model is too large, compared to the size of the training data.   We can see this in the fact that we have only 10 training points, and the 9th order polynomial has 10 coefficents.</p></li>
+</ol>
+<ol class="simple">
+<li><p>The model is more complex than the actual phenomenon being modeled.  As a result, the model is not just fitting the underlying phenomenon, but also the noise in the data.</p></li>
+</ol>
+<p>These suggest techniques we may use to avoid overfitting:</p>
+<ol class="simple">
+<li><p>Increase the amount of training data.  All else being equal, more training data is always better.</p></li>
+<li><p>Limit the complexity of the model.  Model complexity is often controlled via <strong>hyperparameters</strong>.</p></li>
+</ol>
+</div>
+<div class="section" id="more-training-data">
+<h3>More Training Data<a class="headerlink" href="#more-training-data" title="Permalink to this headline">¶</a></h3>
+<p>It’s not necessarily true that a order-3 polynomial is best for this problem.</p>
+<p>After all, we are fitting to a sine function, whose Taylor series includes polynomials of all orders.</p>
+<p>But the higher the order of polynomial we want to fit, the more data we need to avoid overfitting.</p>
+<p>Here we use an order-9 polynomial for increasing amounts of training data (N = 15, 50, 200):</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="p">{</span><span class="n">Nval</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Nval</span><span class="p">)</span> <span class="k">for</span> <span class="n">Nval</span> <span class="ow">in</span> <span class="n">Ns</span><span class="p">}</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">{</span><span class="n">Nval</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">xs</span><span class="p">[</span><span class="n">Nval</span><span class="p">])</span> <span class="o">+</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">Nval</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span> <span class="k">for</span> <span class="n">Nval</span> <span class="ow">in</span> <span class="n">Ns</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Nval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Ns</span><span class="p">):</span>
+    <span class="n">w_star</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">Nval</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">Nval</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">cy</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_star</span>
+    <span class="n">pred_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">Nval</span><span class="p">],</span> <span class="mi">9</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_star</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">Nval</span><span class="p">],</span> <span class="n">ys</span><span class="p">[</span><span class="n">Nval</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$N$ = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Nval</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$ = 9, N = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Nval</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_58_0.png" src="_images/13-Learning-From-Data_58_0.png" />
+</div>
+</div>
+<p>We see that with enough training data, the high order polynomial begins to capture the sine wave well.</p>
+</div>
+<div class="section" id="parameters-and-hyperparameters">
+<h3>Parameters and Hyperparameters<a class="headerlink" href="#parameters-and-hyperparameters" title="Permalink to this headline">¶</a></h3>
+<p>Many times however, we cannot simply get more training data, or enough training data, to solve the overfitting problem.</p>
+<p>In that case, we need to control the complexity of the model.</p>
+<p>Notice that model selection problem required us to choose a value <span class="math notranslate nohighlight">\(k\)</span> that specifies the order of the polynomial model.</p>
+<p>As already mentioned, the values <span class="math notranslate nohighlight">\(w_0, w_1, \dots, w_k\)</span> are called the <strong>parameters</strong> of the model.</p>
+<p>In contrast, <span class="math notranslate nohighlight">\(k\)</span> is called a <strong>hyperparameter.</strong></p>
+<p>A hyperparameter is a parameter that must be set first, before the (regular) parameters can be learned.</p>
+<p>Hyperparameters are often used to control model complexity.</p>
+<p>Here, the hyperparameter <span class="math notranslate nohighlight">\(k\)</span> controls the complexity (the order) of the polynomial model.</p>
+<p>So, to avoid overfitting, we need to choose the proper value for the hyperparameter <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>We do that by <strong>holding out data.</strong></p>
+</div>
+<div class="section" id="holding-out-data">
+<h3>Holding Out Data<a class="headerlink" href="#holding-out-data" title="Permalink to this headline">¶</a></h3>
+<p>The idea behind holding out data is simple.</p>
+<p>We want to avoid overfitting, which occurs when a model fails to generalize – that is, when it has high error on  data that it was not trained on.</p>
+<p>So: we will hold some data aside, and <strong>not</strong> use it for training the model, but instead use it for testing generalization ability.</p>
+<p>Let’s assume that we have 20 data points to work with, stored in arrays <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> has some functions that can be helpful.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">model_selection</span>
+
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of items in training set: </span><span class="si">{</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">, in testing set: </span><span class="si">{</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of items in training set: 10, in testing set: 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> splits the data <strong>randomly.</strong></p>
+<p>This will be important.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Set&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="n">fillstyle</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Testing Set&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_72_0.png" src="_images/13-Learning-From-Data_72_0.png" />
+</div>
+</div>
+<p>Our strategy will be:</p>
+<ul class="simple">
+<li><p>For each possible value of the hyperparameter <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<ul>
+<li><p>randomly split the data 5 times</p></li>
+<li><p>compute the mean testing and training error over the 5 random splits</p></li>
+</ul>
+</li>
+</ul>
+<p>What are good possible values for the hyperparameter?  It can depend on the problem, and may involve trial and error.</p>
+<p>This strategy of trying all possible values of the hyperparameter is called a <strong>grid search</strong>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_error</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function fits a polynomial of degree k to the training data</span>
+<span class="sd">    and returns the error on both the training and test data.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">w_star</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">pred_test_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_star</span>
+    <span class="n">pred_train_y</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_star</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y_train</span> <span class="o">-</span> <span class="n">pred_train_y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">pred_test_y</span><span class="p">))</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="c1"># fraction of data used for testing</span>
+<span class="c1">#</span>
+<span class="n">split_frac</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1">#</span>
+<span class="c1"># maximum polynomial degree to consider</span>
+<span class="c1">#</span>
+<span class="n">max_k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1">#</span>
+<span class="n">n_splits</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1">#</span>
+<span class="c1"># grid search over k</span>
+<span class="c1"># we assume a model_error() function that reports the</span>
+<span class="c1"># training and testing error</span>
+<span class="c1"># (definition omitted for space)</span>
+<span class="c1"># </span>
+<span class="c1">#</span>
+<span class="n">err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_k</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_splits</span><span class="p">):</span>
+        <span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">split_train_err</span><span class="p">,</span> <span class="n">split_test_err</span> <span class="o">=</span> <span class="n">model_error</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">split_train_err</span><span class="p">,</span> <span class="n">split_test_err</span><span class="p">])</span>
+<span class="c1">#</span>
+<span class="c1"># put the results in a DataFame for easy manipulation</span>
+<span class="c1">#</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">,</span> <span class="s1">&#39;Training Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Testing Error&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k</th>
+      <th>split</th>
+      <th>Training Error</th>
+      <th>Testing Error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1.147829</td>
+      <td>2.799292</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1.700576</td>
+      <td>1.712716</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1.387723</td>
+      <td>2.133381</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1.696808</td>
+      <td>1.695534</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>4</td>
+      <td>1.571746</td>
+      <td>1.989020</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>0</td>
+      <td>1.358846</td>
+      <td>2.603490</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1.332199</td>
+      <td>2.082828</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0.747769</td>
+      <td>5.436927</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2</td>
+      <td>3</td>
+      <td>1.559011</td>
+      <td>2.697498</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2</td>
+      <td>4</td>
+      <td>1.677090</td>
+      <td>1.691438</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s plot the mean for each value of <code class="docutils literal notranslate"><span class="pre">k</span></code> and its standard error (<span class="math notranslate nohighlight">\(\sigma/\sqrt{n}\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[[</span><span class="s1">&#39;Training Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Testing Error&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">yerr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_splits</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Learning-From-Data_77_0.png" src="_images/13-Learning-From-Data_77_0.png" />
+</div>
+</div>
+<p>From this plot we can conclude that, for this dataset, a polynomial of degree <span class="math notranslate nohighlight">\(k = 3\)</span> shows the best generalization ability.</p>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>We have seen strategies that allow us to learn from data.</p>
+<p>The strategies include:</p>
+<ul class="simple">
+<li><p>Define a set of possible models</p></li>
+<li><p>Define an error function that tells us when the model is predicting well</p></li>
+<li><p>Using the error function, search through the space of models to find the best performer</p></li>
+</ul>
+<p>We’ve also seen that there are some subtleties to this approach that must be dealt with to avoid problems:</p>
+<ul class="simple">
+<li><p>Simply using the model that has lowest error on the training data will <strong>overfit</strong>.</p></li>
+<li><p>We need to <strong>hold out</strong> data to assess the generalization ability of each trained model.</p></li>
+<li><p>We control model complexity using hyperparameters</p></li>
+<li><p>We choose the best hyperparameters based on performance on held out data.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="06-Clustering-I.html" title="previous page">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
