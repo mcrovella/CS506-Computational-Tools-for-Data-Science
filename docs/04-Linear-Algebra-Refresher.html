@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,16 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Probability and Statistics Refresher" href="03-Probability-and-Statistics-Refresher.html" />
@@ -82,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -93,7 +94,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Preliminaries
+  Introductory Material
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -254,7 +255,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vectors-and-matrices">
@@ -572,41 +573,125 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 \[\Vert\mathbf{u}-\mathbf{v}\Vert^2 = \mathbf{u}^T\mathbf{u} + \mathbf{v}^T\mathbf{v} - 2\mathbf{u}^T\mathbf{v}.\]</div>
 <div class="math notranslate nohighlight">
 \[= \Vert\mathbf{u}\Vert^2 + \Vert\mathbf{v}\Vert^2 - 2\mathbf{u}^T\mathbf{v}.\]</div>
-<p>This is an important formula because it relates <strong>distance</strong> between two points to their <strong>lengths</strong> and _<em>inner product.</em></p>
+<p>This is an important formula because it relates <strong>distance</strong> between two points to their <strong>lengths</strong> and <strong>inner product.</strong></p>
 </div>
 <div class="section" id="orthogonal-vectors">
 <h2>Orthogonal Vectors<a class="headerlink" href="#orthogonal-vectors" title="Permalink to this headline">¶</a></h2>
 <p>Now we turn to another familiar notion from 2D geometry, which we’ll generalize to <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>: the notion of being <strong>perpendicular.</strong></p>
-<p>You may recall the classic method from Euclid for how to construct a line perpendicular to another line at a point:</p>
+<p>We will generally use the fancier term <strong>orthogonal</strong> – which means the same thing as perpendicular.</p>
+<p>We will say that two vectors are orthogonal if they form a right angle at the origin.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># image credit: Lay 4th edition figure 5 in Ch 6.1</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/Lay-fig-6-1-5.jpg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="c1"># ut.noAxes(ax)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># v</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\bf v$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="c1"># u</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\bf u$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># origin</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\bf 0$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+<span class="c1"># symbol</span>
+<span class="n">perpline1</span><span class="p">,</span> <span class="n">perpline2</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">perp_sym</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">perpline1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">perpline1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">perpline2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">perpline2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_50_0.jpg" src="_images/04-Linear-Algebra-Refresher_50_0.jpg" />
+<img alt="_images/04-Linear-Algebra-Refresher_50_0.png" src="_images/04-Linear-Algebra-Refresher_50_0.png" />
 </div>
 </div>
-<p>One constructs an isoceles triangle centered at the point.  Because the sides are equal, the two inner triangles are right triangles.</p>
-<p>So the two blue lines are perpendicular if and only if the distance from <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is equal to the distance from <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to <span class="math notranslate nohighlight">\(-\mathbf{v}.\)</span></p>
-<p>This is the same as requiring the squares of their distances to be equal.</p>
-<p>We have already seen that the distance from <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is:</p>
+<p>Draw the line connecting <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+<p>Then <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> are orthogonal if and only if they make a right triangle with the origin.</p>
+<p>So <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> are orthogonal if and only if the Pythagorean Theorem is satisified for this triangle.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="c1"># ut.noAxes(ax)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># v</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\bf v$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="c1"># u</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.25</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\bf u$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># origin</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\bf 0$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-Linear-Algebra-Refresher_52_0.png" src="_images/04-Linear-Algebra-Refresher_52_0.png" />
+</div>
+</div>
+<p>What is the length of the red side of the triangle?</p>
+<p>According to the definition of length based on norm, it is <span class="math notranslate nohighlight">\(\Vert \mathbf{u} - \mathbf{v} \Vert\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="c1"># ut.noAxes(ax)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]],[</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># v</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotLinEqn</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\Vert\bf v\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="c1"># u</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">.75</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$\Vert\bf u\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1"># origin</span>
+<span class="n">ut</span><span class="o">.</span><span class="n">plotVec</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span> <span class="o">+</span> <span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">mm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">0.3</span><span class="p">,</span><span class="n">mm</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="sa">r</span><span class="s1">&#39;$\Vert\bf u - v\Vert$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-Linear-Algebra-Refresher_54_0.png" src="_images/04-Linear-Algebra-Refresher_54_0.png" />
+</div>
+</div>
+<p>So the blue and green lines are perpendicular if and only if:</p>
 <div class="math notranslate nohighlight">
-\[[\mbox{dist}(\mathbf{u},\mathbf{v})]^2 = \Vert\mathbf{u}-\mathbf{v}\Vert^2\]</div>
+\[ \Vert \mathbf{u} - \mathbf{v} \Vert^2 = \Vert \mathbf{u} \Vert^2 + \Vert \mathbf{v} \Vert^2\]</div>
+<p>First let’s simplify the expression for squared distance from <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert\mathbf{u}-\mathbf{v}\Vert^2 = (\mathbf{u}-\mathbf{v})^T(\mathbf{u}-\mathbf{v}) \]</div>
+<div class="math notranslate nohighlight">
+\[ = \mathbf{u}^T\mathbf{u} - \mathbf{u}^T\mathbf{v} - \mathbf{v}^T\mathbf{u} + \mathbf{v}^T\mathbf{v}\]</div>
 <div class="math notranslate nohighlight">
 \[ = \Vert\mathbf{u}\Vert^2 + \Vert\mathbf{v}\Vert^2 - 2\mathbf{u}^T\mathbf{v}\]</div>
-<p>Similarly, the distance from <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> to <span class="math notranslate nohighlight">\(-\mathbf{v}\)</span> is</p>
+<p>Now, let’s go back to the Pythagorean Theorem.</p>
+<p><span class="math notranslate nohighlight">\(  \mathbf{u}\)</span> and <span class="math notranslate nohighlight">\( \mathbf{v} \)</span> are perpendicular if and only if:</p>
 <div class="math notranslate nohighlight">
-\[ = \Vert\mathbf{u}\Vert^2 + \Vert\mathbf{v}\Vert^2 + 2\mathbf{u}^T\mathbf{v}\]</div>
-<p>So <span class="math notranslate nohighlight">\(\mbox{dist}(\mathbf{u},\mathbf{v}) = \mbox{dist}(\mathbf{u},-\mathbf{v})\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{v} = 0\)</span>.</p>
+\[ \Vert \mathbf{u} - \mathbf{v} \Vert^2 = \Vert \mathbf{u} \Vert^2 + \Vert \mathbf{v} \Vert^2\]</div>
+<p>But we’ve seen that this means:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert\mathbf{u}\Vert^2 + \Vert\mathbf{v}\Vert^2 - 2\mathbf{u}^T\mathbf{v}= \Vert \mathbf{u} \Vert^2 + \Vert \mathbf{v} \Vert^2\]</div>
 <p>So now we can define perpendicularity in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>:</p>
 <p><strong>Definition.</strong>  Two vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> are <strong>orthogonal</strong> to each other if <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{v} = 0.\)</span></p>
+<p>This gives us a very simple rule for determining whether two vectors are orthogonal: if and only if their inner product is zero.</p>
 </div>
 <div class="section" id="the-angle-between-two-vectors">
 <h2>The Angle Between Two Vectors<a class="headerlink" href="#the-angle-between-two-vectors" title="Permalink to this headline">¶</a></h2>
-<p>There is an important connection between the inner product of two vectors and the <strong>angle</strong> between them.</p>
+<p>There is a further connection between the inner product of two vectors and the <strong>angle</strong> between them.</p>
 <p>This connection is very useful (eg, in visualizing data mining operations).</p>
 <p>We start from the <strong>law of cosines:</strong></p>
 <div class="math notranslate nohighlight">
@@ -640,10 +725,11 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_59_0.png" src="_images/04-Linear-Algebra-Refresher_59_0.png" />
+<img alt="_images/04-Linear-Algebra-Refresher_66_0.png" src="_images/04-Linear-Algebra-Refresher_66_0.png" />
 </div>
 </div>
-<p>Now let’s interpret this law in terms of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>:</p>
+<p>Now let’s interpret this law in terms of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+<p>Once again, it is the angle that these vectors make at the origin that we are concerned with:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -675,7 +761,7 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_61_0.png" src="_images/04-Linear-Algebra-Refresher_61_0.png" />
+<img alt="_images/04-Linear-Algebra-Refresher_68_0.png" src="_images/04-Linear-Algebra-Refresher_68_0.png" />
 </div>
 </div>
 <p>Applying the law of cosines we get:</p>
@@ -725,7 +811,7 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_70_0.png" src="_images/04-Linear-Algebra-Refresher_70_0.png" />
+<img alt="_images/04-Linear-Algebra-Refresher_77_0.png" src="_images/04-Linear-Algebra-Refresher_77_0.png" />
 </div>
 </div>
 <p>Here <span class="math notranslate nohighlight">\(\mathbf{u} = \left[\begin{array}{c}0.95\\0.31\end{array}\right],\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v} = \left[\begin{array}{c}0.20\\0.98\end{array}\right].\)</span></p>
@@ -764,7 +850,8 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <p><span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span> is the solution of:</p>
 <div class="math notranslate nohighlight">
 \[A^TA\mathbf{x} = A^T\mathbf{b}\]</div>
-<p>And we can then prove that <span class="math notranslate nohighlight">\(A^TA\)</span> is always invertible, and so solve <span class="math notranslate nohighlight">\(A^TA\mathbf{x} = A^T\mathbf{b}\)</span> as</p>
+<p>And we can then prove that these equations always have at least one solution.</p>
+<p>When <span class="math notranslate nohighlight">\(A^TA\)</span> is invertible, we call the system “overdetermined.”  This means that there is just one solution, and so we then solve <span class="math notranslate nohighlight">\(A^TA\mathbf{x} = A^T\mathbf{b}\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\hat{x} = (A^TA)^{-1}A^T\mathbf{b}\]</div>
 <div class="cell tag_hide-input docutils container">
@@ -794,7 +881,7 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_83_0.png" src="_images/04-Linear-Algebra-Refresher_83_0.png" />
+<img alt="_images/04-Linear-Algebra-Refresher_90_0.png" src="_images/04-Linear-Algebra-Refresher_90_0.png" />
 </div>
 </div>
 </div>
@@ -824,7 +911,7 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_87_0.png" src="_images/04-Linear-Algebra-Refresher_87_0.png" />
+<img alt="_images/04-Linear-Algebra-Refresher_94_0.png" src="_images/04-Linear-Algebra-Refresher_94_0.png" />
 </div>
 </div>
 <p><strong>Definition.</strong></p>
@@ -896,32 +983,12 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="02B-Pandas.html" title="previous page">Essential Tools: Pandas</a>
+    <a class='right-next' id="next-link" href="03-Probability-and-Statistics-Refresher.html" title="next page">Probability and Statistics Refresher</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="02B-Pandas.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Essential Tools: Pandas</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="03-Probability-and-Statistics-Refresher.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Probability and Statistics Refresher</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
