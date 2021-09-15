@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,8 +42,7 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -81,7 +80,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -253,7 +252,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#critical-course-tools">
@@ -635,7 +634,6 @@ $ cd cs506
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;18-Regression-II-Logistic.pdf&#39;,
  &#39;08A-Clustering-III-Hierarchical.pdf&#39;,
- &#39;14-Classification-I-Decision-Trees.ipynb&#39;,
  &#39;17-Regression-I-Linear.ipynb&#39;,
  &#39;03-Probability-and-Statistics-Refresher.ipynb&#39;,
  &#39;laUtilities.py&#39;,
@@ -644,7 +642,9 @@ $ cd cs506
  &#39;23-Networks-II-Centrality.ipynb&#39;,
  &#39;obsolete&#39;,
  &#39;10-Low-Rank-and-SVD.pdf&#39;,
+ &#39;13-Web-Scraping.pdf&#39;,
  &#39;preamble.tex&#39;,
+ &#39;yahoo_data.csv&#39;,
  &#39;figs&#39;,
  &#39;20-Recommender-Systems-Edited.pdf&#39;,
  &#39;02A-Git-Jupyter.ipynb&#39;,
@@ -655,12 +655,10 @@ $ cd cs506
  &#39;18-Regression-II-Logistic.ipynb&#39;,
  &#39;16A-Classification-III-NB-SVM.pdf&#39;,
  &#39;01-Intro-to-Python.ipynb&#39;,
- &#39;img.jpg&#39;,
  &#39;11-Dimensionality-Reduction-SVD-II.pdf&#39;,
  &#39;02B-Pandas.ipynb&#39;,
  &#39;22B-Networks-I-Intro-Demo.pdf&#39;,
  &#39;23-Networks-II-Centrality.pdf&#39;,
- &#39;git-demo&#39;,
  &#39;Old&#39;,
  &#39;06-Clustering-I.ipynb&#39;,
  &#39;__pycache__&#39;,
@@ -678,19 +676,17 @@ $ cd cs506
  &#39;22A-Networks-I-Intro.pdf&#39;,
  &#39;24-Networks-III-Clustering.ipynb&#39;,
  &#39;common.py&#39;,
- &#39;13-Learning-From-Data.ipynb&#39;,
  &#39;16C-Classification-III-SVM-Demo.pdf&#39;,
  &#39;12-Anomaly-Detection-SVD-III.pdf&#39;,
  &#39;16B-Classification-III-Random-Projection.ipynb&#39;,
  &#39;20-Recommender-Systems.pdf&#39;,
  &#39;_build&#39;,
  &#39;_config.yml&#39;,
- &#39;.github&#39;,
  &#39;08B-Clustering-III.pdf&#39;,
  &#39;07-Clustering-II.pdf&#39;,
  &#39;25-Networks-MapReduce.pdf&#39;,
+ &#39;thoughts&#39;,
  &#39;ln_preamble.py&#39;,
- &#39;example.txt&#39;,
  &#39;19-Regression-III-More-Linear.pdf&#39;,
  &#39;22B-Networks-I-Intro-Demo.ipynb&#39;,
  &#39;.ipynb_checkpoints&#39;,
@@ -701,6 +697,7 @@ $ cd cs506
  &#39;landing-page.md&#39;,
  &#39;21A-MapReduce.pdf&#39;,
  &#39;data&#39;,
+ &#39;.empty&#39;,
  &#39;07-Clustering-II.ipynb&#39;,
  &#39;12-Anomaly-Detection-SVD-III.ipynb&#39;,
  &#39;11-Dimensionality-Reduction-SVD-II.ipynb&#39;,
@@ -745,12 +742,32 @@ $ cd cs506
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="01-Intro-to-Python.html" title="previous page">Introduction to Python</a>
-    <a class='right-next' id="next-link" href="02B-Pandas.html" title="next page">Essential Tools: Pandas</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="01-Intro-to-Python.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to Python</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="02B-Pandas.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Essential Tools: Pandas</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

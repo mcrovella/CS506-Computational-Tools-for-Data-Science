@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Clustering I: \(k\)-means" href="06-Clustering-I.html" />
@@ -82,7 +81,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -254,7 +253,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-supervised-learning-problem">
@@ -289,6 +288,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#holding-out-data">
      Holding Out Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hold-out-strategies">
+     Hold Out Strategies
     </a>
    </li>
   </ul>
@@ -866,6 +870,29 @@ the model’s <strong>generalization</strong> ability.</p>
 </div>
 <p>From this plot we can conclude that, for this dataset, a polynomial of degree <span class="math notranslate nohighlight">\(k = 3\)</span> shows the best generalization ability.</p>
 </div>
+<div class="section" id="hold-out-strategies">
+<h3>Hold Out Strategies<a class="headerlink" href="#hold-out-strategies" title="Permalink to this headline">¶</a></h3>
+<p>Deciding how much, and which, data to hold out depends on a number of factors.</p>
+<p>In general we’d like to give the training stage as much data as possible to work with.</p>
+<p>However, the more data we use for training, the less we have for testing – which can decrease the accuracy of the testing stage.</p>
+<p>Furthermore, any single partition of the data can introduce dependencies – any class that is overrepresented in the training data will be underrepresented in the test data.</p>
+<p>There are two ways to address these problems:</p>
+<ul class="simple">
+<li><p>Random subsampling</p></li>
+<li><p>Cross-validation</p></li>
+</ul>
+<p>In <strong>random subsampling</strong> one partitions the data randomly between train and test sets.  This is what the function <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> does.</p>
+<p>This ensures there is no dependence between the test and train sets.</p>
+<p>One needs to perform a reasonable number of random splits - usually five at least.</p>
+<p>In <strong>cross-validation</strong>, the data is partitioned once, and then each partition is used as the test data once.</p>
+<p>This ensures that all the data gets equal weight in the training and in the testing.</p>
+<p>We divide the data into <span class="math notranslate nohighlight">\(k\)</span> “folds”.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L13-k-fold.png"><img alt="Figure" src="_images/L13-k-fold.png" style="width: 50%;" /></a>
+</center>  <p>The value of <span class="math notranslate nohighlight">\(k\)</span> can vary up to the size of the dataset.</p>
+<p>The larger <span class="math notranslate nohighlight">\(k\)</span> we use, the more data is used for training, but the more folds must be evaluated, which increases the time required.</p>
+<p>In the extreme case where <span class="math notranslate nohighlight">\(k\)</span> is equal to the data size, then each data item is held out by itself; this is called “leave-one-out”.</p>
+</div>
 </div>
 <div class="section" id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
@@ -909,11 +936,23 @@ the model’s <strong>generalization</strong> ability.</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="06-Clustering-I.html" title="previous page">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="06-Clustering-I.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</p>
+            </div>
+        </a>
+    </div>
+
+</div>
         
         </div>
     </div>
