@@ -296,11 +296,13 @@
   <a class="reference internal nav-link" href="#when-to-stop-splitting">
    When to Stop Splitting
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advantages-of-decision-trees">
-   Advantages of Decision Trees
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpretability">
+     Interpretability
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -329,10 +331,6 @@
 <p>It is a <strong>very</strong> popular method, and has some nice properties as we will see.</p>
 <div class="section" id="decision-trees-in-action">
 <h2>Decision Trees in Action<a class="headerlink" href="#decision-trees-in-action" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This section and a number of following sections are based on slides by Tan, Steinbach, and Kumar (2004)</p>
-</div>
 <p>We will start by describing how a decision tree works.</p>
 <p>We are assuming a decision tree has been built to solve the following classification problem:</p>
 <center>
@@ -369,10 +367,11 @@
 <li><p>SLIQ, SPRINT</p></li>
 <li><p>etc</p></li>
 </ul>
+<p>We will look at Hunt’s Algorithm as our example.</p>
 </div>
 <div class="section" id="hunt-s-algorithm">
 <h2>Hunt’s Algorithm<a class="headerlink" href="#hunt-s-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>We build the tree node by node, starting from the root.</p>
+<p>Hunt’s Algorithm builds the tree node by node, starting from the root.</p>
 <p>As we build the tree, we divide the training data up.</p>
 <div style = "float: left; width: 55%;">
 <p>Let <span class="math notranslate nohighlight">\(D_t\)</span> be the set of training records that reach node <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -467,12 +466,13 @@
 </div>
 <div class="section" id="computing-gini">
 <h3>Computing GINI<a class="headerlink" href="#computing-gini" title="Permalink to this headline">¶</a></h3>
-<p>The GINI coefficient measures the degree of “balance” in a distribution.</p>
-<p>As nodes are split in building the tree, we will be decreasing the GINI score.</p>
+<p>We will think of the set of records at each node as defining a distribution over the classes.</p>
 <p>For a given node <span class="math notranslate nohighlight">\(t\)</span>, we will use <span class="math notranslate nohighlight">\(p(j\,|\,t)\)</span> to denote the frequency of class <span class="math notranslate nohighlight">\(j\)</span> at node <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>Then:</p>
+<p>The GINI coefficient measures the degree of “balance” in a distribution.</p>
+<p>It is defined as:</p>
 <div class="math notranslate nohighlight">
 \[ \text{GINI}(t) = 1 - \sum_j [p(j\,|\,t)]^2 \]</div>
+<p>As nodes are split in building the tree, we will be decreasing the GINI score.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L14-GINI-1.png"><img alt="Figure" src="_images/L14-GINI-1.png" style="width: 80%;" /></a>
 </center><p>Now, how do we compute the improvement in GINI when a node is split?</p>
@@ -534,8 +534,9 @@
 </ul>
 <p>More restrictive stopping conditions include:</p>
 <ul class="simple">
-<li><p>Stop if number of records is less than a specified value</p></li>
+<li><p>Stop if number of records in current node is less than a specified value</p></li>
 <li><p>Stop if expanding the current node does not improve homogeneity (eg, GINI score)</p></li>
+<li><p>Stop if splitting current node would create node smaller than a specified value</p></li>
 </ul>
 <p><strong>Post-pruning</strong></p>
 <p>Assumes that we can assess generalization error</p>
@@ -545,13 +546,16 @@
 <p>Then:</p>
 <ul class="simple">
 <li><p>Grow decision tree to its entirety</p></li>
-<li><p>Trim the nodes of the tree in bottom-up fashion</p></li>
-<li><p>If generalization error improves after trimming, replace sub-tree by a leaf node</p></li>
-<li></li>
+<li><p>Trim the nodes of the tree in bottom-up fashion</p>
+<ul>
+<li><p>Replace nodes with majority class</p></li>
 </ul>
-</div>
-<div class="section" id="advantages-of-decision-trees">
-<h2>Advantages of Decision Trees<a class="headerlink" href="#advantages-of-decision-trees" title="Permalink to this headline">¶</a></h2>
+</li>
+<li><p>If generalization error improves after trimming, replace sub-tree by a leaf node</p></li>
+</ul>
+<p>Note that this is computationally more demanding than early-stopping.</p>
+<div class="section" id="interpretability">
+<h3>Interpretability<a class="headerlink" href="#interpretability" title="Permalink to this headline">¶</a></h3>
 <p>Decision Trees are a very popular technique.</p>
 <p>They have a number of advantages:</p>
 <ul class="simple">
@@ -560,7 +564,8 @@
 <li><p>Their accuracy can be quite good in many cases</p></li>
 <li><p>And oftentimes they are <strong>interpretable</strong></p></li>
 </ul>
-<p><strong>Interpretability</strong> —</p>
+<p>We will explore interpretation of decision trees in a following lecture.</p>
+</div>
 </div>
 </div>
 
