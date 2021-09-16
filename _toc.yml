@@ -1,7 +1,7 @@
 root: landing-page
 format: jb-book
 parts:
-- caption: Introductory Material
+- caption: Preliminaries
   chapters:
   - file: 01-Intro-to-Python
   - file: 02A-Git-Jupyter
