@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,16 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Clustering I: \(k\)-means" href="06-Clustering-I.html" />
@@ -83,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -94,7 +93,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Introductory Material
+  Preliminaries
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -265,11 +264,16 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#feature-space-representation">
    Feature space representation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#similarity">
+   Similarity
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -376,12 +380,36 @@
 </ul>
 <p>If all <span class="math notranslate nohighlight">\(d\)</span> dimensions are real-valued then we can visualize each data object as a point in a <span class="math notranslate nohighlight">\(d\)</span>-dimensional vector space.</p>
 <ul class="simple">
-<li><p>(25, USD 200,000) <span class="math notranslate nohighlight">\(\rightarrow \begin{bmatrix}25\\200000\end{bmatrix}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(25,</span> <span class="pre">USD</span> <span class="pre">200000)</span></code> <span class="math notranslate nohighlight">\(\rightarrow \begin{bmatrix}25\\200000\end{bmatrix}\)</span>.</p></li>
 </ul>
 <p>Likewise If all features are binary then we can think of each data object as a binary vector in vector space.</p>
 <p>The space is called <strong>feature space.</strong></p>
+<p>Vector spaces are such a useful tool that we often use them even for non-numeric data.</p>
+<p>For example, consider a categorical variable that can be only one of “house”, “tree”, “moon”.</p>
+<p>For such a variable, we can use a <strong>one-hot</strong> encoding.</p>
+<p>We would encode as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">house</span></code>: <span class="math notranslate nohighlight">\([1, 0, 0]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tree</span></code>:  <span class="math notranslate nohighlight">\([0, 1, 0]\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moon</span></code>:  <span class="math notranslate nohighlight">\([0, 0, 1]\)</span></p></li>
+</ul>
+<p>So an encoding of <code class="docutils literal notranslate"><span class="pre">(25,</span> <span class="pre">USD</span> <span class="pre">200000,</span> <span class="pre">'house')</span></code></p>
+<p>could be:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}25\\200000\\1\\0\\0\end{bmatrix}.\end{split}\]</div>
+<p>We will see many other encodings that take non-numeric data and encode into vectors or matrices.</p>
+<p>For example, there are vector or matrix encodings for:</p>
+<ul class="simple">
+<li><p>Graphs</p></li>
+<li><p>Images</p></li>
+<li><p>Text</p></li>
+</ul>
+<p>etc.</p>
+</div>
+<div class="section" id="similarity">
+<h2>Similarity<a class="headerlink" href="#similarity" title="Permalink to this headline">¶</a></h2>
 <p>We then are naturally interested in how <strong>similar</strong> or <strong>dissimilar</strong> two objects are.</p>
-<p>A dissimilarity function takes two objects as input, and returns a large value when then two objects are not very similar.</p>
+<p>A dissimilarity function takes two objects as input, and returns a large value when the two objects are not very similar.</p>
 <p>Often we put restrictions on the dissimilarity function.</p>
 <p>One of the most common is that it be a <strong>metric.</strong></p>
 <p>The dissimilarity <span class="math notranslate nohighlight">\(d(x, y)\)</span> between two objects <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is a
@@ -446,19 +474,31 @@ based on applications and data semantics.</p>
 </div>
 <div class="section" id="useful-norms">
 <h2>Useful Norms<a class="headerlink" href="#useful-norms" title="Permalink to this headline">¶</a></h2>
-<p><strong><span class="math notranslate nohighlight">\(\ell_p\)</span></strong> Norm, where <span class="math notranslate nohighlight">\(p \geq 1.\)</span></p>
-<p>Defines the <em>Minkowski distance.</em></p>
+<p>A general class of norms are called <strong><span class="math notranslate nohighlight">\(\ell_p\)</span></strong> norms, where <span class="math notranslate nohighlight">\(p \geq 1.\)</span></p>
 <div class="math notranslate nohighlight">
-\[ L_p(\mathbf{x}, \mathbf{y}) = \left(\sum_{i=1}^d |x_i - y_i|^p\right)^{\frac{1}{p}} \]</div>
-<p>A special case of this isthe <span class="math notranslate nohighlight">\(\ell_2\)</span> norm that we’ve already studied, which defines the <strong>Euclidean</strong> norm.</p>
-<p>It is equal to the euclidean distance between the vectors.</p>
+\[ \Vert \mathbf{x} \Vert_p = \left(\sum_{i=1}^d |x_i|^p\right)^{\frac{1}{p}} \]</div>
+<p>Notice that we use this notation for the <span class="math notranslate nohighlight">\(p\)</span>-norm of a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[ L_2(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^d (x_i - y_i)^2}\]</div>
+\[ \Vert \mathbf{x} \Vert_p \]</div>
+<p>The corresponding distance that an <span class="math notranslate nohighlight">\(\ell_p\)</span> norm defines is called the <em>Minkowski distance.</em></p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{x} - \mathbf{y} \Vert_p = \left(\sum_{i=1}^d |x_i - y_i|^p\right)^{\frac{1}{p}} \]</div>
+<p>A special – but very important – case is the <span class="math notranslate nohighlight">\(\ell_2\)</span> norm.</p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{x} \Vert_2 = \sqrt{\sum_{i=1}^d |x_i|^2} \]</div>
+<p>We’ve already mentioned it: it is the <strong>Euclidean</strong> norm.</p>
+<p>The distance defined by the <span class="math notranslate nohighlight">\(\ell_2\)</span> norm is the same as the Euclidean distance between the vectors.</p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{x} - \mathbf{y} \Vert_2  = \sqrt{\sum_{i=1}^d (x_i - y_i)^2} \]</div>
 <p>Another important special case is the <span class="math notranslate nohighlight">\(\ell_1\)</span> norm.</p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{x} \Vert_1 = \sum_{i=1}^d |x_i| \]</div>
 <p>This defines the <strong>Manhattan</strong> distance, or (for binary vectors), the <strong>Hamming</strong> distance:</p>
 <div class="math notranslate nohighlight">
-\[ L_1(\mathbf{x}, \mathbf{y}) = \sum_{i=1} |x_i - y_i| \]</div>
-<p>If we take the limit of the <span class="math notranslate nohighlight">\(\ell_p\)</span> norm as <span class="math notranslate nohighlight">\(p\)</span> gets large (<span class="math notranslate nohighlight">\(\lim_{p\rightarrow \infty}L_p\)</span>) we get the <span class="math notranslate nohighlight">\(\ell_\infty\)</span> norm.</p>
+\[ \Vert \mathbf{x} - \mathbf{y} \Vert_1 = \sum_{i=1} |x_i - y_i| \]</div>
+<center>
+<a class="reference internal image-reference" href="_images/L05-manhattan-distance.png"><img alt="Figure" src="_images/L05-manhattan-distance.png" style="width: 350px;" /></a>
+</center><p>If we take the limit of the <span class="math notranslate nohighlight">\(\ell_p\)</span> norm as <span class="math notranslate nohighlight">\(p\)</span> gets large we get the <span class="math notranslate nohighlight">\(\ell_\infty\)</span> norm.</p>
 <p>The value of the <span class="math notranslate nohighlight">\(\ell_\infty\)</span> norm is simply the <strong>largest element</strong> in a vector.</p>
 <p>What is the metric that this norm induces?</p>
 <p>Another related idea is the <span class="math notranslate nohighlight">\(\ell_0\)</span> “norm,” which is not a norm, but is in a sense what we get from the <span class="math notranslate nohighlight">\(p\)</span>-norm for <span class="math notranslate nohighlight">\(p = 0\)</span>.</p>
@@ -477,12 +517,14 @@ based on applications and data semantics.</p>
 <div class="math notranslate nohighlight">
 \[ \cos(\mathbf{x}, \mathbf{y}) = \frac{\mathbf{x}^T\mathbf{y}}{\Vert\mathbf{x}\Vert \Vert\mathbf{y}\Vert} \]</div>
 <p>Note that this value is <strong>large</strong> when <span class="math notranslate nohighlight">\(\mathbf{x} \approx \mathbf{y}.\)</span>  So it is a <strong>similarity</strong> function.</p>
-<p>We often find that we have a similarity function and need to convert it to a dissimilarity function.   Two straightforward ways of doing that are:</p>
+<p>We often find that we have a similarity function <span class="math notranslate nohighlight">\(s\)</span> and need to convert it to a dissimilarity function <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>Two straightforward ways of doing that are:</p>
 <div class="math notranslate nohighlight">
-\[d(x,y) = 1/s(x,y)\]</div>
+\[d(x,y) = 1\,/\,s(x,y)\]</div>
+<p>or</p>
 <div class="math notranslate nohighlight">
 \[d(x,y) = k - s(x,y)\]</div>
-<p>For some properly chosen <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>…for some properly chosen <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p>For cosine similarity, one often uses:</p>
 <div class="math notranslate nohighlight">
 \[ d(\mathbf{x}, \mathbf{y}) = 1 - \cos(\mathbf{x}, \mathbf{y})\]</div>
@@ -568,8 +610,13 @@ based on applications and data semantics.</p>
 </ol>
 <center>
 <a class="reference internal image-reference" href="_images/L5-ts-euclidean.png"><img alt="Figure" src="_images/L5-ts-euclidean.png" style="width: 500px;" /></a>
-</center><p>It is clear that ts1 and ts2 are “more similar.”</p>
-<p>However, according to Euclidean distance: d(ts1, ts2) = 26.9, while d(ts1, ts3) = 23.2.</p>
+</center><p>We may believe that <span class="math notranslate nohighlight">\(\mathbf{ts1}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{ts2}\)</span> are the most “similar” pair of timeseries.</p>
+<p>However, according to Euclidean distance:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{ts1} - \mathbf{ts2} \Vert_2 = 26.9,\]</div>
+<p>while</p>
+<div class="math notranslate nohighlight">
+\[ \Vert \mathbf{ts1} - \mathbf{ts3} \Vert_2 = 23.2.\]</div>
 <p>Not good!</p>
 </div>
 <div class="section" id="feature-engineering">
@@ -577,7 +624,7 @@ based on applications and data semantics.</p>
 <p>In general, there may be different aspects of a timeseries that are important in different settings.</p>
 <p>The first step therefore is to ask yourself “what is important about timeseries in my application?”</p>
 <p>This is an example of <strong>feature engineering.</strong></p>
-<p>Namely, the art of computing some derived measure from your data object that makes its important properties usable in a subsequent step.</p>
+<p>In other words, feature engineering is the art of computing some derived measure from your data object that makes its important properties usable in a subsequent step.</p>
 <p>A reasonable approach may then to be:</p>
 <ul class="simple">
 <li><p>extract the relevant features</p></li>
@@ -643,7 +690,7 @@ based on applications and data semantics.</p>
                   <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="c1"># match</span>
 </pre></div>
 </div>
-<p>Unfortunately, the algorithm is still quadratic in <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\((O(nm))\)</span>.</p>
+<p>Unfortunately, the algorithm is still quadratic in <span class="math notranslate nohighlight">\(n\)</span> – it is <span class="math notranslate nohighlight">\(O(nm)\)</span>.</p>
 <p>Hence, we may choose to put a restriction on the amount that the path can deviate from the diagonal.</p>
 <p>This is implemented by not allowing the path to pass through locations where <span class="math notranslate nohighlight">\(|i - j| &gt; w\)</span>.</p>
 <p>Then the algorithm is <span class="math notranslate nohighlight">\(O(nw)\)</span>.</p>
@@ -698,12 +745,32 @@ based on applications and data semantics.</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="03-Probability-and-Statistics-Refresher.html" title="previous page">Probability and Statistics Refresher</a>
-    <a class='right-next' id="next-link" href="06-Clustering-I.html" title="next page">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="03-Probability-and-Statistics-Refresher.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Probability and Statistics Refresher</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="06-Clustering-I.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
