@@ -11,9 +11,9 @@ parts:
 - caption: Clustering
   chapters:
   - file: 05-Distances-Timeseries
-  - file: 06-Clustering-I
-  - file: 07-Clustering-II
-  - file: 08-Clustering-III
+  - file: 06-Clustering-I-kmeans
+  - file: 07-Clustering-II-in-practice
+  - file: 08-Clustering-III-hierarchical
 - caption: Classification
   chapters:
   - file: 13-Learning-From-Data
