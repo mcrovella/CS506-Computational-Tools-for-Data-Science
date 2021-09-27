@@ -1,0 +1,1120 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clustering III: Hierarchical Clustering &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clustering with Mixtures of Gaussians" href="09-Clustering-IV-GMM-EM.html" />
+    <link rel="prev" title="Clustering II: In Practice" href="07-Clustering-II-in-practice.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Clustering-II-in-practice.html">
+   Clustering II: In Practice
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Clustering III: Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Clustering with Mixtures of Gaussians
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Introduction to Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-Clustering-III-hierarchical.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/08-Clustering-III-hierarchical.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-many-clusters">
+   How Many Clusters?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hierarchical-clustering">
+   Hierarchical Clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#strengths-of-hierarchical-clustering">
+     Strengths of Hierarchical Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compared-to-k-means">
+     Compared to
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -means
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hierarchical-clustering-algorithms">
+   Hierarchical Clustering Algorithms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-cluster-proximity">
+     Defining Cluster Proximity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-linkage-clustering">
+     Single-Linkage Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complete-linkage-clustering">
+     Complete-Linkage Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-linkage-clustering">
+     Average-Linkage Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#all-three-compared">
+     All Three Compared
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ward-s-distance">
+   Ward’s Distance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hierarchical-clustering-in-practice">
+   Hierarchical Clustering In Practice
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hierarchical-clustering-real-data">
+   Hierarchical Clustering Real Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-the-number-of-clusters">
+     Selecting the Number of Clusters
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">sk_data</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="c1">#import matplotlib as mpl</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="clustering-iii-hierarchical-clustering">
+<h1>Clustering III: Hierarchical Clustering<a class="headerlink" href="#clustering-iii-hierarchical-clustering" title="Permalink to this headline">¶</a></h1>
+<p>Today we will look at a fairly different approach to clustering.</p>
+<p>So far, we have been thinking of clustering as finding a <strong>partition</strong> of our dataset.</p>
+<p>That is, a set of nonoverlapping clusters, in which each data item is in one cluster.</p>
+<p>However, in many cases, the notion of a strict partition is not as useful.</p>
+<div class="section" id="how-many-clusters">
+<h2>How Many Clusters?<a class="headerlink" href="#how-many-clusters" title="Permalink to this headline">¶</a></h2>
+<p>How many clusters would you say there are here?</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand</span><span class="p">,</span> <span class="n">y_rand</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                          <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.15</span><span class="p">,</span> <span class="mf">.15</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df_rand</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_rand</span><span class="p">]),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">])</span>
+<span class="n">df_rand</span> <span class="o">=</span> <span class="n">df_rand</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">})</span>
+<span class="n">df_rand</span><span class="p">[</span><span class="s1">&#39;label2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">3</span><span class="p">}[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_rand</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]]</span>
+<span class="n">df_rand</span><span class="p">[</span><span class="s1">&#39;label3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">2</span><span class="p">}[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_rand</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]]</span>
+<span class="c1"># kmeans = KMeans(init = &#39;k-means++&#39;, n_clusters = 3, n_init = 100)</span>
+<span class="c1"># df_rand[&#39;label&#39;] = kmeans.fit_predict(df_rand[[&#39;X&#39;, &#39;Y&#39;]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                   <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_6_0.png" src="_images/08-Clustering-III-hierarchical_6_0.png" />
+</div>
+</div>
+<p><strong>Three clusters?</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label3&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                   <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_8_0.png" src="_images/08-Clustering-III-hierarchical_8_0.png" />
+</div>
+</div>
+<p><strong>Four clusters?</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label2&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                   <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_10_0.png" src="_images/08-Clustering-III-hierarchical_10_0.png" />
+</div>
+</div>
+<p><strong>Six clusters?</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                   <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_12_0.png" src="_images/08-Clustering-III-hierarchical_12_0.png" />
+</div>
+</div>
+<p>This dataset shows clustering on <strong>multiple scales.</strong></p>
+<p>To fully capture the structure in this dataset, two things are needed:</p>
+<ol class="simple">
+<li><p>Capturing the differing clusters depending on the scale</p></li>
+<li><p>Capturing the containment relations – which clusters lie within other clusters</p></li>
+</ol>
+<p>These observations motivate the notion of <strong>hierarchical</strong> clustering.</p>
+<p>In hierarchical clustering, we move away from the <strong>partition</strong> notion of <span class="math notranslate nohighlight">\(k\)</span>-means,</p>
+<p>and instead capture a more complex arrangement that includes containment of one cluster within another.</p>
+</div>
+<div class="section" id="hierarchical-clustering">
+<h2>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline">¶</a></h2>
+<p>A hierarchical clustering produces a set of <strong>nested</strong> clusters organized into a tree.</p>
+<p>A hierarchical clustering is visualized using a <strong>dendrogram</strong></p>
+<ul class="simple">
+<li><p>A tree-like diagram that records the containment relations among clusters.</p></li>
+</ul>
+<center>
+<a class="reference internal image-reference" href="_images/L08-dendrogram.png"><img alt="_images/L08-dendrogram.png" src="_images/L08-dendrogram.png" style="width: 600px;" /></a>
+</center><div class="section" id="strengths-of-hierarchical-clustering">
+<h3>Strengths of Hierarchical Clustering<a class="headerlink" href="#strengths-of-hierarchical-clustering" title="Permalink to this headline">¶</a></h3>
+<p>Hierarchical clustering has a number of advantages:</p>
+<p>First, a hierarchical clustering encodes many <strong>different</strong> clusterings.  That is, it does not itself decide on the correct number of clusters.</p>
+<p>A clustering is obtained by “cutting” the dendrogram at some level.</p>
+<p>This means that you can make this crucial decision yourself, by inspecting the dendrogram.</p>
+<p>Put another way, you can obtain any desired number of clusters.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L08-dendrogram-cut.png"><img alt="_images/L08-dendrogram-cut.png" src="_images/L08-dendrogram-cut.png" style="width: 600px;" /></a>
+</center><p>The second advantage is that the dendrogram may itself correspond to a meaningful structure, for example, a taxonomy.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L08-animal-taxonomy.jpg"><img alt="_images/L08-animal-taxonomy.jpg" src="_images/L08-animal-taxonomy.jpg" style="width: 600px;" /></a>
+</center><p>The third advantage is that many hierarchical clustering methods can be performed using either similarity (proximity) or dissimilarity (distance) metrics.</p>
+<p>This can be very helpful!</p>
+<p>(Note that techniques like <span class="math notranslate nohighlight">\(k\)</span>-means cannot be used with unmodified similarity metrics.)</p>
+</div>
+<div class="section" id="compared-to-k-means">
+<h3>Compared to <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#compared-to-k-means" title="Permalink to this headline">¶</a></h3>
+<p>Another aspect of hierachical clustering is that it can handle certain cases better than <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
+<p>Because of the nature of the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm, <span class="math notranslate nohighlight">\(k\)</span>-means tends to produce:</p>
+<ul class="simple">
+<li><p>Roughly spherical clusters</p></li>
+<li><p>Clusters of approximately equal size</p></li>
+<li><p>Non-overlapping clusters</p></li>
+</ul>
+<p>In many real-world situations, clusters may not be round, they may be of unequal size, and they may overlap.</p>
+<p>Hence we would like clustering algorithms that can work in those cases also.</p>
+</div>
+</div>
+<div class="section" id="hierarchical-clustering-algorithms">
+<h2>Hierarchical Clustering Algorithms<a class="headerlink" href="#hierarchical-clustering-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>There are two main approaches to hierarchical clustering: “bottom-up” and “top-down.”</p>
+<p><strong>Agglomerative</strong> Clustering (“bottom-up”):</p>
+<ul class="simple">
+<li><p>Start by defining each point as its own cluster</p></li>
+<li><p>At each successive step, merge the two clusters that are closest to each other</p></li>
+<li><p>Repeat until only one cluster is left.</p></li>
+</ul>
+<p><strong>Divisive</strong> Clustering (“top-down”):</p>
+<ul class="simple">
+<li><p>Start with one, all-inclusive cluster</p></li>
+<li><p>At each step, find the cluster split that creates the largest distance between resulting clusters</p></li>
+<li><p>Repeat until each point is in its own cluster.</p></li>
+</ul>
+<p>Agglomerative techniques are by far the more common.</p>
+<p>The key to both of these methods is defining <strong>the distance between two clusters.</strong></p>
+<p>Different definitions for the inter-cluster distance yield different clusterings.</p>
+<p>To illustrate the impact of the choice of cluster distances, we’ll focus on agglomerative clustering.</p>
+<div class="section" id="defining-cluster-proximity">
+<h3>Defining Cluster Proximity<a class="headerlink" href="#defining-cluster-proximity" title="Permalink to this headline">¶</a></h3>
+<p>Given two clusters, how do we define the <em>distance</em> between them?</p>
+<p>Here are three natural ways to do it:</p>
+<ul class="simple">
+<li><p><strong>Single-Linkage:</strong> the distance between two clusters is the distance between the closest two points that are in different clusters.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ D_\text{single}(i,j) = \min_{x, y}\{d(x, y) \,|\, x \in C_i, y \in C_j\}\]</div>
+<ul class="simple">
+<li><p><strong>Complete-Linkage:</strong> the distance between two clusters is the distance between the farthest two points that are in different clusters.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ D_\text{complete}(i,j) = \max_{x, y}\{d(x, y) \,|\, x \in C_i, y \in C_j\}\]</div>
+<ul class="simple">
+<li><p><strong>Average-Linkage:</strong> the distance between two clusters is the average distance between all pairs of points from different clusters.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ D_\text{average}(i,j) = \frac{1}{|C_i|\cdot|C_j|}\sum_{x \in C_i,\, y \in C_j}d(x, y)\]</div>
+<center>
+<a class="reference internal image-reference" href="_images/L08-hierarchical-criteria.png"><img alt="_images/L08-hierarchical-criteria.png" src="_images/L08-hierarchical-criteria.png" style="width: 600px;" /></a>
+</center><div style = "float: left; width: 41%; text-align: center;">
+    Single-Linkage
+</div>
+<div style = "float: left; width: 18%; text-align: center;">
+    Complete-Linkage
+</div>
+<div style = "float: left; width: 41%; text-align: center;">
+    Average-Linkage
+</div><p>Notice that it is easy to express the definitions above in terms of similarity instead of distance.</p>
+<p>Here is a set of 6 points that we will cluster to show differences between distance metrics.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pt_x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">]</span>
+<span class="n">pt_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pt_x</span><span class="p">,</span> <span class="n">pt_y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">.15</span><span class="p">,</span> <span class="mf">.60</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">pt_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">pt_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;figs/L08-basic-pointset.png&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_44_0.png" src="_images/08-Clustering-III-hierarchical_44_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pt_x</span><span class="p">,</span> <span class="n">pt_y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance_matrix</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;p0&#39;</span><span class="p">,</span> <span class="s1">&#39;p1&#39;</span><span class="p">,</span> <span class="s1">&#39;p2&#39;</span><span class="p">,</span> <span class="s1">&#39;p3&#39;</span><span class="p">,</span> <span class="s1">&#39;p4&#39;</span><span class="p">,</span> <span class="s1">&#39;p5&#39;</span><span class="p">]</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> <span class="n">index</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">D</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_6bde7_">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th class="col_heading level0 col0" >p0</th>
+      <th class="col_heading level0 col1" >p1</th>
+      <th class="col_heading level0 col2" >p2</th>
+      <th class="col_heading level0 col3" >p3</th>
+      <th class="col_heading level0 col4" >p4</th>
+      <th class="col_heading level0 col5" >p5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_6bde7_level0_row0" class="row_heading level0 row0" >p0</th>
+      <td id="T_6bde7_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_6bde7_row0_col1" class="data row0 col1" >0.23</td>
+      <td id="T_6bde7_row0_col2" class="data row0 col2" >0.22</td>
+      <td id="T_6bde7_row0_col3" class="data row0 col3" >0.37</td>
+      <td id="T_6bde7_row0_col4" class="data row0 col4" >0.34</td>
+      <td id="T_6bde7_row0_col5" class="data row0 col5" >0.24</td>
+    </tr>
+    <tr>
+      <th id="T_6bde7_level0_row1" class="row_heading level0 row1" >p1</th>
+      <td id="T_6bde7_row1_col0" class="data row1 col0" >0.23</td>
+      <td id="T_6bde7_row1_col1" class="data row1 col1" >0.00</td>
+      <td id="T_6bde7_row1_col2" class="data row1 col2" >0.14</td>
+      <td id="T_6bde7_row1_col3" class="data row1 col3" >0.19</td>
+      <td id="T_6bde7_row1_col4" class="data row1 col4" >0.14</td>
+      <td id="T_6bde7_row1_col5" class="data row1 col5" >0.24</td>
+    </tr>
+    <tr>
+      <th id="T_6bde7_level0_row2" class="row_heading level0 row2" >p2</th>
+      <td id="T_6bde7_row2_col0" class="data row2 col0" >0.22</td>
+      <td id="T_6bde7_row2_col1" class="data row2 col1" >0.14</td>
+      <td id="T_6bde7_row2_col2" class="data row2 col2" >0.00</td>
+      <td id="T_6bde7_row2_col3" class="data row2 col3" >0.16</td>
+      <td id="T_6bde7_row2_col4" class="data row2 col4" >0.28</td>
+      <td id="T_6bde7_row2_col5" class="data row2 col5" >0.10</td>
+    </tr>
+    <tr>
+      <th id="T_6bde7_level0_row3" class="row_heading level0 row3" >p3</th>
+      <td id="T_6bde7_row3_col0" class="data row3 col0" >0.37</td>
+      <td id="T_6bde7_row3_col1" class="data row3 col1" >0.19</td>
+      <td id="T_6bde7_row3_col2" class="data row3 col2" >0.16</td>
+      <td id="T_6bde7_row3_col3" class="data row3 col3" >0.00</td>
+      <td id="T_6bde7_row3_col4" class="data row3 col4" >0.28</td>
+      <td id="T_6bde7_row3_col5" class="data row3 col5" >0.22</td>
+    </tr>
+    <tr>
+      <th id="T_6bde7_level0_row4" class="row_heading level0 row4" >p4</th>
+      <td id="T_6bde7_row4_col0" class="data row4 col0" >0.34</td>
+      <td id="T_6bde7_row4_col1" class="data row4 col1" >0.14</td>
+      <td id="T_6bde7_row4_col2" class="data row4 col2" >0.28</td>
+      <td id="T_6bde7_row4_col3" class="data row4 col3" >0.28</td>
+      <td id="T_6bde7_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_6bde7_row4_col5" class="data row4 col5" >0.39</td>
+    </tr>
+    <tr>
+      <th id="T_6bde7_level0_row5" class="row_heading level0 row5" >p5</th>
+      <td id="T_6bde7_row5_col0" class="data row5 col0" >0.24</td>
+      <td id="T_6bde7_row5_col1" class="data row5 col1" >0.24</td>
+      <td id="T_6bde7_row5_col2" class="data row5 col2" >0.10</td>
+      <td id="T_6bde7_row5_col3" class="data row5 col3" >0.22</td>
+      <td id="T_6bde7_row5_col4" class="data row5 col4" >0.39</td>
+      <td id="T_6bde7_row5_col5" class="data row5 col5" >0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="single-linkage-clustering">
+<h3>Single-Linkage Clustering<a class="headerlink" href="#single-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/L08-singlelink-pointset.png"><img alt="_images/L08-singlelink-pointset.png" src="_images/L08-singlelink-pointset.png" style="width: 100%;" /></a>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.cluster</span>
+<span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">hierarchy</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_48_0.png" src="_images/08-Clustering-III-hierarchical_48_0.png" />
+</div>
+</div>
+<p><strong>Advantages</strong>:</p>
+<ul class="simple">
+<li><p>Single-linkage clustering can handle non-elliptical shapes.</p></li>
+</ul>
+<p>In fact it can produce long, elongated clusters:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">y_moon_05</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_moon_05</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Single-Linkage Can Find Irregularly Shaped Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_50_0.png" src="_images/08-Clustering-III-hierarchical_50_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand_lo</span><span class="p">,</span> <span class="n">y_rand_lo</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                          <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_lo</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_rand_lo</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_rand_lo</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Single-Linkage Can Find Different-Sized Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_51_0.png" src="_images/08-Clustering-III-hierarchical_51_0.png" />
+</div>
+</div>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>Single-linkage clustering can be sensitive to noise and outliers.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">y_moon_10</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Single-Linkage Clustering Changes Drastically on Slightly More Noisy Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_53_0.png" src="_images/08-Clustering-III-hierarchical_53_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">y_rand_hi</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                          <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.15</span><span class="p">,</span> <span class="mf">.6</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Single-Linkage Clustering Changes Drastically on Slightly More Noisy Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_54_0.png" src="_images/08-Clustering-III-hierarchical_54_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="complete-linkage-clustering">
+<h3>Complete-Linkage Clustering<a class="headerlink" href="#complete-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/L08-completelink-pointset.png"><img alt="_images/L08-completelink-pointset.png" src="_images/L08-completelink-pointset.png" style="width: 100%;" /></a>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+<span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_57_0.png" src="_images/08-Clustering-III-hierarchical_57_0.png" />
+</div>
+</div>
+<p><strong>Advantages</strong>:</p>
+<ul class="simple">
+<li><p>Produces more-balanced clusters – more-equal diameters</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">y_moon_05</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_moon_05</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Complete-Linkage Seeks Globular Clusters of Similar Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_59_0.png" src="_images/08-Clustering-III-hierarchical_59_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Complete-Linkage Seeks Globular Clusters of Similar Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_60_0.png" src="_images/08-Clustering-III-hierarchical_60_0.png" />
+</div>
+</div>
+<p>Less susceptible to noise:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Complete-Linkage Clustering of Noisy Data similar to Less Noisy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_62_0.png" src="_images/08-Clustering-III-hierarchical_62_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="average-linkage-clustering">
+<h3>Average-Linkage Clustering<a class="headerlink" href="#average-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/L08-averagelink-pointset.png"><img alt="_images/L08-averagelink-pointset.png" src="_images/L08-averagelink-pointset.png" style="width: 100%;" /></a>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_65_0.png" src="_images/08-Clustering-III-hierarchical_65_0.png" />
+</div>
+</div>
+<p>Average-Linkage clustering is in some sense a compromise between Single-linkage and Complete-linkage clustering.</p>
+<p><strong>Strengths:</strong></p>
+<ul class="simple">
+<li><p>Less susceptible to noise and outliers</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p>Biased toward elliptical clusters</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_moon_10</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average-Linkage Similar to Complete - Globular Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_67_0.png" src="_images/08-Clustering-III-hierarchical_67_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_rand_hi</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Average-Linkage More resistant to noise than Single-Linkage&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_68_0.png" src="_images/08-Clustering-III-hierarchical_68_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="all-three-compared">
+<h3>All Three Compared<a class="headerlink" href="#all-three-compared" title="Permalink to this headline">¶</a></h3>
+<div style = "float: left; width: 33.33%; text-align: center;">
+    <img src="figs/L08-singlelink-pointset.png" style="width:100%">
+    Single-Linkage
+</div>
+<div style = "float: left; width: 33.33%; text-align: center;">
+    <img src="figs/L08-completelink-pointset.png"  style="width:100%">
+    Complete-Linkage
+</div>
+<div style = "float: left; width: 33.33%; text-align: center;">
+    <img src="figs/L08-averagelink-pointset.png" style="width:100%">
+    Average-Linkage
+</div></div>
+</div>
+<div class="section" id="ward-s-distance">
+<h2>Ward’s Distance<a class="headerlink" href="#ward-s-distance" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we consider one more cluster distance.</p>
+<p>Ward’s distance asks “what if”.</p>
+<p>That is, “What if we combined these two clusters – how would clustering improve?”</p>
+<p>To define “how would clustering improve?” we appeal to the <span class="math notranslate nohighlight">\(k\)</span>-means criterion.</p>
+<p>So:</p>
+<p><strong>Ward’s Distance</strong> between clusters <span class="math notranslate nohighlight">\(C_i\)</span> and <span class="math notranslate nohighlight">\(C_j\)</span> is the difference between the total within cluster sum of squares for the two clusters separately, <strong>compared to</strong> the within cluster sum of squares resulting from merging the two clusters into a new cluster <span class="math notranslate nohighlight">\(C_{i+j}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[D_\text{Ward} = \sum_{x \in C_i} (x - r_i)^2 + \sum_{x \in C_j} (x - r_j)^2  - \sum_{x \in C_{i+j}} (x - r_{i+j})^2 \]</div>
+<p>where <span class="math notranslate nohighlight">\(r_i, r_j, r_{i+j}\)</span> are the corresponding cluster centroids.</p>
+<p>In a sense, this cluster distance results in a hierarchical analog of <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
+<p>As a result, it behaves similarly to <span class="math notranslate nohighlight">\(k\)</span>-means:</p>
+<ul class="simple">
+<li><p>Less susceptible to noise and outliers</p></li>
+<li><p>Biased toward elliptical clusters</p></li>
+</ul>
+<p>Hence it tends to behavior more like group-average hierarchical clustering.</p>
+</div>
+<div class="section" id="hierarchical-clustering-in-practice">
+<h2>Hierarchical Clustering In Practice<a class="headerlink" href="#hierarchical-clustering-in-practice" title="Permalink to this headline">¶</a></h2>
+<p>Now we’ll look at doing hierarchical clustering in practice, using python.</p>
+<p>We’ll use the same synthetic data as we did in the k-means case – ie.,
+three “blobs” living in 30 dimensions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                          <span class="n">center_box</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a reminder of the raw data here is the visualization: first the raw data, then an embedding into 2-D (using MDS).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_82_0.png" src="_images/08-Clustering-III-hierarchical_82_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.manifold</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">mds</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">manifold</span><span class="o">.</span><span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="n">dissimilarity</span> <span class="o">=</span> <span class="s2">&quot;precomputed&quot;</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">embedding_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_83_0.png" src="_images/08-Clustering-III-hierarchical_83_0.png" />
+</div>
+</div>
+<p>Hierarchical clustering is available in <strong>sklearn</strong>, but there is a much more fully developed set of tools in the <strong>scipy</strong> package and that is the one to use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.cluster</span>
+<span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">hierarchy</span>
+<span class="kn">import</span> <span class="nn">scipy.spatial.distance</span>
+<span class="c1"># linkages = [&#39;single&#39;,&#39;complete&#39;,&#39;average&#39;,&#39;weighted&#39;,&#39;ward&#39;]</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;single&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_86_0.png" src="_images/08-Clustering-III-hierarchical_86_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="hierarchical-clustering-real-data">
+<h2>Hierarchical Clustering Real Data<a class="headerlink" href="#hierarchical-clustering-real-data" title="Permalink to this headline">¶</a></h2>
+<p>Once again we’ll use the “20 Newsgroup” data provided as example data in sklearn.</p>
+<p>(<a class="reference external" href="http://scikit-learn.org/stable/datasets/twenty_newsgroups.html">http://scikit-learn.org/stable/datasets/twenty_newsgroups.html</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;comp.os.ms-windows.misc&#39;</span><span class="p">,</span> <span class="s1">&#39;sci.space&#39;</span><span class="p">,</span><span class="s1">&#39;rec.sport.baseball&#39;</span><span class="p">]</span>
+<span class="n">news_data</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="n">categories</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">min_df</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">max_df</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1781, 9409)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># metrics can be ‘braycurtis’, ‘canberra’, ‘chebyshev’, ‘cityblock’, ‘correlation’, ‘cosine’, </span>
+<span class="c1"># ‘dice’, ‘euclidean’, ‘hamming’, ‘jaccard’, ‘kulsinski’, ‘mahalanobis’, ‘matching’, </span>
+<span class="c1"># ‘minkowski’, ‘rogerstanimoto’, ‘russellrao’, ‘seuclidean’, ‘sokalmichener’, ‘sokalsneath’, </span>
+<span class="c1"># ‘sqeuclidean’, ‘yule’.</span>
+<span class="n">Z_20ng</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;ward&#39;</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">R_20ng</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z_20ng</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">truncate_mode</span> <span class="o">=</span> <span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="n">show_leaf_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_91_0.png" src="_images/08-Clustering-III-hierarchical_91_0.png" />
+</div>
+</div>
+<div class="section" id="selecting-the-number-of-clusters">
+<h3>Selecting the Number of Clusters<a class="headerlink" href="#selecting-the-number-of-clusters" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clusters</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z_20ng</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clusters</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">clusters</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1781,)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 3, 3, ..., 1, 3, 1], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_clusters</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z_20ng</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-Clustering-III-hierarchical_94_0.png" src="_images/08-Clustering-III-hierarchical_94_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="07-Clustering-II-in-practice.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Clustering II: In Practice</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="09-Clustering-IV-GMM-EM.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Clustering with Mixtures of Gaussians</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

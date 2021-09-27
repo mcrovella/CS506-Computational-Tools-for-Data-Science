@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clustering II: In Practice &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clustering III: Hierarchical Clustering" href="08-Clustering-III-hierarchical.html" />
+    <link rel="prev" title="Clustering I: \(k\)-means" href="06-Clustering-I-kmeans.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   Clustering I:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Clustering II: In Practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
+   Clustering III: Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Clustering with Mixtures of Gaussians
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Introduction to Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/07-Clustering-II-in-practice.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/07-Clustering-II-in-practice.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-wheels-synthetic-data">
+   Training wheels: Synthetic data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-with-multidimensional-scaling">
+     Visualizing with Multidimensional Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-k-means">
+   Applying
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Means
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-results-of-clustering">
+     Visualizing the Results of Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-evaluation">
+   Cluster Evaluation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rand-index">
+     Rand Index
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deciding-on-the-number-of-clusters">
+   Deciding on the Number of Clusters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inspecting-clustering-error">
+     Inspecting Clustering Error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#silhouette-coefficient">
+     Silhouette Coefficient
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taking-the-training-wheels-off-real-data">
+   Taking the Training Wheels Off: Real Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-extraction">
+     Feature Extraction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-to-know-the-data">
+     Getting to know the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-the-number-of-clusters">
+     Selecting the Number of Clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#looking-into-the-clusters">
+     Looking into the clusters
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1">#import matplotlib as mpl</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="clustering-ii-in-practice">
+<h1>Clustering II: In Practice<a class="headerlink" href="#clustering-ii-in-practice" title="Permalink to this headline">¶</a></h1>
+<p>…featuring <span class="math notranslate nohighlight">\(k\)</span>-means</p>
+<p>Today we’ll do an extended example showing k-means clustering in practice and in the context of the python libraries
+<strong>scikit-learn.</strong></p>
+<p><strong>scikit-learn</strong> is the main python library for machine learning functions.</p>
+<p>Our goals are to learn:</p>
+<ul class="simple">
+<li><p>How clustering is used in practice</p></li>
+<li><p>Tools for evaluating the quality of a clustering</p></li>
+<li><p>Tools for assigning meaning or labels to a cluster</p></li>
+<li><p>Important visualizations</p></li>
+<li><p>A little bit about feature extraction for text</p></li>
+</ul>
+<div class="section" id="training-wheels-synthetic-data">
+<h2>Training wheels: Synthetic data<a class="headerlink" href="#training-wheels-synthetic-data" title="Permalink to this headline">¶</a></h2>
+<p>Generally, when learning about or developing a new unsupervised method, it’s a good idea to try it out on a dataset in which you already know the “right” answer.</p>
+<p>One way to do that is to generate synthetic data that has some known properties.</p>
+<p>Among other things, scikit-learn contains tools for generating synthetic data for testing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">sk_data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                          <span class="n">center_box</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a sense of the raw data we can inspect it.</p>
+<p>For statistical visualization, a good library is <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, imported as <code class="docutils literal notranslate"><span class="pre">sns</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_9_0.png" src="_images/07-Clustering-II-in-practice_9_0.png" />
+</div>
+</div>
+<p>That plot shows all the data.</p>
+<p>As usual, each row is a data item and the columns correspond to features (which are simply coordinates here).</p>
+<p>Geometrically, these points live in a <strong>30 dimensional</strong> space, so we cannot directly visualize their geometry.</p>
+<p>This is a <strong>big problem</strong> that you will run into time and again!</p>
+<p>We will discuss methods for visualizing high dimensional data later on.</p>
+<p>For now, we will use a method that can turn a set of pairwise distances into an approximate 2-D representation <strong>in some cases.</strong></p>
+<p>So let’s compute the pairwise distances for visualization purposes.</p>
+<p>We can compute all pairwise distances in a single step using a scikit-learn function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">euclidean_dists</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.        , 47.73797008, 45.18787978, ..., 47.87535624,
+        49.64694402, 45.58307694],
+       [47.73797008,  0.        , 43.66760596, ...,  7.3768511 ,
+         7.36794305, 43.51069074],
+       [45.18787978, 43.66760596,  0.        , ..., 42.55609472,
+        43.80829605,  9.31642449],
+       ...,
+       [47.87535624,  7.3768511 , 42.55609472, ...,  0.        ,
+         8.19377462, 41.81523421],
+       [49.64694402,  7.36794305, 43.80829605, ...,  8.19377462,
+         0.        , 43.41205895],
+       [45.58307694, 43.51069074,  9.31642449, ..., 41.81523421,
+        43.41205895,  0.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-with-multidimensional-scaling">
+<h3>Visualizing with Multidimensional Scaling<a class="headerlink" href="#visualizing-with-multidimensional-scaling" title="Permalink to this headline">¶</a></h3>
+<p>The idea behind Multidimensional Scaling (MDS) is:</p>
+<ul class="simple">
+<li><p>given a distance (or dissimilarity) matrix,</p></li>
+<li><p>find a set of coordinates for the points that approximates those distances as well as possible.</p></li>
+</ul>
+<p>Usually we are looking for points in 2D or maybe 3D for visualization purposes.</p>
+<p>The algorithm works using a gradient descent algorithm that starts with random positions and moves points in a way that reduces the disparity between true distance and euclidean distance.</p>
+<p>Note that there are many ways that this can fail!</p>
+<ul class="simple">
+<li><p>Perhaps the dissimilarities are not well modeled as euclidean distances</p></li>
+<li><p>It may be necessary to use more than 2 dimensions to capture any clustering via euclidean distances</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.manifold</span>
+<span class="n">mds</span> <span class="o">=</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">manifold</span><span class="o">.</span><span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">dissimilarity</span> <span class="o">=</span> <span class="s2">&quot;precomputed&quot;</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">embedding_</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_18_0.png" src="_images/07-Clustering-II-in-practice_18_0.png" />
+</div>
+</div>
+<p>So we can see that, although the data lives in 30 dimensions, we can get a sense of how the points are clustered by approximately placing the points into two dimensions.</p>
+<p>A second way to visualize the data is by using a heatmap on the set of pairwise distances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+            <span class="n">square</span><span class="o">=</span><span class="kc">True</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_21_0.png" src="_images/07-Clustering-II-in-practice_21_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="applying-k-means">
+<h2>Applying  <span class="math notranslate nohighlight">\(k\)</span>-Means<a class="headerlink" href="#applying-k-means" title="Permalink to this headline">¶</a></h2>
+<p>The Python package <strong><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></strong> has a huge set of tools for unsupervised learning generally, and clustering specifically.</p>
+<p>These are in <strong><code class="docutils literal notranslate"><span class="pre">sklearn.cluster.</span></code></strong></p>
+<p>There are 3 functions in all the clustering classes,</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit()</span></code></strong>,</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">predict()</span></code></strong>, and</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fit_predict()</span></code></strong>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">fit()</span></code> builds the model from the training data (e.g. for kmeans, it finds the
+centroids),</p>
+<p><code class="docutils literal notranslate"><span class="pre">predict()</span></code> assigns labels to the data after building
+the model, and</p>
+<p><code class="docutils literal notranslate"><span class="pre">fit_predict()</span></code> does both in a single step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 0, 0, 2, 1, 2, 2, 1, 2, 0, 1, 0, 1, 2, 0, 0, 1, 0, 2, 0, 2,
+       0, 1, 2, 2, 1, 0, 0, 0, 0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 2, 2, 1, 0,
+       1, 0, 1, 2, 1, 0, 0, 1, 1, 1, 1, 0, 1, 2, 2, 0, 1, 0, 2, 1, 1, 2,
+       0, 1, 1, 2, 2, 2, 1, 1, 0, 1, 2, 1, 2, 1, 2, 2, 2, 1, 0, 0, 2, 1,
+       1, 0, 1, 2, 2, 0, 1, 0, 0, 2, 2, 0], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>All the tools in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> are implemented as python objects.</p>
+<p>Thus, the general sequence for using a tool from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> is:</p>
+<ul class="simple">
+<li><p>Create the object, probably with some parameter settings or intialization,</p></li>
+<li><p>Run the method, generally by using the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> function, and</p></li>
+<li><p>Examine the results, which are generally property variables of the object.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The total error of the clustering is: </span><span class="si">{</span><span class="n">error</span><span class="si">:</span><span class="s1">0.1f</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cluster labels:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cluster centroids:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total error of the clustering is: 2733.8.
+
+Cluster labels:
+[1 2 0 0 2 1 2 2 1 2 0 1 0 1 2 0 0 1 0 2 0 2 0 1 2 2 1 0 0 0 0 1 0 1 0 2 0
+ 2 0 2 2 2 1 0 1 0 1 2 1 0 0 1 1 1 1 0 1 2 2 0 1 0 2 1 1 2 0 1 1 2 2 2 1 1
+ 0 1 2 1 2 1 2 2 2 1 0 0 2 1 1 0 1 2 2 0 1 0 0 2 2 0]
+
+Cluster centroids:
+[[-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
+   2.22988468  2.03394692  8.9797878   3.67857655 -2.67618716 -1.17595897
+   3.76433199 -8.46317271  3.28114395  3.73803392 -5.73436869 -7.0844462
+  -3.75643598 -3.07904369  1.36974653 -0.95918462  9.91135428 -8.17722281
+  -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]
+ [ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
+  -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
+   1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
+   5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
+  -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]
+ [-7.0489904  -7.92501873  2.89710462 -7.17088692 -6.01151677 -2.66405834
+   6.43970052 -8.20341647  6.54146052 -7.92978843  9.56983319 -0.86327902
+   9.25897119  1.73061823  4.84528928 -9.26418246 -4.54021612 -7.47784575
+  -4.15060719 -7.85665458 -3.76688414 -1.6692291  -8.78048843  3.78904162
+   1.24247168 -4.73618733  0.27327032 -7.93180624  1.59974866  8.78601576]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-the-results-of-clustering">
+<h3>Visualizing the Results of Clustering<a class="headerlink" href="#visualizing-the-results-of-clustering" title="Permalink to this headline">¶</a></h3>
+<p>Let’s visualize the results.  We’ll do that by reordering the data items according to their cluster.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">rX</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rX</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_31_0.png" src="_images/07-Clustering-II-in-practice_31_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rearranged_dists</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="p">[</span><span class="n">idx</span><span class="p">,:][:,</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rearranged_dists</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_32_0.png" src="_images/07-Clustering-II-in-practice_32_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cluster-evaluation">
+<h2>Cluster Evaluation<a class="headerlink" href="#cluster-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>How do we know whether the clusters we get represent “real” structure in our data?</p>
+<p>Consider this dataset, which we have clustered using <span class="math notranslate nohighlight">\(k\)</span>-means:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unif_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">unif_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">unif_X</span><span class="p">,</span> <span class="n">unif_Y</span><span class="p">]),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_36_0.png" src="_images/07-Clustering-II-in-practice_36_0.png" />
+</div>
+</div>
+<p>In fact, this dataset was generated using uniform random numbers for the coordinates.</p>
+<p>So … it truly has <strong>no</strong> clusters.</p>
+<p>The point is: any clustering algorithm will always output some “clustering” of the data.</p>
+<p>The question is, does the clustering reflect <strong>real</strong> structure?</p>
+<p>Generally we encounter two problems:</p>
+<ul class="simple">
+<li><p>Are there “real” clusters in the data?</p></li>
+<li><p>if so, <strong>how many</strong> clusters are there?</p></li>
+</ul>
+<p>There is often no definitive answer to either of these questions.</p>
+<p>You will often need to use your judgement in answering them.</p>
+<div class="section" id="rand-index">
+<h3>Rand Index<a class="headerlink" href="#rand-index" title="Permalink to this headline">¶</a></h3>
+<p>One tool we may be able to use in some settings is <strong>external</strong> information about the data.</p>
+<p>In particular, we may have knowledge from some other source about the nature of the clusters in the data.</p>
+<p>In that case, what we need is a way to compare a proposed clustering with some externally-known, “ground truth” clustering.</p>
+<p>The Rand Index is a <strong>similarity measure</strong> for <strong>clusterings.</strong>   We can use it to compare two clusterings.</p>
+<p>Or, if we are testing an algorithm on data for which we know ground truth, we can use it to assess the algorithm’s accuracy.</p>
+<p>Each item in our dataset is assumed to have two labelings, one for each clustering.</p>
+<p>For example, ground truth label assignment <span class="math notranslate nohighlight">\(T\)</span> and a clustering <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand</span><span class="p">,</span> <span class="n">y_rand</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                          <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.2</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df_rand_gt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_rand</span><span class="p">]),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">])</span>
+<span class="n">df_rand_clust</span> <span class="o">=</span> <span class="n">df_rand_gt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">df_rand_clust</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df_rand_gt</span><span class="p">[[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figs</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">df_rand_gt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Ground Truth (T)&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">df_rand_clust</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Clustering (C)&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_47_0.png" src="_images/07-Clustering-II-in-practice_47_0.png" />
+</div>
+</div>
+<p><strong>Definition of Rand Index</strong>.</p>
+<p>Intuitively, the idea behind Rand Index is to consider <strong>pairs</strong> of points, and ask whether pairs that fall into the same cluster in <span class="math notranslate nohighlight">\(T\)</span> also fall into the same cluster in <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p>Specifically:</p>
+<p>Let <span class="math notranslate nohighlight">\(a\)</span> be the number of pairs of elements that have the same label in <span class="math notranslate nohighlight">\(T\)</span> and the same label in <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(b\)</span> be: the number of pairs of elements that have different labels in <span class="math notranslate nohighlight">\(T\)</span> and different labels in <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p>Then the Rand Index is:
+$<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \choose 2} \)</span>$</p>
+<p>How do we know whether a particular Rand Index score is significant?</p>
+<p>We might compare it to the RI for a <strong>random</strong> assignment of points to labels.</p>
+<p>This leads to the <strong>Adjusted Rand Index.</strong></p>
+<p><strong>Definition of Adjusted Rand Index.</strong></p>
+<p>To “calibrate” the Rand Index this way, we use the expected Rand Index of random labelings, denoted <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span>.</p>
+<p>The Expected Rand Index considers <span class="math notranslate nohighlight">\(C\)</span> to be a clustering that has the same cluster sizes as <span class="math notranslate nohighlight">\(T\)</span>, but labels are assigned at random.</p>
+<p>Using that, we define the adjusted Rand index as a simple <strong>rescaling</strong> of RI:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7d0818dd-c3b4-4842-8fee-282ac1353b6d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-7d0818dd-c3b4-4842-8fee-282ac1353b6d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{ARI} = \frac{\text{RI} - E[\text{RI}]}{\max(\text{RI}) - E[\text{RI}]}
+\end{equation}\]</div>
+<p>The computation of the <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span> and the <span class="math notranslate nohighlight">\(\max(\text{RI})\)</span> are simple combinatorics (we’ll omit the derivation).</p>
+<p><strong>Example.</strong></p>
+<p>Let’s consider again our 3-cluster dataset with known labels <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rX</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_53_0.png" src="_images/07-Clustering-II-in-practice_53_0.png" />
+</div>
+</div>
+<p>Here is the adjusted Rand Index, when using <span class="math notranslate nohighlight">\(k\)</span>-means to cluster this dataset for 1 to 10 clusters:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ri_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">max_clusters</span><span class="p">,</span><span class="n">ground_truth</span><span class="p">):</span>
+    <span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ri</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">ri</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span><span class="n">ground_truth</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ri</span>
+    
+<span class="n">ri</span> <span class="o">=</span> <span class="n">ri_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ri</span><span class="p">)),</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means Clustering Compared to Known Labels&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Adjusted Rand Index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_55_0.png" src="_images/07-Clustering-II-in-practice_55_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="deciding-on-the-number-of-clusters">
+<h2>Deciding on the Number of Clusters<a class="headerlink" href="#deciding-on-the-number-of-clusters" title="Permalink to this headline">¶</a></h2>
+<p>The second question we face in evaluating a clustering is how many clusters are present.</p>
+<p>In practice, to use <span class="math notranslate nohighlight">\(k\)</span>-means or most other clustering methods, one must choose <span class="math notranslate nohighlight">\(k\)</span>, the number of clusters, via some process.</p>
+<div class="section" id="inspecting-clustering-error">
+<h3>Inspecting Clustering Error<a class="headerlink" href="#inspecting-clustering-error" title="Permalink to this headline">¶</a></h3>
+<p>The first thing you might do is to look at the <span class="math notranslate nohighlight">\(k\)</span>-means objective function  and see if it levels off after a certain point.</p>
+<p>Recall that the <span class="math notranslate nohighlight">\(k\)</span>-means objective can be considered the clustering “error”.</p>
+<p>If the error stops going down, that would suggest that the clustering is not improving as the number of clusters is increased.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For our synthetic data, here is the <span class="math notranslate nohighlight">\(k\)</span>-means objective, as a function of <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="p">)),</span> <span class="n">error</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$-means clustering performance of synthetic data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_62_0.png" src="_images/07-Clustering-II-in-practice_62_0.png" />
+</div>
+</div>
+<p><strong>Warning</strong>: This synthetic data is not at all typical.   You will almost never see such a sharp change in the error function as we see here.</p>
+<p>Let’s create a function for later use.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">max_clusters</span><span class="p">):</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">error</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+    <span class="k">return</span> <span class="n">error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="silhouette-coefficient">
+<h3>Silhouette Coefficient<a class="headerlink" href="#silhouette-coefficient" title="Permalink to this headline">¶</a></h3>
+<p>Of course, normally, the ground truth labels are not known.</p>
+<p>In that case, evaluation must be performed using the model itself. |</p>
+<p>Recall our definition of clustering:</p>
+<blockquote>
+<div><p>a grouping of data objects, such that the objects within a group are similar (or near) to one another and dissimilar (or far) from the objects in other groups.</p>
+</div></blockquote>
+<p>This suggests a metric that could evaluate a clustering: comparing the distances between points within a cluster, to the distances between points in different clusters.</p>
+<p>The Silhouette Coefficient is an example of such an evaluation, where a higher Silhouette Coefficient score relates to a model with “better defined” clusters.</p>
+<p>(<strong><code class="docutils literal notranslate"><span class="pre">sklearn.metrics.silhouette_score</span></code></strong>)</p>
+<p>Let <span class="math notranslate nohighlight">\(a\)</span> be the mean distance between a data point and all other points in the same cluster.</p>
+<p>Let <span class="math notranslate nohighlight">\(b\)</span> be the mean distance between a data point and all other points in the next nearest cluster.</p>
+<p>Then the
+<strong>Silhouette Coefficient</strong> for a clustering is:
+$<span class="math notranslate nohighlight">\(s = \frac{b - a}{\max(a, b)}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8319348841402534
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sc_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">max_clusters</span><span class="p">,</span> <span class="n">n_init</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="n">n_init</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+        <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">sc_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means clustering performance on sythetic data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_72_0.png" src="_images/07-Clustering-II-in-practice_72_0.png" />
+</div>
+</div>
+<p>Again, these results are more perfect than typical.</p>
+<p>But the general idea is to look for a local maximum in the Silhouette Coefficient as the potential number of clusters.</p>
+</div>
+</div>
+<div class="section" id="taking-the-training-wheels-off-real-data">
+<h2>Taking the Training Wheels Off: Real Data<a class="headerlink" href="#taking-the-training-wheels-off-real-data" title="Permalink to this headline">¶</a></h2>
+<p>As a “real world” example, we’ll use the “20 Newsgroup” data provided as example data in sklearn.</p>
+<p>(<a class="reference external" href="http://scikit-learn.org/stable/datasets/twenty_newsgroups.html">http://scikit-learn.org/stable/datasets/twenty_newsgroups.html</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">categories = [</span>
+<span class="sd"> &#39;comp.windows.x&#39;,</span>
+<span class="sd"> &#39;misc.forsale&#39;,</span>
+<span class="sd"> &#39;rec.autos&#39;,</span>
+<span class="sd"> &#39;rec.motorcycles&#39;,</span>
+<span class="sd"> &#39;rec.sport.baseball&#39;,</span>
+<span class="sd"> &#39;rec.sport.hockey&#39;,</span>
+<span class="sd"> &#39;talk.religion.misc&#39;,</span>
+<span class="sd"> &#39;comp.graphics&#39;,</span>
+<span class="sd"> &#39;sci.space&#39;,</span>
+<span class="sd"> &#39;rec.autos&#39;,</span>
+<span class="sd"> &#39;rec.sport.baseball&#39;</span>
+<span class="sd">]</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;comp.os.ms-windows.misc&#39;</span><span class="p">,</span> <span class="s1">&#39;sci.space&#39;</span><span class="p">,</span> <span class="s1">&#39;rec.sport.baseball&#39;</span><span class="p">]</span>
+<span class="n">news_data</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="n">categories</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2 0 0 ... 2 1 2] 1781
+[&#39;comp.os.ms-windows.misc&#39;, &#39;rec.sport.baseball&#39;, &#39;sci.space&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;From: aws@iti.org (Allen W. Sherzer)\nSubject: Re: DC-X update???\nOrganization: Evil Geniuses for a Better Tomorrow\nLines: 122\n\nIn article &lt;ugo62B8w165w@angus.mi.org&gt; dragon@angus.mi.org writes:\n\n&gt;Exactly when will the hover test be done, \n\nEarly to mid June.\n\n&gt;and will any of the TV\n&gt;networks carry it.  I really want to see that...\n\nIf they think the public wants to see it they will carry it. Why not\nwrite them and ask? You can reach them at:\n\n\n                          F: NATIONAL NEWS MEDIA\n\n\nABC &quot;World News Tonight&quot;                 &quot;Face the Nation&quot;\n7 West 66th Street                       CBS News\nNew York, NY 10023                       2020 M Street, NW\n212/887-4040                             Washington, DC 20036\n                                         202/457-4321\n\nAssociated Press                         &quot;Good Morning America&quot;\n50 Rockefeller Plaza                     ABC News\nNew York, NY 10020                       1965 Broadway\nNational Desk (212/621-1600)             New York, NY 10023\nForeign Desk (212/621-1663)              212/496-4800\nWashington Bureau (202/828-6400)\n                                         Larry King Live TV\n&quot;CBS Evening News&quot;                       CNN\n524 W. 57th Street                       111 Massachusetts Avenue, NW\nNew York, NY 10019                       Washington, DC 20001\n212/975-3693                             202/898-7900\n\n&quot;CBS This Morning&quot;                       Larry King Show--Radio\n524 W. 57th Street                       Mutual Broadcasting\nNew York, NY 10019                       1755 So. Jefferson Davis Highway\n212/975-2824                             Arlington, VA 22202\n                                         703/685-2175\n&quot;Christian Science Monitor&quot;\nCSM Publishing Society                   &quot;Los Angeles Times&quot;\nOne Norway Street                        Times-Mirror Square\nBoston, MA 02115                         Los Angeles, CA 90053\n800/225-7090                             800/528-4637\n\nCNN                                      &quot;MacNeil/Lehrer NewsHour&quot;\nOne CNN Center                           P.O. Box 2626\nBox 105366                               Washington, DC 20013\nAtlanta, GA 30348                        703/998-2870\n404/827-1500\n                                         &quot;MacNeil/Lehrer NewsHour&quot;\nCNN                                      WNET-TV\nWashington Bureau                        356 W. 58th Street\n111 Massachusetts Avenue, NW             New York, NY 10019\nWashington, DC 20001                     212/560-3113\n202/898-7900\n\n&quot;Crossfire&quot;                              NBC News\nCNN                                      4001 Nebraska Avenue, NW\n111 Massachusetts Avenue, NW             Washington, DC 20036\nWashington, DC 20001                     202/885-4200\n202/898-7951                             202/362-2009 (fax)\n\n&quot;Morning Edition/All Things Considered&quot;  \nNational Public Radio                    \n2025 M Street, NW                        \nWashington, DC 20036                     \n202/822-2000                             \n\nUnited Press International\n1400 Eye Street, NW\nWashington, DC 20006\n202/898-8000\n\n&quot;New York Times&quot;                         &quot;U.S. News &amp; World Report&quot;\n229 W. 43rd Street                       2400 N Street, NW\nNew York, NY 10036                       Washington, DC 20037\n212/556-1234                             202/955-2000\n212/556-7415\n\n&quot;New York Times&quot;                         &quot;USA Today&quot;\nWashington Bureau                        1000 Wilson Boulevard\n1627 Eye Street, NW, 7th Floor           Arlington, VA 22229\nWashington, DC 20006                     703/276-3400\n202/862-0300\n\n&quot;Newsweek&quot;                               &quot;Wall Street Journal&quot;\n444 Madison Avenue                       200 Liberty Street\nNew York, NY 10022                       New York, NY 10281\n212/350-4000                             212/416-2000\n\n&quot;Nightline&quot;                              &quot;Washington Post&quot;\nABC News                                 1150 15th Street, NW\n47 W. 66th Street                        Washington, DC 20071\nNew York, NY 10023                       202/344-6000\n212/887-4995\n\n&quot;Nightline&quot;                              &quot;Washington Week In Review&quot;\nTed Koppel                               WETA-TV\nABC News                                 P.O. Box 2626\n1717 DeSales, NW                         Washington, DC 20013\nWashington, DC 20036                     703/998-2626\n202/887-7364\n\n&quot;This Week With David Brinkley&quot;\nABC News\n1717 DeSales, NW\nWashington, DC 20036\n202/887-7777\n\n&quot;Time&quot; magazine\nTime Warner, Inc.\nTime &amp; Life Building\nRockefeller Center\nNew York, NY 10020\n212/522-1212\n\n-- \n+---------------------------------------------------------------------------+\n| Lady Astor:   &quot;Sir, if you were my husband I would poison your coffee!&quot;   |\n| W. Churchill: &quot;Madam, if you were my wife, I would drink it.&quot;             |\n+----------------------57 DAYS TO FIRST FLIGHT OF DCX-----------------------+\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-extraction">
+<h3>Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h3>
+<p>We’ve discussed a bit the challenges of feature engineering.</p>
+<p>One of the most basic issues concerns how to encode categorical or text data in a form usable by algorithms that expect numeric input.</p>
+<p>The starting point is to note that one can encode a set using a binary vector with one component for each potential set member.</p>
+<p>The so-called <em>bag of words</em> encoding for a document is to treat the document as a <strong>multi</strong>set of words.</p>
+<p>That is, we simply count how many times each word occurs.   It is a “bag” because all the order of the words in the document is lost.</p>
+<p>Surprisingly, we can still tell a lot about the document even without knowing its word ordering.</p>
+<p>Counting the number of times each word occurs in a document yields a vector of <strong>term frequencies.</strong></p>
+<p>However, simply using the “bag of words” directly has a number of drawbacks.   First of all, large documents will have more words than small documents.</p>
+<p>Hence it often makes sense to normalize the frequency vectors.</p>
+<p><span class="math notranslate nohighlight">\(\ell_1\)</span> or <span class="math notranslate nohighlight">\(\ell_2\)</span> normalization are common.</p>
+<p>Next, as noted in <strong>scikit-learn</strong>:</p>
+<blockquote>
+<div><p>In a large text corpus, some words will be very [frequent] (e.g. “the”, “a”, “is” in English) hence carrying very little meaningful information about the actual contents of the document.</p>
+</div></blockquote>
+<blockquote>
+<div><p>If we were to feed the direct count data directly to a classifier those very frequent terms would shadow the frequencies of rarer yet more interesting terms.</p>
+</div></blockquote>
+<blockquote>
+<div><p>In order to re-weight the count features into floating point values suitable for usage by a classifier it is very common to use the tf–idf transform.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Tf</strong> means <strong>term-frequency</strong> while <strong>tf–idf</strong> means <strong>term-frequency times inverse document-frequency.</strong></p>
+</div></blockquote>
+<blockquote>
+<div><p>This is a originally a term weighting scheme developed for information retrieval (as a ranking function for search engines results), that has also found good use in document classification and clustering.</p>
+</div></blockquote>
+<p>The idea is that rare words are more informative than common words.</p>
+<p>(This has connections to information theory).</p>
+<p>Hence, the definition of tf-idf is as follows.</p>
+<p>First:</p>
+<div class="math notranslate nohighlight">
+\[\text{tf}(t,d) = \text{Number of times term }t \text{ occurs in document } d\]</div>
+<p>Next, if <span class="math notranslate nohighlight">\(N\)</span> is the total number of documents in the corpus <span class="math notranslate nohighlight">\(D\)</span> then:</p>
+<div class="math notranslate nohighlight">
+\[\text{idf}(t,D)=\frac{N}{|\{d\in D : t\in d \}|}\]</div>
+<p>where the denominator is the number of documents in which the term <span class="math notranslate nohighlight">\(t\)</span> appears.</p>
+<p>And finally:</p>
+<div class="math notranslate nohighlight">
+\[\text{tf-idf}(t,d)=\text{tf}(t,d)\times \text{idf}(t,D)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">min_df</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">max_df</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-to-know-the-data">
+<h3>Getting to know the Data<a class="headerlink" href="#getting-to-know-the-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;scipy.sparse.csr.csr_matrix&#39;&gt; (1781, 9409)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">dum</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+            <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_92_0.png" src="_images/07-Clustering-II-in-practice_92_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">news_data</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2 0 0 ... 2 1 2]
+[&#39;comp.os.ms-windows.misc&#39;, &#39;rec.sport.baseball&#39;, &#39;sci.space&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="selecting-the-number-of-clusters">
+<h3>Selecting the Number of Clusters<a class="headerlink" href="#selecting-the-number-of-clusters" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="p">)),</span> <span class="n">error</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means Clustering Performance on Newsgroup Articles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_95_0.png" src="_images/07-Clustering-II-in-practice_95_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ri</span> <span class="o">=</span> <span class="n">ri_evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ri</span><span class="p">)),</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means Clustering Compared to Known Labels</span><span class="se">\n</span><span class="s1">Newsgroup Articles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Adjusted Rand Index&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_96_0.png" src="_images/07-Clustering-II-in-practice_96_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">sc_evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means clustering performance on Newsgroup Articles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_97_0.png" src="_images/07-Clustering-II-in-practice_97_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="looking-into-the-clusters">
+<h3>Looking into the clusters<a class="headerlink" href="#looking-into-the-clusters" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, ..., 3, 0, 2], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top terms per cluster:&#39;</span><span class="p">)</span>
+<span class="n">asc_order_centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="c1">#[:, ::-1]</span>
+<span class="n">order_centroids</span> <span class="o">=</span> <span class="n">asc_order_centroids</span><span class="p">[:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">order_centroids</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top terms per cluster:
+Cluster 0:
+ edu
+ baseball
+ year
+ team
+ game
+ com
+ article
+ players
+ writes
+ games
+
+Cluster 1:
+ windows
+ edu
+ com
+ file
+ dos
+ university
+ thanks
+ ca
+ files
+ use
+
+Cluster 2:
+ space
+ nasa
+ access
+ gov
+ edu
+ alaska
+ digex
+ com
+ pat
+ moon
+
+Cluster 3:
+ henry
+ toronto
+ zoo
+ spencer
+ zoology
+ edu
+ work
+ utzoo
+ kipling
+ umd
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">clustered_dists</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="p">[</span><span class="n">idx</span><span class="p">][:,</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">dum</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">clustered_dists</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_101_0.png" src="_images/07-Clustering-II-in-practice_101_0.png" />
+</div>
+</div>
+<p>Let’s visualize with MDS.   Note that MDS is a slow algorithm and we can’t do all 1700+ data points quickly, so we will take a random sample.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">n_items</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_items</span><span class="p">),</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">[</span><span class="n">subset</span><span class="p">][:,</span><span class="n">subset</span><span class="p">])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">embedding_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 2, ..., 4, 1, 4], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">[</span><span class="n">subset</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cols</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MDS Embedding of Newsgroup Articles&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07-Clustering-II-in-practice_105_0.png" src="_images/07-Clustering-II-in-practice_105_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="06-Clustering-I-kmeans.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Clustering I: <span class="math notranslate nohighlight">\(k\)</span>-means</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08-Clustering-III-hierarchical.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Clustering III: Hierarchical Clustering</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
