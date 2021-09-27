@@ -14,6 +14,7 @@ parts:
   - file: 06-Clustering-I-kmeans
   - file: 07-Clustering-II-in-practice
   - file: 08-Clustering-III-hierarchical
+  - file: 09-Clustering-IV-GMM-EM
 - caption: Classification
   chapters:
   - file: 13-Learning-From-Data
