@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clustering III: Hierarchical Clustering &#8212; Computational Tools for Data Science</title>
+    <title>Hierarchical Clustering &#8212; Computational Tools for Data Science</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clustering with Mixtures of Gaussians" href="09-Clustering-IV-GMM-EM.html" />
-    <link rel="prev" title="Clustering II: In Practice" href="07-Clustering-II-in-practice.html" />
+    <link rel="next" title="Gaussian Mixture Models" href="09-Clustering-IV-GMM-EM.html" />
+    <link rel="prev" title="Clustering In Practice" href="07-Clustering-II-in-practice.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -136,7 +136,6 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   Clustering I:
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
@@ -145,17 +144,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering II: In Practice
+   Clustering In Practice
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Clustering III: Hierarchical Clustering
+   Hierarchical Clustering
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Clustering with Mixtures of Gaussians
+   Gaussian Mixture Models
   </a>
  </li>
 </ul>
@@ -173,6 +172,14 @@
  <li class="toctree-l1">
   <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
    Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Classification-II-kNN.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbors
   </a>
  </li>
 </ul>
@@ -282,7 +289,7 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering">
+  <a class="reference internal nav-link" href="#id1">
    Hierarchical Clustering
   </a>
   <ul class="nav section-nav flex-column">
@@ -383,8 +390,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="clustering-iii-hierarchical-clustering">
-<h1>Clustering III: Hierarchical Clustering<a class="headerlink" href="#clustering-iii-hierarchical-clustering" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hierarchical-clustering">
+<h1>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline">¶</a></h1>
 <p>Today we will look at a fairly different approach to clustering.</p>
 <p>So far, we have been thinking of clustering as finding a <strong>partition</strong> of our dataset.</p>
 <p>That is, a set of nonoverlapping clusters, in which each data item is in one cluster.</p>
@@ -471,8 +478,8 @@
 <p>In hierarchical clustering, we move away from the <strong>partition</strong> notion of <span class="math notranslate nohighlight">\(k\)</span>-means,</p>
 <p>and instead capture a more complex arrangement that includes containment of one cluster within another.</p>
 </div>
-<div class="section" id="hierarchical-clustering">
-<h2>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Hierarchical Clustering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>A hierarchical clustering produces a set of <strong>nested</strong> clusters organized into a tree.</p>
 <p>A hierarchical clustering is visualized using a <strong>dendrogram</strong></p>
 <ul class="simple">
@@ -590,7 +597,7 @@
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_6bde7_">
+<table id="T_a338c_">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
@@ -604,58 +611,58 @@
   </thead>
   <tbody>
     <tr>
-      <th id="T_6bde7_level0_row0" class="row_heading level0 row0" >p0</th>
-      <td id="T_6bde7_row0_col0" class="data row0 col0" >0.00</td>
-      <td id="T_6bde7_row0_col1" class="data row0 col1" >0.23</td>
-      <td id="T_6bde7_row0_col2" class="data row0 col2" >0.22</td>
-      <td id="T_6bde7_row0_col3" class="data row0 col3" >0.37</td>
-      <td id="T_6bde7_row0_col4" class="data row0 col4" >0.34</td>
-      <td id="T_6bde7_row0_col5" class="data row0 col5" >0.24</td>
+      <th id="T_a338c_level0_row0" class="row_heading level0 row0" >p0</th>
+      <td id="T_a338c_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_a338c_row0_col1" class="data row0 col1" >0.23</td>
+      <td id="T_a338c_row0_col2" class="data row0 col2" >0.22</td>
+      <td id="T_a338c_row0_col3" class="data row0 col3" >0.37</td>
+      <td id="T_a338c_row0_col4" class="data row0 col4" >0.34</td>
+      <td id="T_a338c_row0_col5" class="data row0 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_6bde7_level0_row1" class="row_heading level0 row1" >p1</th>
-      <td id="T_6bde7_row1_col0" class="data row1 col0" >0.23</td>
-      <td id="T_6bde7_row1_col1" class="data row1 col1" >0.00</td>
-      <td id="T_6bde7_row1_col2" class="data row1 col2" >0.14</td>
-      <td id="T_6bde7_row1_col3" class="data row1 col3" >0.19</td>
-      <td id="T_6bde7_row1_col4" class="data row1 col4" >0.14</td>
-      <td id="T_6bde7_row1_col5" class="data row1 col5" >0.24</td>
+      <th id="T_a338c_level0_row1" class="row_heading level0 row1" >p1</th>
+      <td id="T_a338c_row1_col0" class="data row1 col0" >0.23</td>
+      <td id="T_a338c_row1_col1" class="data row1 col1" >0.00</td>
+      <td id="T_a338c_row1_col2" class="data row1 col2" >0.14</td>
+      <td id="T_a338c_row1_col3" class="data row1 col3" >0.19</td>
+      <td id="T_a338c_row1_col4" class="data row1 col4" >0.14</td>
+      <td id="T_a338c_row1_col5" class="data row1 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_6bde7_level0_row2" class="row_heading level0 row2" >p2</th>
-      <td id="T_6bde7_row2_col0" class="data row2 col0" >0.22</td>
-      <td id="T_6bde7_row2_col1" class="data row2 col1" >0.14</td>
-      <td id="T_6bde7_row2_col2" class="data row2 col2" >0.00</td>
-      <td id="T_6bde7_row2_col3" class="data row2 col3" >0.16</td>
-      <td id="T_6bde7_row2_col4" class="data row2 col4" >0.28</td>
-      <td id="T_6bde7_row2_col5" class="data row2 col5" >0.10</td>
+      <th id="T_a338c_level0_row2" class="row_heading level0 row2" >p2</th>
+      <td id="T_a338c_row2_col0" class="data row2 col0" >0.22</td>
+      <td id="T_a338c_row2_col1" class="data row2 col1" >0.14</td>
+      <td id="T_a338c_row2_col2" class="data row2 col2" >0.00</td>
+      <td id="T_a338c_row2_col3" class="data row2 col3" >0.16</td>
+      <td id="T_a338c_row2_col4" class="data row2 col4" >0.28</td>
+      <td id="T_a338c_row2_col5" class="data row2 col5" >0.10</td>
     </tr>
     <tr>
-      <th id="T_6bde7_level0_row3" class="row_heading level0 row3" >p3</th>
-      <td id="T_6bde7_row3_col0" class="data row3 col0" >0.37</td>
-      <td id="T_6bde7_row3_col1" class="data row3 col1" >0.19</td>
-      <td id="T_6bde7_row3_col2" class="data row3 col2" >0.16</td>
-      <td id="T_6bde7_row3_col3" class="data row3 col3" >0.00</td>
-      <td id="T_6bde7_row3_col4" class="data row3 col4" >0.28</td>
-      <td id="T_6bde7_row3_col5" class="data row3 col5" >0.22</td>
+      <th id="T_a338c_level0_row3" class="row_heading level0 row3" >p3</th>
+      <td id="T_a338c_row3_col0" class="data row3 col0" >0.37</td>
+      <td id="T_a338c_row3_col1" class="data row3 col1" >0.19</td>
+      <td id="T_a338c_row3_col2" class="data row3 col2" >0.16</td>
+      <td id="T_a338c_row3_col3" class="data row3 col3" >0.00</td>
+      <td id="T_a338c_row3_col4" class="data row3 col4" >0.28</td>
+      <td id="T_a338c_row3_col5" class="data row3 col5" >0.22</td>
     </tr>
     <tr>
-      <th id="T_6bde7_level0_row4" class="row_heading level0 row4" >p4</th>
-      <td id="T_6bde7_row4_col0" class="data row4 col0" >0.34</td>
-      <td id="T_6bde7_row4_col1" class="data row4 col1" >0.14</td>
-      <td id="T_6bde7_row4_col2" class="data row4 col2" >0.28</td>
-      <td id="T_6bde7_row4_col3" class="data row4 col3" >0.28</td>
-      <td id="T_6bde7_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_6bde7_row4_col5" class="data row4 col5" >0.39</td>
+      <th id="T_a338c_level0_row4" class="row_heading level0 row4" >p4</th>
+      <td id="T_a338c_row4_col0" class="data row4 col0" >0.34</td>
+      <td id="T_a338c_row4_col1" class="data row4 col1" >0.14</td>
+      <td id="T_a338c_row4_col2" class="data row4 col2" >0.28</td>
+      <td id="T_a338c_row4_col3" class="data row4 col3" >0.28</td>
+      <td id="T_a338c_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_a338c_row4_col5" class="data row4 col5" >0.39</td>
     </tr>
     <tr>
-      <th id="T_6bde7_level0_row5" class="row_heading level0 row5" >p5</th>
-      <td id="T_6bde7_row5_col0" class="data row5 col0" >0.24</td>
-      <td id="T_6bde7_row5_col1" class="data row5 col1" >0.24</td>
-      <td id="T_6bde7_row5_col2" class="data row5 col2" >0.10</td>
-      <td id="T_6bde7_row5_col3" class="data row5 col3" >0.22</td>
-      <td id="T_6bde7_row5_col4" class="data row5 col4" >0.39</td>
-      <td id="T_6bde7_row5_col5" class="data row5 col5" >0.00</td>
+      <th id="T_a338c_level0_row5" class="row_heading level0 row5" >p5</th>
+      <td id="T_a338c_row5_col0" class="data row5 col0" >0.24</td>
+      <td id="T_a338c_row5_col1" class="data row5 col1" >0.24</td>
+      <td id="T_a338c_row5_col2" class="data row5 col2" >0.10</td>
+      <td id="T_a338c_row5_col3" class="data row5 col3" >0.22</td>
+      <td id="T_a338c_row5_col4" class="data row5 col4" >0.39</td>
+      <td id="T_a338c_row5_col5" class="data row5 col5" >0.00</td>
     </tr>
   </tbody>
 </table>
@@ -1081,7 +1088,7 @@ three “blobs” living in 30 dimensions.</p>
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Clustering II: In Practice</p>
+                <p class="prevnext-title">Clustering In Practice</p>
             </div>
         </a>
     </div>
@@ -1089,7 +1096,7 @@ three “blobs” living in 30 dimensions.</p>
         <a class="right-next" href="09-Clustering-IV-GMM-EM.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Clustering with Mixtures of Gaussians</p>
+                <p class="prevnext-title">Gaussian Mixture Models</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
