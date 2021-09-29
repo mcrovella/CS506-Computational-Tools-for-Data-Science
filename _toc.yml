@@ -19,3 +19,4 @@ parts:
   chapters:
   - file: 13-Learning-From-Data
   - file: 14-Classification-I-Decision-Trees
+  - file: 15-Classification-II-kNN
