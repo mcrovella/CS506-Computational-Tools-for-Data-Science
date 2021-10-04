@@ -324,18 +324,29 @@
   <a class="reference internal nav-link" href="#in-practice">
    In Practice
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   - Nearest Neighbors
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     - Nearest Neighbors
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#decision-tree">
    Decision Tree
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-k-nn-and-decision-tree">
+   Comparing
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -NN and Decision Tree
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -369,6 +380,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> 
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
@@ -580,35 +592,209 @@
 <h2>Challenges for <span class="math notranslate nohighlight">\(k\)</span>-NN<a class="headerlink" href="#challenges-for-k-nn" title="Permalink to this headline">¶</a></h2>
 <p>Working with a <span class="math notranslate nohighlight">\(k\)</span>-NN classifier can involve some challenges.</p>
 <ol class="simple">
-<li><p>First and foremost, the computational cost of classification grows with the size of the training data.  While certain data structures may help, essentially the classification time grows linearly with the data set size.</p></li>
+<li><p>First and foremost, the computational cost of classification grows with the size of the training data. (Why?) While certain data structures may help, essentially the classification time grows linearly with the data set size.</p></li>
 </ol>
 <p>Note the tradeoff here: the training step is trivial, but the classification step can be prohibitively expensive.</p>
 <ol class="simple">
 <li><p>Second, since Euclidean distance is the most common distance function used, data scaling is important.</p></li>
 </ol>
 <p>As previously discussed, features should be scaled to prevent distance measures from being dominated by a small subset of features.</p>
+<div style = "float: left; width: 55%;">
 <ol class="simple">
 <li><p>Third concerns the <strong>curse of dimensionality.</strong></p></li>
 </ol>
 <p>If training data lives in a high dimensional space, Euclidean distance measures become less effective.</p>
+<p>This is subtle but important, so we will now look at the curse of dimensionality more closely.</p>
+</div>
+<a class="reference internal image-reference" href="_images/L15-curse-frankenstein-edited.jpeg"><img alt="Figure" src="_images/L15-curse-frankenstein-edited.jpeg" style="width: 20%;" /></a>
 <div class="section" id="the-curse-of-dimensionality">
 <h3>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<p>The Curse of Dimensionality is a somewhat tongue in cheek term for serious problems that arise when we use geometric algorithms in high dimensions.</p>
+<p>There are various aspects of the Curse that affect <span class="math notranslate nohighlight">\(k\)</span>-NN.</p>
+<p><strong>1. Points are far apart in high dimension.</strong></p>
+<p><span class="math notranslate nohighlight">\(k\)</span>-NN relies on there being one or more “close” points to the test point <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>In other words, we need the training data to be relatively dense, so there are “close” points everywhere.</p>
+<p>Unfortunately, the amount of space we work in grows exponentially with the dimension <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>So the amount of data we need to maintain a given density also grows exponentially with dimension <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>Hence, points in high-dimensional spaces tend not to be close to one another at all.</p>
+<p>One very intuitive way to think about it is this:</p>
+<p>In order for two points to be close in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>, they must be close in <strong>each</strong> of the <span class="math notranslate nohighlight">\(d\)</span> dimensions.</p>
+<p>As the number of dimensions grows, it becomes harder and harder for a pair of points to be close in <strong>each</strong> dimension.</p>
+<p><strong>2. Points tend to all be at similar distances in high dimension.</strong></p>
+<p>This one is a little harder to visualize.  We’ll use formulas instead to guide us.</p>
+<p>Let’s say points are uniformly distributed in space, so that number of points in a region is proportional to the region’s volume.</p>
+<p>How does volume relate to distance as dimension <span class="math notranslate nohighlight">\(d\)</span> grows?</p>
+<p>Consider you are at some point in space (say, the test point <span class="math notranslate nohighlight">\(x\)</span>), and you want to know how many points are within a unit distance from you.</p>
+<p>This is proportional to the volume of a hypersphere with radius 1.</p>
+<p>Now, the volume of a hypersphere is <span class="math notranslate nohighlight">\(k_d \,r^d\)</span>.</p>
+<p>For each <span class="math notranslate nohighlight">\(d\)</span> there is a different <span class="math notranslate nohighlight">\(k_d\)</span>.</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(d = 2\)</span>, <span class="math notranslate nohighlight">\(k_d\)</span> is <span class="math notranslate nohighlight">\(4\pi\)</span>, and</p></li>
+<li><p>for <span class="math notranslate nohighlight">\(d = 3\)</span>, <span class="math notranslate nohighlight">\(k_d\)</span> is 4/3 <span class="math notranslate nohighlight">\(\pi\)</span>,</p></li>
+<li><p>etc.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
-    <span class="c1"># show that vectors become more nearly orthogonal in high dimension.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="c1"># coordinates of sphere surface</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Hypersphere in $d$ dimensions</span><span class="se">\n</span><span class="s1">Volume is $k_d \,r^d$&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/var/folders/sw/7wn9qw6n2bn3txlzhbg0l3580000gn/T/ipykernel_22332/882476825.py&quot;</span><span class="gt">, line </span><span class="mi">2</span>
-    <span class="c1"># show that vectors become more nearly orthogonal in high dimension.</span>
-                                                                        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: unexpected EOF while parsing
+<img alt="_images/15-Classification-II-kNN_40_0.png" src="_images/15-Classification-II-kNN_40_0.png" />
+</div>
+</div>
+<p>Let’s also ask how many points are within a slightly smaller distance, let’s say 0.99.</p>
+<p>The new distance can be thought of as <span class="math notranslate nohighlight">\(1 - \epsilon\)</span> for some small <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>The number of points then of course is proprtional to <span class="math notranslate nohighlight">\(k_d (1-\epsilon)^d\)</span></p>
+<p>Now, what is the fraction <span class="math notranslate nohighlight">\(f_d\)</span> of all the points that are within a unit distance, but <strong>not</strong> within a distance of 0.99?</p>
+<p>(That is, not within the the hypersphere with radius <span class="math notranslate nohighlight">\(1-\epsilon\)</span>)?</p>
+<p>This is
+$<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\epsilon)^d}{k^d 1^d} \)</span>$</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="c1"># coordinates of sphere surface</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="c1">#</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">eps</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$1-\epsilon$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Inner and Outer Hyperspheres&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Classification-II-kNN_43_0.png" src="_images/15-Classification-II-kNN_43_0.png" />
+</div>
+</div>
+<p>Now, <span class="math notranslate nohighlight">\((1-\epsilon)^d\)</span> goes to 0 as <span class="math notranslate nohighlight">\(d \rightarrow \infty\)</span>.</p>
+<p>So, <span class="math notranslate nohighlight">\(f_d\)</span> goes to 1 as <span class="math notranslate nohighlight">\(d \rightarrow \infty\)</span>.</p>
+<p>Which means: in the limit of high <span class="math notranslate nohighlight">\(d\)</span>, all of the points that are <strong>within</strong> 1 unit of our location, are almost <strong>exactly</strong> 1 unit from our location!</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="c1"># coordinates of sphere surface</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span><span class="mi">50</span><span class="n">j</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">s3</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="c1">#</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">eps</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$1-\epsilon$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;In high-$d$, All Points Lie in Outer Shell&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Classification-II-kNN_46_0.png" src="_images/15-Classification-II-kNN_46_0.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example is based on <em>Data Science from Scratch,</em> Joel Grus, Second Edition, Chapter 12.</p>
+</div>
+<p>Let’s demonstrate this effect in practice.</p>
+<p>What we will do is create 100 points, scattered at random within a <span class="math notranslate nohighlight">\(d\)</span>-dimensional space.</p>
+<p>We will look at two quantities:</p>
+<ul class="simple">
+<li><p>The <strong>minimum</strong> distance between any two points, and</p></li>
+<li><p>The <strong>average</strong> distance between any two points.</p></li>
+</ul>
+<p>as we vary <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+
+<span class="n">nsamples</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">unif_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nsamples</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">unif_X</span><span class="p">)</span>
+<span class="c1"># extract the values above the diagonal</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">mean_dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dists</span><span class="p">)]</span>
+<span class="n">min_dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dists</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="n">unif_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">unif_X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nsamples</span><span class="p">)])</span>
+    <span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">unif_X</span><span class="p">)</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">nsamples</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">mean_dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dists</span><span class="p">))</span>
+    <span class="n">min_dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dists</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">min_dists</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Minimum Distance&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_dists</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Average Distance&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Number of dimensions ($d$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Comparison of Minimum Versus Average Distance Between </span><span class="si">{</span><span class="n">nsamples</span><span class="si">}</span><span class="s1"> Points</span><span class="se">\n</span><span class="s1">As Dimension Grows&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Classification-II-kNN_50_0.png" src="_images/15-Classification-II-kNN_50_0.png" />
+</div>
+</div>
+<p>The average distance between points grows, but it seems that the minimum distance between points grows about as fast.</p>
+<p>So the ratio of the minimum distance to the average distance grows as well!</p>
+<p>Let’s look at that ratio:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="o">/</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">min_dists</span><span class="p">,</span> <span class="n">mean_dists</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Number of dimensions ($d$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Ratio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Ratio of Minimum to Average Distance Between </span><span class="si">{</span><span class="n">nsamples</span><span class="si">}</span><span class="s1"> Points</span><span class="se">\n</span><span class="s1">As Dimension Grows&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Classification-II-kNN_53_0.png" src="_images/15-Classification-II-kNN_53_0.png" />
+</div>
+</div>
+<p>This shows that, for any test point <span class="math notranslate nohighlight">\(x\)</span>, the distance to the <strong>closest</strong> point to <span class="math notranslate nohighlight">\(x\)</span>, relatively speaking, gets closer and closer to the <strong>average</strong> distance between points.</p>
+<p>Of course, if we used a point at the average distance for classifying <span class="math notranslate nohighlight">\(x\)</span>, we’d get a very poor classifier.</p>
+<p><strong>Implications of the Curse.</strong></p>
+<p>For <span class="math notranslate nohighlight">\(k\)</span>-means, the Curse of Dimensionality means that in high dimension, most points are nearly the same distance from the test point.</p>
+<p>This makes <span class="math notranslate nohighlight">\(k\)</span>-means ineffective:  it cannot reliably tell which are the <span class="math notranslate nohighlight">\(k\)</span> nearest neighbors, and its performance degrades.</p>
+<p><strong>What Can be Done?</strong></p>
+<p>The problem is that you simply cannot have enough data to do a good job using <span class="math notranslate nohighlight">\(k\)</span>-NN in high dimensions.</p>
+<p>If you must use <span class="math notranslate nohighlight">\(k\)</span>-NN for your task, the only option may be to <strong>reduce</strong> the dimension of your data.</p>
+<p>Surprisingly, this can often be done at little cost in accuracy.</p>
+<p>We will discuss dimensionality reduction techniques at length later in the course.</p>
 </div>
 </div>
 <div class="section" id="in-practice">
@@ -618,9 +804,8 @@
 <li><p>Decision Trees, and</p></li>
 <li><p>k-Nearest Neighbors.</p></li>
 </ul>
-</div>
 <div class="section" id="id2">
-<h2><span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h3><span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>First we’ll generate some synthetic data to work with.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -631,14 +816,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">2622030118.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_circles</span><span class="p">(</span><span class="n">noise</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of data: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unique labels: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
-
-<span class="ne">NameError</span>: name &#39;datasets&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of data: (100, 2)
+Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
@@ -648,12 +827,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">prism</span><span class="p">()</span>  <span class="c1"># this sets a nice color map</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_42_0.png" src="_images/15-Classification-II-kNN_42_0.png" />
+<img alt="_images/15-Classification-II-kNN_63_0.png" src="_images/15-Classification-II-kNN_63_0.png" />
 </div>
 </div>
 <p>Recall that we always want to test on data separate from our training data.</p>
@@ -673,16 +853,18 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Test Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_45_0.png" src="_images/15-Classification-II-kNN_45_0.png" />
+<img alt="_images/15-Classification-II-kNN_66_0.png" src="_images/15-Classification-II-kNN_66_0.png" />
 </div>
 </div>
 <p>For our first example, we will classify the points (in the two classes) using a k-nn classifier.</p>
@@ -705,21 +887,20 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on test data: 0.68
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on test data: 0.72
 </pre></div>
 </div>
 </div>
 </div>
-<p>Just for kicks we can see how the classifier does on the training data, although that’s not as important as the test data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy on training data: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on training data: 0.74
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[14, 14],
+       [ 0, 22]])
 </pre></div>
 </div>
 </div>
@@ -731,18 +912,21 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_test</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Testing $k$=</span><span class="si">{}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_53_0.png" src="_images/15-Classification-II-kNN_53_0.png" />
+<img alt="_images/15-Classification-II-kNN_73_0.png" src="_images/15-Classification-II-kNN_73_0.png" />
 </div>
 </div>
 <p>Let’s look at one of the points that the classifier got wrong:</p>
+<p><strong>NOTE: DRAW k=5 circle around test point in training data</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
@@ -762,7 +946,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_55_0.png" src="_images/15-Classification-II-kNN_55_0.png" />
+<img alt="_images/15-Classification-II-kNN_76_0.png" src="_images/15-Classification-II-kNN_76_0.png" />
 </div>
 </div>
 <p>For comparison purposes, let’s try <span class="math notranslate nohighlight">\(k\)</span> = 3.</p>
@@ -784,10 +968,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_57_0.png" src="_images/15-Classification-II-kNN_57_0.png" />
+<img alt="_images/15-Classification-II-kNN_78_0.png" src="_images/15-Classification-II-kNN_78_0.png" />
 </div>
 </div>
 <p>And let’s look at the same individual point as before:</p>
+<p><strong>NOTE: DRAW k=3 circle around test point in training data</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
@@ -807,8 +992,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_59_0.png" src="_images/15-Classification-II-kNN_59_0.png" />
+<img alt="_images/15-Classification-II-kNN_81_0.png" src="_images/15-Classification-II-kNN_81_0.png" />
 </div>
+</div>
+<p><strong>NOTE: Now add a more rigorous train-test split to evaluate the hyperparameter <span class="math notranslate nohighlight">\(k\)</span></strong></p>
+<p><strong>NOTE: Then, having done that, draw the decision boundary for the optimal k-NN</strong></p>
 </div>
 </div>
 <div class="section" id="decision-tree">
@@ -829,7 +1017,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">2927136074.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">2927136074.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dtc</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> 
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">dtc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
@@ -853,7 +1041,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">199852841.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">199852841.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">F</span><span class="s1">&#39;Decision Tree</span><span class="se">\n</span><span class="s1"> Triangles: Test Data, Circles: Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
@@ -861,7 +1049,7 @@
 <span class="ne">NameError</span>: name &#39;dtc&#39; is not defined
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_63_1.png" src="_images/15-Classification-II-kNN_63_1.png" />
+<img alt="_images/15-Classification-II-kNN_87_1.png" src="_images/15-Classification-II-kNN_87_1.png" />
 </div>
 </div>
 <p>Let’s visualize the <strong>decision boundary</strong> of the Decision Tree.</p>
@@ -887,7 +1075,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">1460746079.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">1460746079.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span>                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">))</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">dtc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
@@ -899,6 +1087,18 @@
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="comparing-k-nn-and-decision-tree">
+<h2>Comparing <span class="math notranslate nohighlight">\(k\)</span>-NN and Decision Tree<a class="headerlink" href="#comparing-k-nn-and-decision-tree" title="Permalink to this headline">¶</a></h2>
+<p><strong>NOTE THESE ARE ROUGH NOTES</strong></p>
+<ul class="simple">
+<li><p>About the same performance on our test data.</p></li>
+<li><p>However, relatively difficult to “figure out” what the k-NN is doing.
+The model lacks <strong>interpretability</strong></p></li>
+</ul>
+<p>Interpretability is a big deal!  It means the ability to <strong>explain</strong> why the classifier made the decision it did.</p>
+<p>In contrast, the Decision Tree is interpretable.</p>
+<p>Let’s see how</p>
 <p>One of the big benefits of a Decision Tree is that we can ‘inspect’ its process.   It is a ‘white box’ – its decision rule can be interpreted by the user.</p>
 <p>Let’s do that:</p>
 <div class="cell docutils container">
@@ -918,7 +1118,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">172657829.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">172657829.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">dtc</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>                          <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>                          <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span><span class="s1">&#39;Green&#39;</span><span class="p">],</span>
@@ -944,7 +1144,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">1499053326.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">1499053326.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/R._A._Fisher.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">250</span><span class="p">));</span>
 
 <span class="ne">NameError</span>: name &#39;Image&#39; is not defined
@@ -966,16 +1166,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">15287065.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;datasets&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -990,16 +1180,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3154878998.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ynames</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
-
-<span class="ne">NameError</span>: name &#39;iris&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 4) (150,)
+[4.9 3.  1.4 0.2]
+[&#39;setosa&#39; &#39;versicolor&#39; &#39;virginica&#39;]
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2]
 </pre></div>
 </div>
 </div>
@@ -1015,7 +1203,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3396384195.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">3396384195.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y</span>
 
@@ -1037,8 +1225,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 2)
-(50, 2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 4)
+(50, 4)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(None, (50,))
@@ -1064,7 +1252,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of KNN test set: 0.66
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of KNN test set: 0.0
 </pre></div>
 </div>
 </div>
@@ -1106,11 +1294,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/sw/7wn9qw6n2bn3txlzhbg0l3580000gn/T/ipykernel_22332/1038554704.py:23: MatplotlibDeprecationWarning: shading=&#39;flat&#39; when X and Y have the same dimensions as C is deprecated since 3.3.  Either specify the corners of the quadrilaterals with X and Y, or pass shading=&#39;auto&#39;, &#39;nearest&#39; or &#39;gouraud&#39;, or set rcParams[&#39;pcolor.shading&#39;].  This will become an error two minor releases later.
-  plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:23: MatplotlibDeprecationWarning: shading=&#39;flat&#39; when X and Y have the same dimensions as C is deprecated since 3.3.  Either specify the corners of the quadrilaterals with X and Y, or pass shading=&#39;auto&#39;, &#39;nearest&#39; or &#39;gouraud&#39;, or set rcParams[&#39;pcolor.shading&#39;].  This will become an error two minor releases later.
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_84_1.png" src="_images/15-Classification-II-kNN_84_1.png" />
+<img alt="_images/15-Classification-II-kNN_110_1.png" src="_images/15-Classification-II-kNN_110_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1125,7 +1312,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">2874526730.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">2874526730.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dtc</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dtc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">dtc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -1167,7 +1354,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3608676178.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">3608676178.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">.02</span>  <span class="c1"># step size in the mesh</span>
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">dtc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -1198,16 +1385,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data shape: (1797, 64)
+Data labels: [0 1 2 ... 8 9 8]
+Unique labels: [0 1 2 3 4 5 6 7 8 9]
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">2722374340.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Data shape: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_digits</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70547</span><span class="o">/</span><span class="mf">2722374340.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Data labels: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_digits</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Unique labels: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target_names</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="ne">NameError</span>: name &#39;datasets&#39; is not defined
+<span class="ne">NameError</span>: name &#39;utils&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1219,12 +1409,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3929286620.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;digits&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.,  0.,  7., 15., 13.,  1.,  0.,  0.],
+       [ 0.,  8., 13.,  6., 15.,  4.,  0.,  0.],
+       [ 0.,  2.,  1., 13., 13.,  0.,  0.,  0.],
+       [ 0.,  0.,  2., 15., 11.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  1., 12., 12.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  1., 10.,  8.,  0.],
+       [ 0.,  0.,  8.,  4.,  5., 14.,  9.,  0.],
+       [ 0.,  0.,  7., 13., 13.,  9.,  0.,  0.]])
 </pre></div>
 </div>
 </div>
@@ -1238,19 +1430,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">318270940.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">);</span>
-
-<span class="ne">NameError</span>: name &#39;digits&#39; is not defined
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
+<img alt="_images/15-Classification-II-kNN_118_1.png" src="_images/15-Classification-II-kNN_118_1.png" />
 </div>
 </div>
 <p>Notice that this is an 8 <span class="math notranslate nohighlight">\(\times\)</span> 8 image. However we just treat it as a vector of length 64.</p>
@@ -1265,19 +1448,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">1087812749.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-
-<span class="ne">NameError</span>: name &#39;digits&#39; is not defined
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 288x288 with 0 Axes&gt;
-</pre></div>
-</div>
+<img alt="_images/15-Classification-II-kNN_121_0.png" src="_images/15-Classification-II-kNN_121_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1291,17 +1462,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3657336653.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>         <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits&#39; is not defined
-</pre></div>
-</div>
-<img alt="_images/15-Classification-II-kNN_96_1.png" src="_images/15-Classification-II-kNN_96_1.png" />
+<img alt="_images/15-Classification-II-kNN_122_0.png" src="_images/15-Classification-II-kNN_122_0.png" />
+<img alt="_images/15-Classification-II-kNN_122_1.png" src="_images/15-Classification-II-kNN_122_1.png" />
+<img alt="_images/15-Classification-II-kNN_122_2.png" src="_images/15-Classification-II-kNN_122_2.png" />
+<img alt="_images/15-Classification-II-kNN_122_3.png" src="_images/15-Classification-II-kNN_122_3.png" />
 </div>
 </div>
 <p>This time we will use all classes, but only a small training set.</p>
@@ -1317,37 +1481,12 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">4226735214.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">X_digits_train</span> <span class="o">=</span> <span class="n">X_digits</span><span class="p">[:</span><span class="n">step</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">y_digits_train</span> <span class="o">=</span> <span class="n">y_digits</span><span class="p">[:</span><span class="n">step</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">X_digits_test</span> <span class="o">=</span> <span class="n">X_digits</span><span class="p">[</span><span class="n">step</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">y_digits</span><span class="p">)]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">y_digits_test</span> <span class="o">=</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">step</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">y_digits</span><span class="p">)]</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <p>Again using the k-NN classifier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_digits</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">knn_digits</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits_train</span><span class="p">,</span> <span class="n">y_digits_train</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">1992847171.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">knn_digits</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">knn_digits</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits_train</span><span class="p">,</span> <span class="n">y_digits_train</span><span class="p">);</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits_train&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1365,20 +1504,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">1022328275.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">60</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">knn_digits</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">knn_digits</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits_train</span><span class="p">,</span> <span class="n">y_digits_train</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">y_digits_test_pred</span> <span class="o">=</span> <span class="n">knn_digits</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_digits_test</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="c1"># print(&quot;KNN test accuracy on MNIST digits, k = {}, acc = {}: &quot;.format(</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits_train&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1389,7 +1514,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_102_0.png" src="_images/15-Classification-II-kNN_102_0.png" />
+<img alt="_images/15-Classification-II-kNN_128_0.png" src="_images/15-Classification-II-kNN_128_0.png" />
 </div>
 </div>
 <p>Looking at the nearest neighbors of some points (for k=3):</p>
@@ -1402,14 +1527,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">3007192017.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">neighbors</span> <span class="o">=</span> <span class="n">knn_digits</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X_digits_test</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">neighbors</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">neighbors</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits_test&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+(797, 3)
 </pre></div>
 </div>
 </div>
@@ -1433,19 +1552,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">sw</span><span class="o">/</span><span class="mi">7</span><span class="n">wn9qw6n2bn3txlzhbg0l3580000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22332</span><span class="o">/</span><span class="mf">2218238787.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_digits_test</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Query&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="c1"># plot three nearest neighbors from the training set</span>
-
-<span class="ne">NameError</span>: name &#39;X_digits_test&#39; is not defined
-</pre></div>
-</div>
-<img alt="_images/15-Classification-II-kNN_106_1.png" src="_images/15-Classification-II-kNN_106_1.png" />
+<img alt="_images/15-Classification-II-kNN_132_0.png" src="_images/15-Classification-II-kNN_132_0.png" />
+<img alt="_images/15-Classification-II-kNN_132_1.png" src="_images/15-Classification-II-kNN_132_1.png" />
+<img alt="_images/15-Classification-II-kNN_132_2.png" src="_images/15-Classification-II-kNN_132_2.png" />
 </div>
 </div>
 </div>
