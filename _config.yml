@@ -12,6 +12,7 @@ execute:
   execute_notebooks: "cache"
   # I occasionally have cells that demonstrate python errors -- keep going!
   allow_errors: true
+  timeout: 100
 parse:
   # see https://jupyterbook.org/customize/config.html
   # first one is the only one I added to the set of defaults
