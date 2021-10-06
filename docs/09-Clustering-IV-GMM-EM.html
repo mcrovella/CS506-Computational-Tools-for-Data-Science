@@ -379,7 +379,7 @@
 </div>
 </div>
 <p>We find that ages of the poor set have mean 37 with standard deviation 14,</p>
-<p>while the ages of the rich set have mean 45 with standard deviatgion 11.</p>
+<p>while the ages of the rich set have mean 45 with standard deviation 11.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -461,14 +461,14 @@ Ellipsoid Representation
 Density
 </div><p>A Gaussian Mixture Model is defined by:</p>
 <div class="math notranslate nohighlight">
-\[ C_i, \mu_i, \Sigma_i,\;\; i = 1,\dots,k\]</div>
-<p>Where <span class="math notranslate nohighlight">\(C_i\)</span> is the prior probability (weight) of the <span class="math notranslate nohighlight">\(i\)</span>th Gaussian, such that</p>
+\[ w_i, \mu_i, \Sigma_i,\;\; i = 1,\dots,k\]</div>
+<p>Where <span class="math notranslate nohighlight">\(w_i\)</span> is the prior probability (weight) of the <span class="math notranslate nohighlight">\(i\)</span>th Gaussian, such that</p>
 <div class="math notranslate nohighlight">
-\[\sum_i C_i = 1,\;\;\; 0\leq C_i\leq 1.\]</div>
-<p>Intuitively, <span class="math notranslate nohighlight">\(C_i\)</span> tells us “what fraction of the data comes from cluster <span class="math notranslate nohighlight">\(i\)</span>.”</p>
+\[\sum_i w_i = 1,\;\;\; 0\leq w_i\leq 1.\]</div>
+<p>Intuitively, <span class="math notranslate nohighlight">\(w_i\)</span> tells us “what fraction of the data comes from Gaussian <span class="math notranslate nohighlight">\(i\)</span>.”</p>
 <p>Then the probability density at any point <span class="math notranslate nohighlight">\(x\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
-\[ p(x) = \sum_i C_i \cdot \mathcal{N}(x\,|\, \mu_i, \Sigma_i) \]</div>
+\[ p(x) = \sum_i w_i \cdot \mathcal{N}(x\,|\, \mu_i, \Sigma_i) \]</div>
 </div>
 <div class="section" id="learning-the-parameters-of-a-gmm">
 <h2>Learning the Parameters of a GMM<a class="headerlink" href="#learning-the-parameters-of-a-gmm" title="Permalink to this headline">¶</a></h2>
@@ -476,16 +476,16 @@ Density
 <p>That is, assume we are told there are <span class="math notranslate nohighlight">\(k\)</span> clusters.</p>
 <p>For each <span class="math notranslate nohighlight">\(i\)</span> in <span class="math notranslate nohighlight">\(1, \dots, k\)</span>, how do we estimate the</p>
 <ul class="simple">
-<li><p>cluster probability <span class="math notranslate nohighlight">\(C_i\)</span>,</p></li>
+<li><p>cluster probability <span class="math notranslate nohighlight">\(w_i\)</span>,</p></li>
 <li><p>cluster mean <span class="math notranslate nohighlight">\(\mu_i\)</span>, and</p></li>
 <li><p>cluster covariance  <span class="math notranslate nohighlight">\(\Sigma_i\)</span>?</p></li>
 </ul>
-<p>There are a variety of ways of finding the best <span class="math notranslate nohighlight">\((C_i, \mu_i, \Sigma_i)\;\;\;i = 1,\dots,k\)</span>.</p>
+<p>There are a variety of ways of finding the best <span class="math notranslate nohighlight">\((w_i, \mu_i, \Sigma_i)\;\;\;i = 1,\dots,k\)</span>.</p>
 <p>We will consider the most popular method:  <strong>Expectation Maximization (EM).</strong></p>
 <p>This is another famous algorithm, in the same “super-algorithm” league as <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
 <p>EM is formulated using a probabilistic model for data.   It can solve a problem like:</p>
 <blockquote>
-<div><p>Given a set of data points and a parameter <span class="math notranslate nohighlight">\(k\)</span>, find the <span class="math notranslate nohighlight">\((C_i, \mu_i, \Sigma_i)\;\;i = 1,\dots,k\)</span> that <strong>maximizes the likelihood of the data</strong> assuming a GMM with those parameters.</p>
+<div><p>Given a set of data points and a parameter <span class="math notranslate nohighlight">\(k\)</span>, find the <span class="math notranslate nohighlight">\((w_i, \mu_i, \Sigma_i)\;\;i = 1,\dots,k\)</span> that <strong>maximizes the likelihood of the data</strong> assuming a GMM with those parameters.</p>
 </div></blockquote>
 <p>(It can also solve lots of other problems involving maximizing likelihood of data under a model.)</p>
 <p>However, note that problems of this type are often NP-hard.</p>
@@ -567,7 +567,7 @@ Density
 <p>Likewise, there is a simple formula for the covariance.</p>
 <p>These are called <strong>Maximum Likelihood Estimates</strong> (MLE) of the parameters.</p>
 <p>Often we use <span class="math notranslate nohighlight">\(\mathbf \theta\)</span> to denote “all the parameters of the model.”</p>
-<p>In this case <span class="math notranslate nohighlight">\(\mathbf \theta_j = (C_j, {\mathbf \mu_j},{\mathbf \Sigma_j})\)</span>.</p>
+<p>In this case <span class="math notranslate nohighlight">\(\mathbf \theta_i = (w_i, {\mathbf \mu_i},{\mathbf \Sigma_i})\)</span>.</p>
 </div>
 <div class="section" id="expectation-maximization-for-gmm-the-algorithm">
 <h2>Expectation Maximization for GMM – The Algorithm<a class="headerlink" href="#expectation-maximization-for-gmm-the-algorithm" title="Permalink to this headline">¶</a></h2>
@@ -591,7 +591,7 @@ Density
 </center><p><em>Step 2</em> <strong>(Maximization)</strong>: Using the cluster membership probabilities computed in the previous step, compute new clusters (parameters) and cluster probabilities.</p>
 <p>This is easy, using maximum likelihood estimates of the parameters <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <div class="math notranslate nohighlight">
-\[P(C_j) = \frac{1}{n}\sum_{i=1}^n P(C_j\,|\,x_i)\]</div>
+\[w_j = P(C_j) = \frac{1}{n}\sum_{i=1}^n P(C_j\,|\,x_i)\]</div>
 <p>Likewise, compute new parameters for the clusters <span class="math notranslate nohighlight">\(C_1, C_2, \ldots, C_n\)</span> using MLE.</p>
 <p><strong>Repeat</strong> Steps 1 and 2 until stabilization.</p>
 <p>Let’s pause for a minute and compare GMM/EM with <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
@@ -599,7 +599,7 @@ Density
 <ol class="simple">
 <li><p>Initialize randomly or using some rule</p></li>
 <li><p>Compute the probability that each point belongs in each cluster</p></li>
-<li><p>Update the clusters (means and variances).</p></li>
+<li><p>Update the clusters (weights, means and variances).</p></li>
 <li><p>Repeat 2-3 until convergence.</p></li>
 </ol>
 <p><span class="math notranslate nohighlight">\(k\)</span>-means:</p>
@@ -787,40 +787,6 @@ Cluster 1:
 </div>
 </div>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bg&#39;</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">y_pred</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-
-<span class="c1"># construct some ellipses to represent Gaussians</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
-<span class="k">for</span> <span class="n">clus</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-    <span class="n">e</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">gmm</span><span class="o">.</span><span class="n">covariances_</span><span class="p">[</span><span class="n">clus</span><span class="p">])</span>
-    <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">skewed</span><span class="p">]</span><span class="o">/</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">skewed</span><span class="p">])</span>
-    <span class="n">ellipse</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">gmm</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="n">clus</span><span class="p">],</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">angle</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_70526</span><span class="o">/</span><span class="mf">2552033326.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">for</span> <span class="n">clus</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">e</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">gmm</span><span class="o">.</span><span class="n">covariances_</span><span class="p">[</span><span class="n">clus</span><span class="p">])</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">skewed</span><span class="p">]</span><span class="o">/</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">skewed</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">ellipse</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">gmm</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="n">clus</span><span class="p">],</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">angle</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;skewed&#39; is not defined
-</pre></div>
-</div>
-<img alt="_images/09-Clustering-IV-GMM-EM_102_1.png" src="_images/09-Clustering-IV-GMM-EM_102_1.png" />
-</div>
-</div>
 <p>Now, let’s construct <strong>overlapping</strong> clusters.  What will happen?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -844,7 +810,7 @@ Cluster 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-Clustering-IV-GMM-EM_105_0.png" src="_images/09-Clustering-IV-GMM-EM_105_0.png" />
+<img alt="_images/09-Clustering-IV-GMM-EM_104_0.png" src="_images/09-Clustering-IV-GMM-EM_104_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -903,7 +869,7 @@ Cluster 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-Clustering-IV-GMM-EM_112_0.png" src="_images/09-Clustering-IV-GMM-EM_112_0.png" />
+<img alt="_images/09-Clustering-IV-GMM-EM_111_0.png" src="_images/09-Clustering-IV-GMM-EM_111_0.png" />
 </div>
 </div>
 <p>Perhaps you believe in even more restricted shapes: all clusters should have their axes aligned with the coordinate axes.</p>
@@ -931,7 +897,7 @@ Cluster 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-Clustering-IV-GMM-EM_115_0.png" src="_images/09-Clustering-IV-GMM-EM_115_0.png" />
+<img alt="_images/09-Clustering-IV-GMM-EM_114_0.png" src="_images/09-Clustering-IV-GMM-EM_114_0.png" />
 </div>
 </div>
 <p>Finally, if you believe that all clusters should be round, then you only need to estimate the <span class="math notranslate nohighlight">\(k\)</span> variances.</p>
@@ -957,7 +923,7 @@ Cluster 1:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-Clustering-IV-GMM-EM_118_0.png" src="_images/09-Clustering-IV-GMM-EM_118_0.png" />
+<img alt="_images/09-Clustering-IV-GMM-EM_117_0.png" src="_images/09-Clustering-IV-GMM-EM_117_0.png" />
 </div>
 </div>
 </div>
