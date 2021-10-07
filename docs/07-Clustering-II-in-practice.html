@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,16 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Hierarchical Clustering" href="08-Clustering-III-hierarchical.html" />
@@ -82,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -281,7 +282,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-wheels-synthetic-data">
@@ -535,11 +536,11 @@ the model, and</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 2, 1, 1, 2, 0, 2, 2, 0, 2, 1, 0, 1, 0, 2, 1, 1, 0, 1, 2, 1, 2,
-       1, 0, 2, 2, 0, 1, 1, 1, 1, 0, 1, 0, 1, 2, 1, 2, 1, 2, 2, 2, 0, 1,
-       0, 1, 0, 2, 0, 1, 1, 0, 0, 0, 0, 1, 0, 2, 2, 1, 0, 1, 2, 0, 0, 2,
-       1, 0, 0, 2, 2, 2, 0, 0, 1, 0, 2, 0, 2, 0, 2, 2, 2, 0, 1, 1, 2, 0,
-       0, 1, 0, 2, 2, 1, 0, 1, 1, 2, 2, 1], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 0, 0, 2, 1, 2, 2, 1, 2, 0, 1, 0, 1, 2, 0, 0, 1, 0, 2, 0, 2,
+       0, 1, 2, 2, 1, 0, 0, 0, 0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 2, 2, 1, 0,
+       1, 0, 1, 2, 1, 0, 0, 1, 1, 1, 1, 0, 1, 2, 2, 0, 1, 0, 2, 1, 1, 2,
+       0, 1, 1, 2, 2, 2, 1, 1, 0, 1, 2, 1, 2, 1, 2, 2, 2, 1, 0, 0, 2, 1,
+       1, 0, 1, 2, 2, 0, 1, 0, 0, 2, 2, 0], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -574,21 +575,21 @@ the model, and</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total error of the clustering is: 2733.8.
 
 Cluster labels:
-[0 2 1 1 2 0 2 2 0 2 1 0 1 0 2 1 1 0 1 2 1 2 1 0 2 2 0 1 1 1 1 0 1 0 1 2 1
- 2 1 2 2 2 0 1 0 1 0 2 0 1 1 0 0 0 0 1 0 2 2 1 0 1 2 0 0 2 1 0 0 2 2 2 0 0
- 1 0 2 0 2 0 2 2 2 0 1 1 2 0 0 1 0 2 2 1 0 1 1 2 2 1]
+[1 2 0 0 2 1 2 2 1 2 0 1 0 1 2 0 0 1 0 2 0 2 0 1 2 2 1 0 0 0 0 1 0 1 0 2 0
+ 2 0 2 2 2 1 0 1 0 1 2 1 0 0 1 1 1 1 0 1 2 2 0 1 0 2 1 1 2 0 1 1 2 2 2 1 1
+ 0 1 2 1 2 1 2 2 2 1 0 0 2 1 1 0 1 2 2 0 1 0 0 2 2 0]
 
 Cluster centroids:
-[[ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
-  -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
-   1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
-   5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
-  -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]
- [-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
+[[-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
    2.22988468  2.03394692  8.9797878   3.67857655 -2.67618716 -1.17595897
    3.76433199 -8.46317271  3.28114395  3.73803392 -5.73436869 -7.0844462
   -3.75643598 -3.07904369  1.36974653 -0.95918462  9.91135428 -8.17722281
   -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]
+ [ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
+  -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
+   1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
+   5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
+  -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]
  [-7.0489904  -7.92501873  2.89710462 -7.17088692 -6.01151677 -2.66405834
    6.43970052 -8.20341647  6.54146052 -7.92978843  9.56983319 -0.86327902
    9.25897119  1.73061823  4.84528928 -9.26418246 -4.54021612 -7.47784575
@@ -711,8 +712,8 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <p>To “calibrate” the Rand Index this way, we use the expected Rand Index of random labelings, denoted <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span>.</p>
 <p>The Expected Rand Index considers <span class="math notranslate nohighlight">\(C\)</span> to be a clustering that has the same cluster sizes as <span class="math notranslate nohighlight">\(T\)</span>, but labels are assigned at random.</p>
 <p>Using that, we define the adjusted Rand index as a simple <strong>rescaling</strong> of RI:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b61d98e-c8fd-42d7-8a06-25629373dbff">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7b61d98e-c8fd-42d7-8a06-25629373dbff" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68e63bbe-e5e9-4269-b25e-6d26ad58049d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-68e63bbe-e5e9-4269-b25e-6d26ad58049d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{ARI} = \frac{\text{RI} - E[\text{RI}]}{\max(\text{RI}) - E[\text{RI}]}
 \end{equation}\]</div>
 <p>The computation of the <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span> and the <span class="math notranslate nohighlight">\(\max(\text{RI})\)</span> are simple combinatorics (we’ll omit the derivation).</p>
@@ -1210,32 +1211,12 @@ Cluster 3:
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="06-Clustering-I-kmeans.html" title="previous page"><span class="math notranslate nohighlight">\(k\)</span>-means</a>
+    <a class='right-next' id="next-link" href="08-Clustering-III-hierarchical.html" title="next page">Hierarchical Clustering</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="06-Clustering-I-kmeans.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="math notranslate nohighlight">\(k\)</span>-means</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="08-Clustering-III-hierarchical.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Hierarchical Clustering</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
