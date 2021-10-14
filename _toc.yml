@@ -20,3 +20,12 @@ parts:
   - file: 13-Learning-From-Data
   - file: 14-Classification-I-Decision-Trees
   - file: 15-Classification-II-kNN
+  - file: 16-Classification-III-NB-SVM
+- caption: Dimensionality Reduction
+  chapters: 
+  - file: 10-Low-Rank-and-SVD
+  - file: 11-Dimensionality-Reduction-SVD-II
+- caption: Regression
+  chapters: 
+  - file: 17-Regression-I-Linear
+  - file: 18-Regression-II-Logistic
