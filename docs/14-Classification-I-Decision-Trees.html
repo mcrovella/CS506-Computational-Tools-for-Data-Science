@@ -55,7 +55,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="\(k\)-Nearest Neighbors" href="15-Classification-II-kNN.html" />
-    <link rel="prev" title="Introduction to Learning From Data" href="13-Learning-From-Data.html" />
+    <link rel="prev" title="Learning From Data" href="13-Learning-From-Data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -167,7 +167,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="13-Learning-From-Data.html">
-   Introduction to Learning From Data
+   Learning From Data
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -181,6 +181,45 @@
     \(k\)
    </span>
    -Nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
+   Naive Bayes and Support Vector Machines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
+   Low Rank Approximation and the SVD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
+   Dimensionality Reduction - SVD II
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Regression-I-Linear.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Regression-II-Logistic.html">
+   Logistic Regression
   </a>
  </li>
 </ul>
@@ -409,7 +448,7 @@
 <a class="reference internal image-reference" href="_images/L14-DT-Data-Example.png"><img alt="Figure" src="_images/L14-DT-Data-Example.png" style="width: 40%;" /></a>
 <p>So as Hunt’s algorithm progresses, records are divided up and assigned to leaf nodes.   The most challenging step in Hunt’s algorithm is deciding which leaf node to split next, and how to specify the split.</p>
 <p>In general, we use a greedy strategy.  We will split a set of records based on an attribute test that optimizes some criterion.</p>
-<p>We choose the set to split that provides the largest improvement in our criterion.</p>
+<p>We choose the set to split that provides the <strong>largest improvement in our criterion.</strong></p>
 <p>Once we have chosen the set to split, the remaining questions are:</p>
 <ul class="simple">
 <li><p>Determining how to split the record set</p>
@@ -460,7 +499,8 @@
 <div class="section" id="determining-the-best-split">
 <h3>Determining the Best Split<a class="headerlink" href="#determining-the-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Our algorithmic strategy is to split record sets so as to improve classification accuracy on the training data.</p>
-<p>When is classification accuracy maximized?   When each leaf node contains records that all have the same label.</p>
+<p>When is classification accuracy maximized?</p>
+<p>When each leaf node contains records that all have the same label.</p>
 <p>Consider this case:</p>
 <p>At some node in the tree, before splitting that node’s records, we have</p>
 <ul class="simple">
@@ -618,7 +658,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="13-Learning-From-Data.html" title="previous page">Introduction to Learning From Data</a>
+    <a class='left-prev' id="prev-link" href="13-Learning-From-Data.html" title="previous page">Learning From Data</a>
     <a class='right-next' id="next-link" href="15-Classification-II-kNN.html" title="next page"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a>
 
         </div>

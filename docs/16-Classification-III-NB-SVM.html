@@ -1,0 +1,1325 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naive Bayes and Support Vector Machines &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Low Rank Approximation and the SVD" href="10-Low-Rank-and-SVD.html" />
+    <link rel="prev" title="\(k\)-Nearest Neighbors" href="15-Classification-II-kNN.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Clustering-II-in-practice.html">
+   Clustering In Practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
+   Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Gaussian Mixture Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Classification-II-kNN.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Naive Bayes and Support Vector Machines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
+   Low Rank Approximation and the SVD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
+   Dimensionality Reduction - SVD II
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Regression-I-Linear.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Regression-II-Logistic.html">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/16-Classification-III-NB-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/16-Classification-III-NB-SVM.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Naive Bayes and Support Vector Machines
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-bayes">
+     Naive Bayes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-bayes-rule-in-a-classifier">
+       Using Bayes Rule in a Classifier
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computing-attribute-probabilities-from-data">
+       Computing Attribute Probabilities from Data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#support-vector-machines">
+     Support Vector Machines
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#linear-svm-separable-case">
+       Linear SVM: Separable Case
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#linear-svm-non-separable-case">
+       Linear SVM: Non-Separable Case
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nonlinear-svm">
+       Nonlinear SVM
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#svm-summary">
+       SVM: Summary
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svm-and-naive-bayes-in-python">
+   SVM and Naive Bayes in Python
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Support Vector Machines
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularization">
+     Regularization
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kernels">
+     Kernels
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     Cross-Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-iris-dataset">
+     The Iris Dataset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Naive Bayes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="naive-bayes-and-support-vector-machines">
+<h1>Naive Bayes and Support Vector Machines<a class="headerlink" href="#naive-bayes-and-support-vector-machines" title="Permalink to this headline">¶</a></h1>
+<p>Today we’ll look at two more very commonly-used, widely applicable classification methods.</p>
+<ul class="simple">
+<li><p>Naive Bayes Classifier</p></li>
+<li><p>Support Vector Machine</p></li>
+</ul>
+<div class="section" id="naive-bayes">
+<h2>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start from the definition of conditional probability:</p>
+<div class="math notranslate nohighlight">
+\[ P[A\,|\,C] = \frac{P[A \text{ and } C]}{P[C]} \]</div>
+<p>So:</p>
+<div class="math notranslate nohighlight">
+\[ P[A \text{ and } C] = P[A\,|\,C] \cdot P[C]. \]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">circle</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">facecolor</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+<span class="n">circle</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Circle</span><span class="p">([</span><span class="mf">1.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">facecolor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.85</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.35</span><span class="p">,</span> <span class="mf">.95</span><span class="p">,</span> <span class="s1">&#39;A &amp; C&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+<span class="c1"># plt.title(r&#39;$P[C\,|\,A]\,P[A] = P[A\,|\,C]\,P[C]$&#39;); </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_5_0.png" src="_images/16-Classification-III-NB-SVM_5_0.png" />
+</div>
+</div>
+<p>Switching the roles of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, we can equally say:</p>
+<div class="math notranslate nohighlight">
+\[ P[C \text{ and } A] = P[C\,|\,A] \cdot P[A]. \]</div>
+<p>Now <span class="math notranslate nohighlight">\(P[C \text{ and } A] = P[A \text{ and } C]\)</span>, so:</p>
+<div class="math notranslate nohighlight">
+\[ P[A\,|\,C] \cdot P[C] = P[C\,|\,A] \cdot P[A] \]</div>
+<p>Rearranging, we get <strong>Bayes’ Rule</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ P[A\,|\,C] = \frac{P[C\,|\,A] \cdot P[A]}{P[C]}. \]</div>
+<p>So there is nothing “magic” about Bayes’ Rule: it simply follows from the basic laws of probability.</p>
+<p>However, it is <strong>very</strong> useful!</p>
+<p>The reason is that often, <span class="math notranslate nohighlight">\(P[A\,|\,C]\)</span> is <strong>not</strong> known, but the expressions on the right <strong>are</strong> known.</p>
+<p>(We’ve already seen how this is used in the EM algorithm for Gaussian Mixture Modeling.)</p>
+<div class="section" id="using-bayes-rule-in-a-classifier">
+<h3>Using Bayes Rule in a Classifier<a class="headerlink" href="#using-bayes-rule-in-a-classifier" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start with a simple example:</p>
+<ul class="simple">
+<li><p>A doctor knows that meningitis causes a stiff neck 75% of the time.</p></li>
+<li><p>This is <span class="math notranslate nohighlight">\(P[S\,|\,M]\)</span>.</p></li>
+</ul>
+<p>A patient presents with a stiff neck.  What is the probability she has meningitis?</p>
+<p>Well, we can’t say.  What we know is <span class="math notranslate nohighlight">\(P[S\,|\,M]\)</span>, but what we want to know is <span class="math notranslate nohighlight">\(P[M\,|\,S]\)</span>!</p>
+<p>Now perhaps the doctor knows that</p>
+<ul class="simple">
+<li><p>1 in 20 people in the population have a stiff neck at any given time</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(P[S] = 1/20\)</span></p></li>
+</ul>
+</li>
+<li><p>1 in 10,000 people in the population have meningitis at any given time</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(P[M] = 1/10000\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Now, we can calculate the answer needed:</p>
+<div class="math notranslate nohighlight">
+\[ P[M\,|\,S] = \frac{P[S\,|\,M]}{P[S]}\cdot P[M] = \frac{3/4}{1/20} \cdot 1/10000 = \fbox{$15 \cdot 1/10000$} = 0.0015. \]</div>
+<p>I wrote the expressions above that way to point out the essence of Bayesian reasoning:</p>
+<ul class="simple">
+<li><p>A random person has probability 1/10000 of having meningitis</p></li>
+<li><p>When <strong>we learn</strong> that the person has a stiff neck, it <strong>increases their probability</strong> by a factor of 15.</p></li>
+</ul>
+<p>We are going to use this same principle to construct a classifier.</p>
+<p>Given a set of items with features and class labels,</p>
+<p>the <strong>class label</strong> will play the role of “meningitis” and the various <strong>attributes</strong> of the item will play the role of “stiff neck.”</p>
+<p>We will then ask “how does the value of each feature change the probability of the class label?”</p>
+<p>More formally:</p>
+<p>Consider an item <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> having attributes <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_n\)</span>.</p>
+<p>There are various classes (labels) for items: <span class="math notranslate nohighlight">\(C_1, \dots, C_k\)</span>.</p>
+<p>Our goal is to predict the class of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>To do that, we will compute <span class="math notranslate nohighlight">\(P[C_1\,|\,\mathbf{x}], P[C_2\,|\,\mathbf{x}], \dots, P[C_k\,|\,\mathbf{x}]\)</span>.</p>
+<p>These form a <strong>soft classification</strong> of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>From them, we can form a hard classification.  One way would simply be to choose the class with highest probability.</p>
+<p>This is the MAP (Maximum A Posteriori) Estimate:</p>
+<div class="math notranslate nohighlight">
+\[\hat{C} = \arg\max_{\{C_i\}} P[C_i\,|\,\mathbf{x}].\]</div>
+<p>Now <span class="math notranslate nohighlight">\(P[C_i\,|\,\mathbf{x}] = P[C_i\,|\,x_1, x_2, \dots, x_n]\)</span></p>
+<p>How can we approach this problem?</p>
+<p>The <strong>key idea</strong> is that Bayes Rule makes clear that</p>
+<div class="math notranslate nohighlight">
+\[ P[C_i\,|\,\mathbf{x}] = \frac{P[\mathbf{x}\,|\,C_i]}{P[\mathbf{x}]} \cdot P[C_i] \]</div>
+<p>Now, when we vary <span class="math notranslate nohighlight">\(C_i\)</span> in the above expression, <span class="math notranslate nohighlight">\(P[\mathbf{x}]\)</span> is not changing.</p>
+<p>So …</p>
+<p>The <span class="math notranslate nohighlight">\(\hat{C}\)</span> that maximizes <span class="math notranslate nohighlight">\(P[C_i\,|\,x_1, x_2, \dots, x_n]\)</span> is the <strong>same</strong> as the <span class="math notranslate nohighlight">\(\hat{C}\)</span> that maximizes <span class="math notranslate nohighlight">\(P[x_1, x_2, \dots, x_n\,|\,C_i]\cdot P[C_i]\)</span>.</p>
+<p>This gives us an angle of attack on the problem.</p>
+<p>The difficult problem that remains is how to estimate</p>
+<div class="math notranslate nohighlight">
+\[ P[x_1, x_2, \dots, x_n\,|\,C_i]. \]</div>
+<p>To see the challenge, imagine if we tried to compute this directly from data.</p>
+<p>Attacking head-on, we could use a histogram to estimate the necessary distribution.  In other words, simply count up how many times we see each combination of feature values.</p>
+<p>Let’s say there are 10 possible values for each feature, and there are 20 features.</p>
+<p>Then for each class <span class="math notranslate nohighlight">\(C_i\)</span> we need to construct a histogram with <span class="math notranslate nohighlight">\(10^{20}\)</span> bins!</p>
+<p>We would never expect to have enough data to fill all those bins.</p>
+<p>The underlying problem we face is the high dimensionality of the feature space.</p>
+<p>The size of our histogram is <strong>exponential</strong> in the number of features.</p>
+<p>So, we need to find a way to reduce the exponential size of the estimation problem.</p>
+<p>We will do that by <strong>factoring</strong> the distribution <span class="math notranslate nohighlight">\(P[x_1, x_2, \dots, x_n\,|\,C_i]\)</span>.</p>
+<p>Here is where the “Naive” part comes in.</p>
+<p>We will <strong>assume</strong> that <strong>attributes are independent</strong> in their assignment to items.</p>
+<p>That is, for two sets of attributes, the values of the attributes in one set do not affect the values in the other set.    So all correlations among attributes are zero.</p>
+<p>This is indeed a “naive” assumption … but it can be surprisingly effective in practice.</p>
+<p>That implies that:</p>
+<div class="math notranslate nohighlight">
+\[ P[x_1, x_2, \dots, x_n\,|\,C_i] = P[x_1\,|\,C_i] \cdot P[x_2\,|\,C_i] \cdot \dots P[x_n\,|\,C_i]  \]</div>
+<p>This is very helpful computationally, because the factors <span class="math notranslate nohighlight">\(P[x_j\,|\,C_i]\)</span> are individually much lower-dimensional than the full distribution.</p>
+<p>In a naive Bayes model, the quantity we calculate for each class <span class="math notranslate nohighlight">\(C_i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ P[x_1\,|\,C_i] \cdot P[x_2\,|\,C_i] \cdot \dots P[x_n\,|\,C_i] \cdot P[C_i] \]</div>
+<p>You can see each conditional probability as a “correction factor” to <span class="math notranslate nohighlight">\(P[C_i]\)</span>.</p>
+<p>Each factor <span class="math notranslate nohighlight">\(P[x_j\,|\,C_i]\)</span> tells us how we should update our confidence in <span class="math notranslate nohighlight">\(C_i\)</span> based on the value of a particular feature <span class="math notranslate nohighlight">\(x_j\)</span>.</p>
+<p>So, what remains then is to estimate <span class="math notranslate nohighlight">\(P[x_j\,|\,C_i]\)</span> for all <span class="math notranslate nohighlight">\(x_j\)</span> and <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
+<p>We will estimate these quantities from our training data.</p>
+<p>To summarize the steps of Naive Bayes:</p>
+<p><strong>Training</strong></p>
+<ul class="simple">
+<li><p>Compute all the per-class attribute probabilities <span class="math notranslate nohighlight">\(P[x_j\,|\,C_i]\)</span> from training data.</p></li>
+<li><p>Compute all the class probabilities <span class="math notranslate nohighlight">\(P[C_i]\)</span> from the training data.</p></li>
+</ul>
+<p><strong>Predicting</strong></p>
+<ul class="simple">
+<li><p>For a given item <span class="math notranslate nohighlight">\(\mathbf{x} = (x_1, x_2, \dots, x_n)\)</span>,</p>
+<ul>
+<li><p>For each class <span class="math notranslate nohighlight">\(C_i,\)</span> compute <span class="math notranslate nohighlight">\(P[x_1\,|\,C_i] \cdot P[x_2\,|\,C_i] \cdot \dots P[x_n\,|\,C_i] \cdot P[C_i]\)</span></p></li>
+<li><p>For a hard classification, return the class that maximizes the above expression.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="computing-attribute-probabilities-from-data">
+<h3>Computing Attribute Probabilities from Data<a class="headerlink" href="#computing-attribute-probabilities-from-data" title="Permalink to this headline">¶</a></h3>
+<p>All that remains is to compute the conditional attribute probabilities from data.</p>
+<p>The strategy depends on the attribute type: discrete or continuous.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-sample-data.png"><img alt="Figure" src="_images/L16-sample-data.png" style="width: 40%;" /></a>
+</center><p><strong>Discrete Attributes</strong>.</p>
+<p>Discrete attributes, such as categorical or ordinal attributes, can be handled via histograms.</p>
+<p>In the above table, to handle the “Marital Status” attribute for the <span class="math notranslate nohighlight">\(\text{Evade} = \text{No}\)</span> class, we need to compute</p>
+<div class="math notranslate nohighlight">
+\[ P[\text{Single}\,|\,\text{Evade }=\text{ No}] = 2 / 7 = 0.29 \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ P[\text{Married}\,|\,\text{Evade }=\text{ No}] = 4 / 7 = 0.57 \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ P[\text{Divorced}\,|\,\text{Evade }=\text{ No}] = 1 / 7 = 0.14 \]</div>
+<p>One problem that can arise is when a histogram bin has zero entries.  Then the conditional probability for this attribute value is zero, which overrides all the other factors and yields a zero probability.</p>
+<p>There are various strategies for making small corrections to the counts that avoid this problem.</p>
+<p><strong>Continuous Attributes.</strong></p>
+<p>Continuous attributes can be handled via histograms as well, by binning up the values.</p>
+<p>In the above example, we could create bins to hold ranges of values for “Taxable Income”</p>
+<p>However, another commonly used approach is to assume that the data follow a parametric probability distribution.</p>
+<p>Most often the Gaussian is used (of course).</p>
+<p>So we might form conditional probabilities for “Taxable Income” as</p>
+<div class="math notranslate nohighlight">
+\[ P[\text{Taxable Income} = x\,|\,\text{Evade }=\text{ No}] = \mathcal{N}(x; \mu_\text{No}, \sigma_\text{No}) \]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">eno</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">125000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">70000</span><span class="p">,</span> <span class="mi">120000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">,</span> <span class="mi">220000</span><span class="p">,</span> <span class="mi">75000</span><span class="p">])</span>
+<span class="n">eyes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">95000</span><span class="p">,</span> <span class="mi">85000</span><span class="p">,</span> <span class="mi">75000</span><span class="p">])</span>
+<span class="n">mu_no</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eno</span><span class="p">)</span>
+<span class="n">sig_no</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">eno</span><span class="p">)</span>
+<span class="n">mu_yes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eyes</span><span class="p">)</span>
+<span class="n">sig_yes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eyes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_no</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_no</span><span class="p">),</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_no</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_no</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_no</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_no</span><span class="p">),</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Evade = No&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_yes</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_yes</span><span class="p">),</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_yes</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_yes</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mu_yes</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">sig_yes</span><span class="p">),</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Evade = Yes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Taxable Income&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Class-Conditional Distributions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_34_0.png" src="_images/16-Classification-III-NB-SVM_34_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="support-vector-machines">
+<h2>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h2>
+<p>We now turn to the support vector machine (SVM).</p>
+<p>The SVM is based on explicit geometric considerations about how best to build a classifier.</p>
+<p>We start with a set of training data, considered as points in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-1.png"><img alt="Figure" src="_images/L16-SVM-1.png" style="width: 40%;" /></a>
+</center><p>We will start with the idea of a <strong>linear separator</strong>.</p>
+<p>This is a hyperplane that forms a decision boundary.</p>
+<p>Here is one possible separator:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-2.png"><img alt="Figure" src="_images/L16-SVM-2.png" style="width: 40%;" /></a>
+</center><p>Here is another possible separator:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-3.png"><img alt="Figure" src="_images/L16-SVM-3.png" style="width: 40%;" /></a>
+</center><p>Which separator is <strong>better</strong>?</p>
+<p>Well, they both perfectly separate the two classes in the training data.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-4.png"><img alt="Figure" src="_images/L16-SVM-4.png" style="width: 40%;" /></a>
+</center><p>But what we really care about is accuracy on the test data – <strong>generalization</strong> ability.</p>
+<p>It seems that <span class="math notranslate nohighlight">\(B_1\)</span> is a better choice, because it is <strong>farther</strong> from <strong>both</strong> classes.</p>
+<p>So, new data falling in the region between training classes is more likely to be correctly classified by <span class="math notranslate nohighlight">\(B_1\)</span>.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-5.png"><img alt="Figure" src="_images/L16-SVM-5.png" style="width: 40%;" /></a>
+</center><p>This leads to the principle for choosing the best separator:</p>
+<ul class="simple">
+<li><p>We are concerned with the <strong>margin</strong> between the separator and the data, and</p></li>
+<li><p>We prefer the separator that <strong>maximizes the margin</strong>.</p></li>
+</ul>
+<p>In fact, there are theoretical results suggesting that this is an optimal strategy for choosing a separator that has good generalization ability.</p>
+<div class="section" id="linear-svm-separable-case">
+<h3>Linear SVM: Separable Case<a class="headerlink" href="#linear-svm-separable-case" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see how we can train an SVM.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-5.png"><img alt="Figure" src="_images/L16-SVM-5.png" style="width: 40%;" /></a>
+</center><p>As usual, our training data consists of tuples <span class="math notranslate nohighlight">\((\mathbf{x}_i, y_i)\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{x}_i \in \mathbb{R}^d\)</span> and by convention <span class="math notranslate nohighlight">\(y_i \in \{-1, 1\}\)</span>.</p>
+<p>Any decision boundary (such as <span class="math notranslate nohighlight">\(B_1\)</span> above) can be written as:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x} + b = 0. \]</div>
+<p>This is simply the equation of a hyperplane, where the <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are the parameters of our model.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-6.png"><img alt="Figure" src="_images/L16-SVM-6.png" style="width: 40%;" /></a>
+</center><p>For any <span class="math notranslate nohighlight">\(\mathbf{x}_+\)</span> from the positive class (circle) located <strong>above</strong> the decision boundary,</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_+ + b = k \]</div>
+<p>for some <strong>positive</strong> <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>Likewise for any <span class="math notranslate nohighlight">\(\mathbf{x}_-\)</span> from the negative class (square) located <strong>below</strong> the decision boundary,</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_- + b = k' \]</div>
+<p>for some <strong>negative</strong> <span class="math notranslate nohighlight">\(k'\)</span>.</p>
+<p>We’ll rescale the parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> and <span class="math notranslate nohighlight">\(b\)</span> obtaining new equations for the <strong>same</strong> hyperplanes:</p>
+<div class="math notranslate nohighlight">
+\[ b_{11}: \mathbf{w}^T\mathbf{x}_+ + b = 1 \]</div>
+<div class="math notranslate nohighlight">
+\[ b_{12}: \mathbf{w}^T\mathbf{x}_- + b = -1 \]</div>
+<p>How far apart are these hyperplanes?</p>
+<p>The vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> is orthogonal to the hyperplanes <span class="math notranslate nohighlight">\(b_{11}\)</span> and <span class="math notranslate nohighlight">\(b_{12}\)</span>.</p>
+<p>So the distance between hyperplanes is the component of <span class="math notranslate nohighlight">\((\mathbf{x}_+ - \mathbf{x}_-)\)</span> in the direction of <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.</p>
+<p>Which is given by $<span class="math notranslate nohighlight">\(d = \frac{\mathbf{w}^T}{\Vert\mathbf{w}\Vert}(\mathbf{x}_+ - \mathbf{x}_-).\)</span>$</p>
+<p>But subtracting the equations for the hyperplanes, we get:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T(\mathbf{x}_+ - \mathbf{x}_-) = 2 \]</div>
+<p>So we conclude:</p>
+<div class="math notranslate nohighlight">
+\[ d = \frac{2}{\Vert\mathbf{w}\Vert}. \]</div>
+<p>Now, we have a measure for how good a separator is in terms of its parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.</p>
+<p>What separators should we consider (ie, search through)?</p>
+<p>The answer is, we consider all separators that correctly classify each point.</p>
+<p>That is, for all training points (<span class="math notranslate nohighlight">\(\mathbf{x}_i, y_i)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \ge 1 \text{ if } y_i = 1 \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \le -1 \text{ if } y_i = -1 \]</div>
+<p>So now we can formally state the problem of defining the <strong>maximum margin separator</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^* = \arg\min_\mathbf{w} \frac{\Vert\mathbf{w}\Vert}{2}\]</div>
+<p>Subject to:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \ge 1 \text{ if } y_i = 1 \]</div>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \le -1 \text{ if } y_i = -1 \]</div>
+<p>This is a <strong>constrained obtimization problem</strong> with a <strong>quadratic objective function.</strong></p>
+<p>Such problems are called “quadratic programs.”   There are standard methods for solving them.   The methods are effective but can be slow.</p>
+<p>The complexity of the problem grows with the number of constraints (ie, the number of training points).</p>
+<p>Ultimately, only a subset of the training points (constraints) will determine the final solution.</p>
+<p>The points that determine the solution “support” it.  They are the <strong>support vectors.</strong></p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-6.png"><img alt="Figure" src="_images/L16-SVM-6.png" style="width: 40%;" /></a>
+</center></div>
+<div class="section" id="linear-svm-non-separable-case">
+<h3>Linear SVM: Non-Separable Case<a class="headerlink" href="#linear-svm-non-separable-case" title="Permalink to this headline">¶</a></h3>
+<p>It may well happen that there is no hyperplane that perfectly separates the classes.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-7.png"><img alt="Figure" src="_images/L16-SVM-7.png" style="width: 40%;" /></a>
+</center><p>In this case, we allow points to fall on the “wrong” side of the separator, but we add a penalty for this occurrence.</p>
+<p>To express this formally, we introduce <strong>slack</strong> variables, one per data point: <span class="math notranslate nohighlight">\(\xi_i\)</span>.   Each <span class="math notranslate nohighlight">\(\xi_i\)</span> measures how far the data point is on the “wrong side” of the separator.</p>
+<p>The new problem is:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^* = \arg\min_\mathbf{w} \left(\frac{\Vert\mathbf{w}\Vert}{2} + C (\sum_{i=1}^N \xi_i)^k\right).\]</div>
+<p>Subject to:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \ge 1-\xi_i \text{ if } y_i = 1 \]</div>
+<div class="math notranslate nohighlight">
+\[ \mathbf{w}^T\mathbf{x}_i + b \le -1+\xi_i \text{ if } y_i = -1 \]</div>
+<div class="math notranslate nohighlight">
+\[ \xi_i \ge 0.\]</div>
+<p>Notice we have introduced a hyperparameter: <span class="math notranslate nohighlight">\(C\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(C\)</span> essentially controls the complexity of the SVM.  A small value of <span class="math notranslate nohighlight">\(C\)</span> will result in allowing many points to fall on the wrong side of the hyperplane (having a nonzero <span class="math notranslate nohighlight">\(\xi\)</span>) resulting in a large number of support vectors.   So small <span class="math notranslate nohighlight">\(C\)</span> results in a more stable decision boundary.</p>
+<p>Large <span class="math notranslate nohighlight">\(C\)</span> values will penalize violations heavily, and will result in fewer nonzero <span class="math notranslate nohighlight">\(\xi\)</span>s, leading to fewer support vectors.</p>
+</div>
+<div class="section" id="nonlinear-svm">
+<h3>Nonlinear SVM<a class="headerlink" href="#nonlinear-svm" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we consider the case in which the decision boundary is strongly nonlinear.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-8.png"><img alt="Figure" src="_images/L16-SVM-8.png" style="width: 40%;" /></a>
+</center><p>The basic idea here is that we take the data and transform it into another, higher-dimensional space.</p>
+<p>Here is the same dataset on transformed coordinates:</p>
+<div class="math notranslate nohighlight">
+\[ x_1 \rightarrow x_1 \]</div>
+<div class="math notranslate nohighlight">
+\[ x_2 \rightarrow (x_1 + x_2)^4 \]</div>
+<center>
+<a class="reference internal image-reference" href="_images/L16-SVM-9.png"><img alt="Figure" src="_images/L16-SVM-9.png" style="width: 40%;" /></a>
+</center><p>In high dimension, the points may be (approximately) separable.</p>
+<p>To achieve this using the framework of the SVM, we use a <strong>kernel</strong>.</p>
+<p>A kernel is a similarity function <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{y})\)</span>.</p>
+<p>There are many ways to define kernels.</p>
+<p>The most popular kernels are:</p>
+<ul class="simple">
+<li><p>Linear: <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{y}) = \mathbf{x}^T\mathbf{y}\)</span></p></li>
+<li><p>Polynomial: <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{y}) = (\mathbf{x}^T\mathbf{y})^d\)</span></p></li>
+<li><p>Gaussian: <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{y}) = \text{exp}(-\gamma\Vert\mathbf{x}-\mathbf{y}\Vert^2)\)</span></p></li>
+</ul>
+<p>The Gaussian kernel is also called a “Radial Basis Function”.</p>
+<p>To use kernels with an SVM, the basic idea is that SVMs are trained using Euclidean distance.</p>
+<p>The squared Euclidean distance between two vectors is:</p>
+<div class="math notranslate nohighlight">
+\[ \Vert\mathbf{x} - \mathbf{y}\Vert^2 = (\mathbf{x} - \mathbf{y})^T(\mathbf{x} - \mathbf{y}) = \mathbf{x}^T\mathbf{x} + \mathbf{y}^T\mathbf{y} - 2\mathbf{x}^T\mathbf{y}\]</div>
+<p>So the Euclidean distance can be defined entirely in terms of the <strong>inner product.</strong></p>
+<p>The inner product is in fact a similarity function.</p>
+<p>To train an SVM with a different similarity function, we just replace all the inner products with calls to our kernel function.</p>
+<p>The result is that we can obtain highly curved decision boundaries.</p>
+<p>In practice, RBF works well in many cases.</p>
+</div>
+<div class="section" id="svm-summary">
+<h3>SVM: Summary<a class="headerlink" href="#svm-summary" title="Permalink to this headline">¶</a></h3>
+<p>In practice, SVMs have shown good results on many problems.</p>
+<p>In particular, it is effective at dealing with high-dimensional data and avoids the curse of dimensionality.</p>
+<p>Since all data is represented as vectors, and we are relying on distance functions like Euclidean distance, it is imnportant to pay attention to feature scaling when using SVMs.</p>
+</div>
+</div>
+</div>
+<div class="section" id="svm-and-naive-bayes-in-python">
+<h1>SVM and Naive Bayes in Python<a class="headerlink" href="#svm-and-naive-bayes-in-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Support Vector Machines<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Working with the wine dataset available here:</p>
+<p><a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Wine">https://archive.ics.uci.edu/ml/datasets/Wine</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">sklearn.svm</span> <span class="k">as</span> <span class="nn">svm</span>
+<span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">model_selection</span>
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
+
+<span class="n">wine</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;data/wine.data&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="n">attributes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Alcohol&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Malic acid&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Ash&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Alcalinity of ash&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Magnesium&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Total phenols&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Flavanoids&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Nonflavanoid phenols&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Proanthocyanins&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Color intensity&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hue&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OD280/OD315 of diluted wines&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Proline&#39;</span><span class="p">]</span>
+
+
+
+<span class="n">wine</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">attributes</span>
+<span class="c1"># take 2 attributes and use a two dimensional training dataset</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">wine</span><span class="p">[[</span><span class="s1">&#39;Alcohol&#39;</span><span class="p">,</span> <span class="s1">&#39;Malic acid&#39;</span><span class="p">,]]</span><span class="o">.</span><span class="n">values</span>
+<span class="c1">#            &#39;Ash&#39;,</span>
+<span class="c1">#            &#39;Alcalinity of ash&#39;,</span>
+<span class="c1">#            &#39;Magnesium&#39;,</span>
+<span class="c1">#            &#39;Total phenols&#39;,</span>
+<span class="c1">#            &#39;Flavanoids&#39;, &#39;Nonflavanoid phenols&#39;,&#39;Proanthocyanins&#39;,&#39;Color intensity&#39;,  &#39;Hue&#39;, &#39;OD280/OD315 of diluted wines&#39;, &#39;Proline&#39;]].values</span>
+<span class="n">grape</span> <span class="o">=</span> <span class="n">wine</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">grape</span><span class="o">.</span><span class="n">values</span>
+<span class="n">wine</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 177 entries, 0 to 176
+Data columns (total 13 columns):
+ #   Column                        Non-Null Count  Dtype  
+---  ------                        --------------  -----  
+ 0   Alcohol                       177 non-null    float64
+ 1   Malic acid                    177 non-null    float64
+ 2   Ash                           177 non-null    float64
+ 3   Alcalinity of ash             177 non-null    float64
+ 4   Magnesium                     177 non-null    int64  
+ 5   Total phenols                 177 non-null    float64
+ 6   Flavanoids                    177 non-null    float64
+ 7   Nonflavanoid phenols          177 non-null    float64
+ 8   Proanthocyanins               177 non-null    float64
+ 9   Color intensity               177 non-null    float64
+ 10  Hue                           177 non-null    float64
+ 11  OD280/OD315 of diluted wines  177 non-null    float64
+ 12  Proline                       177 non-null    int64  
+dtypes: float64(11), int64(2)
+memory usage: 18.1 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wine</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">train_set_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">train_set_size</span><span class="p">]</span>  <span class="c1"># selects first 100 rows (examples) for train set</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">train_set_size</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_set_size</span><span class="p">:]</span>   <span class="c1"># selects from row 100 until the last one for test set</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_set_size</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(177, 2)
+(177, 2)
+(177,)
+[2 2 1 2 1 3 2 1 2 2 1 1 2 1 2 2 3 1 2 1 1 2 3 2 1 2 1 1 1 2 3 3 3 1 2 2 2
+ 3 2 1 1 2 2 1 1 1 2 1 1 2 2 2 3 1 2 2 1 2 3 2 2 1 3 3 2 1 2 1 2 1 3 3 3 3
+ 2 1 3 1 2 3 1 2 1 3 2 2 1 2 2 3 1 2 2 2 3 2 2 2 3 1 1 1 3 1 2 3 3 1 2 1 2
+ 2 1 3 2 3 3 3 2 2 2 3 3 2 1 2 1 3 2 2 1 1 2 1 1 1 3 1 3 3 1 2 2 3 1 2 2 1
+ 1 1 2 2 1 3 3 2 2 2 1 3 3 3 3 3 2 1 1 3 2 3 3 2 3 3 2 3 1]
+(100, 2) (100,)
+(77, 2) (77,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">svc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of SVM test set:&quot;</span><span class="p">,</span> <span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of SVM test set: 0.7142857142857143
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluating the fit of the classifier graphically</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="c1"># Create color maps for 3-class classification problem, as with iris</span>
+<span class="n">cmap_light</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;#FFAAAA&#39;</span><span class="p">,</span> <span class="s1">&#39;#AAFFAA&#39;</span><span class="p">,</span> <span class="s1">&#39;#AAAAFF&#39;</span><span class="p">])</span>
+<span class="n">cmap_bold</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">plot_estimator</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.1</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.1</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+    <span class="c1"># Put the result into a color plot</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_light</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Plot also the training points</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_bold</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_87_0.png" src="_images/16-Classification-III-NB-SVM_87_0.png" />
+</div>
+</div>
+<p>The SVM gets its name from the samples in the dataset from each class that lie closest to the other class. These training samples are called “support vectors” because changing their position in p-dimensional space would change the location of the decision boundary.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, the indices of the support vectors for each class can be found in the <code class="docutils literal notranslate"><span class="pre">support_vectors_</span></code> attribute of the SVC object.</p>
+<p>Here is a 2 class problem using only classes 1 and 2 in the wine dataset.</p>
+<p>The support vectors are circled.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract classes 1 and 2</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">in1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])],</span> <span class="n">y</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">in1d</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])]</span>
+
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> 
+           <span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+           <span class="n">s</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> 
+           <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> 
+           <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
+           <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+           <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_90_0.png" src="_images/16-Classification-III-NB-SVM_90_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h2>
+<p>These two classes do not appear to be linearly separable.</p>
+<p>For non-linearly separable classes we turn to <strong>regularization.</strong></p>
+<p>Regularization is tuned via the C parameter.</p>
+<p>In practice, a large C value means that the number of support vectors is small (less regularization, more model complexity), while a small C implies many support vectors (more regularization, less model complexity).</p>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> sets a default value of C=1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> 
+            <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;High C values: small number of support vectors&#39;</span><span class="p">);</span>
+
+<span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">svc</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> 
+            <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Low C values: high number of support vectors&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_94_0.png" src="_images/16-Classification-III-NB-SVM_94_0.png" />
+<img alt="_images/16-Classification-III-NB-SVM_94_1.png" src="_images/16-Classification-III-NB-SVM_94_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="kernels">
+<h2>Kernels<a class="headerlink" href="#kernels" title="Permalink to this headline">¶</a></h2>
+<p>We can also choose from a suite of available kernels:</p>
+<ul class="simple">
+<li><p>linear,</p></li>
+<li><p>poly,</p></li>
+<li><p>rbf,</p></li>
+<li><p>sigmoid, or</p></li>
+<li><p>precomputed.</p></li>
+</ul>
+<p>Or, a custom kernel can be passed as a function.</p>
+<p>Note that the radial basis function (rbf) kernel is just a Gaussian kernel, but with parameter <span class="math notranslate nohighlight">\(\gamma = \frac{1}{\sigma^2}\)</span>.</p>
+<p><strong>Linear Kernel</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svc_lin</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc_lin</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc_lin</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">svc_lin</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+            <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear kernel&#39;</span><span class="p">)</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">svc_lin</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of SVM test set:&quot;</span><span class="p">,</span> <span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of SVM test set: 0.922077922077922
+</pre></div>
+</div>
+<img alt="_images/16-Classification-III-NB-SVM_98_1.png" src="_images/16-Classification-III-NB-SVM_98_1.png" />
+</div>
+</div>
+<p><strong>Polynomial Kernel</strong></p>
+<div class="cell tag_hidfe-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svc_poly</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc_poly</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc_poly</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">svc_poly</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+           <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polynomial kernel&#39;</span><span class="p">)</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">svc_poly</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of SVM test set:&quot;</span><span class="p">,</span> <span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of SVM test set: 0.8961038961038961
+</pre></div>
+</div>
+<img alt="_images/16-Classification-III-NB-SVM_100_1.png" src="_images/16-Classification-III-NB-SVM_100_1.png" />
+</div>
+</div>
+<p><strong>RBF kernel</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">svc_rbf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="n">plot_estimator</span><span class="p">(</span><span class="n">svc_rbf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">svc_rbf</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">svc_rbf</span><span class="o">.</span><span class="n">support_vectors_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+           <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;RBF kernel&#39;</span><span class="p">)</span>
+<span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">svc_rbf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy of SVM test set:&quot;</span><span class="p">,</span> <span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of SVM test set: 0.987012987012987
+</pre></div>
+</div>
+<img alt="_images/16-Classification-III-NB-SVM_102_1.png" src="_images/16-Classification-III-NB-SVM_102_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="cross-validation">
+<h2>Cross-Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s evaluate our choice of hyperparameter <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">wine</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">grape</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9577464788732394
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far, this is fine – but what if we want to vary C?  Now, we are in danger of overfitting if we use the same test data to find the ‘best’ value of C.</p>
+<p>For this we will use the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> function <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> which automatically runs multiple train-test splits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">wine</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">grape</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%0.2f</span><span class="s2"> (+/- </span><span class="si">%0.2f</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.88888889 0.94444444 0.94285714 1.         1.        ]
+Accuracy: 0.96 (+/- 0.02)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-iris-dataset">
+<h2>The Iris Dataset<a class="headerlink" href="#the-iris-dataset" title="Permalink to this headline">¶</a></h2>
+<p>As before, we’ll look at the Iris dataset again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># we only take the first two features. We could</span>
+                      <span class="c1"># avoid this ugly slicing by using a two-dim dataset</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># we create an instance of SVM and fit out data. We do not scale our</span>
+<span class="c1"># data since we want to plot the support vectors</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># SVM regularization parameter</span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">rbf_svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">poly_svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lin_svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/opt/anaconda3/lib/python3.7/site-packages/sklearn/svm/_base.py:986: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  &quot;the number of iterations.&quot;, ConvergenceWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a mesh to plot in</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">.02</span>  <span class="c1"># step size in the mesh</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="c1"># title for the plots</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVC with linear kernel&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;LinearSVC (linear kernel)&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;SVC with RBF kernel&#39;</span><span class="p">,</span> <span class="s1">&#39;SVC with poly kernel&#39;</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">clf</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">((</span><span class="n">svc</span><span class="p">,</span> <span class="n">lin_svc</span><span class="p">,</span> <span class="n">rbf_svc</span><span class="p">,</span> <span class="n">poly_svc</span><span class="p">)):</span>
+    <span class="c1"># Plot the decision boundary. For that, we will assign a color to each</span>
+    <span class="c1"># point in the mesh [x_min, m_max]x[y_min, y_max].</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+    <span class="c1"># Put the result into a color plot</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+    <span class="c1"># Plot also the training points</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sepal length&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sepal width&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_112_0.png" src="_images/16-Classification-III-NB-SVM_112_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Naive Bayes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>To use Naive Bayes “out of the box”, one has to treat all the features as either:</p>
+<ul class="simple">
+<li><p>Gaussian</p></li>
+<li><p>Multinomial (Categorical)</p></li>
+<li><p>Binary</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> provides a Naive Bayes classifier for each of these cases.</p>
+<p>We’ll use the Gaussian:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># we only take the first two features. We could</span>
+                      <span class="c1"># avoid this ugly slicing by using a two-dim dataset</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a mesh to plot in</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">.02</span>  <span class="c1"># step size in the mesh</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Plot the decision boundary. For that, we will assign a color to each</span>
+<span class="c1"># point in the mesh [x_min, m_max]x[y_min, y_max].</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+
+<span class="c1"># Put the result into a color plot</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Plot also the training points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sepal length&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sepal width&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">yy</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-Classification-III-NB-SVM_115_0.png" src="_images/16-Classification-III-NB-SVM_115_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="15-Classification-II-kNN.html" title="previous page"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a>
+    <a class='right-next' id="next-link" href="10-Low-Rank-and-SVD.html" title="next page">Low Rank Approximation and the SVD</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

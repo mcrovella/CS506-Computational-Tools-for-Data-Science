@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logistic Regression &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Linear Models" href="17-Regression-I-Linear.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Clustering-II-in-practice.html">
+   Clustering In Practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
+   Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Gaussian Mixture Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Classification-II-kNN.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
+   Naive Bayes and Support Vector Machines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
+   Low Rank Approximation and the SVD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
+   Dimensionality Reduction - SVD II
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Regression
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Regression-I-Linear.html">
+   Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Logistic Regression
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-Regression-II-Logistic.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/18-Regression-II-Logistic.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-probability-i-will-be-admitted-to-grad-school">
+   What is the probability I will be admitted to Grad School?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-vs-linear-regression">
+   Logistic vs Linear Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-in-practice">
+   Logistic Regression In Practice
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-the-model">
+   Using the Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-in-perspective">
+   Logistic Regression in Perspective
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">linalg</span>
+<span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">hr</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
+
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="kn">import</span> <span class="nn">sklearn.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">linear_model</span>
+<span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">cross_validation</span>
+<span class="kn">import</span> <span class="nn">sklearn.cluster</span> <span class="k">as</span> <span class="nn">cluster</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logistic-regression">
+<h1>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h1>
+<p>So far we have seen linear regression: a continuous valued observation is estimated as linear (or affine) function of the independent variables.</p>
+<p>Today we will look at the following situation.</p>
+<p>Imagine that you are observing a binary variable – a 0/1 value.</p>
+<p>That is, these could be pass/fail, admit/reject, Democrat/Republican, etc.</p>
+<p>You believe that there is some <strong>probability</strong> of observing a 1, and that probability is a function of certain independent variables.</p>
+<p>So the key properties of a problem that make it appropriate for logistic regression are:</p>
+<ul class="simple">
+<li><p>What you can observe is a <strong>categorical</strong> variable</p></li>
+<li><p>What you want to estimate is a <strong>probability</strong> of seeing a particular value of the categorical variable.</p></li>
+</ul>
+<div class="section" id="what-is-the-probability-i-will-be-admitted-to-grad-school">
+<h2>What is the probability I will be admitted to Grad School?<a class="headerlink" href="#what-is-the-probability-i-will-be-admitted-to-grad-school" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="http://www.ats.ucla.edu/stat/r/dae/logit.htm:">http://www.ats.ucla.edu/stat/r/dae/logit.htm:</a></p>
+<p>A researcher is interested in how variables, such as <em>GRE</em> (Graduate Record Exam scores), <em>GPA</em> (grade point average) and prestige of the undergraduate institution affect admission into graduate school. The response variable, admit/don’t admit, is a binary variable.</p>
+<p>There are three predictor variables: <strong>gre,</strong> <strong>gpa</strong> and <strong>rank.</strong> We will treat the variables <em>gre</em> and <em>gpa</em> as continuous. The variable <em>rank</em> takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data source: http://www.ats.ucla.edu/stat/data/binary.csv</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ats-admissions.csv&#39;</span><span class="p">)</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admit</th>
+      <th>gre</th>
+      <th>gpa</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>380</td>
+      <td>3.61</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>660</td>
+      <td>3.67</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>800</td>
+      <td>4.00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>640</td>
+      <td>3.19</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>520</td>
+      <td>2.93</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>760</td>
+      <td>3.00</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>560</td>
+      <td>2.98</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>400</td>
+      <td>3.08</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>540</td>
+      <td>3.39</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>700</td>
+      <td>3.92</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admit</th>
+      <th>gre</th>
+      <th>gpa</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>400.000000</td>
+      <td>400.000000</td>
+      <td>400.000000</td>
+      <td>400.00000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.317500</td>
+      <td>587.700000</td>
+      <td>3.389900</td>
+      <td>2.48500</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.466087</td>
+      <td>115.516536</td>
+      <td>0.380567</td>
+      <td>0.94446</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>220.000000</td>
+      <td>2.260000</td>
+      <td>1.00000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>520.000000</td>
+      <td>3.130000</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>580.000000</td>
+      <td>3.395000</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>660.000000</td>
+      <td>3.670000</td>
+      <td>3.00000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>800.000000</td>
+      <td>4.000000</td>
+      <td>4.00000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_11_0.png" src="_images/18-Regression-II-Logistic_11_0.png" />
+</div>
+</div>
+<p>Let’s look at how each independent variable affects admission probability.</p>
+<p>First, <strong>rank</strong>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">4.5</span><span class="p">])</span>
+<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_14_0.png" src="_images/18-Regression-II-Logistic_14_0.png" />
+</div>
+</div>
+<p>Next, <strong>GRE</strong>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_16_0.png" src="_images/18-Regression-II-Logistic_16_0.png" />
+</div>
+</div>
+<p>Finally, <strong>GPA</strong> (for this visualization, we aggregate GPA into 10 bins):</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="n">groups</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gpa&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_18_0.png" src="_images/18-Regression-II-Logistic_18_0.png" />
+</div>
+</div>
+<p>Furthermore, we can see that the independent variables are strongly correlated:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1">#</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 1 Institutions&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 2 Institutions&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 3 Institutions&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 4 Institutions&#39;</span><span class="p">)</span>
+<span class="n">df4</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_20_0.png" src="_images/18-Regression-II-Logistic_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Logistic Regression<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Logistic regression is concerned with estimating a <strong>probability.</strong></p>
+<p>However, all that is available are categorical observations, which we will code as 0/1.</p>
+<p>That is, these could be pass/fail, admit/reject, Democrat/Republican, etc.</p>
+<p>Now, a linear function like <span class="math notranslate nohighlight">\(\alpha + \beta x\)</span> cannot be used to predict probability directly, because the linear function takes on all values (from -<span class="math notranslate nohighlight">\(\infty\)</span> to +<span class="math notranslate nohighlight">\(\infty\)</span>), and probability only ranges over <span class="math notranslate nohighlight">\((0, 1)\)</span>.</p>
+<p>However, there is a transformation of probability that works: it is called <strong>log-odds</strong>.</p>
+<p>For any probabilty <span class="math notranslate nohighlight">\(p\)</span>, the <strong>odds</strong> is defined as <span class="math notranslate nohighlight">\(p/(1-p)\)</span>.   Notice that odds vary from 0 to <span class="math notranslate nohighlight">\(\infty\)</span>, and odds &lt; 1 indicates that <span class="math notranslate nohighlight">\(p &lt; 1/2\)</span>.</p>
+<p>Now, there is a good argument that to fit a linear function, instead of using odds, we should use log-odds.  That is simply <span class="math notranslate nohighlight">\(\log p/(1-p)\)</span>.</p>
+<p>So, logistic regression does the following: it does a linear regression of <span class="math notranslate nohighlight">\(\alpha + \beta x\)</span> against <span class="math notranslate nohighlight">\(\log p/(1-p)\)</span>.</p>
+<p>That is, it fits:</p>
+<div class="math notranslate nohighlight">
+\[\alpha + \beta x = \log \frac{p(x)}{1-p(x)}\]</div>
+<div class="math notranslate nohighlight">
+\[e^{\alpha + \beta x} = \frac{p(x)}{1-p(x)}\]</div>
+<div class="math notranslate nohighlight">
+\[e^{\alpha + \beta x} (1-p(x)) = p(x)\]</div>
+<div class="math notranslate nohighlight">
+\[e^{\alpha + \beta x}  = p(x) + p(x)e^{\alpha + \beta x}\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{e^{\alpha + \beta x}}{1 +e^{\alpha + \beta x}} = p(x)\]</div>
+<p>So, logistic regression fits a probability of the following form:
+$<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\alpha+\beta x}}{1+e^{\alpha+\beta x}}\)</span>$</p>
+<p>This is a sigmoid function; when <span class="math notranslate nohighlight">\(\beta &gt; 0\)</span>, <span class="math notranslate nohighlight">\(x\rightarrow \infty\)</span>, then <span class="math notranslate nohighlight">\(p(x)\rightarrow 1\)</span> and when <span class="math notranslate nohighlight">\(x\rightarrow -\infty\)</span>, then <span class="math notranslate nohighlight">\(p(x)\rightarrow 0\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> 
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="c1">#     plt.plot(x,y,label=r&quot;$\frac{e^{%d + %3.1fx}}{1+e^{%d + %3.1fx}}\;\alpha=%d, \beta=%3.1f$&quot; % (a,b,a,b,a,b))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha=</span><span class="si">%d</span><span class="s2">,$    $\beta=</span><span class="si">%3.1f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_31_0.png" src="_images/18-Regression-II-Logistic_31_0.png" />
+</div>
+</div>
+<p>Parameter <span class="math notranslate nohighlight">\(\beta\)</span> controls how fast <span class="math notranslate nohighlight">\(p(x)\)</span> raises from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span></p>
+<p>The value of -<span class="math notranslate nohighlight">\(\alpha\)</span>/<span class="math notranslate nohighlight">\(\beta\)</span> shows the value of <span class="math notranslate nohighlight">\(x\)</span> for which <span class="math notranslate nohighlight">\(p(x)=0.5\)</span></p>
+<p>Another interpretation of <span class="math notranslate nohighlight">\(\alpha\)</span> is that it gives the <strong>base rate</strong> – the unconditional probability of a 1.   That is, if you knew nothing about a particular data item, then <span class="math notranslate nohighlight">\(p(x) = 1/(1+e^{-\alpha})\)</span>.</p>
+<p>The function <span class="math notranslate nohighlight">\(f(x) = \log (x/(1-x))\)</span> is called the <strong>logit</strong> function.</p>
+<p>So a compact way to describe logistic regression is that it finds regression coefficients <span class="math notranslate nohighlight">\(\alpha, \beta\)</span> to fit:</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}\left(p(x)\right)=\log\left(\frac{p(x)}{1-p(x)} \right) = \alpha + \beta x\]</div>
+<p>Note also that the <strong>inverse</strong> logit function is:</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}^{-1}(x) = \frac{e^x}{1 + e^x}\]</div>
+<p>Somewhat confusingly, this is called the <strong>logistic</strong> function.</p>
+<p>So, the best way to think of logistic regression is that we compute a linear function:</p>
+<div class="math notranslate nohighlight">
+\[\alpha + \beta x\]</div>
+<p>and then “map” that to a probability using the <span class="math notranslate nohighlight">\(\text{logit}^{-1}\)</span> function:</p>
+<div class="math notranslate nohighlight">
+\[\frac{e^{\alpha+\beta x}}{1+e^{\alpha+\beta x}}\]</div>
+</div>
+<div class="section" id="logistic-vs-linear-regression">
+<h2>Logistic vs Linear Regression<a class="headerlink" href="#logistic-vs-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a moment to compare linear and logistic regression.</p>
+<p>In **Linear regression ** we fit</p>
+<div class="math notranslate nohighlight">
+\[y_i = \alpha +\beta x_i + \epsilon_i.\]</div>
+<p>We do the fitting by minimizing the sum of squared error (<span class="math notranslate nohighlight">\(\Vert\epsilon\Vert\)</span>).   This can be done in closed form.</p>
+<p>(Recall that the closed form is found by geometric arguments, or by calculus).</p>
+<p>Now, if <span class="math notranslate nohighlight">\(\epsilon_i\)</span> comes from a normal distribution with mean zero and some fixed variance,</p>
+<p>then minimizing the sum of squared error is exactly the same as finding the maximum likelihood of the data with respect to the probability of the errors.</p>
+<p>So, in the case of linear regression, it is a lucky fact that the <strong>MLE</strong> of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> can be found by a <strong>closed-form</strong> calculation.</p>
+<p>In **Logistic regression ** we fit</p>
+<div class="math notranslate nohighlight">
+\[\text{logit}(p(x_i)) = \alpha + \beta x_i.\]</div>
+<p>with <span class="math notranslate nohighlight">\(\text{Pr}(y_i=1\mid x_i)=p(x_i).\)</span></p>
+<p>How should we choose parameters?</p>
+<p>Here too, we use Maximum Likelihood Estimation of the parameters.</p>
+<p>That is, we choose the parameter values that maximize the likelihood of the data given the model.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \text{Pr}(y_i \mid x_i) = \left\{\begin{array}{lr}\text{logit}^{-1}(\alpha + \beta x_i)&amp; \text{if } y_i = 1\\
+1 - \text{logit}^{-1}(\alpha + \beta x_i)&amp; \text{if } y_i = 0\end{array}\right.\end{split}\]</div>
+<p>We can write this as a single expression:</p>
+<div class="math notranslate nohighlight">
+\[\text{Pr}(y_i \mid x_i) = \text{logit}^{-1}(\alpha + \beta x_i)^{y_i} (1-\text{logit}^{-1}(\alpha + \beta x_i))^{1-y_i} \]</div>
+<p>We then use this to compute the <strong>likelihood</strong> of parameters <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[L(\alpha, \beta \mid x_i, y_i) = \text{logit}^{-1}(\alpha + \beta x_i)^{y_i} (1-\text{logit}^{-1}(\alpha + \beta x_i))^{1-y_i}\]</div>
+<p>which is a function that we can maximize via various kinds of gradient descent.</p>
+</div>
+<div class="section" id="logistic-regression-in-practice">
+<h2>Logistic Regression In Practice<a class="headerlink" href="#logistic-regression-in-practice" title="Permalink to this headline">¶</a></h2>
+<p>So, in summary, we have:</p>
+<p><strong>Input</strong> pairs <span class="math notranslate nohighlight">\((x_i,y_i)\)</span></p>
+<p><strong>Output</strong> parameters <span class="math notranslate nohighlight">\(\widehat{\alpha}\)</span> and <span class="math notranslate nohighlight">\(\widehat{\beta}\)</span> that maximize the likelihood of the data given these parameters for the logistic regression model.</p>
+<p><strong>Method</strong> Maximum likelihood estimation, obtained by gradient descent.</p>
+<p>The standard package will give us a correlation coefficient (a <span class="math notranslate nohighlight">\(\beta_i\)</span>) for each independent variable (feature).</p>
+<p>If we want to include a constant (ie, <span class="math notranslate nohighlight">\(\alpha\)</span>) we need to add a column of 1s (just like in linear regression).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;intercept&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">train_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">train_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;gre&#39;, &#39;gpa&#39;, &#39;rank&#39;, &#39;intercept&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">])</span>
+ 
+<span class="c1"># fit the model</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">logit</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.574302
+         Iterations 6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Logit Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>admit</td>      <th>  No. Observations:  </th>  <td>   400</td>  
+</tr>
+<tr>
+  <th>Model:</th>                 <td>Logit</td>      <th>  Df Residuals:      </th>  <td>   396</td>  
+</tr>
+<tr>
+  <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     3</td>  
+</tr>
+<tr>
+  <th>Date:</th>            <td>Thu, 14 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
+</tr>
+<tr>
+  <th>Time:</th>                <td>14:20:54</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
+</tr>
+<tr>
+  <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -249.99</td> 
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>  LLR p-value:       </th> <td>8.207e-09</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>gre</th>       <td>    0.0023</td> <td>    0.001</td> <td>    2.101</td> <td> 0.036</td> <td>    0.000</td> <td>    0.004</td>
+</tr>
+<tr>
+  <th>gpa</th>       <td>    0.7770</td> <td>    0.327</td> <td>    2.373</td> <td> 0.018</td> <td>    0.135</td> <td>    1.419</td>
+</tr>
+<tr>
+  <th>rank</th>      <td>   -0.5600</td> <td>    0.127</td> <td>   -4.405</td> <td> 0.000</td> <td>   -0.809</td> <td>   -0.311</td>
+</tr>
+<tr>
+  <th>intercept</th> <td>   -3.4495</td> <td>    1.133</td> <td>   -3.045</td> <td> 0.002</td> <td>   -5.670</td> <td>   -1.229</td>
+</tr>
+</table></div></div>
+</div>
+<p>Notice that all of our independent variables are considered significant (no confidence intervals contain zero).</p>
+</div>
+<div class="section" id="using-the-model">
+<h2>Using the Model<a class="headerlink" href="#using-the-model" title="Permalink to this headline">¶</a></h2>
+<p>Note that by fitting a model to the data, we can make predictions for inputs that were never seen in the data.</p>
+<p>Furthermore, we can make a prediction of a probability for cases where we don’t have enough data to estimate the probability directly – e.g, for specific parameter values.</p>
+<p>Let’s see how well the model fits the data.</p>
+<p>We have three independent variables, so in each case we’ll use average values for the two that we aren’t evaluating.</p>
+<p>GPA:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mi">600</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="n">groups</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gpa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_56_0.png" src="_images/18-Regression-II-Logistic_56_0.png" />
+</div>
+</div>
+<p>GRE Score:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gre</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gre</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_58_0.png" src="_images/18-Regression-II-Logistic_58_0.png" />
+</div>
+</div>
+<p>Institution Rank:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mi">600</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">4.5</span><span class="p">])</span>
+<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_60_0.png" src="_images/18-Regression-II-Logistic_60_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="logistic-regression-in-perspective">
+<h2>Logistic Regression in Perspective<a class="headerlink" href="#logistic-regression-in-perspective" title="Permalink to this headline">¶</a></h2>
+<p>At the start of lecture I emphasized that logistic regression is concerned with estimating a <strong>probability</strong> model from <strong>discrete</strong> (0/1) data.</p>
+<p>However, it may well be the case that we want to do something with the probability that amounts to <strong>classification.</strong></p>
+<p>For example, we may classify data items using a rule such as “Assign item <span class="math notranslate nohighlight">\(x_i\)</span> to Class 1 if <span class="math notranslate nohighlight">\(p(x_i) &gt; 0.5\)</span>”.</p>
+<p>For this reason, logistic regression could be considered a classification method.</p>
+<p>In fact, that is what we did with Naive Bayes – we used it to estimate something like a probability, and then chose the class with the maximum value to create a classifier.</p>
+<p>Let’s use our logistic regression as a classifier.</p>
+<p>We want to ask whether we can correctly predict whether a student gets admitted to graduate school.</p>
+<p>Let’s separate our training and test data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
+        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, there are some standard metrics used when evaluating a binary classifier.</p>
+<p>Let’s say our classifier is outputting “yes” when it thinks the student will be admitted.</p>
+<p>There are four cases:</p>
+<ul class="simple">
+<li><p>Classifier says “yes”, and student <strong>is</strong> admitted:  <strong>True Positive.</strong></p></li>
+<li><p>Classifier says “yes”, and student <strong>is not</strong> admitted:  <strong>False Positive.</strong></p></li>
+<li><p>Classifier says “no”, and student <strong>is</strong> admitted:  <strong>False Negative.</strong></p></li>
+<li><p>Classifier says “no”, and student <strong>is not</strong> admitted:  <strong>True Negative.</strong></p></li>
+</ul>
+<p><strong>Precision</strong> is the fraction of “yes”es that are correct:
+$<span class="math notranslate nohighlight">\(\mbox{Precision} = \frac{\mbox{True Positives}}{\mbox{True Positives + False Positives}}\)</span>$</p>
+<p><strong>Recall</strong> is the fraction of admits that we say “yes” to:
+$<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True Positives}}{\mbox{True Positives + False Negatives}}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+
+    <span class="c1"># learn model on training data</span>
+    <span class="n">logit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">logit</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># make probability predictions on test data</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># threshold probabilities to create classifications</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+    
+    <span class="c1"># report metrics</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
+
+<span class="n">precision</span><span class="p">,</span> <span class="n">recall</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span><span class="n">recall</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision: 0.586, Recall: 0.340
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s get a sense of average accuracy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PR</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
+            <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">PR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avgPrec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
+<span class="n">avgRec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Average Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Average Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">avgPrec</span><span class="p">,</span> <span class="n">avgRec</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.548, Average Recall: 0.239
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes we would like a single value that describes the overall performance of the classifier.</p>
+<p>For this, we take the harmonic mean of precision and recall, called <strong>F1 Score</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\mbox{F1 Score} = 2 \;\;\frac{\mbox{Precision} \cdot \mbox{Recall}}{\mbox{Precision} + \mbox{Recall}}\]</div>
+<p>Using this, we can evaluate other settings for the threshold.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">evalThresh</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">thresh</span><span class="p">):</span>
+    <span class="n">PR</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+                <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
+                <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+        <span class="n">PR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">thresh</span><span class="p">))</span>
+    <span class="n">avgPrec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
+    <span class="n">avgRec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">avgPrec</span> <span class="o">*</span> <span class="n">avgRec</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">avgPrec</span> <span class="o">+</span> <span class="n">avgRec</span><span class="p">),</span> <span class="n">avgPrec</span><span class="p">,</span> <span class="n">avgRec</span>
+
+<span class="n">tvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">f1vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">evalThresh</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">tval</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">tval</span> <span class="ow">in</span> <span class="n">tvals</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvals</span><span class="p">,</span><span class="n">f1vals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F1 Score&#39;</span><span class="p">)</span>
+<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Threshold for Classification&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_77_0.png" src="_images/18-Regression-II-Logistic_77_0.png" />
+</div>
+</div>
+<p>Based on this plot, we can say that the best classification threshold appears to be around 0.3, where precision and recall are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F1</span><span class="p">,</span> <span class="n">Prec</span><span class="p">,</span> <span class="n">Rec</span> <span class="o">=</span> <span class="n">evalThresh</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Best Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Prec</span><span class="p">,</span> <span class="n">Rec</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.431, Best Recall: 0.662
+</pre></div>
+</div>
+</div>
+</div>
+<p>The example here is based on
+<a class="reference external" href="http://blog.yhathq.com/posts/logistic-regression-and-python.html">http://blog.yhathq.com/posts/logistic-regression-and-python.html</a>
+where you can find additional details.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="17-Regression-I-Linear.html" title="previous page">Linear Models</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
