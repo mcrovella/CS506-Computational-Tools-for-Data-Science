@@ -329,6 +329,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-matrices">
+   Data Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#matrix-rank">
    Matrix Rank
   </a>
@@ -340,11 +345,11 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#finding-rank-k-approximations">
-   Finding rank-
+   Finding Rank-
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   approximations
+   Approximations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -368,16 +373,21 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#common-patterns">
-     Common Patterns.
+    <a class="reference internal nav-link" href="#low-rank-implies-common-patterns">
+     Low Rank Implies Common Patterns
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#latent-factors">
-     Latent Factors.
+    <a class="reference internal nav-link" href="#low-rank-defines-latent-factors">
+     Low Rank Defines Latent Factors
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -392,59 +402,36 @@
                 
   <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
-<span class="c1"># import libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">slideUtilities</span> <span class="k">as</span> <span class="nn">sl</span>
-<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
-<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="low-rank-approximation-and-the-svd">
 <h1>Low Rank Approximation and the SVD<a class="headerlink" href="#low-rank-approximation-and-the-svd" title="Permalink to this headline">¶</a></h1>
-<p>Today, we move on from clustering.</p>
-<p>However, let’s look back and try to put clustering into a larger context.</p>
+<p>Today, we move on.</p>
+<p>However, let’s look back and try to put the modeling we’ve done into a larger context.</p>
 <div class="section" id="models-are-simplifications">
 <h2>Models are simplifications<a class="headerlink" href="#models-are-simplifications" title="Permalink to this headline">¶</a></h2>
-<p>One way of thinking about clustering is that we are building a <strong>simplification</strong> of the data.</p>
+<p>One way of thinking about modeling or clustering is that we are building a <strong>simplification</strong> of the data.</p>
 <p>That is, a model of the data that is simpler than the data.</p>
-<p>In particular, instead of thinking of the data as thousands or millions of individual data points, we think of it in terms of a small number of clusters.</p>
+<p>In particular, instead of thinking of the data as thousands or millions of individual data points, we think of it in terms of a small number of clusters, or a parametric distribution, etc, etc.</p>
 <p>From this simpler description, we hope to gain <strong>insight.</strong></p>
-<p>For example, we hope to learn how restaurants in Las Vegas happen to locate near other restaurants of similar type.</p>
 <p>There is an interesting question here:  <strong>why</strong> does this process often lead to insight?</p>
 <p>That is, why does it happen so often that a large dataset can be described in terms of a much simpler model?</p>
 <p>I don’t know.</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L10-William-of-Ockham.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">350</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_8_0.png" src="_images/10-Low-Rank-and-SVD_8_0.png" />
-</div>
-</div>
-<p>By self-created (Moscarlop) - Own work, <a href="http://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=5523066">Link</a></p>
+<center>
+<a class="reference internal image-reference" href="_images/L10-William-of-Ockham.png"><img alt="Figure" src="_images/L10-William-of-Ockham.png" style="width: 40%;" /></a>
+</center><p>By self-created (Moscarlop) - Own work, <a href="http://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=5523066">Link</a></p>
 <p>However, I think that William of Ockham (c. 1300 AD) was on the right track.</p>
 <p>He said:</p>
 <blockquote>
@@ -461,38 +448,41 @@
 <p>Which has come to be known as “Occam’s razor.”</p>
 <p>William was saying that it is more common for a set of observations to be determined by a simple process than a complex process.</p>
 <p>In other words, the world is full of simple (but often hidden) patterns.</p>
-<p>From which one can justify the observation that “clustering works suprisingly often.”</p>
+<p>From which one can justify the observation that “modeling works suprisingly often.”</p>
 </div>
-<div class="section" id="matrix-rank">
-<h2>Matrix Rank<a class="headerlink" href="#matrix-rank" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-matrices">
+<h2>Data Matrices<a class="headerlink" href="#data-matrices" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll consider a (seemingly) very different approximation of data, applicable to data when it is in matrix form.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \mbox{$m$ data objects}\left\{\begin{array}{c}\;\\\;\\\;\\\;\\\;\end{array}\right.\;\;\overbrace{\left[\begin{array}{ccccc}
+\[\begin{split}{\mbox{$m$ data objects}}\left\{\begin{array}{c}\;\\\;\\\;\\\;\\\;\end{array}\right.\;\;\overbrace{\left[\begin{array}{ccccc}
 \begin{array}{c}a_{11}\\\vdots\\a_{i1}\\\vdots\\a_{m1}\end{array}&amp;
 \begin{array}{c}\dots\\\ddots\\\dots\\\ddots\\\dots\end{array}&amp;
 \begin{array}{c}a_{1j}\\\vdots\\a_{ij}\\\vdots\\a_{mj}\end{array}&amp;
 \begin{array}{c}\dots\\\ddots\\\dots\\\ddots\\\dots\end{array}&amp;
 \begin{array}{c}a_{1n}\\\vdots\\a_{in}\\\vdots\\a_{mn}\end{array}
-\end{array}\right]}^\mbox{$n$ features} = \mat{{cccc}\va_1&amp;\va_2&amp;\dots&amp;\va_n}\end{split}\]</div>
+\end{array}\right]}^{\mbox{$n$ features}}\end{split}\]</div>
 <table>
 <tr><th>Data Type</th><th>Rows</th><th>Columns</th><th>Elements</th></tr>
 <tr><td>Network Traffic<td>Sources</td><td>Destinations</td><td>Number of Bytes</td></tr>
 <tr><td>Social Media</td><td>Users</td><td>time bins</td><td>Number of Posts/Tweets/Likes</td></tr>
 <tr><td>Web Browsing</td><td>Users</td><td>Content Categories</td><td>Visit Counts/Bytes Downloaded</td></tr>
 <tr><td>Web Browsing</td><td>Users</td><td>time bins</td><td>Visit Counts/Bytes Downloaded</td></tr>
-</table><p>Let’s briefly review some linear algebra.</p>
+</table></div>
+<div class="section" id="matrix-rank">
+<h2>Matrix Rank<a class="headerlink" href="#matrix-rank" title="Permalink to this headline">¶</a></h2>
+<p>Let’s briefly review some definitions.</p>
 <p>We’ll consider an <span class="math notranslate nohighlight">\(m\times n\)</span> real matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The <strong>rank</strong> of <span class="math notranslate nohighlight">\(A\)</span> is the <strong>dimension of its column space.</strong></p>
 <p>The dimension of a space is the smallest number of (linearly independent) vectors needed to span the space.</p>
-<p>So the dimension of the column space of <span class="math notranslate nohighlight">\(A\)</span> is the smallest number of vectors that suffice to  construct the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>Then the rank of <span class="math notranslate nohighlight">\(A\)</span> is the size of the smallest set <span class="math notranslate nohighlight">\(\{\vu_1, \vu_2, \dots, \vu_p\}\)</span> such that every <span class="math notranslate nohighlight">\(\va_i\)</span> can be expressed as:</p>
+<p>So the dimension of the column space of <span class="math notranslate nohighlight">\(A\)</span> is the <strong>smallest number of vectors that suffice to construct the columns of <span class="math notranslate nohighlight">\(A\)</span>.</strong></p>
+<p>Then the rank of <span class="math notranslate nohighlight">\(A\)</span> is the size of the smallest set <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_p\}\)</span> such that every column <span class="math notranslate nohighlight">\(\mathbf{a}_i\)</span> can be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[\va_i = c_{i1}\vu_1 + c_{i2}\vu_2 + \dots + c_{ip}\vu_p\;\;\;\;i=1,\dots,n.\]</div>
+\[\mathbf{a}_i = c_{i1}\mathbf{u}_1 + c_{i2}\mathbf{u}_2 + \dots + c_{ip}\mathbf{u}_p\;\;\;\;i=1,\dots,n.\]</div>
 <p>The largest value that a matrix rank can take is <span class="math notranslate nohighlight">\(\min(m,n)\)</span>.</p>
 <p>However it can happen that the rank of a matrix is <strong>less</strong> than <span class="math notranslate nohighlight">\(\min(m,n)\)</span>.</p>
-<p>Now to store a matrix <span class="math notranslate nohighlight">\(A \in \R^{m\times n}\)</span> we need to store <span class="math notranslate nohighlight">\(m n\)</span> values.</p>
+<p>Now to store a matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> we need to store <span class="math notranslate nohighlight">\(m n\)</span> values.</p>
 <p>However, if <span class="math notranslate nohighlight">\(A\)</span> has rank <span class="math notranslate nohighlight">\(k\)</span>, it can be factored as <span class="math notranslate nohighlight">\(A = UV\)</span>,</p>
-<p>where <span class="math notranslate nohighlight">\(U \in \R^{m\times k}\)</span> and <span class="math notranslate nohighlight">\(V \in \R^{k \times n}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{m\times k}\)</span> and <span class="math notranslate nohighlight">\(V \in \mathbb{R}^{k \times n}\)</span>.</p>
 <p>This only requires <span class="math notranslate nohighlight">\(k(m+n)\)</span> values, which could be much smaller than <span class="math notranslate nohighlight">\(mn\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \mbox{$m$ data objects}\left\{\begin{array}{c}\;\\\;\\\;\\\;\\\;\end{array}\right.\;\;\overbrace{\left[\begin{array}{ccccc}
@@ -502,13 +492,13 @@
 \begin{array}{c}\dots\\\ddots\\\dots\\\ddots\\\dots\end{array}&amp;
 \begin{array}{c}a_{1n}\\\vdots\\a_{in}\\\vdots\\a_{mn}\end{array}
 \end{array}\right]}^\mbox{$n$ features} =
-\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\vu_1&amp;\vu_k\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large k}
+\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\mathbf{u}_1&amp;\mathbf{u}_k\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large k}
 \times
-\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\vv_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\vv_k&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
+\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\mathbf{v}_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\mathbf{v}_k&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
 </div>
 <div class="section" id="low-effective-rank">
 <h2>Low Effective Rank<a class="headerlink" href="#low-effective-rank" title="Permalink to this headline">¶</a></h2>
-<p>In working with real data, what we generally want to do is <strong>approximate</strong> our data matrix <span class="math notranslate nohighlight">\(A\)</span> with a low-rank matrix <span class="math notranslate nohighlight">\(A^{(k)}.\)</span></p>
+<p>In many situations we may wish to <strong>approximate</strong> a data matrix <span class="math notranslate nohighlight">\(A\)</span> with a low-rank matrix <span class="math notranslate nohighlight">\(A^{(k)}.\)</span></p>
 <p>To talk about when one matrix “approximates” another, we need a norm for matrices.</p>
 <p>We will use the <strong>Frobenius norm</strong> which is just the usual <span class="math notranslate nohighlight">\(\ell_2\)</span> norm, treating the matrix as a vector.</p>
 <p>The definition of the Frobenius norm of <span class="math notranslate nohighlight">\(A\)</span>, denoted <span class="math notranslate nohighlight">\(\Vert A\Vert_F\)</span>, is:</p>
@@ -519,9 +509,9 @@
 \[\mbox{dist}(A,B) = \Vert A-B\Vert_F.\]</div>
 <p>(where the Euclidean space is the <span class="math notranslate nohighlight">\(mn\)</span>-dimensional space of <span class="math notranslate nohighlight">\(m\times n\)</span> matrices.)</p>
 <p>Now we can define the <strong>rank-<span class="math notranslate nohighlight">\(k\)</span> approximation</strong> to <span class="math notranslate nohighlight">\(A\)</span>:</p>
-<p>When <span class="math notranslate nohighlight">\(k &lt; \rank\ A\)</span>, the rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span> is the closest rank-<span class="math notranslate nohighlight">\(k\)</span> matrix to <span class="math notranslate nohighlight">\(A\)</span>, i.e.,</p>
+<p>When <span class="math notranslate nohighlight">\(k &lt; \operatorname{Rank} A\)</span>, the rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span> is the closest rank-<span class="math notranslate nohighlight">\(k\)</span> matrix to <span class="math notranslate nohighlight">\(A\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
-\[A^{(k)} =\arg \min_{\{B\;|\;\rank\ B = k\}} \Vert A-B\Vert_F.\]</div>
+\[A^{(k)} =\arg \min_{\{B\;|\;\operatorname{Rank} B = k\}} \Vert A-B\Vert_F.\]</div>
 <p>This can also be considered the best rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span> in a least-squares sense.</p>
 <p>Let’s say we have <span class="math notranslate nohighlight">\(A^{(k)}\)</span>, a rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>By definition, there is a set <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> consisting of <span class="math notranslate nohighlight">\(k\)</span> vectors such that each column of <span class="math notranslate nohighlight">\(A^{(k)}\)</span> can be expressed as a linear combination of vectors in <span class="math notranslate nohighlight">\(\mathcal{U}\)</span>.</p>
@@ -542,7 +532,7 @@
 <p>In that case we have achieved a simplification of the data without a great loss in accuracy.</p>
 </div>
 <div class="section" id="finding-rank-k-approximations">
-<h2>Finding rank-<span class="math notranslate nohighlight">\(k\)</span> approximations<a class="headerlink" href="#finding-rank-k-approximations" title="Permalink to this headline">¶</a></h2>
+<h2>Finding Rank-<span class="math notranslate nohighlight">\(k\)</span> Approximations<a class="headerlink" href="#finding-rank-k-approximations" title="Permalink to this headline">¶</a></h2>
 <p>There is a celebrated method for finding the best rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to any matrix: the <strong>Singular Value Decomposition (SVD).</strong></p>
 <blockquote>
 <div><p>SVD is “the Rolls-Royce and the Swiss Army Knife of Numerical Linear Algebra.”</p>
@@ -557,16 +547,17 @@
 <li><p>The columns of <span class="math notranslate nohighlight">\(U\)</span> are mutually orthogonal and unit length, ie., <span class="math notranslate nohighlight">\(U^TU = I\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(V\)</span> is <span class="math notranslate nohighlight">\(n\times r\)</span>.</p></li>
 <li><p>The columns of <span class="math notranslate nohighlight">\(V\)</span> are mutually orthogonal and unit length, ie., <span class="math notranslate nohighlight">\(V^TV = I\)</span>.</p></li>
-<li><p>The matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is a <span class="math notranslate nohighlight">\(r\times r\)</span> diagonal matrix, whose diagonal values are <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r &gt; 0\)</span>.</p></li>
+<li><p>The matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> is an <span class="math notranslate nohighlight">\(r\times r\)</span> diagonal matrix, whose diagonal values are <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r &gt; 0\)</span>.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[\begin{split} \left[\begin{array}{cccc}\begin{array}{c}\vdots\\\vdots\\{\bf a_1}\\\vdots\\\vdots\end{array}&amp;\begin{array}{c}\vdots\\\vdots\\{\bf a_2}\\\vdots\\\vdots\end{array}&amp;\dots&amp;\begin{array}{c}\vdots\\\vdots\\{\bf a_n}\\\vdots\\\vdots\end{array}\\\end{array}\right] =
-\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\vu_1&amp;\vu_r\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large r}
+\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\mathbf{u}_1&amp;\mathbf{u}_r\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large r}
 \times
 \left[\begin{array}{cc}\sigma_1&amp;~\\~&amp;\sigma_r\\\end{array}\right]
 \times
-\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\vv_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\vv_r&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
-<p>In fact, for an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>, the SVD does two things:</p>
+\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\mathbf{v}_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\mathbf{v}_r&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
+<p>Npw, the SVD is <em>incredibly useful</em> for finding matrix approximations.</p>
+<p>In particular, for an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>, the SVD does two things:</p>
 <ol class="simple">
 <li><p>It gives the best rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span> for <strong>every</strong> <span class="math notranslate nohighlight">\(k\)</span> up to the rank of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p>It gives the <strong>distance</strong> of the best approximation <span class="math notranslate nohighlight">\(A^{(k)}\)</span> from <span class="math notranslate nohighlight">\(A\)</span> for each <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
@@ -588,9 +579,9 @@
 <div class="section" id="id1">
 <h2>Low Effective Rank<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Almost any data matrix <span class="math notranslate nohighlight">\(A\)</span> that one encounters will usually be <strong>full rank</strong>,</p>
-<p>meaning that <span class="math notranslate nohighlight">\(\rank\ A = min(m, n)\)</span>.</p>
+<p>meaning that <span class="math notranslate nohighlight">\(\operatorname{Rank} A = \min(m, n)\)</span>.</p>
 <p>However, it is often the case that data matrices have <strong>low effective rank.</strong></p>
-<p>By this we mean that one can usefully approximate <span class="math notranslate nohighlight">\(A\)</span> by some <span class="math notranslate nohighlight">\(A^{(k)}\)</span> for which <span class="math notranslate nohighlight">\(k \ll min(m,n)\)</span>.</p>
+<p>By this we mean that one can usefully approximate <span class="math notranslate nohighlight">\(A\)</span> by some <span class="math notranslate nohighlight">\(A^{(k)}\)</span> for which <span class="math notranslate nohighlight">\(k \ll \min(m,n)\)</span>.</p>
 <p>For any data matrix, we can judge when this is the case by looking at its singular values, because the singular values tell us the distance to the nearest rank-<span class="math notranslate nohighlight">\(k\)</span> matrix.</p>
 </div>
 <div class="section" id="empirical-evidence">
@@ -603,8 +594,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/net-traffic/AbileneFlows/odnames&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">odnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
-<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;9/1/2003&#39;</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;10min&#39;</span><span class="p">,</span><span class="n">periods</span><span class="o">=</span><span class="mi">1008</span><span class="p">)</span>
-<span class="n">Atraf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;data/net-traffic/AbileneFlows/X&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="n">odnames</span><span class="p">,</span><span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;9/1/2003&#39;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;10min&#39;</span><span class="p">,</span> <span class="n">periods</span> <span class="o">=</span> <span class="mi">1008</span><span class="p">)</span>
+<span class="n">Atraf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;data/net-traffic/AbileneFlows/X&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">odnames</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
 <span class="n">Atraf</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dates</span>
 <span class="n">Atraf</span>
 </pre></div>
@@ -951,7 +942,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> routine for computing SVD is <code class="docutils literal notranslate"><span class="pre">np.linalg.svd</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Atraf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Atraf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -963,42 +954,29 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span><span class="n">s</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma_k$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Singular Values of $A$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Singular Values of $A$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_54_0.png" src="_images/10-Low-Rank-and-SVD_54_0.png" />
+<img alt="_images/10-Low-Rank-and-SVD_55_0.png" src="_images/10-Low-Rank-and-SVD_55_0.png" />
 </div>
 </div>
-<p>Zooming in:</p>
+<p>This classic, sharp-elbow tells us that a few singular values are very large, and most singular values are quite small.</p>
+<p>Zooming in for just small <span class="math notranslate nohighlight">\(k\)</span> values, we can see that the elbow is around 4 - 6 singular values:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">Anorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Atraf</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">),</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span><span class="o">/</span><span class="n">Anorm</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma_k$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_56_0.png" src="_images/10-Low-Rank-and-SVD_56_0.png" />
-</div>
-</div>
-<p>Let’s use the formula to compute the relative error of a rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span>:</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">Anorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Atraf</span><span class="p">)</span>
-<span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">err</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">),</span><span class="n">err</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span><span class="o">/</span><span class="n">Anorm</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;relative F-norm error&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Relative Error of rank-$k$ approximation to $A$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span><span class="o">/</span><span class="n">Anorm</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma_k$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Singular Values of $A$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1006,27 +984,43 @@
 <img alt="_images/10-Low-Rank-and-SVD_58_0.png" src="_images/10-Low-Rank-and-SVD_58_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<p>This pattern of singular values suggests <strong>low effective rank.</strong></p>
+<p>Let’s use the formula above to compute the relative error of a rank-<span class="math notranslate nohighlight">\(k\)</span> approximation to <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span><span class="o">/</span><span class="n">Anorm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">Anorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Atraf</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">err</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">err</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span><span class="o">/</span><span class="n">Anorm</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;relative F-norm error&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Relative Error of rank-$k$ approximation to $A$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.        , 0.21778461, 0.17530185, 0.15964863, 0.15018706,
-       0.14332383, 0.13687439, 0.1308678 , 0.12606339, 0.12187111,
-       0.11775775, 0.11405379, 0.11040251, 0.10717555, 0.10423266,
-       0.10133916, 0.09861588, 0.09595619, 0.09361865, 0.09129217])
-</pre></div>
+<img alt="_images/10-Low-Rank-and-SVD_60_0.png" src="_images/10-Low-Rank-and-SVD_60_0.png" />
 </div>
 </div>
-</div>
-<p>So we are down to 9% relative error using a rank-20 approximation to <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>So instead of storing <span class="math notranslate nohighlight">\(mn =\)</span> (1008 <span class="math notranslate nohighlight">\(\cdot\)</span> 121) = 121,968 values, we only need to store <span class="math notranslate nohighlight">\(k(m+n)\)</span> = 20 <span class="math notranslate nohighlight">\(\cdot\)</span> (1008 + 121) = 22,580 values, which is a 81% reduction in size.</p>
+<p>Remarkably, we are down to 9% relative error using only a rank 20 approximation to <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>So instead of storing</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(mn =\)</span> (1008 <span class="math notranslate nohighlight">\(\cdot\)</span> 121) = 121,968 values,</p></li>
+</ul>
+<p>we only need to store</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k(m+n)\)</span> = 20 <span class="math notranslate nohighlight">\(\cdot\)</span> (1008 + 121) = 22,580 values,</p></li>
+</ul>
+<p>which is a 81% reduction in size.</p>
 </div>
 <div class="section" id="low-effective-rank-is-common">
 <h2>Low Effective Rank is Common<a class="headerlink" href="#low-effective-rank-is-common" title="Permalink to this headline">¶</a></h2>
-<p>In practice many datasets have low effective rank.   Here are some more examples.</p>
+<p>In practice <strong>many</strong> datasets have low effective rank.</p>
+<p>Here are some more examples.</p>
 <p><strong>Likes on Facebook.</strong></p>
 <p>Here, the matrices are</p>
 <ol class="simple">
@@ -1037,7 +1031,7 @@
 <center>
 <img width=650, src = figs/L10-facebook.png/>
 </center>
-<p>Source: [Viswinath et al.]</p>
+<p>Source: [Viswanath et al., Usenix Security, 2014]</p>
 <p><strong>Social Media Activity.</strong></p>
 <p>Here, the matrices are</p>
 <ol class="simple">
@@ -1048,7 +1042,7 @@
 <center>
 <img width=650, src = figs/L10-yelp-twitter.png/>
 </center>
-<p>Source: [Viswinath et al.]</p>
+<p>Source: [Viswanath et al., Usenix Security, 2014]</p>
 <p><strong>User preferences over items.</strong></p>
 <p>Example: the Netflix prize worked with partially-observed matrices like this:</p>
 <div class="math notranslate nohighlight">
@@ -1065,6 +1059,7 @@
 \end{split}\]</div>
 <p>Where the rows correspond to users, the columns to movies, and the entries are ratings.</p>
 <p>Although the problem matrix was of size 500,000 <span class="math notranslate nohighlight">\(\times\)</span> 18,000, the winning approach modeled the matrix as having <strong>rank 20 to 40.</strong></p>
+<p>Source: [Koren et al, IEEE Computer, 2009]</p>
 <p><strong>Images.</strong></p>
 <p>Image data often shows low effective rank.</p>
 <p>For example, here is an original photo:</p>
@@ -1073,48 +1068,61 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/images/boat/boat.dat&#39;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_68_0.png" src="_images/10-Low-Rank-and-SVD_68_0.png" />
+<img alt="_images/10-Low-Rank-and-SVD_69_0.png" src="_images/10-Low-Rank-and-SVD_69_0.png" />
 </div>
 </div>
 <p>Let’s look at its spectrum:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">vt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span><span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span> <span class="n">full_matrices</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$k$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma_k$&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Singular Values of Boat Image&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_70_0.png" src="_images/10-Low-Rank-and-SVD_70_0.png" />
+<img alt="_images/10-Low-Rank-and-SVD_71_0.png" src="_images/10-Low-Rank-and-SVD_71_0.png" />
 </div>
 </div>
-<p>This matrix has rank of 512.   But its effective rank is low, perhaps 40.</p>
+<p>This image is 512 <span class="math notranslate nohighlight">\(\times\)</span> 512.  As a matrix, it has rank of 512.</p>
+<p>But its <em>effective</em> rank is low.</p>
+<p>Based on the plot above, its effective rank is perhaps 40.</p>
 <p>Let’s find the closest rank-40 matrix and view it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span> <span class="n">full_matrices</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">40</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">boatApprox</span> <span class="o">=</span> <span class="n">u</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">@</span> <span class="n">vt</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct a rank-40 version of the boat</span>
-<span class="n">scopy</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">scopy</span><span class="p">[</span><span class="mi">20</span><span class="p">:]</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">boatApprox</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">scopy</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vt</span><span class="p">)</span>
-<span class="c1">#</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">boatApprox</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 40 Boat&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">boat</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Greys_r</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 512 Boat&#39;</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 512 Boat&#39;</span><span class="p">);</span>
+<span class="c1"># plt.subplots_adjust(wspace=0.5)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_72_0.png" src="_images/10-Low-Rank-and-SVD_72_0.png" />
+<img alt="_images/10-Low-Rank-and-SVD_74_0.png" src="_images/10-Low-Rank-and-SVD_74_0.png" />
 </div>
 </div>
 </div>
@@ -1126,13 +1134,20 @@
 <li><p>Common Patterns</p></li>
 <li><p>Latent Factors</p></li>
 </ol>
-<div class="section" id="common-patterns">
-<h3>Common Patterns.<a class="headerlink" href="#common-patterns" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="low-rank-implies-common-patterns">
+<h3>Low Rank Implies Common Patterns<a class="headerlink" href="#low-rank-implies-common-patterns" title="Permalink to this headline">¶</a></h3>
 <p>The first interpretation of low-rank behavior is in answering the question:</p>
 <p>“What is the strongest pattern in the data?”</p>
-<div class="math notranslate nohighlight">
-\[ A \approx U'\Sigma'(V')^T \]</div>
+<p>Using the SVD we form the low-rank approximation as</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U' = \)</span> the <span class="math notranslate nohighlight">\(k\)</span> leftmost columns of <span class="math notranslate nohighlight">\(U\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Sigma' = \)</span> the <span class="math notranslate nohighlight">\(k\times k\)</span> upper left submatrix of <span class="math notranslate nohighlight">\(\Sigma\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(V'= \)</span> the <span class="math notranslate nohighlight">\(k\)</span> leftmost columns of <span class="math notranslate nohighlight">\(V\)</span>, and constructing</p></li>
+</ul>
+<p>with $<span class="math notranslate nohighlight">\( A \approx U'\Sigma'(V')^T \)</span>$</p>
 <p>In this interpretation, we think of each column of <span class="math notranslate nohighlight">\(A\)</span> as a combination of the columns of <span class="math notranslate nohighlight">\(U'\)</span>.</p>
+<p>How can this be helpful?</p>
+<p>Consider the set of traffic traces.   There are clearly some common patterns.  How can we find them?</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/net-traffic/AbileneFlows/odnames&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -1143,50 +1158,10 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Atraf</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Atraf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">odnames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span><span class="n">hspace</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Twelve Traffic Traces&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="n">ab19ca92d5a4</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Atraf</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">odnames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/pandas/core/generic.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5463</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info_axis</span><span class="o">.</span><span class="n">_can_hold_identifiers_and_holds_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">5464</span>                 <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-<span class="ne">-&gt; </span><span class="mi">5465</span>             <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5466</span> 
-<span class="g g-Whitespace">   </span><span class="mi">5467</span>     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">AttributeError</span>: &#39;DataFrame&#39; object has no attribute &#39;ix&#39;
-</pre></div>
-</div>
-<img alt="_images/10-Low-Rank-and-SVD_78_1.png" src="_images/10-Low-Rank-and-SVD_78_1.png" />
-</div>
-</div>
-<p>Let’s use as our example <span class="math notranslate nohighlight">\(\va_1,\)</span> the first column of <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>This happens to be the ATLA-CHIN flow.</p>
-<p>The equation above tells us that</p>
-<div class="math notranslate nohighlight">
-\[\va_1 \approx v_{11}\sigma_1\vu_1 + v_{12}\sigma_2\vu_2 + \dots + v_{1k}\sigma_k\vu_k.\]</div>
-<p>In other words, <span class="math notranslate nohighlight">\(\vu_1\)</span> (the first column of <span class="math notranslate nohighlight">\(U\)</span>) is the “strongest” pattern occurring in <span class="math notranslate nohighlight">\(A\)</span>, and its strength is measured by <span class="math notranslate nohighlight">\(\sigma_1\)</span>.</p>
-<p>Here is an view of the first few columns of <span class="math notranslate nohighlight">\(U\Sigma\)</span> for the traffic matrix data:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Atraf</span><span class="p">,</span><span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">uframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">u</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;9/1/2003&#39;</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;10min&#39;</span><span class="p">,</span><span class="n">periods</span><span class="o">=</span><span class="mi">1008</span><span class="p">))</span>
-<span class="n">uframe</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">uframe</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Twelve Example Traffic Traces&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1194,10 +1169,33 @@
 <img alt="_images/10-Low-Rank-and-SVD_81_0.png" src="_images/10-Low-Rank-and-SVD_81_0.png" />
 </div>
 </div>
+<p>Let’s use as our example <span class="math notranslate nohighlight">\(\mathbf{a}_1,\)</span> the first column of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>This happens to be the ATLA-CHIN flow.</p>
+<p>The equation above tells us that</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a}_1 \approx v_{11}\sigma_1\mathbf{u}_1 + v_{12}\sigma_2\mathbf{u}_2 + \dots + v_{1k}\sigma_k\mathbf{u}_k.\]</div>
+<p>In other words, <span class="math notranslate nohighlight">\(\mathbf{u}_1\)</span> (the first column of <span class="math notranslate nohighlight">\(U\)</span>) is the “strongest” pattern occurring in <span class="math notranslate nohighlight">\(A\)</span>, and its strength is measured by <span class="math notranslate nohighlight">\(\sigma_1\)</span>.</p>
+<p>Here is an view of the first 2 columns of <span class="math notranslate nohighlight">\(U\Sigma\)</span> for the traffic matrix data.</p>
+<p>These are the strongest patterns occurring across all of the 121 traces.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Atraf</span><span class="p">,</span> <span class="n">full_matrices</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">uframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">u</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;9/1/2003&#39;</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="s1">&#39;10min&#39;</span><span class="p">,</span> <span class="n">periods</span> <span class="o">=</span> <span class="mi">1008</span><span class="p">))</span>
+<span class="n">uframe</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">uframe</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;First Two Columns of $U$&#39;</span><span class="p">);</span>
+</pre></div>
 </div>
-<div class="section" id="latent-factors">
-<h3>Latent Factors.<a class="headerlink" href="#latent-factors" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-Low-Rank-and-SVD_84_0.png" src="_images/10-Low-Rank-and-SVD_84_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="low-rank-defines-latent-factors">
+<h3>Low Rank Defines Latent Factors<a class="headerlink" href="#low-rank-defines-latent-factors" title="Permalink to this headline">¶</a></h3>
 <p>The next interpretation of low-rank behavior is that it exposes “latent factors” that describe the data.</p>
+<p>Returning to the low-rank decomposition:</p>
 <div class="math notranslate nohighlight">
 \[ A \approx U'\Sigma'(V')^T \]</div>
 <p>In this interpretation, we think of each element of <span class="math notranslate nohighlight">\(A\)</span> as the inner product of a row of <span class="math notranslate nohighlight">\(U'\Sigma'\)</span> and a row of <span class="math notranslate nohighlight">\(V'\)</span>.</p>
@@ -1206,41 +1204,49 @@
 <p>Recall the structure from a previous slide:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \mbox{users}\left\{\begin{array}{c}\;\\\;\\\;\\\;\\\;\end{array}\right.\;\;\overbrace{\left[\begin{array}{cccc}\begin{array}{c}\vdots\\\vdots\\{\bf a_1}\\\vdots\\\vdots\end{array}&amp;\begin{array}{c}\vdots\\\vdots\\{\bf a_2}\\\vdots\\\vdots\end{array}&amp;\dots&amp;\begin{array}{c}\vdots\\\vdots\\{\bf a_n}\\\vdots\\\vdots\end{array}\\\end{array}\right]}^{\mbox{movies}} =
-\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\sigma_1\vu_1&amp;\sigma_k\vu_k\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large k}
+\overbrace{\left[\begin{array}{cc}\vdots&amp;\vdots\\\vdots&amp;\vdots\\\sigma_1\mathbf{u}_1&amp;\sigma_k\mathbf{u}_k\\\vdots&amp;\vdots\\\vdots&amp;\vdots\end{array}\right]}^{\large k}
 \times
-\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\vv_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\vv_k&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
+\left[\begin{array}{ccccc}\dots&amp;\dots&amp;\mathbf{v}_1&amp;\dots&amp;\dots\\\dots&amp;\dots&amp;\mathbf{v}_k&amp;\dots&amp;\dots\end{array}\right]\end{split}\]</div>
 <p>Then the rating that a user gives a movie is the inner product of a <span class="math notranslate nohighlight">\(k\)</span> element vector that corresponds to the user, and a <span class="math notranslate nohighlight">\(k\)</span> element vector that corresponds to the movie.</p>
 <p>In other words:</p>
 <div class="math notranslate nohighlight">
-\[ a_{ij} = \vu_i^T \vv_j\]</div>
-<p>We can therefore think of user <span class="math notranslate nohighlight">\(i\)</span>’s preferences as being captured by <span class="math notranslate nohighlight">\(\vu_i\)</span>, ie., a point in <span class="math notranslate nohighlight">\(\R^k\)</span>.  This is a <strong>latent factor.</strong></p>
-<p>Likewise, we can think of <span class="math notranslate nohighlight">\(\vv_j\)</span> as a “description” of movie <span class="math notranslate nohighlight">\(j\)</span> (another latent factor).</p>
-<p>The value in this comes from the summarization of user preferences, and the predictive power it gives.</p>
+\[ a_{ij} = \mathbf{u}_i^T \mathbf{v}_j\]</div>
+<p>We can therefore think of user <span class="math notranslate nohighlight">\(i\)</span>’s preferences as being captured by <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span>, ie., a point in <span class="math notranslate nohighlight">\(\mathbb{R}^k\)</span>.</p>
+<p>We have described everything we need to know to predict user <span class="math notranslate nohighlight">\(i\)</span>’s ratings via a <span class="math notranslate nohighlight">\(k\)</span>-element vector.</p>
+<p>The <span class="math notranslate nohighlight">\(k\)</span>-element vector is called a <strong>latent factor.</strong></p>
+<p>Likewise, we can think of <span class="math notranslate nohighlight">\(\mathbf{v}_j\)</span> as a “description” of movie <span class="math notranslate nohighlight">\(j\)</span> (another latent factor).</p>
+<p>The value in using latent factors comes from the summarization of user preferences, and the predictive power one obtains.</p>
 <p>For example, the winning entry in the Netflix prize competition modeled user preferences with a 20-element latent factor.</p>
-<p>The remarkable thing is that a person’s preferences for all 18,000 movies can be captured in a 20-element vector!</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L10-Movie-Latent-Space.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_89_0.png" src="_images/10-Low-Rank-and-SVD_89_0.png" />
-</div>
-</div>
+<p>The remarkable thing is that a person’s preferences for all 18,000 movies can be reasonably well captured in a 20-element vector!</p>
+<p>Here is a figure from the paper that described the winning strategy in the Netflix prize.</p>
+<p>It shows a hypothetical <font color = 'blue'>latent space</font> in which each user, and each movie, is represented by a latent vector.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L10-Movie-Latent-Space.png"><img alt="Figure" src="_images/L10-Movie-Latent-Space.png" style="width: 60%;" /></a>
+</center>
 <p>Source: Koren et al, IEEE Computer, 2009</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;figs/L10-Netflix-Latent-Factors.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-Low-Rank-and-SVD_91_0.png" src="_images/10-Low-Rank-and-SVD_91_0.png" />
-</div>
-</div>
+<p>In practice, this is perhaps a 20- or 40-dimensional space.</p>
+<p>Here are some representations of movies in that space (reduced to 2-D).</p>
+<p>Notice how the space seems to capture similarity among movies!</p>
+<center>
+<a class="reference internal image-reference" href="_images/L10-Netflix-Latent-Factors.png"><img alt="Figure" src="_images/L10-Netflix-Latent-Factors.png" style="width: 60%;" /></a>
+</center>
 <p>Source: Koren et al, IEEE Computer, 2009</p>
 </div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When we are working with data matrices, it is valuable to consider the <strong>effective rank</strong></p></li>
+<li><p>Many (many) datasets in real life show <strong>low effective rank</strong>.</p></li>
+<li><p>This property can be explored precisely using the Singular Value Decomposition of the matrix.</p></li>
+<li><p>When low effective rank is present,</p>
+<ul>
+<li><p>the matrix can be compressed with only small loss of accuracy</p></li>
+<li><p>we can extract the “strongest” patterns in the data</p></li>
+<li><p>we can describe each data item in terms of the inner product of <strong>latent factors.</strong></p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
