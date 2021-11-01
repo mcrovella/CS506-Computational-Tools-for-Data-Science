@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,19 +42,18 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Linear Models" href="17-Regression-I-Linear.html" />
+    <link rel="prev" title="Linear Regression" href="17-Regression-I-Linear.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -82,7 +81,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -201,7 +200,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction - SVD II
+   Dimensionality Reduction and PCA – SVD II
   </a>
  </li>
 </ul>
@@ -213,7 +212,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Models
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -320,7 +319,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-is-the-probability-i-will-be-admitted-to-grad-school">
@@ -365,32 +364,20 @@
                 
   <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span> <span class="k">as</span> <span class="nn">linalg</span>
-<span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">hr</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
-
-<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
-<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
-<span class="kn">import</span> <span class="nn">sklearn.utils</span> <span class="k">as</span> <span class="nn">utils</span>
-<span class="kn">import</span> <span class="nn">sklearn.linear_model</span> <span class="k">as</span> <span class="nn">linear_model</span>
-<span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">cross_validation</span>
-<span class="kn">import</span> <span class="nn">sklearn.cluster</span> <span class="k">as</span> <span class="nn">cluster</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-
-<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
-
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">model_selection</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
+
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
@@ -410,9 +397,21 @@
 </ul>
 <div class="section" id="what-is-the-probability-i-will-be-admitted-to-grad-school">
 <h2>What is the probability I will be admitted to Grad School?<a class="headerlink" href="#what-is-the-probability-i-will-be-admitted-to-grad-school" title="Permalink to this headline">¶</a></h2>
-<p>From <a class="reference external" href="http://www.ats.ucla.edu/stat/r/dae/logit.htm:">http://www.ats.ucla.edu/stat/r/dae/logit.htm:</a></p>
-<p>A researcher is interested in how variables, such as <em>GRE</em> (Graduate Record Exam scores), <em>GPA</em> (grade point average) and prestige of the undergraduate institution affect admission into graduate school. The response variable, admit/don’t admit, is a binary variable.</p>
-<p>There are three predictor variables: <strong>gre,</strong> <strong>gpa</strong> and <strong>rank.</strong> We will treat the variables <em>gre</em> and <em>gpa</em> as continuous. The variable <em>rank</em> takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following example is based on <a class="reference external" href="http://www.ats.ucla.edu/stat/r/dae/logit.htm">http://www.ats.ucla.edu/stat/r/dae/logit.htm</a>.</p>
+</div>
+<p>A researcher is interested in how variables, such as <em>GRE</em> (Graduate Record Exam scores), <em>GPA</em> (grade point average) and prestige of the undergraduate institution affect admission into graduate school.</p>
+<p>The response variable, admit/don’t admit, is a binary variable.</p>
+<p>There are three predictor variables: <strong>gre,</strong> <strong>gpa</strong> and <strong>rank.</strong></p>
+<ul class="simple">
+<li><p>We will treat the variables <em>gre</em> and <em>gpa</em> as continuous.</p></li>
+<li><p>The variable <em>rank</em> takes on the values 1 through 4.</p>
+<ul>
+<li><p>Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest.</p></li>
+</ul>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data source: http://www.ats.ucla.edu/stat/data/binary.csv</span>
@@ -613,57 +612,63 @@
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_11_0.png" src="_images/18-Regression-II-Logistic_11_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
+  
+</pre></div>
+</div>
+<img alt="_images/18-Regression-II-Logistic_12_1.png" src="_images/18-Regression-II-Logistic_12_1.png" />
 </div>
 </div>
 <p>Let’s look at how each independent variable affects admission probability.</p>
 <p>First, <strong>rank</strong>:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">4.5</span><span class="p">])</span>
-<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_14_0.png" src="_images/18-Regression-II-Logistic_14_0.png" />
+<img alt="_images/18-Regression-II-Logistic_15_0.png" src="_images/18-Regression-II-Logistic_15_0.png" />
 </div>
 </div>
 <p>Next, <strong>GRE</strong>:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;GRE&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_16_0.png" src="_images/18-Regression-II-Logistic_16_0.png" />
+<img alt="_images/18-Regression-II-Logistic_17_0.png" src="_images/18-Regression-II-Logistic_17_0.png" />
 </div>
 </div>
 <p>Finally, <strong>GPA</strong> (for this visualization, we aggregate GPA into 10 bins):</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="n">groups</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gpa&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+                                       <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;GPA&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_18_0.png" src="_images/18-Regression-II-Logistic_18_0.png" />
+<img alt="_images/18-Regression-II-Logistic_19_0.png" src="_images/18-Regression-II-Logistic_19_0.png" />
 </div>
 </div>
 <p>Furthermore, we can see that the independent variables are strongly correlated:</p>
@@ -674,24 +679,24 @@
 <span class="n">df3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">4</span><span class="p">]</span>
 <span class="c1">#</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
-<span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 1 Institutions&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
-<span class="n">df2</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 2 Institutions&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
-<span class="n">df3</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 3 Institutions&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rank 4 Institutions&#39;</span><span class="p">)</span>
-<span class="n">df4</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">df4</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span><span class="s1">&#39;admit&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax4</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_20_0.png" src="_images/18-Regression-II-Logistic_20_0.png" />
+<img alt="_images/18-Regression-II-Logistic_21_0.png" src="_images/18-Regression-II-Logistic_21_0.png" />
 </div>
 </div>
 </div>
@@ -704,6 +709,22 @@
 <p>However, there is a transformation of probability that works: it is called <strong>log-odds</strong>.</p>
 <p>For any probabilty <span class="math notranslate nohighlight">\(p\)</span>, the <strong>odds</strong> is defined as <span class="math notranslate nohighlight">\(p/(1-p)\)</span>.   Notice that odds vary from 0 to <span class="math notranslate nohighlight">\(\infty\)</span>, and odds &lt; 1 indicates that <span class="math notranslate nohighlight">\(p &lt; 1/2\)</span>.</p>
 <p>Now, there is a good argument that to fit a linear function, instead of using odds, we should use log-odds.  That is simply <span class="math notranslate nohighlight">\(\log p/(1-p)\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pvec</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pvec</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">pvec</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log-Odds&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Logit Function: $\log (p/1-p)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-Regression-II-Logistic_26_0.png" src="_images/18-Regression-II-Logistic_26_0.png" />
+</div>
+</div>
 <p>So, logistic regression does the following: it does a linear regression of <span class="math notranslate nohighlight">\(\alpha + \beta x\)</span> against <span class="math notranslate nohighlight">\(\log p/(1-p)\)</span>.</p>
 <p>That is, it fits:</p>
 <div class="math notranslate nohighlight">
@@ -732,15 +753,17 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
     <span class="n">b</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
 <span class="c1">#     plt.plot(x,y,label=r&quot;$\frac{e^{%d + %3.1fx}}{1+e^{%d + %3.1fx}}\;\alpha=%d, \beta=%3.1f$&quot; % (a,b,a,b,a,b))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha=</span><span class="si">%d</span><span class="s2">,$    $\beta=</span><span class="si">%3.1f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\alpha=</span><span class="si">%d</span><span class="s2">,$    $\beta=</span><span class="si">%3.1f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Logistic Functions&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_31_0.png" src="_images/18-Regression-II-Logistic_31_0.png" />
+<img alt="_images/18-Regression-II-Logistic_34_0.png" src="_images/18-Regression-II-Logistic_34_0.png" />
 </div>
 </div>
 <p>Parameter <span class="math notranslate nohighlight">\(\beta\)</span> controls how fast <span class="math notranslate nohighlight">\(p(x)\)</span> raises from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span></p>
@@ -764,7 +787,7 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
 <div class="section" id="logistic-vs-linear-regression">
 <h2>Logistic vs Linear Regression<a class="headerlink" href="#logistic-vs-linear-regression" title="Permalink to this headline">¶</a></h2>
 <p>Let’s take a moment to compare linear and logistic regression.</p>
-<p>In **Linear regression ** we fit</p>
+<p>In <strong>Linear regression</strong> we fit</p>
 <div class="math notranslate nohighlight">
 \[y_i = \alpha +\beta x_i + \epsilon_i.\]</div>
 <p>We do the fitting by minimizing the sum of squared error (<span class="math notranslate nohighlight">\(\Vert\epsilon\Vert\)</span>).   This can be done in closed form.</p>
@@ -772,7 +795,7 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
 <p>Now, if <span class="math notranslate nohighlight">\(\epsilon_i\)</span> comes from a normal distribution with mean zero and some fixed variance,</p>
 <p>then minimizing the sum of squared error is exactly the same as finding the maximum likelihood of the data with respect to the probability of the errors.</p>
 <p>So, in the case of linear regression, it is a lucky fact that the <strong>MLE</strong> of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> can be found by a <strong>closed-form</strong> calculation.</p>
-<p>In **Logistic regression ** we fit</p>
+<p>In <strong>Logistic regression</strong> we fit</p>
 <div class="math notranslate nohighlight">
 \[\text{logit}(p(x_i)) = \alpha + \beta x_i.\]</div>
 <p>with <span class="math notranslate nohighlight">\(\text{Pr}(y_i=1\mid x_i)=p(x_i).\)</span></p>
@@ -848,10 +871,10 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 14 Oct 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
+  <th>Date:</th>            <td>Mon, 01 Nov 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
 </tr>
 <tr>
-  <th>Time:</th>                <td>14:20:54</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
+  <th>Time:</th>                <td>12:10:47</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -249.99</td> 
@@ -892,46 +915,55 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mi">600</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bins</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="n">groups</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gpa&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span><span class="n">groups</span><span class="o">.</span><span class="n">admit</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;gpa&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Marginal Effect of GPA&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_56_0.png" src="_images/18-Regression-II-Logistic_56_0.png" />
+<img alt="_images/18-Regression-II-Logistic_59_0.png" src="_images/18-Regression-II-Logistic_59_0.png" />
 </div>
 </div>
 <p>GRE Score:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gre</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gre</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="n">prob</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">gre</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;gre&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Marginal Effect of GRE&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_58_0.png" src="_images/18-Regression-II-Logistic_58_0.png" />
+<img alt="_images/18-Regression-II-Logistic_61_0.png" src="_images/18-Regression-II-Logistic_61_0.png" />
 </div>
 </div>
 <p>Institution Rank:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="mi">600</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">prob</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">4.5</span><span class="p">])</span>
-<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">4.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;P[admit]&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Marginal Effect of Rank&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_60_0.png" src="_images/18-Regression-II-Logistic_60_0.png" />
+<img alt="_images/18-Regression-II-Logistic_63_0.png" src="_images/18-Regression-II-Logistic_63_0.png" />
 </div>
 </div>
 </div>
@@ -947,7 +979,7 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
 <p>Let’s separate our training and test data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
         <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
         <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -988,7 +1020,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 
 <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="p">,</span><span class="n">recall</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precision: </span><span class="si">{</span><span class="n">precision</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">, Recall: </span><span class="si">{</span><span class="n">recall</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1003,7 +1035,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PR</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
             <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
             <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
     <span class="n">PR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
@@ -1015,12 +1047,12 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avgPrec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
 <span class="n">avgRec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">PR</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Average Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Average Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">avgPrec</span><span class="p">,</span> <span class="n">avgRec</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Precision: </span><span class="si">{</span><span class="n">avgPrec</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">, Average Recall: </span><span class="si">{</span><span class="n">avgRec</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.548, Average Recall: 0.239
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.573, Average Recall: 0.213
 </pre></div>
 </div>
 </div>
@@ -1037,7 +1069,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 <span class="k">def</span> <span class="nf">evalThresh</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">thresh</span><span class="p">):</span>
     <span class="n">PR</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span>
                 <span class="n">df</span><span class="p">[</span><span class="n">train_cols</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;admit&#39;</span><span class="p">],</span>
                 <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
         <span class="n">PR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">thresh</span><span class="p">))</span>
@@ -1055,16 +1087,17 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvals</span><span class="p">,</span><span class="n">f1vals</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F1 Score&#39;</span><span class="p">)</span>
-<span class="n">_</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Threshold for Classification&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Threshold for Classification&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;F1 as a function of Threshold&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-Regression-II-Logistic_77_0.png" src="_images/18-Regression-II-Logistic_77_0.png" />
+<img alt="_images/18-Regression-II-Logistic_80_0.png" src="_images/18-Regression-II-Logistic_80_0.png" />
 </div>
 </div>
 <p>Based on this plot, we can say that the best classification threshold appears to be around 0.3, where precision and recall are:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F1</span><span class="p">,</span> <span class="n">Prec</span><span class="p">,</span> <span class="n">Rec</span> <span class="o">=</span> <span class="n">evalThresh</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Precision: </span><span class="si">{:0.3f}</span><span class="s1">, Best Recall: </span><span class="si">{:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Prec</span><span class="p">,</span> <span class="n">Rec</span><span class="p">))</span>
@@ -1072,7 +1105,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.431, Best Recall: 0.662
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.417, Best Recall: 0.686
 </pre></div>
 </div>
 </div>
@@ -1106,11 +1139,23 @@ where you can find additional details.</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="17-Regression-I-Linear.html" title="previous page">Linear Models</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="17-Regression-I-Linear.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear Regression</p>
+            </div>
+        </a>
+    </div>
+
+</div>
         
         </div>
     </div>
