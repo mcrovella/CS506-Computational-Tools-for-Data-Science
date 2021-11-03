@@ -223,7 +223,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   More on Linear Regression
+   Regularization
   </a>
  </li>
 </ul>
@@ -755,8 +755,8 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <p>To “calibrate” the Rand Index this way, we use the expected Rand Index of random labelings, denoted <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span>.</p>
 <p>The Expected Rand Index considers <span class="math notranslate nohighlight">\(C\)</span> to be a clustering that has the same cluster sizes as <span class="math notranslate nohighlight">\(T\)</span>, but labels are assigned at random.</p>
 <p>Using that, we define the adjusted Rand index as a simple <strong>rescaling</strong> of RI:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27e79d6b-1362-45c6-a71e-7729bccacafe">
-<span class="eqno">(1)<a class="headerlink" href="#equation-27e79d6b-1362-45c6-a71e-7729bccacafe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0147d5a-cae0-43a8-84f7-f5d655603454">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c0147d5a-cae0-43a8-84f7-f5d655603454" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{ARI} = \frac{\text{RI} - E[\text{RI}]}{\max(\text{RI}) - E[\text{RI}]}
 \end{equation}\]</div>
 <p>The computation of the <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span> and the <span class="math notranslate nohighlight">\(\max(\text{RI})\)</span> are simple combinatorics (we’ll omit the derivation).</p>
