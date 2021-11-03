@@ -201,7 +201,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction - SVD II
+   Dimensionality Reduction and PCA – SVD II
   </a>
  </li>
 </ul>
@@ -213,12 +213,17 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Models
+   Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="18-Regression-II-Logistic.html">
    Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Regression-III-More-Linear.html">
+   More on Linear Regression
   </a>
  </li>
 </ul>
@@ -574,11 +579,11 @@ the model, and</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 0, 0, 2, 1, 2, 2, 1, 2, 0, 1, 0, 1, 2, 0, 0, 1, 0, 2, 0, 2,
-       0, 1, 2, 2, 1, 0, 0, 0, 0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 2, 2, 1, 0,
-       1, 0, 1, 2, 1, 0, 0, 1, 1, 1, 1, 0, 1, 2, 2, 0, 1, 0, 2, 1, 1, 2,
-       0, 1, 1, 2, 2, 2, 1, 1, 0, 1, 2, 1, 2, 1, 2, 2, 2, 1, 0, 0, 2, 1,
-       1, 0, 1, 2, 2, 0, 1, 0, 0, 2, 2, 0], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 2, 2, 0, 1, 0, 0, 1, 0, 2, 1, 2, 1, 0, 2, 2, 1, 2, 0, 2, 0,
+       2, 1, 0, 0, 1, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 0, 2, 0, 0, 0, 1, 2,
+       1, 2, 1, 0, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0, 0, 2, 1, 2, 0, 1, 1, 0,
+       2, 1, 1, 0, 0, 0, 1, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0, 1, 2, 2, 0, 1,
+       1, 2, 1, 0, 0, 2, 1, 2, 2, 0, 0, 2], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -613,26 +618,26 @@ the model, and</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total error of the clustering is: 2733.8.
 
 Cluster labels:
-[1 2 0 0 2 1 2 2 1 2 0 1 0 1 2 0 0 1 0 2 0 2 0 1 2 2 1 0 0 0 0 1 0 1 0 2 0
- 2 0 2 2 2 1 0 1 0 1 2 1 0 0 1 1 1 1 0 1 2 2 0 1 0 2 1 1 2 0 1 1 2 2 2 1 1
- 0 1 2 1 2 1 2 2 2 1 0 0 2 1 1 0 1 2 2 0 1 0 0 2 2 0]
+[1 0 2 2 0 1 0 0 1 0 2 1 2 1 0 2 2 1 2 0 2 0 2 1 0 0 1 2 2 2 2 1 2 1 2 0 2
+ 0 2 0 0 0 1 2 1 2 1 0 1 2 2 1 1 1 1 2 1 0 0 2 1 2 0 1 1 0 2 1 1 0 0 0 1 1
+ 2 1 0 1 0 1 0 0 0 1 2 2 0 1 1 2 1 0 0 2 1 2 2 0 0 2]
 
 Cluster centroids:
-[[-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
-   2.22988468  2.03394692  8.9797878   3.67857655 -2.67618716 -1.17595897
-   3.76433199 -8.46317271  3.28114395  3.73803392 -5.73436869 -7.0844462
-  -3.75643598 -3.07904369  1.36974653 -0.95918462  9.91135428 -8.17722281
-  -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]
+[[-7.0489904  -7.92501873  2.89710462 -7.17088692 -6.01151677 -2.66405834
+   6.43970052 -8.20341647  6.54146052 -7.92978843  9.56983319 -0.86327902
+   9.25897119  1.73061823  4.84528928 -9.26418246 -4.54021612 -7.47784575
+  -4.15060719 -7.85665458 -3.76688414 -1.6692291  -8.78048843  3.78904162
+   1.24247168 -4.73618733  0.27327032 -7.93180624  1.59974866  8.78601576]
  [ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
   -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
    1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
    5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
   -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]
- [-7.0489904  -7.92501873  2.89710462 -7.17088692 -6.01151677 -2.66405834
-   6.43970052 -8.20341647  6.54146052 -7.92978843  9.56983319 -0.86327902
-   9.25897119  1.73061823  4.84528928 -9.26418246 -4.54021612 -7.47784575
-  -4.15060719 -7.85665458 -3.76688414 -1.6692291  -8.78048843  3.78904162
-   1.24247168 -4.73618733  0.27327032 -7.93180624  1.59974866  8.78601576]]
+ [-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
+   2.22988468  2.03394692  8.9797878   3.67857655 -2.67618716 -1.17595897
+   3.76433199 -8.46317271  3.28114395  3.73803392 -5.73436869 -7.0844462
+  -3.75643598 -3.07904369  1.36974653 -0.95918462  9.91135428 -8.17722281
+  -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]]
 </pre></div>
 </div>
 </div>
@@ -750,8 +755,8 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <p>To “calibrate” the Rand Index this way, we use the expected Rand Index of random labelings, denoted <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span>.</p>
 <p>The Expected Rand Index considers <span class="math notranslate nohighlight">\(C\)</span> to be a clustering that has the same cluster sizes as <span class="math notranslate nohighlight">\(T\)</span>, but labels are assigned at random.</p>
 <p>Using that, we define the adjusted Rand index as a simple <strong>rescaling</strong> of RI:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8feb25c-7755-491b-93c6-b2ca2dd863b2">
-<span class="eqno">(1)<a class="headerlink" href="#equation-a8feb25c-7755-491b-93c6-b2ca2dd863b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27e79d6b-1362-45c6-a71e-7729bccacafe">
+<span class="eqno">(1)<a class="headerlink" href="#equation-27e79d6b-1362-45c6-a71e-7729bccacafe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{ARI} = \frac{\text{RI} - E[\text{RI}]}{\max(\text{RI}) - E[\text{RI}]}
 \end{equation}\]</div>
 <p>The computation of the <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span> and the <span class="math notranslate nohighlight">\(\max(\text{RI})\)</span> are simple combinatorics (we’ll omit the derivation).</p>
@@ -859,7 +864,7 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <p>Let <span class="math notranslate nohighlight">\(b\)</span> be the mean distance between a data point and all other points in the next nearest cluster.</p>
 <p>Then the
 <strong>Silhouette Coefficient</strong> for a clustering is:
-$<span class="math notranslate nohighlight">\(s = \frac{b - a}{\max(a, b)}\)</span>$</p>
+$<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
