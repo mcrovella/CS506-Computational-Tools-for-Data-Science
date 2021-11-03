@@ -29,3 +29,4 @@ parts:
   chapters: 
   - file: 17-Regression-I-Linear
   - file: 18-Regression-II-Logistic
+  - file: 19-Regression-III-More-Linear
