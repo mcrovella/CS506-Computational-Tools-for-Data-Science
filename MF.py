@@ -4,8 +4,13 @@ import lmafit as lmafit
 import pandas as pd
 import numpy.ma as ma
 from abc import ABCMeta, abstractmethod
-reload(als)
-reload(lmafit)
+
+# Code by Bashir Rastegarpanah
+# From https://github.com/rastegarpanah/antidote-data-framework
+# Written for paper
+# Bashir Rastegarpanah, Krishna P. Gummadi and Mark Crovella (2019).
+# Fighting Fire with Fire: Using Antidote Data to Improve Polarization and Fairness of Recommender Systems.
+# In: Proceedings of WSDM. Melbourne, Australia. doi:10.1145/3289600.3291002
 
 def read_movielens_small(n_movies, n_users, data_dir='Data/MovieLens-small'):
     # get ratings

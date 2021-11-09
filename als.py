@@ -1,3 +1,10 @@
+# Code by Bashir Rastegarpanah
+# From https://github.com/rastegarpanah/antidote-data-framework
+# Written for paper
+# Bashir Rastegarpanah, Krishna P. Gummadi and Mark Crovella (2019).
+# Fighting Fire with Fire: Using Antidote Data to Improve Polarization and Fairness of Recommender Systems.
+# In: Proceedings of WSDM. Melbourne, Australia. doi:10.1145/3289600.3291002
+
 import numpy as np
 
 def als(X,k,lambda_,max_iter,threshold):

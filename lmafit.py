@@ -1,11 +1,16 @@
 import numpy as np
+
 # translated from lmafit_mc_adp.m by Mark Crovella December 2014
 # omitting many options and just implementing the core functionality
 # for documentation on lmafit see http://lmafit.blogs.rice.edu/
 #
-# Note: this is very useful:
-# http://wiki.scipy.org/NumPy_for_Matlab_Users
-#
+# With edits by Bashir Rastegarpanah
+# From https://github.com/rastegarpanah/antidote-data-framework
+# Used in paper
+# Bashir Rastegarpanah, Krishna P. Gummadi and Mark Crovella (2019).
+# Fighting Fire with Fire: Using Antidote Data to Improve Polarization and Fairness of Recommender Systems.
+# In: Proceedings of WSDM. Melbourne, Australia. doi:10.1145/3289600.3291002
+
 def lmafit_mc_adp(m,n,k,Known,data,opts=None):
     """
  Output:
