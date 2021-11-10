@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -73,10 +73,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -95,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -127,7 +123,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Clustering
  </span>
@@ -162,7 +158,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Classification
  </span>
@@ -192,7 +188,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -209,7 +205,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Regression
  </span>
@@ -231,7 +227,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -430,7 +426,7 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="regularization">
+<div class="section" id="regularization">
 <h1>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h1>
 <p>Today, we’ll look at some additional aspects of Linear Regression.</p>
 <p>Our first topic is multicollinearity.</p>
@@ -657,8 +653,8 @@ and
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        11:57:03   Log-Likelihood:                -117.83
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):           3.70e-09
+Time:                        11:45:48   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -685,8 +681,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1542: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  &quot;anyway, n=%i&quot; % int(n))
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
 </div>
@@ -1123,8 +1119,8 @@ Spatial Analysis”, Michael Friendly.  Statistical Science 2007, Vol. 22, No. 3
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        11:58:41   Log-Likelihood:                -117.83
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):           3.70e-09
+Time:                        11:47:14   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -1151,8 +1147,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1542: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  &quot;anyway, n=%i&quot; % int(n))
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
 </div>
@@ -1171,8 +1167,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                 TOTEMP   R-squared (uncentered):                   1.000
 Model:                            OLS   Adj. R-squared (uncentered):              1.000
 Method:                 Least Squares   F-statistic:                          1.127e+04
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):                    1.92e-22
-Time:                        11:58:41   Log-Likelihood:                         -137.20
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):                    1.92e-22
+Time:                        11:47:14   Log-Likelihood:                         -137.20
 No. Observations:                  16   AIC:                                      280.4
 Df Residuals:                      13   BIC:                                      282.7
 Df Model:                           3                                                  
@@ -1197,8 +1193,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1542: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  &quot;anyway, n=%i&quot; % int(n))
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
 </div>
@@ -1293,8 +1289,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        11:58:41   Log-Likelihood:                -375.30
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):           1.07e-05
+Time:                        11:47:15   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1341,8 +1337,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        11:58:41   Log-Likelihood:                -375.30
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):           1.07e-05
+Time:                        11:47:15   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1385,8 +1381,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.161
 Model:                            OLS   Adj. R-squared:                  0.151
 Method:                 Least Squares   F-statistic:                     15.89
-Date:                Wed, 03 Nov 2021   Prob (F-statistic):           0.000144
-Time:                        11:58:41   Log-Likelihood:                -385.38
+Date:                Wed, 10 Nov 2021   Prob (F-statistic):           0.000144
+Time:                        11:47:15   Log-Likelihood:                -385.38
 No. Observations:                  85   AIC:                             774.8
 Df Residuals:                      83   BIC:                             779.7
 Df Model:                           1                                         
@@ -1464,7 +1460,7 @@ Notes:
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         

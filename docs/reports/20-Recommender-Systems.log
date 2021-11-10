@@ -32,8 +32,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['from nltk.stem.snowball import SnowballStemmer', 'from nltk.tokenize import word_tokenize, sent_tokenize', '', '', 'stemmed_data = [" ".join(SnowballStemmer("english", ignore_stopwords=True).stem(word)  ']
-...
-['        for word in word_tokenize(sent))', '        for message in news_data.data]', '', 'dtm = vectorizer.fit_transform(stemmed_data)', 'terms = vectorizer.get_feature_names()']
+%time pred, error = RS.fit_model(R)
 -------------------
 

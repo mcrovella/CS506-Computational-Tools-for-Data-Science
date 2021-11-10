@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -72,10 +72,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -94,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -126,7 +122,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Clustering
  </span>
@@ -161,7 +157,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Classification
  </span>
@@ -191,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -208,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Regression
  </span>
@@ -230,7 +226,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -406,6 +402,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assessing-recommender-systems">
+   Assessing Recommender Systems
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -435,7 +436,7 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="recommender-systems">
+<div class="section" id="recommender-systems">
 <h1>Recommender Systems<a class="headerlink" href="#recommender-systems" title="Permalink to this headline">¶</a></h1>
 <p>Today, we look at a topic that has become enormously important in society: recommender systems.</p>
 <p>We will</p>
@@ -544,6 +545,20 @@
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;kaggle competitions download -c cs-506-midterm-a1-b1&#39;</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;unzip cs-506-midterm-a1-b1.zip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading cs-506-midterm-a1-b1.zip to /Users/markcrovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 650M/650M [02:29&lt;00:00, 4.57MB/s] 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archive:  cs-506-midterm-a1-b1.zip
+  inflating: sample.csv              
+  inflating: test.csv                
+  inflating: train.csv               
 </pre></div>
 </div>
 </div>
@@ -859,9 +874,10 @@ There are 6204445920 potential reviews, meaning sparsity of 0.0274%
 <a class="reference internal image-reference" href="_images/L20-mf-1.png"><img alt="Figure" src="_images/L20-mf-1.png" style="width: 60%;" /></a>
 </center><p>Here is what we want to solve:</p>
 <div class="math notranslate nohighlight">
-\[ \min_{U,V} \Vert R - UV^T\Vert^2 + \lambda(\Vert U\Vert^2 + \Vert V\Vert^2) \]</div>
+\[ \min_{U,V} \Vert (R - UV^T)_S\Vert^2 + \lambda(\Vert U\Vert^2 + \Vert V\Vert^2) \]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is <span class="math notranslate nohighlight">\(m\times n\)</span>, <span class="math notranslate nohighlight">\(U\)</span> is the <span class="math notranslate nohighlight">\(m\times k\)</span> items matrix and <span class="math notranslate nohighlight">\(V\)</span> is the <span class="math notranslate nohighlight">\(n\times k\)</span> users matrix.</p>
-<p>Note that as usual, we add <span class="math notranslate nohighlight">\(\ell_2\)</span> penalization to avoid overfitting.</p>
+<p>The <span class="math notranslate nohighlight">\((\cdot)_S\)</span> notation means that we are only considering the matrix entries that correspond to known reviews (the set <span class="math notranslate nohighlight">\(S\)</span>).</p>
+<p>Note that as usual, we add <span class="math notranslate nohighlight">\(\ell_2\)</span> penalization to avoid overfitting (Ridge regression).</p>
 <p>Once again, this problem is <strong>jointly convex.</strong></p>
 <p>In particular, it we hold either <span class="math notranslate nohighlight">\(U\)</span> or <span class="math notranslate nohighlight">\(V\)</span> constant, then the result is a simple ridge regression.</p>
 <p>So one commonly used algorithm for this problem is called <strong>alternating least squares:</strong></p>
@@ -1270,8 +1286,8 @@ There are 6204445920 potential reviews, meaning sparsity of 0.0274%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 55s, sys: 29.2 s, total: 5min 25s
-Wall time: 1min 22s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3min 14s, sys: 25.7 s, total: 3min 40s
+Wall time: 1min 43s
 </pre></div>
 </div>
 </div>
@@ -1283,7 +1299,7 @@ Wall time: 1min 22s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE on visible entries (training data): 0.342
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE on visible entries (training data): 0.343
 </pre></div>
 </div>
 </div>
@@ -1363,123 +1379,123 @@ Wall time: 1min 22s
   <tbody>
     <tr>
       <th>A02755422E9NI29TCQ5W3</th>
-      <td>5.100975</td>
-      <td>5.119204</td>
-      <td>4.333302</td>
-      <td>4.887910</td>
-      <td>5.316881</td>
-      <td>5.121651</td>
-      <td>5.041386</td>
-      <td>4.370913</td>
-      <td>5.391349</td>
-      <td>4.098545</td>
+      <td>5.016744</td>
+      <td>5.035791</td>
+      <td>5.272479</td>
+      <td>5.500806</td>
+      <td>5.092711</td>
+      <td>5.962542</td>
+      <td>4.735472</td>
+      <td>4.147332</td>
+      <td>4.476244</td>
+      <td>5.212951</td>
       <td>...</td>
-      <td>3.889617</td>
-      <td>5.308247</td>
-      <td>5.622747</td>
-      <td>3.112950</td>
-      <td>4.163296</td>
-      <td>4.966438</td>
-      <td>4.613630</td>
-      <td>5.289434</td>
-      <td>3.648711</td>
-      <td>4.975231</td>
+      <td>3.798672</td>
+      <td>5.169233</td>
+      <td>5.311871</td>
+      <td>1.845315</td>
+      <td>4.144484</td>
+      <td>4.967808</td>
+      <td>5.350111</td>
+      <td>4.966035</td>
+      <td>4.117104</td>
+      <td>4.750125</td>
     </tr>
     <tr>
       <th>A100JCBNALJFAW</th>
-      <td>3.612516</td>
-      <td>4.252247</td>
-      <td>3.201877</td>
-      <td>4.083492</td>
-      <td>3.986821</td>
-      <td>3.624903</td>
-      <td>3.979580</td>
-      <td>3.528707</td>
-      <td>3.401549</td>
-      <td>2.463759</td>
+      <td>3.436276</td>
+      <td>3.999680</td>
+      <td>3.647000</td>
+      <td>4.276271</td>
+      <td>4.580414</td>
+      <td>2.499193</td>
+      <td>4.074851</td>
+      <td>2.354174</td>
+      <td>4.212245</td>
+      <td>2.100499</td>
       <td>...</td>
-      <td>2.668156</td>
-      <td>3.599727</td>
-      <td>3.482493</td>
-      <td>2.326533</td>
-      <td>4.237363</td>
-      <td>4.716050</td>
-      <td>4.240459</td>
-      <td>2.583677</td>
-      <td>2.971772</td>
-      <td>2.456296</td>
+      <td>2.899311</td>
+      <td>3.867784</td>
+      <td>2.704975</td>
+      <td>3.344246</td>
+      <td>1.953415</td>
+      <td>3.497559</td>
+      <td>2.796741</td>
+      <td>2.025870</td>
+      <td>2.293803</td>
+      <td>1.939761</td>
     </tr>
     <tr>
       <th>A10175AMUHOQC4</th>
-      <td>4.854183</td>
-      <td>5.414784</td>
-      <td>5.776878</td>
-      <td>4.806956</td>
-      <td>4.591342</td>
-      <td>5.173318</td>
-      <td>4.768054</td>
-      <td>4.297230</td>
-      <td>5.632776</td>
-      <td>4.857786</td>
+      <td>4.714049</td>
+      <td>5.167051</td>
+      <td>4.579619</td>
+      <td>5.642514</td>
+      <td>5.533361</td>
+      <td>5.841875</td>
+      <td>4.834274</td>
+      <td>4.457410</td>
+      <td>3.919101</td>
+      <td>4.661091</td>
       <td>...</td>
-      <td>3.569939</td>
-      <td>4.686768</td>
-      <td>5.938452</td>
-      <td>2.320290</td>
-      <td>3.858068</td>
-      <td>5.074609</td>
-      <td>3.789647</td>
-      <td>3.404186</td>
-      <td>2.932516</td>
-      <td>3.509346</td>
+      <td>2.710730</td>
+      <td>4.775693</td>
+      <td>5.064425</td>
+      <td>2.318141</td>
+      <td>3.004366</td>
+      <td>4.564798</td>
+      <td>5.749639</td>
+      <td>4.328667</td>
+      <td>4.120604</td>
+      <td>5.381400</td>
     </tr>
     <tr>
       <th>A103KNDW8GN92L</th>
-      <td>4.943295</td>
-      <td>4.702966</td>
-      <td>4.447471</td>
-      <td>5.686882</td>
-      <td>5.190389</td>
-      <td>3.923600</td>
-      <td>4.968715</td>
-      <td>3.830214</td>
-      <td>4.745838</td>
-      <td>4.076173</td>
+      <td>4.932510</td>
+      <td>5.081288</td>
+      <td>4.312677</td>
+      <td>4.738268</td>
+      <td>4.511976</td>
+      <td>4.090451</td>
+      <td>4.545083</td>
+      <td>3.851625</td>
+      <td>5.050948</td>
+      <td>5.151466</td>
       <td>...</td>
-      <td>4.112139</td>
-      <td>4.690006</td>
-      <td>5.499074</td>
-      <td>3.411291</td>
-      <td>4.243021</td>
-      <td>4.562817</td>
-      <td>3.985037</td>
-      <td>3.959456</td>
-      <td>3.230848</td>
-      <td>4.491063</td>
+      <td>3.270639</td>
+      <td>4.779824</td>
+      <td>5.191792</td>
+      <td>2.748767</td>
+      <td>4.610883</td>
+      <td>3.941584</td>
+      <td>4.595436</td>
+      <td>3.087369</td>
+      <td>3.637341</td>
+      <td>4.266788</td>
     </tr>
     <tr>
       <th>A106016KSI0YQ</th>
-      <td>4.450244</td>
-      <td>4.268892</td>
-      <td>2.949996</td>
-      <td>3.587045</td>
-      <td>4.749854</td>
-      <td>4.870327</td>
-      <td>3.622757</td>
-      <td>3.157592</td>
-      <td>3.243920</td>
-      <td>4.679466</td>
+      <td>3.958983</td>
+      <td>4.050969</td>
+      <td>2.824939</td>
+      <td>4.425278</td>
+      <td>5.136042</td>
+      <td>3.488009</td>
+      <td>3.930796</td>
+      <td>3.189077</td>
+      <td>4.441554</td>
+      <td>4.236954</td>
       <td>...</td>
-      <td>2.919665</td>
-      <td>4.116127</td>
-      <td>3.071681</td>
-      <td>3.589449</td>
-      <td>2.720650</td>
-      <td>2.936457</td>
-      <td>3.043959</td>
-      <td>2.910815</td>
-      <td>3.529131</td>
-      <td>2.366702</td>
+      <td>3.560373</td>
+      <td>3.826592</td>
+      <td>2.697408</td>
+      <td>3.000085</td>
+      <td>2.576007</td>
+      <td>3.078599</td>
+      <td>4.325538</td>
+      <td>3.867924</td>
+      <td>4.904706</td>
+      <td>2.920979</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1507,123 +1523,123 @@ Wall time: 1min 22s
     </tr>
     <tr>
       <th>AZUBX0AYYNTFF</th>
-      <td>4.045136</td>
-      <td>4.266329</td>
-      <td>3.078389</td>
-      <td>4.266071</td>
-      <td>4.693189</td>
-      <td>3.908015</td>
-      <td>3.888886</td>
-      <td>3.399116</td>
-      <td>3.500477</td>
-      <td>3.378818</td>
+      <td>3.934942</td>
+      <td>3.892587</td>
+      <td>2.808979</td>
+      <td>4.280819</td>
+      <td>4.125316</td>
+      <td>3.107546</td>
+      <td>3.803944</td>
+      <td>2.905792</td>
+      <td>3.455285</td>
+      <td>3.801095</td>
       <td>...</td>
-      <td>3.261483</td>
-      <td>3.748871</td>
-      <td>3.651527</td>
-      <td>2.336060</td>
-      <td>2.690770</td>
-      <td>4.650991</td>
-      <td>4.129803</td>
-      <td>2.949724</td>
-      <td>2.633462</td>
-      <td>2.758282</td>
+      <td>2.935018</td>
+      <td>3.779084</td>
+      <td>2.879208</td>
+      <td>2.361679</td>
+      <td>2.736826</td>
+      <td>4.232730</td>
+      <td>3.793407</td>
+      <td>2.844898</td>
+      <td>3.637923</td>
+      <td>2.541944</td>
     </tr>
     <tr>
       <th>AZXGPM8EKSHE9</th>
-      <td>2.938998</td>
-      <td>3.356421</td>
-      <td>2.177582</td>
-      <td>4.089955</td>
-      <td>3.090558</td>
-      <td>4.584430</td>
-      <td>2.935708</td>
-      <td>3.198558</td>
-      <td>2.656719</td>
-      <td>3.661284</td>
+      <td>3.521972</td>
+      <td>3.235185</td>
+      <td>3.227526</td>
+      <td>4.494213</td>
+      <td>4.059901</td>
+      <td>4.279193</td>
+      <td>2.669037</td>
+      <td>2.889117</td>
+      <td>1.958714</td>
+      <td>5.047737</td>
       <td>...</td>
-      <td>1.270248</td>
-      <td>2.896776</td>
-      <td>3.823822</td>
-      <td>2.766064</td>
-      <td>2.936563</td>
-      <td>2.464751</td>
-      <td>2.967671</td>
-      <td>1.668792</td>
-      <td>2.347817</td>
-      <td>2.155735</td>
+      <td>1.529112</td>
+      <td>3.307141</td>
+      <td>4.465824</td>
+      <td>2.698001</td>
+      <td>2.322919</td>
+      <td>0.499406</td>
+      <td>3.766887</td>
+      <td>2.673469</td>
+      <td>2.144243</td>
+      <td>1.803117</td>
     </tr>
     <tr>
       <th>AZXHK8IO25FL6</th>
-      <td>3.464134</td>
-      <td>3.634450</td>
-      <td>2.904390</td>
-      <td>4.444406</td>
-      <td>3.929107</td>
-      <td>2.503361</td>
-      <td>3.582192</td>
-      <td>3.386580</td>
-      <td>3.998785</td>
-      <td>3.345320</td>
+      <td>3.675436</td>
+      <td>2.966187</td>
+      <td>3.604796</td>
+      <td>3.858191</td>
+      <td>3.558386</td>
+      <td>3.245839</td>
+      <td>3.341947</td>
+      <td>3.374730</td>
+      <td>3.220759</td>
+      <td>4.124752</td>
       <td>...</td>
-      <td>3.222353</td>
-      <td>3.735539</td>
-      <td>5.158029</td>
-      <td>1.588288</td>
-      <td>3.561522</td>
-      <td>3.632792</td>
-      <td>3.942168</td>
-      <td>2.315941</td>
-      <td>1.835319</td>
-      <td>4.047951</td>
+      <td>2.460944</td>
+      <td>3.429233</td>
+      <td>3.898791</td>
+      <td>2.591366</td>
+      <td>2.630376</td>
+      <td>4.918093</td>
+      <td>4.411383</td>
+      <td>1.588602</td>
+      <td>1.772926</td>
+      <td>3.675194</td>
     </tr>
     <tr>
       <th>AZXR5HB99P936</th>
-      <td>3.978342</td>
-      <td>4.488699</td>
-      <td>3.611286</td>
-      <td>3.676219</td>
-      <td>4.034246</td>
-      <td>5.092121</td>
-      <td>4.032061</td>
-      <td>3.718001</td>
-      <td>3.298402</td>
-      <td>3.751125</td>
+      <td>4.231294</td>
+      <td>4.286031</td>
+      <td>4.331101</td>
+      <td>4.067249</td>
+      <td>4.056134</td>
+      <td>4.723361</td>
+      <td>4.077680</td>
+      <td>3.382070</td>
+      <td>3.328841</td>
+      <td>5.121441</td>
       <td>...</td>
-      <td>2.904649</td>
-      <td>4.014029</td>
-      <td>3.807784</td>
-      <td>2.696673</td>
-      <td>2.900181</td>
-      <td>3.918890</td>
-      <td>4.153465</td>
-      <td>3.823922</td>
-      <td>2.765552</td>
-      <td>3.682287</td>
+      <td>3.457711</td>
+      <td>4.026971</td>
+      <td>3.484442</td>
+      <td>2.102276</td>
+      <td>3.313046</td>
+      <td>5.572022</td>
+      <td>3.880499</td>
+      <td>3.524514</td>
+      <td>2.827675</td>
+      <td>2.612564</td>
     </tr>
     <tr>
       <th>AZZ4GD20C58ND</th>
-      <td>4.343198</td>
-      <td>4.795054</td>
-      <td>3.767498</td>
-      <td>5.495121</td>
-      <td>5.221801</td>
-      <td>3.706220</td>
-      <td>4.584233</td>
-      <td>4.011738</td>
-      <td>4.027776</td>
-      <td>2.919974</td>
+      <td>4.292429</td>
+      <td>4.505620</td>
+      <td>4.143057</td>
+      <td>5.076484</td>
+      <td>4.438498</td>
+      <td>4.479643</td>
+      <td>3.967501</td>
+      <td>2.830961</td>
+      <td>4.154154</td>
+      <td>4.557856</td>
       <td>...</td>
-      <td>3.230749</td>
-      <td>4.134182</td>
-      <td>5.377073</td>
-      <td>2.594930</td>
-      <td>3.440165</td>
-      <td>4.519055</td>
-      <td>4.639637</td>
-      <td>3.092475</td>
-      <td>2.346707</td>
-      <td>3.754861</td>
+      <td>3.135017</td>
+      <td>4.544846</td>
+      <td>4.738023</td>
+      <td>2.247030</td>
+      <td>2.991763</td>
+      <td>4.273621</td>
+      <td>4.183306</td>
+      <td>3.634207</td>
+      <td>3.641665</td>
+      <td>3.468774</td>
     </tr>
   </tbody>
 </table>
@@ -1657,8 +1673,8 @@ Wall time: 1min 22s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.92 s, sys: 55.2 ms, total: 6.97 s
-Wall time: 7.07 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.03 s, sys: 44.8 ms, total: 6.07 s
+Wall time: 6.08 s
 </pre></div>
 </div>
 </div>
@@ -1679,7 +1695,9 @@ Wall time: 7.07 s
 <div class="section" id="assessing-mf">
 <h3>Assessing MF<a class="headerlink" href="#assessing-mf" title="Permalink to this headline">¶</a></h3>
 <p>Matrix Factorization per se is a good idea.    However, many of the improvements we’ve discussed for CF apply to MF as well.</p>
-<p>To illustrate, we’ll look at some of the successive improvements used by the team that won the Netflix prize.</p>
+<p>To illustrate, we’ll look at some of the successive improvements used by the team that won the Netflix prize (“BellKor’s Pragmatic Chaos”).</p>
+<p>When the prize was announced, the Netflix supplied solution achieved an RMSE of 0.951.</p>
+<p>By the end of the competition (about 3 years), the winning team’s solution achieved RMSE of 0.856.</p>
 <p>Let’s restate our MF objective in a way that will make things clearer:</p>
 <div class="math notranslate nohighlight">
 \[ \min_{U, V} \sum_{(u, i)\in S}(r_{ui} - u_u^Tv_i)^2 + \lambda(\Vert U\Vert^2 + \Vert V\Vert^2) \]</div>
@@ -1705,6 +1723,40 @@ Wall time: 7.07 s
 <a class="reference internal image-reference" href="_images/L20-netflix-5.png"><img alt="Figure" src="_images/L20-netflix-5.png" style="width: 70%;" /></a>
 </center><p>To estimate these billions of parameters, we cannot use alternating least squares or any linear algebraic method.</p>
 <p>We need to use gradient descent (which we will cover in a future lecture).</p>
+</div>
+</div>
+<div class="section" id="assessing-recommender-systems">
+<h2>Assessing Recommender Systems<a class="headerlink" href="#assessing-recommender-systems" title="Permalink to this headline">¶</a></h2>
+<p>There are a number of concerns with the widespread use of recommender systems and personalization in society.</p>
+<p>First, recommender systems are accused of creating <strong>filter bubbles.</strong></p>
+<p>A filter bubble is the tendency for recommender systems to limit the variety of information presented to the user.</p>
+<p>The concern is that a user’s past expression of interests will guide the algorithm in continuing to provide “more of the same.”</p>
+<p>This is believed to increase polarization in society, and to reinforce confirmation bias.</p>
+<p>Second, recommender systems in modern usage are often tuned to <strong>maximize engagement.</strong></p>
+<p>In other words, the objective function of the system is not to present the user’s most favored content, but rather the content that will be most likely to keep the user on the site.</p>
+<p>The incentive to maximize engagement arises on sites that are supported by advertising revenue.</p>
+<p>More engagement time means more revenue for the site.</p>
+<p>However, many studies have shown that sites that strive to <strong>maximize engagement</strong> do so in large part by guiding users toward <strong>extreme content:</strong></p>
+<ul class="simple">
+<li><p>content that is shocking,</p></li>
+<li><p>or feeds conspiracy theories,</p></li>
+<li><p>or presents extreme views on popular topics.</p></li>
+</ul>
+<p>Given this tendency of modern recommender systems,
+for a third party to create “clickbait” content such as this, one of the easiest ways is to present false claims.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can read about some of the work done in my group on this topic:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.cs.bu.edu/faculty/crovella/paper-archive/youtube-fairumap20.pdf">How YouTube Leads Privacy-Seeking Users Away from Reliable Information,</a>
+Larissa Spinelli and Mark Crovella,
+<em>Proceedings of the Workshop on Fairness in User Modeling, Adaptation, and Personalization (FairUMAP)</em>, 2020.</p></li>
+<li><p><a class="reference external" href="http://www.cs.bu.edu/faculty/crovella/paper-archive/netsci17-filterbubble.pdf">Closed-Loop Opinion Formation,</a> Larissa Spinelli and Mark Crovella
+<em>Proceedings of the 9th International ACM Web Science Conference (WebSci)</em>, 2017.</p></li>
+<li><p><a class="reference external" href="http://www.cs.bu.edu/faculty/crovella/paper-archive/wsdm19-antidote-data.pdf">Fighting Fire with Fire: Using Antidote Data to Improve Polarization and Fairness of Recommender Systems,</a>
+Bashir Rastegarpanah, Krishna P. Gummadi and Mark Crovella
+<em>Proceedings of WSDM</em>, 2019.</p></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1752,7 +1804,7 @@ Wall time: 7.07 s
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
