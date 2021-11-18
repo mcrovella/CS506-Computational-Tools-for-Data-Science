@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -82,7 +82,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -337,7 +337,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#least-squares-lines">
@@ -1731,7 +1731,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='873ea111-6a73-4536-8729-f81f0f371fe0'></div></div></div>
+</script><div class="output text_html"><div id='03202d2c-5f9d-4774-ad13-ca165aa86919'></div></div></div>
 </div>
 <p><strong>Example.</strong></p>
 <p>In geography, local models of terrain are constructed from data <span class="math notranslate nohighlight">\((u_1, v_1, y_1), \dots, (u_n, v_n, y_n)\)</span> where <span class="math notranslate nohighlight">\(u_j, v_j\)</span>, and <span class="math notranslate nohighlight">\(y_j\)</span> are latitude, longitude, and altitude, respectively.</p>
@@ -2734,7 +2734,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='45e89fad-c552-43e0-a3c5-2d22d192fd16'></div></div></div>
+</script><div class="output text_html"><div id='e8e39127-b09e-4e04-b3d3-952ec1a1026d'></div></div></div>
 </div>
 <p>This example shows that the linear model for multiple regression has the same form as the model for the simple regression in the earlier examples.</p>
 <p>We can see that there the general principle is the same across all the different kinds of linear models.</p>
@@ -2773,8 +2773,8 @@ which is called the <strong>Total Sum of Squares</strong> (TSS).</p>
 \[\text{TSS} = \text{RSS} + \text{ESS}\]</div>
 <p>Now, a good fit is one in which the model explains a large part of the variance of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
 <p>So the measure of fit <span class="math notranslate nohighlight">\(R^2\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e34b822a-577c-4ab4-b87e-0f7c0141ed7c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e34b822a-577c-4ab4-b87e-0f7c0141ed7c" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-be4744c3-b05c-4a27-81bf-35d05c61ad3a">
+<span class="eqno">(2)<a class="headerlink" href="#equation-be4744c3-b05c-4a27-81bf-35d05c61ad3a" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}}
 \end{eqnarray}\]</div>
 <p>As a result, <span class="math notranslate nohighlight">\(0\leq R^2\leq 1\)</span>.</p>
@@ -2816,8 +2816,8 @@ R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}
 Dep. Variable:                      y   R-squared (uncentered):                   0.969
 Model:                            OLS   Adj. R-squared (uncentered):              0.961
 Method:                 Least Squares   F-statistic:                              123.8
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):                    1.03e-51
-Time:                        11:41:28   Log-Likelihood:                         -468.30
+Date:                Thu, 18 Nov 2021   Prob (F-statistic):                    1.03e-51
+Time:                        09:52:15   Log-Likelihood:                         -468.30
 No. Observations:                 100   AIC:                                      976.6
 Df Residuals:                      80   BIC:                                      1029.
 Df Model:                          20                                                  
@@ -3843,7 +3843,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='b43c3799-b193-490c-bf84-39d6b98db120'></div></div></div>
+</script><div class="output text_html"><div id='e13859d0-618f-42bd-86db-6694ec6d4cb4'></div></div></div>
 </div>
 <p>Note that each parameter of an independent variable has an associated confidence interval.</p>
 <p>If a coefficient is not distinguishable from zero, then we cannot assume that there is any relationship between the independent variable and the observations.</p>
@@ -3929,8 +3929,8 @@ Parameters: [ 1.25672537e+01 -3.83208841e+00 -2.41967305e+00  2.01431564e+00
 Dep. Variable:                      y   R-squared (uncentered):                   0.965
 Model:                            OLS   Adj. R-squared (uncentered):              0.963
 Method:                 Least Squares   F-statistic:                              437.1
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):                    2.38e-66
-Time:                        11:41:28   Log-Likelihood:                         -473.32
+Date:                Thu, 18 Nov 2021   Prob (F-statistic):                    2.38e-66
+Time:                        09:52:15   Log-Likelihood:                         -473.32
 No. Observations:                 100   AIC:                                      958.6
 Df Residuals:                      94   BIC:                                      974.3
 Df Model:                           6                                                  
@@ -4101,12 +4101,6 @@ Ames, Iowa</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
-  x = pd.concat(x[::order], 1)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4136,8 +4130,8 @@ Ames, Iowa</p>
 Dep. Variable:                      y   R-squared:                       0.759
 Model:                            OLS   Adj. R-squared:                  0.757
 Method:                 Least Squares   F-statistic:                     325.5
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):          1.74e-218
-Time:                        11:41:28   Log-Likelihood:                -8746.5
+Date:                Thu, 18 Nov 2021   Prob (F-statistic):          1.74e-218
+Time:                        09:52:15   Log-Likelihood:                -8746.5
 No. Observations:                 730   AIC:                         1.751e+04
 Df Residuals:                     722   BIC:                         1.755e+04
 Df Model:                           7                                         
@@ -4252,32 +4246,12 @@ strong multicollinearity or other numerical problems.
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">Dimensionality Reduction and PCA – SVD II</a>
+    <a class='right-next' id="next-link" href="18-Regression-II-Logistic.html" title="next page">Logistic Regression</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Dimensionality Reduction and PCA – SVD II</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="18-Regression-II-Logistic.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Logistic Regression</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
