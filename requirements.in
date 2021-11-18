@@ -1,0 +1,13 @@
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+statsmodels
+jupyter
+scikit-learn
+jupyter-book
+
+pandas_datareader 
+qrcode
+kaggle
