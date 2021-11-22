@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Networks &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Recommender Systems" href="20-Recommender-Systems.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Clustering-II-in-practice.html">
+   Clustering In Practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
+   Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Gaussian Mixture Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Classification-II-kNN.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
+   Naive Bayes and Support Vector Machines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
+   Low Rank Approximation and the SVD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
+   Dimensionality Reduction and PCA – SVD II
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Regression-I-Linear.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Regression-II-Logistic.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Regression-III-More-Linear.html">
+   Regularization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Selected Topics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Recommender-Systems.html">
+   Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to Networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/21-Networks-I.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/21-Networks-I.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-definitions">
+   Basic Definitions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#degree">
+     Degree
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#connectivity">
+     Connectivity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#characterizing-graphs">
+   Characterizing Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-case-the-g-n-p-random-graph">
+     Comparison Case: the
+     <span class="math notranslate nohighlight">
+      \(G(n, p)\)
+     </span>
+     Random Graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#degree-distributions">
+     Degree Distributions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#power-law-degree-distributions">
+       Power Law Degree Distributions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#power-law-degree-distributions-are-ubiquitous">
+       Power Law Degree Distributions are Ubiquitous
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering">
+     Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-and-path-length-small-worlds">
+   Clustering and Path Length: Small Worlds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analyzing-graphs">
+   Analyzing Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-networks">
+     Visualizing Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Characterizing Graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-to-networks">
+<h1>Introduction to Networks<a class="headerlink" href="#introduction-to-networks" title="Permalink to this headline">¶</a></h1>
+<p>Now we will encounter a new kind of data: <strong>networks</strong>, also called <strong>graphs.</strong></p>
+<p>(We’re going to use the two terms interchangeably).</p>
+<div class="section" id="basic-definitions">
+<h2>Basic Definitions<a class="headerlink" href="#basic-definitions" title="Permalink to this headline">¶</a></h2>
+<p>A graph is a pair <span class="math notranslate nohighlight">\((V, E)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is a set of <strong>vertices</strong> and <span class="math notranslate nohighlight">\(E\)</span> is a set of vertex pairs called <strong>edges.</strong></p>
+<p>We’ll also use the term <strong>nodes</strong> for vertices,</p>
+<p>and we’ll use the term <strong>links</strong> for edges.</p>
+<p>We’ll distinguish between <strong>undirected</strong> graphs and <strong>directed</strong> graphs.</p>
+<p>In an underdirected graph, an edge <span class="math notranslate nohighlight">\((u, v)\)</span> is an unordered pair.  The edge <span class="math notranslate nohighlight">\((v, u)\)</span> is the same thing.</p>
+<p>In a directed graph, <span class="math notranslate nohighlight">\((u, v)\)</span> is an ordered pair, and it is different from <span class="math notranslate nohighlight">\((v, u)\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">DG</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">DG</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Undirected Graph&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">DG</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Directed Graph&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_6_0.png" src="_images/21-Networks-I_6_0.png" />
+</div>
+</div>
+<p>A <strong>path</strong> in a graph from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(v\)</span> is a sequence of edges that starts at <span class="math notranslate nohighlight">\(u\)</span> and ends at <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>In a directed graph, all of the edges in a path need to be oriented head-to-tail.</p>
+<p>If there is a path from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(v\)</span>, we say that <span class="math notranslate nohighlight">\(v\)</span> is <strong>reachable</strong> from <span class="math notranslate nohighlight">\(u\)</span>.</p>
+<div class="section" id="degree">
+<h3>Degree<a class="headerlink" href="#degree" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>degree</strong> of a node is the number of edges that connect to it.</p>
+<p>In a directed graph, we distinguish between:</p>
+<ul class="simple">
+<li><p><strong>in-degree</strong>: the number of incoming edges to the node</p></li>
+<li><p><strong>out-degree</strong>: the number of outgoing edges to the node</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">DG</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">DG</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Undirected Graph&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">DG</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Directed Graph&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_11_0.png" src="_images/21-Networks-I_11_0.png" />
+</div>
+</div>
+<p>The <strong>neighbors</strong> of a node are the nodes to which it is connected.</p>
+<p>So the degree of a node is the number of neighbors it has.</p>
+<p>Node that in a network with <span class="math notranslate nohighlight">\(n\)</span> nodes and <span class="math notranslate nohighlight">\(e\)</span> edges, the average node degree is <span class="math notranslate nohighlight">\(2e/n\)</span>.</p>
+<p>Make sure that this is obvious to you!</p>
+</div>
+<div class="section" id="connectivity">
+<h3>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h3>
+<p>The first question to ask about a graph is: is it <strong>connected</strong>?</p>
+<p>In a connected graph, for each pair of nodes <span class="math notranslate nohighlight">\((u, v)\)</span>, either <span class="math notranslate nohighlight">\(u\)</span> is reachable from <span class="math notranslate nohighlight">\(v\)</span>, or vice-versa.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">DG</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">DG</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Not Connected&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">DG</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Connected&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_16_0.png" src="_images/21-Networks-I_16_0.png" />
+</div>
+</div>
+<p>If the graph is not connected, it may contain <strong>connected components</strong>.</p>
+<p>A connected component is a subgraph that is connected.</p>
+<p>In a directed graph, we can also ask if it is <strong>strongly connected.</strong></p>
+<p>A directed graph is strongly connected if there is a (directed) path between any two nodes.</p>
+<p>That is, any node is reachable from any other node.</p>
+<p>Within a directed graph, only a subset of nodes may be strongly connected.</p>
+<p>These are called the <strong>strongly connected component</strong> (SCC).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">DG</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">DG</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;No SCC&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">DG</span><span class="p">,</span> 
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightblue&#39;</span><span class="p">],</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">arrowsize</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Has a SCC&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_20_0.png" src="_images/21-Networks-I_20_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="characterizing-graphs">
+<h2>Characterizing Graphs<a class="headerlink" href="#characterizing-graphs" title="Permalink to this headline">¶</a></h2>
+<p>When you first start working with a network, there are some basic questions that are very helpful to ask.</p>
+<p>It is helpful to characterize the degrees, components, and other structures in the graph.</p>
+<div class="section" id="comparison-case-the-g-n-p-random-graph">
+<h3>Comparison Case: the <span class="math notranslate nohighlight">\(G(n, p)\)</span> Random Graph<a class="headerlink" href="#comparison-case-the-g-n-p-random-graph" title="Permalink to this headline">¶</a></h3>
+<p>In studying real-world graphs, it is helpful to have a case to compare against.</p>
+<p>The most common comparison is the <strong><span class="math notranslate nohighlight">\(G(n, p)\)</span> random graph</strong>.   It is also called the <strong>Erdős–Rényi</strong> graph, after the two mathematicians who developed and studied it.</p>
+<p>The <span class="math notranslate nohighlight">\(G(n, p)\)</span> random graph model is very simple:</p>
+<ul class="simple">
+<li><p>we start with a set of <span class="math notranslate nohighlight">\(n\)</span> nodes</p></li>
+<li><p>for each pair of nodes, we connect them with probability <span class="math notranslate nohighlight">\(p\)</span>.</p></li>
+</ul>
+<p>It is easy to see that in this graph, the average node degree is <span class="math notranslate nohighlight">\(np\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.15</span>
+<span class="n">er</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">er</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">er</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$G(n, p)$ with $n$ = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> and $p$ = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_26_0.png" src="_images/21-Networks-I_26_0.png" />
+</div>
+</div>
+<p>In this graph, the average degree is <span class="math notranslate nohighlight">\(np = 35 \cdot 0.15 = 5.25\)</span></p>
+<p>As it turns out, most real-world graphs do <strong>not</strong> match the properties of <span class="math notranslate nohighlight">\(G(n, p)\)</span> graphs.</p>
+<p>But it is useful to have a comparison to a “random” graph.</p>
+</div>
+<div class="section" id="degree-distributions">
+<h3>Degree Distributions<a class="headerlink" href="#degree-distributions" title="Permalink to this headline">¶</a></h3>
+<p>Understanding connectivity starts with asking about observed degrees in the graph.</p>
+<p>This is captured in the <strong>degree distribution.</strong></p>
+<div class="math notranslate nohighlight">
+\[ P[D &gt; x] = \text{probability that a node has degree at least } x \]</div>
+<p>We typically focus our attention on large values of <span class="math notranslate nohighlight">\(x\)</span> – nodes that are highly connected.</p>
+<div class="section" id="power-law-degree-distributions">
+<h4>Power Law Degree Distributions<a class="headerlink" href="#power-law-degree-distributions" title="Permalink to this headline">¶</a></h4>
+<p>It’s common for a degree distribution to <strong>approximately</strong> follow a power-law.</p>
+<p>The simplest power-law distribution is called the Pareto distribution:</p>
+<div class="math notranslate nohighlight">
+\[ P[D &gt; x] = k^{\alpha} x^{-\alpha}\;\;\; k \leq x,\; \;0 &lt; \alpha
+\leq 2. \]</div>
+<p>It takes on values in the range <span class="math notranslate nohighlight">\([k, \infty]\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.3</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pareto</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pareto pdf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Pareto PDF.  $\alpha$ = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_32_0.png" src="_images/21-Networks-I_32_0.png" />
+</div>
+</div>
+<p>We’ve seen distributions like this before when looking at recommender system data.</p>
+<p>In a distribution like this, almost all values are very small,</p>
+<p>but there is a non-negligible fraction of values that are <strong>very</strong> large.</p>
+<p>This is like “grains of sand” mixed with a few “boulders.”</p>
+<p>This is also referred to as “elephants and mice.”</p>
+<p>What does this mean for node degree?</p>
+<p>It means that</p>
+<ul class="simple">
+<li><p>most nodes have <strong>few neighbors,</strong> but</p></li>
+<li><p>an important small subset of nodes have <strong>many, many neighbors.</strong></p></li>
+</ul>
+<p>To capture such high-variable degree distributions, a common strategy is to plot them on <strong>log-log</strong> axes.</p>
+<p>On log-log axes, a Pareto distribution appears as a straight line:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.005</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="n">pareto</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pareto</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">alpha</span><span class="p">)),</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pareto pdf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Pareto PDF.  $\alpha$ = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(x)$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(p(x))$&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_38_0.png" src="_images/21-Networks-I_38_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="power-law-degree-distributions-are-ubiquitous">
+<h4>Power Law Degree Distributions are Ubiquitous<a class="headerlink" href="#power-law-degree-distributions-are-ubiquitous" title="Permalink to this headline">¶</a></h4>
+<center>
+<a class="reference internal image-reference" href="_images/L21-newman-powerlaws.png"><img alt="Figure" src="_images/L21-newman-powerlaws.png" style="width: 800px;" /></a>
+</center><blockquote>
+<div><p>The networks shown are: (a) the collaboration network of mathematicians [182]; (b) citations between 1981 and 1997 to all papers cataloged by the Institute for Scientific Information [351]; (c) a 300 million vertex subset of the World Wide Web, circa 1999 [74]; (d) the Internet at the level of autonomous systems, April 1999 [86]; (e) the power grid of the western United States [416]; (f) the interaction network of proteins in the metabolism of the yeast S. Cerevisiae [212].</p>
+<p><em>The structure and function of complex networks,</em> M. E. J. Newman</p>
+<p><a class="reference external" href="https://arxiv.org/abs/cond-mat/0303516">https://arxiv.org/abs/cond-mat/0303516</a></p>
+</div></blockquote>
+<p>Note that <span class="math notranslate nohighlight">\(G(n, p)\)</span> random graphs do <strong>not</strong> have power-law degree distributions.</p>
+<p>Their degree distributions have exponential tails (like the power grid example above.)</p>
+</div>
+</div>
+<div class="section" id="clustering">
+<h3>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h3>
+<p>The next important property of a network to understand is <strong>clustering</strong>.</p>
+<p>In the context of networks, clustering refers to the tendency for groups of nodes to have higher connectivity within the group than the network-wide average.</p>
+<p>The simplest measure of local clustering is <strong>clustering coefficient</strong>.</p>
+<p>The clustering coefficient is the answer to the question “are my friends themselves friends?”</p>
+<p>In other words, do the neighbors of a node tend to be neighbors?</p>
+<p>More specifically, clustering coefficient measures the <strong>probability that two of your neighbors are connected.</strong></p>
+<p>There are two ways one can measure this:</p>
+<div class="math notranslate nohighlight">
+\[C^{(1)} = \frac{\sum_i \text{number of triangles that include }i}{\sum_i \text{number of pairs of neigbors of }i} \]</div>
+<p>This is the ratio of the mean triangle count to mean neighbor pair count.</p>
+<p>It is the probability that a <strong>random pair</strong> of neighbors are connected.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_47_0.png" src="_images/21-Networks-I_47_0.png" />
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[C^{(1)} = \frac{3}{1 + 1 + 6} = \frac{3}{8} = 0.375\]</div>
+<p>The second way to measure clustering coefficient is the mean of the ratios:</p>
+<div class="math notranslate nohighlight">
+\[ C^{(2)} = \frac{1}{n} \sum_i \frac{\text{number of triangles that include }i}{\text{number of pairs of neigbors of }i} \]</div>
+<p>This is the probability that neighbors are connected for a <strong>random node.</strong></p>
+<div class="math notranslate nohighlight">
+\[ C^{(2)} = \frac{1}{5} (1 + 1 + \frac{1}{6}) = \frac{13}{30} = 0.433\]</div>
+<p>What is the clustering coefficient in a <span class="math notranslate nohighlight">\(G(n, p)\)</span> random graph?</p>
+<p>This is easy: the probability that two of your neighbors are connected is the same as the probability that <strong>any</strong> two nodes are connected.</p>
+<p>In other words, <span class="math notranslate nohighlight">\(C^{(1)} = C^{(2)} = p\)</span>.</p>
+<p><strong>Real World Graphs Tend to Show Large Amounts of Clustering.</strong></p>
+<p>In practice one finds that real world graphs show strong clustering.</p>
+<p>For example, consider a social network.  Your friends are much more likely to be themselves friends than two randomly chosen people.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-clustering-coefs.png"><img alt="Figure" src="_images/L21-clustering-coefs.png" style="width: 800px;" /></a>
+</center></div>
+</div>
+<div class="section" id="clustering-and-path-length-small-worlds">
+<h2>Clustering and Path Length: Small Worlds<a class="headerlink" href="#clustering-and-path-length-small-worlds" title="Permalink to this headline">¶</a></h2>
+<p>The strong presence of clustering in networks leads to a question: how long is a typical shortest path between nodes?</p>
+<p>The average shortest path length between nodes is one way to measure a network’s “diameter.”</p>
+<p>Let’s consider a highly clustered graph:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-high-clustering.png"><img alt="Figure" src="_images/L21-high-clustering.png" style="width: 300px;" /></a>
+</center><p>In this graph, each node has four neighbors, and of the 6 pairs of neighbors, 3 are connected.</p>
+<p>So the clustering coefficient is 0.5, quite high.</p>
+<p>What is the average shortest path between nodes?</p>
+<p>It seems to be around <span class="math notranslate nohighlight">\(n/8\)</span> - on average you go 1/4 of the way around the circle, in hops of 2.</p>
+<p>So the path length grows linearly with <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>If the number of nodes is large, the average path length is large.</strong></p>
+<p>Now, we know that real-world social networks are highly clustered,</p>
+<p>So, based on this model, we might assume that the average path length between two people in a large social network is going to be quite large.</p>
+<p>Is this true?   If you choose two people at random from the population of the United States (say), is the shortest path length between them long?</p>
+<p>In 1967 the social psychologist Stanley Milgram set out to empirically answer this question.</p>
+<p>
+<center>
+<a class="reference internal image-reference" href="_images/Stanley_Milgram_Profile.jpeg"><img alt="Figure" src="_images/Stanley_Milgram_Profile.jpeg" style="width: 200px;" /></a>
+</center><p>Milgram picked 160 people at random in Omaha, Nebraska.  (It helped that there used to be phone books.)</p>
+<p>He asked them to get a letter to a particular person, a stockbroker in Boston.</p>
+<p>The rules that he set were that they could only pass the letter between friends that were known on a first-name basis.</p>
+<p>Surprisingly, 62 of the letters made it to the stockbroker!</p>
+<p>More surprising was the fact that the <strong>average path length was 6.2 people!</strong></p>
+<p>This statistic became famous when John Guare wrote a play called <em>Six Degrees of Separation.</em></p>
+<p>Given what we know about clustering in social networks, this is quite surprising.   How can we explain it?</p>
+<p>The first clue comes from another classic social science paper, called <em>The Stength of Weak Ties,</em> by Mark Granovetter.</p>
+<p>This is sometimes referred to as the most famous paper in sociology (60,000 citations!).</p>
+<p>Granovetter interviewed people about how the found their jobs.  He found that most people did not get a job through someone that was a close friend, but rather through a <strong>distant</strong> acquaintance.</p>
+<p>This suggests that an important way that information travels in a social network is via the rare connections that exist <strong>outside</strong> of the local clustering of friendships.</p>
+<p>This was all put on an experimental basis in <strong>another</strong> classic paper, by the social scientist Duncan Watts and the mathematician Steve Strogatz.</p>
+<center>
+<a class="reference internal image-reference" href="_images/duncan_watts.jpeg"><img alt="Figure" class="align-left" src="_images/duncan_watts.jpeg" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="_images/steven-strogatz.png"><img alt="Figure" class="align-left" src="_images/steven-strogatz.png" style="width: 200px;" /></a>
+</center><p>In their paper <em>Collective Dynamics of Small-World Networks</em>, Watts and Strogatz perfomed an elegant experiment.</p>
+<p>They asked: if we take a highly clustered network, and slightly perturb it (randomize it), what happens?</p>
+<p>Specifically, they started with a network in which each node is connected to a fixed number of neighbors, and connections are made in a <strong>highly clustered</strong> way.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-watts-strogatz.png"><img alt="Figure" src="_images/L21-watts-strogatz.png" style="width: 60%;" /></a>
+</center>
+<p>Then, with probability <span class="math notranslate nohighlight">\(p\)</span>, <strong>rewire</strong> each edge: change it to connect to a <strong>random</strong> destination.</p>
+<p>So, as <span class="math notranslate nohighlight">\(p\)</span> varies, what happens to:</p>
+<ul class="simple">
+<li><p>Average path length <span class="math notranslate nohighlight">\(L(p)\)</span> and</p></li>
+<li><p>Clustering coefficient <span class="math notranslate nohighlight">\(C(p)\)</span>?</p></li>
+</ul>
+<p>And here is the famous figure from that paper:</p>
+<center>
+<a class="reference internal image-reference" href="_images/watts-strogatz-2.png"><img alt="Figure" src="_images/watts-strogatz-2.png" style="width: 700px;" /></a>
+</center> 
+<p>Notice the log scale on the <span class="math notranslate nohighlight">\(p\)</span> axis.</p>
+<p>What Watts and Strogatz showed is that <strong>it only takes a small amount of long-range connections</strong> to dramatically shrink the average path length between nodes.</p>
+<p>They showed that high clustering and short path lengths can coexist.  They called networks with high clustering and short path lengths <strong>small world networks.</strong></p>
+<p>Once this phenomenon is understood, we see that it shows up repeatedly.</p>
+<p>For example, consider the network of movie actors:  two actors are connected if they appear in the same movie.</p>
+<p>Thus we have the phenomenon of the <strong>six degrees of Kevin Bacon</strong>:</p>
+<p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-six-degrees-bacon.png"><img alt="Figure" src="_images/L21-six-degrees-bacon.png" style="width: 700px;" /></a>
+</center> <p>You can try your luck at <a class="reference external" href="https://oracleofbacon.org/movielinks.php">The Oracle of Bacon</a>.</p>
+<p>For example, Elvis Presley:</p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-oracle-bacon.png"><img alt="Figure" src="_images/L21-oracle-bacon.png" style="width: 300px;" /></a>
+</center> <p>What’s special about Kevin Bacon?</p>
+<p>Not really anything.</p>
+<p>Because movie co-appearance forms a small world network, most any path between two actors is a short one.</p>
+<p><strong>Implications of Small Worlds.</strong></p>
+<p>Viruses spread rapidly in small worlds.</p>
+<p>One of the goals of pandemic lockdowns is to keep people circulating in their local social groups, and to eliminate the effect of long-range (weak-tie) connections.</p>
+<p>This is the idea behind travel bans and mandatory quarantining after travel.</p>
+<p>Here is a figure showing the effect on virus propagation of deleting most of the long-range edges from a small-world network:</p>
+<p>
+<center>
+<a class="reference internal image-reference" href="_images/L21-covid-mitigation.png"><img alt="Figure" src="_images/L21-covid-mitigation.png" style="width: 600px;" /></a>
+</center> 
+<p>Different curves correspond to when the lockdown is deployed (after how many deaths).</p>
+<p>From <a class="reference external" href="https://www.nature.com/articles/s41598-021-99607-z"><em>Mitigating COVID-19 on a Small-World Network</em>,</a> Marvin Du, Scientific Reports Oct 2021.</p>
+<p>Another question concerns how “shortcuts” arise.</p>
+<p>Remember that node degree distributions are typically power-law.</p>
+<p>So although most people have small acquaintance sets, a small subset of people are very highly connected.</p>
+<center>
+<a class="reference internal image-reference" href="_images/F2.large.jpeg"><img alt="Figure" src="_images/F2.large.jpeg" style="width: 500px;" /></a>
+</center> <p>These “high social capital” individuals play a big role in creating long-range, path-shortening connections in social networks.</p>
+</div>
+<div class="section" id="analyzing-graphs">
+<h2>Analyzing Graphs<a class="headerlink" href="#analyzing-graphs" title="Permalink to this headline">¶</a></h2>
+<p>When first starting to work with a network, understanding its properties can be difficult.</p>
+<p>Clustering and the presence of high-degree nodes both contribute to the problem.</p>
+<p>Nonetheless, there are a number of strategies that are used to “get to know” a new network dataset.</p>
+<p>They include:</p>
+<ul class="simple">
+<li><p>visualize the network in a way that communicates as much insight as possible, and</p></li>
+<li><p>compute important metrics of the network</p></li>
+</ul>
+<div class="section" id="visualizing-networks">
+<h3>Visualizing Networks<a class="headerlink" href="#visualizing-networks" title="Permalink to this headline">¶</a></h3>
+<p>As an example, we’ll use the following network.</p>
+<p>It records American football games between NCAA Div IA colleges in Fall 2000 (available <a class="reference external" href="http://cise.ufl.edu/research/sparse/matrices/Newman/football.html">here</a>).</p>
+<p>Each vertex represents a football team, which belongs to a specific conference (Big Ten, Conference USA, Pac-10, etc.).</p>
+<p>An edge between two vertices <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> means that the two teams played each other; the weight of the edge (<span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(v_2\)</span>) is equal to the number of times they played each other.</p>
+<p>(Data from  M. Girvan and M. E. J. Newman,
+<em>Community structure in social and biological networks,</em>
+Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/football.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+   <span class="n">football</span> <span class="o">=</span>  <span class="n">nx</span><span class="o">.</span><span class="n">parse_edgelist</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">nodetype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The football network has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span><span class="si">}</span><span class="s1"> nodes and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span><span class="si">}</span><span class="s1"> edges&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The football network has 115 nodes and 613 edges
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a sense of what is unusual here, we can compare this network to a <span class="math notranslate nohighlight">\(G(n, p)\)</span> random network with the same number of nodes and edges:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="n">e</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">football</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">e</span> <span class="o">/</span> <span class="p">((</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">F_random</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One way to visualize is to use a circular layout, which keeps all the edges in the interior.</p>
+<p>This can make things easier to see sometimes.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Title 1 Football -- Circular Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">F_random</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">F_random</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Same Density Random -- Circular Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_90_0.png" src="_images/21-Networks-I_90_0.png" />
+</div>
+</div>
+<p>There is some non-random structure here, but it’s not clear exactly what it is.</p>
+<p>So we will turn to a more informative layout.</p>
+<p>The standard <code class="docutils literal notranslate"><span class="pre">networkx</span></code> routine uses what is called a ‘spring’ layout.</p>
+<p>Here is how ‘spring’ layout works:</p>
+<ul class="simple">
+<li><p>Each edge has a <code class="docutils literal notranslate"><span class="pre">weight</span></code> parameter (could be 1 for all edges).</p></li>
+<li><p>The layout routine fixes</p>
+<ul>
+<li><p>a spring of length = 1/<code class="docutils literal notranslate"><span class="pre">weight</span></code> between the nodes, and</p></li>
+<li><p>a repulsive force between each pair of nodes,</p></li>
+</ul>
+</li>
+<li><p>and then lets the set of all forces reach its minimum energy state.</p></li>
+</ul>
+<p>This is a kind of minimal distortion in a least-squares sense.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Title 1 Football -- Spring Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">F_random</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">F_random</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Same Density Random -- Spring Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_94_0.png" src="_images/21-Networks-I_94_0.png" />
+</div>
+</div>
+<p>Notice how the spring layout tends to bring clusters of densely connected nodes close to each other.</p>
+<p>Finally, we can try the spectral layout.</p>
+<p>(We will define the spectral layout in the next lecture.)</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Title 1 Football -- Spectral Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">F_random</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">F_random</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Same Density Random -- Spectral Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_97_0.png" src="_images/21-Networks-I_97_0.png" />
+</div>
+</div>
+<p>With this layout, we can start to understand the structure of the network –</p>
+<p>see clusters of teams that correspond to conferences, –</p>
+<p>and understand that there are not too many high-degree nodes.</p>
+</div>
+<div class="section" id="id1">
+<h3>Characterizing Graphs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Another way to undersand network structured data is to look at important metrics.</p>
+<p>For example, we can start with <strong>clustering coefficient:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clustering_coefficient</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">football</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The clustering coefficient of the Football network is </span><span class="si">{</span><span class="n">clustering_coefficient</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">cc_random</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">average_clustering</span><span class="p">(</span><span class="n">F_random</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The clustering coefficient for the equivalent random network is </span><span class="si">{</span><span class="n">cc_random</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The clustering coefficient of the Football network is 0.403
+The clustering coefficient for the equivalent random network is 0.088
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another useful metric is diameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The diameter of the Football network is </span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">diameter</span><span class="p">(</span><span class="n">football</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s1">&#39; and the average shortest path length is </span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">football</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The diameter of the equivalent random network is </span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">diameter</span><span class="p">(</span><span class="n">F_random</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s1">&#39; and the average shortest path length is </span><span class="si">{</span><span class="n">nx</span><span class="o">.</span><span class="n">average_shortest_path_length</span><span class="p">(</span><span class="n">F_random</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The diameter of the Football network is 4 and the average shortest path length is 2.508
+The diameter of the equivalent random network is 4 and the average shortest path length is 2.215
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next property we can look at is the <strong>degree distribution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degree_freq</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_histogram</span><span class="p">(</span><span class="n">football</span><span class="p">)</span>
+<span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">degree_freq</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">degree_freq</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Degree Distribution of Football Network&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_106_0.png" src="_images/21-Networks-I_106_0.png" />
+</div>
+</div>
+<p>To get a sense of what is unusual here, we can again compare this to the equivalent random network:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand_degree_freq</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_histogram</span><span class="p">(</span><span class="n">F_random</span><span class="p">)</span>
+<span class="n">rand_degrees</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rand_degree_freq</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">rand_degrees</span><span class="p">,</span> <span class="n">rand_degree_freq</span><span class="p">,</span> <span class="mf">0.425</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Random&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">degrees</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">degree_freq</span><span class="p">,</span> <span class="mf">0.425</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Degree Distribution of Football Network</span><span class="se">\n</span><span class="s1">Compared to Random&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-Networks-I_108_0.png" src="_images/21-Networks-I_108_0.png" />
+</div>
+</div>
+<p>We can see the evidence of scheduling of games in this distribution: a much larger number of teams plays 11 games than would occur by chance.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="20-Recommender-Systems.html" title="previous page">Recommender Systems</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
