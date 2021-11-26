@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,16 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Regularization" href="19-Regression-III-More-Linear.html" />
@@ -236,6 +237,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="20-Recommender-Systems.html">
    Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Networks-I.html">
+   Introduction to Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
+   Network Centrality and Clustering
   </a>
  </li>
 </ul>
@@ -638,8 +649,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/d9/_sfhw3kd21dgyrgz6tbt45z80000gn/T/ipykernel_27659/196177421.py:2: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
-  df.hist(ax = ax);
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
+  
 </pre></div>
 </div>
 <img alt="_images/18-Regression-II-Logistic_12_1.png" src="_images/18-Regression-II-Logistic_12_1.png" />
@@ -889,10 +900,10 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 18 Nov 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
+  <th>Date:</th>            <td>Sat, 06 Nov 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
 </tr>
 <tr>
-  <th>Time:</th>                <td>09:48:01</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
+  <th>Time:</th>                <td>11:36:25</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -249.99</td> 
@@ -1070,7 +1081,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.588, Average Recall: 0.241
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.595, Average Recall: 0.235
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1134,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.409, Best Recall: 0.676
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.425, Best Recall: 0.659
 </pre></div>
 </div>
 </div>

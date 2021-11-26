@@ -1,0 +1,1420 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Centrality and Clustering &#8212; Computational Tools for Data Science</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Introduction to Networks" href="21-Networks-I.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminaries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Intro-to-Python.html">
+   Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02A-Git-Jupyter.html">
+   Essential Tools: Git and Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02B-Pandas.html">
+   Essential Tools: Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
+   Linear Algebra Refresher
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
+   Probability and Statistics Refresher
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Clustering
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-Distances-Timeseries.html">
+   Distances and Timeseries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Clustering-I-kmeans.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Clustering-II-in-practice.html">
+   Clustering In Practice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
+   Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
+   Gaussian Mixture Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Learning-From-Data.html">
+   Learning From Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Classification-II-kNN.html">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
+   Naive Bayes and Support Vector Machines
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Dimensionality Reduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
+   Low Rank Approximation and the SVD
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
+   Dimensionality Reduction and PCA – SVD II
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Regression-I-Linear.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Regression-II-Logistic.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Regression-III-More-Linear.html">
+   Regularization
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Selected Topics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Recommender-Systems.html">
+   Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Networks-I.html">
+   Introduction to Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Network Centrality and Clustering
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/22-Networks-II-Centrality-Clustering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/22-Networks-II-Centrality-Clustering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#centrality">
+   Centrality
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#closeness-centrality">
+     Closeness Centrality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#betweenness-centrality">
+     Betweenness Centrality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adjacency-matrices">
+     Adjacency Matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#status-centrality">
+     Status Centrality
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-and-partitioning">
+   Clustering and Partitioning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#min-s-t-cut">
+     Min
+     <span class="math notranslate nohighlight">
+      \(s\)
+     </span>
+     -
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+     cut
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-cuts">
+     Minimum Cuts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#balanced-cuts">
+     Balanced Cuts
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectral-graph-theory">
+   Spectral Graph Theory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-partitioning">
+     Spectral Partitioning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spectral-clustering">
+     Spectral Clustering
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span>
+
+<span class="kn">import</span> <span class="nn">laUtilities</span> <span class="k">as</span> <span class="nn">ut</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="network-centrality-and-clustering">
+<h1>Network Centrality and Clustering<a class="headerlink" href="#network-centrality-and-clustering" title="Permalink to this headline">¶</a></h1>
+<p>Now we turn to two important concepts in the analysis of networks:</p>
+<ul class="simple">
+<li><p>Important <strong>nodes</strong>, and</p></li>
+<li><p>Important <strong>groups of nodes.</strong></p></li>
+</ul>
+<p>The question of important nodes leads to the notion of <strong>centrality,</strong></p>
+<p>And the question of important groups of nodes leads to the notion of <strong>clustering.</strong></p>
+<p>In both cases, we will draw connections between graphs and linear algebra.</p>
+<div class="section" id="centrality">
+<h2>Centrality<a class="headerlink" href="#centrality" title="Permalink to this headline">¶</a></h2>
+<p>An common question in the analysis of networks is to understand the relative “importance” of the nodes in the network.</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>in a social network, who are the most influential individuals?</p></li>
+<li><p>in the Web, which pages are more informative?</p></li>
+<li><p>in road network, which intersections are most heavily used?</p></li>
+</ul>
+<p>The key idea is that the <strong>structure</strong> of the network should give us some information about the relative importance of the nodes in the network.</p>
+<p>To introduce concepts here, we’ll look at a very famous dataset in the history of network analysis: Zachary’s karate club.</p>
+<p>The back story: from 1970 to 1972 the anthropologist Wayne Zachary studied the social relationships inside a university karate club.</p>
+<p>While he was studying the club, a factional division led to a splitting of the club in two.</p>
+<p>The club became split between those who rallied around the club president, and those who rallied around the karate instructor.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can read the story of the Karate club <a class="reference external" href="http://www1.ind.ku.dk/complexLearning/zachary1977.pdf">here</a>.  This dataset has become so famous that it has spawned <a class="reference external" href="https://networkkarate.tumblr.com">its own academic traditions</a>.</p>
+</div>
+<p>Here’s a view of the social network of the karate club.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Circular Layout&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Spring Layout&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_9_0.png" src="_images/22-Networks-II-Centrality-Clustering_9_0.png" />
+</div>
+</div>
+<p>Do some nodes in the network have a special role?</p>
+<p>Are some nodes more “important” than others?</p>
+<p>These are often termed questions of <strong>centrality</strong> (or <strong>prestige</strong>).</p>
+<p>Today we’ll study metrics for these notions.   We’ll work with a graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>We will study three basic notions of centrality:</p>
+<ol class="simple">
+<li><p><strong>Closeness</strong> Centrality:  A central node is close to all others.</p></li>
+<li><p><strong>Betweenness</strong> Centrality: A central node is on many paths through the network.</p></li>
+<li><p><strong>Status</strong> Centrality: A central node is connected to other central nodes.</p></li>
+</ol>
+<div class="section" id="closeness-centrality">
+<h3>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h3>
+<p>The closeness centrality of a node <span class="math notranslate nohighlight">\(i\)</span> is an indicator of the proximity between <span class="math notranslate nohighlight">\(i\)</span> and all the other nodes in the graph.</p>
+<p>We assume that <span class="math notranslate nohighlight">\(G\)</span> is connected; let <span class="math notranslate nohighlight">\(d(i,j)\)</span> be the shortest path distance between <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>(Although other dissimilarity measures could be used.)</p>
+<p>Then the standard way of formulating closeness centrality is the reciprocal of the total distance to all other nodes.</p>
+<div class="math notranslate nohighlight">
+\[ \text{closeness}(i) = \frac{1}{\sum_{j \in V} d(i,j)}.\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_18_0.png" src="_images/22-Networks-II-Centrality-Clustering_18_0.png" />
+</div>
+</div>
+<p>In this graph, most nodes are close to most other nodes.</p>
+<p>However we can see that some nodes are slightly more central than others.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Closeness Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_20_0.png" src="_images/22-Networks-II-Centrality-Clustering_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="betweenness-centrality">
+<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">¶</a></h3>
+<p>Another way to think about centrality is “is the node on many paths?”</p>
+<p>If we picture the network as a conduit for information, then betweenness captures how important a node is to the communication process (or “how much” information passes through the node).</p>
+<p>First, let’s consider the case in which there is only one shortest path between any pair of nodes.</p>
+<p>Then, the betweenness centrality of node <span class="math notranslate nohighlight">\(i\)</span> is the <strong>number of shortest paths that pass through <span class="math notranslate nohighlight">\(i\)</span>.</strong></p>
+<p>Mathematically:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \text{betweenness}(i) = \sum_{i \neq j \neq k \in V} \left\{\begin{array}{ll}1&amp;\text{if path from }j\text{ to }k\text{ goes through }i\\0&amp;\text{otherwise}\end{array}\right. \end{split}\]</div>
+<p>We can convert this to a value between 0 and 1 by dividing by <span class="math notranslate nohighlight">\({n \choose 2} = n(n-1)/2\)</span>.</p>
+<p>Now, in a general graph, there may be <strong>multiple</strong> shortest paths between <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>To handle this, we define:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma(i \mid j,k)\)</span> is the number of shortest paths between <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> that pass through <span class="math notranslate nohighlight">\(i\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma(j,k)\)</span> is the total number of shortest paths between <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+<p>Then we define the <em>dependency</em> of <span class="math notranslate nohighlight">\(i\)</span> on the paths between <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \text{dependency}(i \mid j,k) = \frac{\sigma(i \mid j,k )}{\sigma(j,k)} \]</div>
+<p>You can think of this as “the probability that a shortest path between <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> goes through <span class="math notranslate nohighlight">\(i\)</span>.”</p>
+<p>And finally:</p>
+<div class="math notranslate nohighlight">
+\[ \text{betweenness}(i) = \sum_{i \neq j \neq k \in V} \text{dependency}(i \mid j, k) \]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Betweenness Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Betweenness Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_28_0.png" src="_images/22-Networks-II-Centrality-Clustering_28_0.png" />
+</div>
+</div>
+<p>We start to see with this metric the “importance” of two or three key members of the karate club.</p>
+<p>Note that many nodes will have a betweenness centrality of zero – no shortest paths go through them.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Betweenness Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Betweenness Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_31_0.png" src="_images/22-Networks-II-Centrality-Clustering_31_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="adjacency-matrices">
+<h3>Adjacency Matrices<a class="headerlink" href="#adjacency-matrices" title="Permalink to this headline">¶</a></h3>
+<p>To define the next centrality, we need to start thinking about graphs as <strong>matrices.</strong></p>
+<p>Given an <span class="math notranslate nohighlight">\(n\)</span>-node undirected graph <span class="math notranslate nohighlight">\(G = (V, E)\)</span>, its adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A_{ij} = \left\{ \begin{array}{ll}1 &amp; \text{if }(i, j) \in E\\
+                                    0 &amp; \text{otherwise} \\
+    \end{array}\right. \end{split}\]</div>
+<p>Here is what the adjacency matrix of the karate club graph looks like:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFont</span><span class="p">,</span> <span class="n">ImageDraw</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">show_complete_array</span><span class="p">():</span>
+    <span class="n">oldoptions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">get_printoptions</span><span class="p">()</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="o">**</span><span class="n">oldoptions</span><span class="p">)</span>
+        
+<span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">show_complete_array</span><span class="p">():</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">530</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+    <span class="c1">#fnt = ImageFont.truetype(&quot;Pillow/Tests/fonts/FreeMono.ttf&quot;, 30)</span>
+    <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">img</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_36_0.png" src="_images/22-Networks-II-Centrality-Clustering_36_0.png" />
+</div>
+</div>
+<p>An important way to think about adjacency matrices: <strong>column <span class="math notranslate nohighlight">\(j\)</span> holds <span class="math notranslate nohighlight">\(j\)</span>’s neighbors.</strong></p>
+<p>Note that the adjacency matrix has some important algebraic properties:</p>
+<ul class="simple">
+<li><p>It is nonnegative, and</p></li>
+<li><p>It is symmetric.</p></li>
+</ul>
+</div>
+<div class="section" id="status-centrality">
+<h3>Status Centrality<a class="headerlink" href="#status-centrality" title="Permalink to this headline">¶</a></h3>
+<p>The third notion of centrality is more subtle.</p>
+<p>In this context, one often talks of “prestige” rather than “centrality.”  But the concepts are related.</p>
+<p>The idea of status centrality is that <strong>“high status” nodes are those that are connected to “high status” nodes.</strong></p>
+<p>If you think this definition is circular, you are right!</p>
+<p>Nonetheless, it leads to some metrics that are quite well defined and not hard to compute.</p>
+<p>Let’s make this definition more precise: <strong>the centrality of a node is proportional to the sum of the centrality of its neighbors.</strong></p>
+<p>Then we would say that:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{e}_i = 1/\lambda \sum_{(i, j) \in E} \mathbf{e}_j \]</div>
+<p>This encodes our recursive definition for <span class="math notranslate nohighlight">\(\mathbf{e}_i\)</span>, based on a calculation that may or may not converge, depending on <span class="math notranslate nohighlight">\(\lambda.\)</span></p>
+<p>Now, we can write this equation in terms of the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{e}_i = 1/\lambda \sum_j A_{ij} \mathbf{e}_j \]</div>
+<p>Notice that this is just the definition of a matrix-vector multiplication.</p>
+<p>So we can write even more concisely:</p>
+<div class="math notranslate nohighlight">
+\[ A\mathbf{e} = \lambda\mathbf{e} \]</div>
+<p>… which means that <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> must be an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>For this reason, status centrality is often called <strong>eigenvector centrality.</strong></p>
+<p>Which eigenvector of <span class="math notranslate nohighlight">\(A\)</span> should we choose?</p>
+<p>Let’s assume that the graph <span class="math notranslate nohighlight">\(G\)</span> is connected.</p>
+<p>Then there is a good argument for choosing the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>, in which case all of the entries in <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> will be nonnegative.</p>
+<p>(This fact comes from the Perron-Frobenius theorem, which tells us that if <span class="math notranslate nohighlight">\(G\)</span> is connected, then the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> is positive and the corresponding eigenvector is nonnegative.)</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_50_0.png" src="_images/22-Networks-II-Centrality-Clustering_50_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Eigenvector Centrality&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_51_0.png" src="_images/22-Networks-II-Centrality-Clustering_51_0.png" />
+</div>
+</div>
+<p>As a more detailed example, we can ask whether this definition of “prestige” applies to NCAA Division 1A football teams, based on who they play against.</p>
+<p>(Remember this data is from 2000!)</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data from http://www-personal.umich.edu/~mejn/netdata/</span>
+<span class="n">football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">readwrite</span><span class="o">.</span><span class="n">gml</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s1">&#39;data/football.gml&#39;</span><span class="p">)</span>
+<span class="n">ec</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">football</span><span class="p">)</span>
+<span class="n">cent</span> <span class="o">=</span> <span class="p">[</span><span class="n">ec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">football</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Eigenvector Centrality on Football Network&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_53_0.png" src="_images/22-Networks-II-Centrality-Clustering_53_0.png" />
+</div>
+</div>
+<p>So let’s compare the three versions of centrality we’ve looked at:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="p">[</span><span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Closeness Centrality&#39;</span><span class="p">,</span> <span class="s1">&#39;Betweenness Centrality&#39;</span><span class="p">,</span> <span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">]</span>
+<span class="c1">#</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fn</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">Gk</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">Gk</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">cent</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">27</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Nodes&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_55_0.png" src="_images/22-Networks-II-Centrality-Clustering_55_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># consider discussing node ranking</span>
+<span class="c1"># this is a fun paper: http://stat.wharton.upenn.edu/~steele/Courses/956/Ranking/RankingFootballSIAM93.pdf</span>
+<span class="c1"># cite: https://epubs.siam.org/doi/10.1137/1035004</span>
+<span class="c1"># The Perron–Frobenius Theorem and the Ranking of Football Teams</span>
+<span class="c1"># and there is useful data here: https://www.sports-reference.com/cfb/years/2020-schedule.html</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="clustering-and-partitioning">
+<h2>Clustering and Partitioning<a class="headerlink" href="#clustering-and-partitioning" title="Permalink to this headline">¶</a></h2>
+<p>We now turn to the question of finding important <strong>groups</strong> of nodes.</p>
+<p>Why might we want to cluster graph nodes?</p>
+<ul class="simple">
+<li><p>Assiging computations to processors in a parallel computer</p></li>
+<li><p>Segmenting images (finding boundaries between objects)</p></li>
+<li><p>Clustering words found together in documents, or documents with similar words</p></li>
+<li><p>Divide and conquer algorithms</p></li>
+<li><p>Circuit layout in VLSI</p></li>
+<li><p>Community detection in social networks</p></li>
+</ul>
+<div class="section" id="min-s-t-cut">
+<h3>Min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut<a class="headerlink" href="#min-s-t-cut" title="Permalink to this headline">¶</a></h3>
+<p>We’ll start with a problem that is fundamental to many other problems in graph analysis.</p>
+<p>Let’s say we have a graph <span class="math notranslate nohighlight">\(G\)</span> and two nodes in mind, <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>We would like to <strong>isolate</strong> <span class="math notranslate nohighlight">\(s\)</span> from <span class="math notranslate nohighlight">\(t\)</span>.  What is the cheapest way to do it?</p>
+<!-- Image credit: On the history of the transportation and maximum flow problems. -->
+<!--     Alexander Schrijver in Math Programming, 91: 3, 2002. -->
+<center>
+<a class="reference internal image-reference" href="_images/L23-max-flow-soviet-rail-1955.png"><img alt="_images/L23-max-flow-soviet-rail-1955.png" src="_images/L23-max-flow-soviet-rail-1955.png" style="width: 75%;" /></a>
+</center> <p>A min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut problem is as follows.</p>
+<p>We are given a weighted graph <span class="math notranslate nohighlight">\(G = (V,E)\)</span>.</p>
+<p>An <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut <span class="math notranslate nohighlight">\(C\)</span> of <span class="math notranslate nohighlight">\(G\)</span> is a partition of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\((U, V-U)\)</span> such that <span class="math notranslate nohighlight">\(s \in U\)</span> and <span class="math notranslate nohighlight">\(t \in V-U\)</span>.</p>
+<p>The <strong>cost</strong> of a cut is the total weight of the edges that go between the two parts:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Cost}(C) = \sum_{e(u,v),\, u\in U,\, v\in V-U} w(e)\]</div>
+<p>This is a very famous problem that can be solved in time that is polynomial in <span class="math notranslate nohighlight">\(|V|\)</span> and <span class="math notranslate nohighlight">\(|E|\)</span>.</p>
+<p>Increasingly better solutions have been found over the past 60+ years.</p>
+<p>What can a min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut tell us about a graph?</p>
+<p>Let’s look at the karate club, in which I’ve highlighted the president and the instructor:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">cut_edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">minimum_edge_cut</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">node_color</span> <span class="o">=</span> <span class="mi">34</span> <span class="o">*</span> <span class="p">[</span><span class="s1">&#39;skyblue&#39;</span><span class="p">]</span>
+<span class="n">node_color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tomato&#39;</span>
+<span class="n">node_color</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dodgerblue&#39;</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> 
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">node_color</span><span class="p">,</span>
+                 <span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_67_0.png" src="_images/22-Networks-II-Centrality-Clustering_67_0.png" />
+</div>
+</div>
+<p>As mentioned, when Wayne Zachary studied the club, a conflict arose between the instructor and the president (nodes 0 and 33).</p>
+<p>Zachary predicted the way the club would split based on an <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut.</p>
+<p>In fact, he <strong>correctly</strong> predicted every single member’s eventual association except for node 8!</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gcopy</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">Gcopy</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">cut_edges</span><span class="p">)</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">Gcopy</span><span class="p">)</span>
+<span class="n">node_set</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">s</span><span class="p">}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">,</span> <span class="s1">&#39;tomato&#39;</span><span class="p">]</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="n">node_set</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> 
+                 <span class="n">with_labels</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_70_0.png" src="_images/22-Networks-II-Centrality-Clustering_70_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="minimum-cuts">
+<h3>Minimum Cuts<a class="headerlink" href="#minimum-cuts" title="Permalink to this headline">¶</a></h3>
+<p>Now, in partitioning a graph, we may not have any particular <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> in mind.</p>
+<p>Rather, we may want to simply find the “cheapest” way to disconnect the graph.</p>
+<p>Clearly, we can do this using <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut, by simply trying all <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> pairs.</p>
+<center>
+<a class="reference internal image-reference" href="_images/L23-min-cut.png"><img alt="_images/L23-min-cut.png" src="_images/L23-min-cut.png" style="width: 35%;" /></a>
+</center> <p>Let’s try this approach of finding the minimum <span class="math notranslate nohighlight">\(s-t\)</span> cut over all possibilities in the karate club graph:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gcopy</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">Gcopy</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">minimum_edge_cut</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+<span class="n">cc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">Gcopy</span><span class="p">)</span>
+<span class="n">node_set</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">s</span><span class="p">}</span>
+<span class="c1">#</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span> <span class="s1">&#39;dodgerblue&#39;</span><span class="p">]</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="n">node_set</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">,</span> 
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_75_0.png" src="_images/22-Networks-II-Centrality-Clustering_75_0.png" />
+</div>
+</div>
+<p>This is in fact the minimum cut: node 11 only has one edge to the rest of the graph, so the min cut is 1.</p>
+<p>As this example shows, minimum cut is not, in general, a good approach for clustering or partitioning.</p>
+<p>To get a more useful partition, we need to define a new goal:  finding a <strong>balanced cut.</strong></p>
+</div>
+<div class="section" id="balanced-cuts">
+<h3>Balanced Cuts<a class="headerlink" href="#balanced-cuts" title="Permalink to this headline">¶</a></h3>
+<p>The idea to avoid the problem above is to normalize the cut by the size of the <strong>smaller</strong> of the two components.</p>
+<p>The problem above would be avoided because the smaller of the two cuts is just a single node.</p>
+<p>This leads us to define the <strong>isoperimetric ratio</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ \alpha = \frac{E(U, V\setminus U)}{\min(|U|, |V\setminus U|)} \]</div>
+<p>And the <strong>isoperimetric number of G:</strong></p>
+<div class="math notranslate nohighlight">
+\[ \alpha(G) = \min_U \frac{E(U, V\setminus U)}{\min(|U|, |V\setminus U|)} \]</div>
+<p>The idea is that finding <span class="math notranslate nohighlight">\(\alpha(G)\)</span> gives a <em>balanced cut</em> – one that maximizes the number of disconnected nodes per edge removed.</p>
+<p>How easily can we compute this?</p>
+<p>Unfortunately, it’s not computable in polynomial time.</p>
+<p>However, we can make good approximations, which we’ll look at now.</p>
+<p>To do so, we’ll return to using linear algebra for graphs, and introduce <strong>spectral graph theory.</strong></p>
+</div>
+</div>
+<div class="section" id="spectral-graph-theory">
+<h2>Spectral Graph Theory<a class="headerlink" href="#spectral-graph-theory" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to study this in more detail, some excellent references are</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://people.eecs.berkeley.edu/~jrs/papers/partnotes.pdf">Allow Me to Introduce
+Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which has outstanding visualizations and physical intuition.</p></li>
+<li><p><a class="reference external" href="http://cs-www.cs.yale.edu/homes/spielman/sagt/sagt.pdf">Spectral and Algebraic Graph Theory</a> by Daniel Spielman which provides proofs and much more detail.</p></li>
+</ul>
+</div>
+<p>Spectral graph theory is the use of linear algebra to study the properties of graphs.</p>
+<p>To introduce spectral graph theory, we define some terms.</p>
+<p>For a undirected graph <span class="math notranslate nohighlight">\(G\)</span> having <span class="math notranslate nohighlight">\(n\)</span> nodes, we define the <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(D\)</span> as a diagonal matrix of node degrees.</p>
+<p>I.e., <span class="math notranslate nohighlight">\(D = \text{diag}(d_1, d_2, d_3, \dots)\)</span> where <span class="math notranslate nohighlight">\(d_i\)</span> is the degree of node <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Then assuming <span class="math notranslate nohighlight">\(G\)</span> has adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>, we define the <strong>Laplacian</strong> of <span class="math notranslate nohighlight">\(G\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[ L = D - A \]</div>
+<p>Here is the Laplacian matrix <span class="math notranslate nohighlight">\(L\)</span> for the karate club network, shown as a heatmap:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">())</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_90_0.png" src="_images/22-Networks-II-Centrality-Clustering_90_0.png" />
+</div>
+</div>
+<p>Now let us think about an <span class="math notranslate nohighlight">\(n\)</span>-component vector <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}^n\)</span> as an <strong>assignment of values</strong> to nodes in the graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>For example, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could encode node “importance” or “strength” or even a more concrete notion like “temperature” or “altitude.”</p>
+<p>Then here is an amazing fact about the Laplacian of <span class="math notranslate nohighlight">\(G\)</span>. It’s easy to prove but we won’t do that here.</p>
+<p>The quadratic form</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{x}^TL\mathbf{x}\]</div>
+<p>is exactly the same as</p>
+<div class="math notranslate nohighlight">
+\[  \sum_{(i,j)\in E} (x_i - x_j)^2 \]</div>
+<p>That is, the quadratic form <span class="math notranslate nohighlight">\( \mathbf{x}^TL\mathbf{x}\)</span> is the sum of squared differences of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> <strong>over the edges in <span class="math notranslate nohighlight">\(G\)</span>.</strong></p>
+<p>In other words, “When nodes have the values in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, how much do <strong>adjacent</strong> nodes vary?”</p>
+<p>Now, let’s think about vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that <strong>minimize</strong> the differences over the edges in the graph.</p>
+<p>We can think of these as “smooth” functions on the graph – neighboring nodes don’t differ too much.</p>
+<p>To find such “smooth” vectors, we would solve this optimization:</p>
+<div class="math notranslate nohighlight">
+\[ \min_{\Vert \mathbf{x}\Vert = 1}\sum_{(i,j)\in E} (x_i - x_j)^2 \]</div>
+<p>We constrain <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to have a nonzero norm, otherwise <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{0}\)</span> would be a trivial solution.</p>
+<p>But we can express this in terms of the graph Laplacian:</p>
+<div class="math notranslate nohighlight">
+\[ \min_{\Vert \mathbf{x}\Vert = 1}\sum_{(i,j)\in E} (x_i - x_j)^2 = \min_{\Vert \mathbf{x}\Vert = 1} \mathbf{x}^TL\mathbf{x} \]</div>
+<p>Now, we know how to solve this constrained minimization!</p>
+<p>From linear algebra, we know that when</p>
+<div class="math notranslate nohighlight">
+\[ \lambda = \min_{\Vert \mathbf{x}\Vert = 1} \mathbf{x}^TL\mathbf{x} \]</div>
+<p>then <span class="math notranslate nohighlight">\(\lambda\)</span> is the <strong>smallest eigenvalue of <span class="math notranslate nohighlight">\(L\)</span></strong> and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the corresponding eigenvector.</p>
+<p>So … we are connecting functions on the graph <span class="math notranslate nohighlight">\(G\)</span> with eigenvectors of the matrix <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<p>Quite remarkable!</p>
+<p>Well, what do we know about <span class="math notranslate nohighlight">\(L\)</span>?</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>symmetric.</strong>  Therefore the eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> are orthogonal and its eigenvalues are real.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.</p></li>
+</ol>
+<p>We can order the eigenvalues from largest to smallest <span class="math notranslate nohighlight">\(\lambda_n  \geq \dots \geq \lambda_2 \geq \lambda_1 \geq 0.\)</span></p>
+<p>How do we know that <span class="math notranslate nohighlight">\(L\)</span> is positive semidefinite?</p>
+<p>Consider <span class="math notranslate nohighlight">\( \sum_{(i,j)\in E} (x_i - x_j)^2.\)</span></p>
+<p>This is always a nonnegative quantity.</p>
+<p>So <span class="math notranslate nohighlight">\(\mathbf{x}^T L\mathbf{x} \geq 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is the definition of positive-semidefiniteness.</p>
+<p>Next, let’s assume that <span class="math notranslate nohighlight">\(G\)</span> is connected.</p>
+<p>Then <span class="math notranslate nohighlight">\(L\)</span> has a single eigenvalue of value <span class="math notranslate nohighlight">\(\lambda_1 = 0\)</span>.   The corresponding eigenvector is <span class="math notranslate nohighlight">\(\mathbf{w}_1 = \mathbf{1} = [1, 1, 1, \dots]^T\)</span>.</p>
+<p>This is easily seen:</p>
+<div class="math notranslate nohighlight">
+\[L{\mathbf 1}={\mathbf 0}.\]</div>
+<p>Recall that row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(L\)</span> consists of <span class="math notranslate nohighlight">\(d_i\)</span> on the diagonal, and <span class="math notranslate nohighlight">\(d_i\)</span> -1s in other positions.</p>
+<p>The second-smallest eigenvalue of <span class="math notranslate nohighlight">\(L\)</span>, <span class="math notranslate nohighlight">\(\lambda_2\)</span>, is called the <strong>Fiedler value.</strong></p>
+<p>We know that all of the other eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> are orthogonal to <span class="math notranslate nohighlight">\(\mathbf 1\)</span>, because <span class="math notranslate nohighlight">\(L\)</span> is symmetric.</p>
+<p>Because of that, a definition of the second smallest eigenvalue is:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_2 = \min_{\Vert \mathbf{x}\Vert = 1, \;\mathbf{x}\perp {\mathbf 1}} \mathbf{x}^TL\mathbf{x}\]</div>
+<p>Note that another way of saying that <span class="math notranslate nohighlight">\(\mathbf{x} \perp {\mathbf 1}\)</span> is that the entries of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> sum to 0.</p>
+<p>In other words, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <strong>mean-centered</strong> or <strong>zero-mean.</strong></p>
+<p>The corresponding eigenvector is called the <strong>Fiedler vector.</strong></p>
+<p>It minimizes:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w}_2 = \arg \min_{\Vert \mathbf{x}\Vert=1,\;\mathbf{x}\perp {\mathbf 1}} \sum_{(i,j)\in E} (x_i - x_j)^2\]</div>
+<p>Let’s look at this closely:</p>
+<p>if we think of <span class="math notranslate nohighlight">\(x_i\)</span> as a 1-D “coordinate” for node <span class="math notranslate nohighlight">\(i\)</span> in the graph,</p>
+<p>then choosing <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{w}_2\)</span> (the eigenvector corresponding to <span class="math notranslate nohighlight">\(\lambda_2\)</span>) puts each node in a position that minimizes the sum of the “squared stretching” of each edge.</p>
+<p>Now, perhaps you recall that the energy in a stretched spring is proportional to the square of its stretched length.</p>
+<p>So imagine that we use the entries in <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span> to position the nodes of the graph along a single dimension.</p>
+<p>Then using the Fiedler vector <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span> for node coordinates is <strong>exactly the spring layout</strong> of nodes that we discussed in the last lecture – <strong>except that it is in one dimension only.</strong></p>
+<p>This is the basis for the <strong>spectral layout</strong> that we showed in the last lecture.</p>
+<p>In spectral layout, we use <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span> for the first dimension, and <span class="math notranslate nohighlight">\(\mathbf{w}_3\)</span> for the second dimension.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{w}_3\)</span> is the eigenvector corresponding to</p>
+<div class="math notranslate nohighlight">
+\[\lambda_3 = \min_{\Vert \mathbf{x}\Vert = 1, \;\mathbf{x}\perp \{\mathbf{1}, \mathbf{w}_2\}} \mathbf{x}^TL\mathbf{x}\]</div>
+<p>Let’s look again at layouts for the football network:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Title 1 Football -- Spectral Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">node_size</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> 
+                 <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">football</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
+                 <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Title 1 Football -- Spring Layout&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_109_0.png" src="_images/22-Networks-II-Centrality-Clustering_109_0.png" />
+</div>
+</div>
+<p>So what is the difference between the spectral layout and the spring layout?</p>
+<p>In one dimension, they are the same, but in multiple dimensions, spectral layout optimizes each dimension separately.</p>
+<div class="section" id="spectral-partitioning">
+<h3>Spectral Partitioning<a class="headerlink" href="#spectral-partitioning" title="Permalink to this headline">¶</a></h3>
+<p>This leads to key ideas in node partitioning.</p>
+<p>The basic idea is to partition nodes according to the Fiedler vector <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span>.</p>
+<p>This can be shown to have provably good performance for the <strong>balanced cut</strong> problem.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="http://cs-www.cs.yale.edu/homes/spielman/sagt/sagt.pdf">Spectral and Algebraic Graph Theory</a> by Daniel Spielman, Chapter 20, where it is proved that for every <span class="math notranslate nohighlight">\(U \subset V\)</span> with <span class="math notranslate nohighlight">\(|U| \leq |V|/2\)</span>, <span class="math notranslate nohighlight">\(\alpha(G) \geq \lambda_2 (1-s)\)</span> where <span class="math notranslate nohighlight">\(s = |U|/|V|\)</span>.   In particular, <span class="math notranslate nohighlight">\(\alpha(G) \geq \lambda_2/2.\)</span></p>
+</div>
+<p>There are a number of options for how to split based on the Fiedler vector.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span> is the Fiedler vector, then split nodes according to a value <span class="math notranslate nohighlight">\(s\)</span>:</p>
+<ul class="simple">
+<li><p>bisection: <span class="math notranslate nohighlight">\(s\)</span> is the median value in <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span></p></li>
+<li><p>ratio cut: <span class="math notranslate nohighlight">\(s\)</span> is the value that maximizes <span class="math notranslate nohighlight">\(\alpha\)</span></p></li>
+<li><p>sign: separate positive and negative vaues (<span class="math notranslate nohighlight">\(s = 0\)</span>)</p></li>
+<li><p>gap: separate according to the largest gap in the values of <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span></p></li>
+</ul>
+<p>Here is a spectral parititioning for the karate club graph:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fiedler_vector</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="p">[</span><span class="n">f</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">#</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span> <span class="s1">&#39;dodgerblue&#39;</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">]</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="s1">&#39;True&#39;</span><span class="p">,</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_116_0.png" src="_images/22-Networks-II-Centrality-Clustering_116_0.png" />
+</div>
+</div>
+<p>Interestingly, this is almost the same as the <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut  based on the president and instructor!</p>
+</div>
+<div class="section" id="spectral-clustering">
+<h3>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this headline">¶</a></h3>
+<p>In many cases we would like to move beyond graph partitioning, to allow for clustering nodes into, say, <span class="math notranslate nohighlight">\(k\)</span> clusters.</p>
+<p>The idea of spectral clustering takes the observations about the Fiedler vector and extends them to more than one dimension.</p>
+<p>Let’s look again at the spectral layout of the football dataset.</p>
+<p>Here we’ve labelled the nodes according to their conference, which we will think of as ground-truth labels.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab20</span>
+<span class="c1">#</span>
+<span class="c1"># data from http://www-personal.umich.edu/~mejn/netdata/</span>
+<span class="n">football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">readwrite</span><span class="o">.</span><span class="n">gml</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s1">&#39;data/football.gml&#39;</span><span class="p">)</span>
+<span class="n">conf_name</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/football.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;\s*(\d+)\s+=\s*([\w\s-]+)\s*</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">conf_name</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">conf</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">football</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">data</span><span class="p">()]</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">conf</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conference Membership in Football Network&#39;</span><span class="p">)</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">11</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">conf_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">=</span> <span class="n">patches</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_122_0.png" src="_images/22-Networks-II-Centrality-Clustering_122_0.png" />
+</div>
+</div>
+<p>Now, the key idea is that using spectral layout, we have placed nodes into a Euclidean space.</p>
+<p>So … we could use a <strong>standard clustering algorithm</strong> in that space.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">conf</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">edgelist</span> <span class="o">=</span> <span class="p">[],</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conference Membership in Football Network&#39;</span><span class="p">)</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">11</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">conf_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">=</span> <span class="n">patches</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_124_0.png" src="_images/22-Networks-II-Centrality-Clustering_124_0.png" />
+</div>
+</div>
+<p>Now the above plot shows that many clusters are well-separated in this space, but some still overlap.</p>
+<p>To address this, we can use additional eigenvectors of the Laplacian, ie, <span class="math notranslate nohighlight">\(\mathbf{w}_4, \mathbf{w}_5, \dots\)</span>.</p>
+<p>So: the idea of spectral clustering is:</p>
+<ul class="simple">
+<li><p>use enough of the smallest eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> to sufficiently “spread out” the nodes</p></li>
+<li><p>cluster the nodes in the Euclidean space created by this embedding.</p></li>
+</ul>
+<p>More specifically: Given a graph <span class="math notranslate nohighlight">\(G\)</span>:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(L\)</span>, the Laplacian of <span class="math notranslate nohighlight">\(G\)</span></p></li>
+<li><p>Compute the smallest <span class="math notranslate nohighlight">\(d\)</span> eigenvectors of <span class="math notranslate nohighlight">\(L\)</span>, <strong>excluding</strong> the smallest eigenvector (the ones vector)</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{n\times d}\)</span> be the matrix containing the eigenvectors <span class="math notranslate nohighlight">\(\mathbf{w}_2, \mathbf{w}_3, \dots, \mathbf{w}_{d+1}\)</span> as columns</p></li>
+<li><p>Let the position of each node <span class="math notranslate nohighlight">\(i\)</span> be the point in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span> given by row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(U\)</span></p></li>
+<li><p>Cluster the points into <span class="math notranslate nohighlight">\(k\)</span> clusters using <span class="math notranslate nohighlight">\(k\)</span>-means</p></li>
+</ul>
+<p>Let’s explore the results of spectral clustering using <span class="math notranslate nohighlight">\(d = 2\)</span> dimensions.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a complete example of spectral clustering</span>
+<span class="c1">#</span>
+<span class="c1"># The number of dimensions of spectral layout</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1">#</span>
+<span class="c1"># Obtain the graph</span>
+<span class="n">football</span>
+<span class="c1">#</span>
+<span class="c1"># Compute the eigenvectors of its Laplacian</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">football</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1"># </span>
+<span class="c1"># scale each eigenvector by its eigenvalue</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">v</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># consider the eigenvectors in increasing order of their eigenvalues</span>
+<span class="n">w_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">w_order</span><span class="p">]</span>
+<span class="c1">#</span>
+<span class="c1"># run kmeans using k top eigenvectors as coordinates</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">11</span> <span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+<span class="c1">#</span>
+<span class="c1"># visualize the result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">edgelist</span> <span class="o">=</span> <span class="p">[],</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">,</span>
+                 <span class="n">node_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectral Clustering, 11 Clusters, dimension = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">conf</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">edgelist</span> <span class="o">=</span> <span class="p">[],</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">,</span>
+                 <span class="n">node_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conference Membership in Football Network&#39;</span><span class="p">)</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">11</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">conf_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">=</span> <span class="n">patches</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_128_0.png" src="_images/22-Networks-II-Centrality-Clustering_128_0.png" />
+</div>
+</div>
+<p>This is pretty good, but we can see that in some cases the clustering is not able to separate clusters that overlap in the visualization.</p>
+<p>Which makes sense, as for the case <span class="math notranslate nohighlight">\(d = 2\)</span>, we are running <span class="math notranslate nohighlight">\(k\)</span>-means on the points just as we see them in the visualization.</p>
+<p>Let’s try <span class="math notranslate nohighlight">\(d = 3\)</span>.   Now there will be another dimension available to the clustering, which we can’t see in the visualization.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a complete example of spectral clustering</span>
+<span class="c1">#</span>
+<span class="c1"># The number of dimensions of spectral layout</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Compute the eigenvectors of its Laplacian</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">football</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1"># </span>
+<span class="c1"># scale each eigenvector by its eigenvalue</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">v</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># consider the eigenvectors in increasing order of their eigenvalues</span>
+<span class="n">w_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">w_order</span><span class="p">]</span>
+<span class="c1">#</span>
+<span class="c1"># run kmeans using k top eigenvectors as coordinates</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">11</span> <span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
+<span class="c1">#</span>
+<span class="c1"># visualize the result</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">edgelist</span> <span class="o">=</span> <span class="p">[],</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">,</span>
+                 <span class="n">node_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spectral Clustering, 11 Clusters, dimension = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
+                 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax2</span><span class="p">,</span>
+                 <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spectral_layout</span><span class="p">(</span><span class="n">football</span><span class="p">),</span> 
+                 <span class="n">node_color</span> <span class="o">=</span> <span class="n">conf</span><span class="p">,</span>
+                 <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">edgelist</span> <span class="o">=</span> <span class="p">[],</span>
+                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">,</span>
+                 <span class="n">node_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conference Membership in Football Network&#39;</span><span class="p">)</span>
+<span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">11</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="n">conf_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span> <span class="o">=</span> <span class="n">patches</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_131_0.png" src="_images/22-Networks-II-Centrality-Clustering_131_0.png" />
+</div>
+</div>
+<p>We can see visually that using 3 dimensions is giving us a better clustering than 2 dimensions.</p>
+<p>What happens as we increase the dimension further?</p>
+<p>To evaluate this question we can use Adjusted Rand Index:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="c1">#</span>
+<span class="c1"># Compute the eigenvectors of its Laplacian</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">football</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1"># </span>
+<span class="c1"># scale each eigenvector by its eigenvalue</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">v</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="c1"># consider the eigenvectors in increasing order of their eigenvalues</span>
+<span class="n">w_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">w_order</span><span class="p">]</span>
+<span class="c1">#</span>
+<span class="n">max_dimension</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_dimension</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_dimension</span><span class="p">):</span>
+    <span class="c1"># run kmeans using k top eigenvectors as coordinates</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">ri</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">conf</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_dimension</span><span class="p">),</span> <span class="n">ri</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Dimensions (Eigenvectors)&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Spectral Clustering of Football Network Compared to Known Labels&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Adjusted Rand Index&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">14</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Networks-II-Centrality-Clustering_134_0.png" src="_images/22-Networks-II-Centrality-Clustering_134_0.png" />
+</div>
+</div>
+<p>Based on this plot, it looks like the football graph is best described as about six-dimensional.</p>
+<p>When we embed it in six dimensions and cluster there we get an extremely high Adjusted Rand Index.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum ARI is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">, using </span><span class="si">{</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">}</span><span class="s1"> dimensions for spectral embedding.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum ARI is 0.868, using 6 dimensions for spectral embedding.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="21-Networks-I.html" title="previous page">Introduction to Networks</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

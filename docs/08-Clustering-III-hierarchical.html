@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,16 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gaussian Mixture Models" href="09-Clustering-IV-GMM-EM.html" />
@@ -236,6 +237,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="20-Recommender-Systems.html">
    Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Networks-I.html">
+   Introduction to Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
+   Network Centrality and Clustering
   </a>
  </li>
 </ul>
@@ -651,78 +662,63 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style type="text/css">
-</style>
-<table id="T_2a42d_">
-  <thead>
-    <tr>
-      <th class="blank level0" >&nbsp;</th>
-      <th class="col_heading level0 col0" >p0</th>
-      <th class="col_heading level0 col1" >p1</th>
-      <th class="col_heading level0 col2" >p2</th>
-      <th class="col_heading level0 col3" >p3</th>
-      <th class="col_heading level0 col4" >p4</th>
-      <th class="col_heading level0 col5" >p5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_2a42d_level0_row0" class="row_heading level0 row0" >p0</th>
-      <td id="T_2a42d_row0_col0" class="data row0 col0" >0.00</td>
-      <td id="T_2a42d_row0_col1" class="data row0 col1" >0.23</td>
-      <td id="T_2a42d_row0_col2" class="data row0 col2" >0.22</td>
-      <td id="T_2a42d_row0_col3" class="data row0 col3" >0.37</td>
-      <td id="T_2a42d_row0_col4" class="data row0 col4" >0.34</td>
-      <td id="T_2a42d_row0_col5" class="data row0 col5" >0.24</td>
-    </tr>
-    <tr>
-      <th id="T_2a42d_level0_row1" class="row_heading level0 row1" >p1</th>
-      <td id="T_2a42d_row1_col0" class="data row1 col0" >0.23</td>
-      <td id="T_2a42d_row1_col1" class="data row1 col1" >0.00</td>
-      <td id="T_2a42d_row1_col2" class="data row1 col2" >0.14</td>
-      <td id="T_2a42d_row1_col3" class="data row1 col3" >0.19</td>
-      <td id="T_2a42d_row1_col4" class="data row1 col4" >0.14</td>
-      <td id="T_2a42d_row1_col5" class="data row1 col5" >0.24</td>
-    </tr>
-    <tr>
-      <th id="T_2a42d_level0_row2" class="row_heading level0 row2" >p2</th>
-      <td id="T_2a42d_row2_col0" class="data row2 col0" >0.22</td>
-      <td id="T_2a42d_row2_col1" class="data row2 col1" >0.14</td>
-      <td id="T_2a42d_row2_col2" class="data row2 col2" >0.00</td>
-      <td id="T_2a42d_row2_col3" class="data row2 col3" >0.16</td>
-      <td id="T_2a42d_row2_col4" class="data row2 col4" >0.28</td>
-      <td id="T_2a42d_row2_col5" class="data row2 col5" >0.10</td>
-    </tr>
-    <tr>
-      <th id="T_2a42d_level0_row3" class="row_heading level0 row3" >p3</th>
-      <td id="T_2a42d_row3_col0" class="data row3 col0" >0.37</td>
-      <td id="T_2a42d_row3_col1" class="data row3 col1" >0.19</td>
-      <td id="T_2a42d_row3_col2" class="data row3 col2" >0.16</td>
-      <td id="T_2a42d_row3_col3" class="data row3 col3" >0.00</td>
-      <td id="T_2a42d_row3_col4" class="data row3 col4" >0.28</td>
-      <td id="T_2a42d_row3_col5" class="data row3 col5" >0.22</td>
-    </tr>
-    <tr>
-      <th id="T_2a42d_level0_row4" class="row_heading level0 row4" >p4</th>
-      <td id="T_2a42d_row4_col0" class="data row4 col0" >0.34</td>
-      <td id="T_2a42d_row4_col1" class="data row4 col1" >0.14</td>
-      <td id="T_2a42d_row4_col2" class="data row4 col2" >0.28</td>
-      <td id="T_2a42d_row4_col3" class="data row4 col3" >0.28</td>
-      <td id="T_2a42d_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_2a42d_row4_col5" class="data row4 col5" >0.39</td>
-    </tr>
-    <tr>
-      <th id="T_2a42d_level0_row5" class="row_heading level0 row5" >p5</th>
-      <td id="T_2a42d_row5_col0" class="data row5 col0" >0.24</td>
-      <td id="T_2a42d_row5_col1" class="data row5 col1" >0.24</td>
-      <td id="T_2a42d_row5_col2" class="data row5 col2" >0.10</td>
-      <td id="T_2a42d_row5_col3" class="data row5 col3" >0.22</td>
-      <td id="T_2a42d_row5_col4" class="data row5 col4" >0.39</td>
-      <td id="T_2a42d_row5_col5" class="data row5 col5" >0.00</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+<div class="output text_html"><style  type="text/css" >
+</style><table id="T_db8e4_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >p0</th>        <th class="col_heading level0 col1" >p1</th>        <th class="col_heading level0 col2" >p2</th>        <th class="col_heading level0 col3" >p3</th>        <th class="col_heading level0 col4" >p4</th>        <th class="col_heading level0 col5" >p5</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_db8e4_level0_row0" class="row_heading level0 row0" >p0</th>
+                        <td id="T_db8e4_row0_col0" class="data row0 col0" >0.00</td>
+                        <td id="T_db8e4_row0_col1" class="data row0 col1" >0.23</td>
+                        <td id="T_db8e4_row0_col2" class="data row0 col2" >0.22</td>
+                        <td id="T_db8e4_row0_col3" class="data row0 col3" >0.37</td>
+                        <td id="T_db8e4_row0_col4" class="data row0 col4" >0.34</td>
+                        <td id="T_db8e4_row0_col5" class="data row0 col5" >0.24</td>
+            </tr>
+            <tr>
+                        <th id="T_db8e4_level0_row1" class="row_heading level0 row1" >p1</th>
+                        <td id="T_db8e4_row1_col0" class="data row1 col0" >0.23</td>
+                        <td id="T_db8e4_row1_col1" class="data row1 col1" >0.00</td>
+                        <td id="T_db8e4_row1_col2" class="data row1 col2" >0.14</td>
+                        <td id="T_db8e4_row1_col3" class="data row1 col3" >0.19</td>
+                        <td id="T_db8e4_row1_col4" class="data row1 col4" >0.14</td>
+                        <td id="T_db8e4_row1_col5" class="data row1 col5" >0.24</td>
+            </tr>
+            <tr>
+                        <th id="T_db8e4_level0_row2" class="row_heading level0 row2" >p2</th>
+                        <td id="T_db8e4_row2_col0" class="data row2 col0" >0.22</td>
+                        <td id="T_db8e4_row2_col1" class="data row2 col1" >0.14</td>
+                        <td id="T_db8e4_row2_col2" class="data row2 col2" >0.00</td>
+                        <td id="T_db8e4_row2_col3" class="data row2 col3" >0.16</td>
+                        <td id="T_db8e4_row2_col4" class="data row2 col4" >0.28</td>
+                        <td id="T_db8e4_row2_col5" class="data row2 col5" >0.10</td>
+            </tr>
+            <tr>
+                        <th id="T_db8e4_level0_row3" class="row_heading level0 row3" >p3</th>
+                        <td id="T_db8e4_row3_col0" class="data row3 col0" >0.37</td>
+                        <td id="T_db8e4_row3_col1" class="data row3 col1" >0.19</td>
+                        <td id="T_db8e4_row3_col2" class="data row3 col2" >0.16</td>
+                        <td id="T_db8e4_row3_col3" class="data row3 col3" >0.00</td>
+                        <td id="T_db8e4_row3_col4" class="data row3 col4" >0.28</td>
+                        <td id="T_db8e4_row3_col5" class="data row3 col5" >0.22</td>
+            </tr>
+            <tr>
+                        <th id="T_db8e4_level0_row4" class="row_heading level0 row4" >p4</th>
+                        <td id="T_db8e4_row4_col0" class="data row4 col0" >0.34</td>
+                        <td id="T_db8e4_row4_col1" class="data row4 col1" >0.14</td>
+                        <td id="T_db8e4_row4_col2" class="data row4 col2" >0.28</td>
+                        <td id="T_db8e4_row4_col3" class="data row4 col3" >0.28</td>
+                        <td id="T_db8e4_row4_col4" class="data row4 col4" >0.00</td>
+                        <td id="T_db8e4_row4_col5" class="data row4 col5" >0.39</td>
+            </tr>
+            <tr>
+                        <th id="T_db8e4_level0_row5" class="row_heading level0 row5" >p5</th>
+                        <td id="T_db8e4_row5_col0" class="data row5 col0" >0.24</td>
+                        <td id="T_db8e4_row5_col1" class="data row5 col1" >0.24</td>
+                        <td id="T_db8e4_row5_col2" class="data row5 col2" >0.10</td>
+                        <td id="T_db8e4_row5_col3" class="data row5 col3" >0.22</td>
+                        <td id="T_db8e4_row5_col4" class="data row5 col4" >0.39</td>
+                        <td id="T_db8e4_row5_col5" class="data row5 col5" >0.00</td>
+            </tr>
+    </tbody></table></div></div>
 </div>
 </div>
 <div class="section" id="single-linkage-clustering">
@@ -1105,83 +1101,7 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/validation.py:585: FutureWarning: np.matrix usage is deprecated in 1.0 and will raise a TypeError in 1.2. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
-  warnings.warn(
-</pre></div>
-</div>
-<img alt="_images/08-Clustering-III-hierarchical_94_19.png" src="_images/08-Clustering-III-hierarchical_94_19.png" />
+<img alt="_images/08-Clustering-III-hierarchical_94_0.png" src="_images/08-Clustering-III-hierarchical_94_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1239,8 +1159,9 @@ Cluster 3:
  team
  game
  university
-
-Cluster 4:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster 4:
  risc
  instruction
  ghhwang
@@ -1263,10 +1184,6 @@ Cluster 5:
  drivers
  driver
  use
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
-  warnings.warn(msg, category=FutureWarning)
 </pre></div>
 </div>
 </div>

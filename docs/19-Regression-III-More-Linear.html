@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,16 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Recommender Systems" href="20-Recommender-Systems.html" />
@@ -236,6 +237,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="20-Recommender-Systems.html">
    Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Networks-I.html">
+   Introduction to Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
+   Network Centrality and Clustering
   </a>
  </li>
 </ul>
@@ -653,8 +664,8 @@ and
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        09:45:46   Log-Likelihood:                -117.83
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):           3.70e-09
+Time:                        11:36:37   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -681,8 +692,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1604: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  &quot;anyway, n=%i&quot; % int(n))
 </pre></div>
 </div>
 </div>
@@ -1119,8 +1130,8 @@ Spatial Analysis”, Michael Friendly.  Statistical Science 2007, Vol. 22, No. 3
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        09:46:12   Log-Likelihood:                -117.83
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):           3.70e-09
+Time:                        11:38:15   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -1147,8 +1158,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1604: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  &quot;anyway, n=%i&quot; % int(n))
 </pre></div>
 </div>
 </div>
@@ -1167,8 +1178,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                 TOTEMP   R-squared (uncentered):                   1.000
 Model:                            OLS   Adj. R-squared (uncentered):              1.000
 Method:                 Least Squares   F-statistic:                          1.127e+04
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):                    1.92e-22
-Time:                        09:46:12   Log-Likelihood:                         -137.20
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):                    1.92e-22
+Time:                        11:38:15   Log-Likelihood:                         -137.20
 No. Observations:                  16   AIC:                                      280.4
 Df Residuals:                      13   BIC:                                      282.7
 Df Model:                           3                                                  
@@ -1193,8 +1204,8 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/miniforge3/lib/python3.9/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
-  warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/opt/anaconda3/lib/python3.7/site-packages/scipy/stats/stats.py:1604: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+  &quot;anyway, n=%i&quot; % int(n))
 </pre></div>
 </div>
 </div>
@@ -1289,8 +1300,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        09:46:13   Log-Likelihood:                -375.30
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):           1.07e-05
+Time:                        11:38:15   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1337,8 +1348,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        09:46:13   Log-Likelihood:                -375.30
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):           1.07e-05
+Time:                        11:38:15   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1381,8 +1392,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.161
 Model:                            OLS   Adj. R-squared:                  0.151
 Method:                 Least Squares   F-statistic:                     15.89
-Date:                Thu, 18 Nov 2021   Prob (F-statistic):           0.000144
-Time:                        09:46:13   Log-Likelihood:                -385.38
+Date:                Sat, 06 Nov 2021   Prob (F-statistic):           0.000144
+Time:                        11:38:15   Log-Likelihood:                -385.38
 No. Observations:                  85   AIC:                             774.8
 Df Residuals:                      83   BIC:                             779.7
 Df Model:                           1                                         

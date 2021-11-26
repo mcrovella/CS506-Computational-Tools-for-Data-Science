@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,17 +42,19 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Network Centrality and Clustering" href="22-Networks-II-Centrality-Clustering.html" />
     <link rel="prev" title="Recommender Systems" href="20-Recommender-Systems.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -240,6 +242,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Introduction to Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
+   Network Centrality and Clustering
   </a>
  </li>
 </ul>
@@ -569,7 +576,8 @@
 <div class="section" id="connectivity">
 <h3>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h3>
 <p>The first question to ask about a graph is: is it <strong>connected</strong>?</p>
-<p>In a connected graph, for each pair of nodes <span class="math notranslate nohighlight">\((u, v)\)</span>, either <span class="math notranslate nohighlight">\(u\)</span> is reachable from <span class="math notranslate nohighlight">\(v\)</span>, or vice-versa.</p>
+<p>For an undirected graph to be connected, for each pair of nodes <span class="math notranslate nohighlight">\((u, v)\)</span>, <span class="math notranslate nohighlight">\(u\)</span> is reachable from <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>We say a directed graph is connected when its undirected version is connected.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
@@ -930,7 +938,7 @@
 <div class="section" id="visualizing-networks">
 <h3>Visualizing Networks<a class="headerlink" href="#visualizing-networks" title="Permalink to this headline">¶</a></h3>
 <p>As an example, we’ll use the following network.</p>
-<p>It records American football games between NCAA Div IA colleges in Fall 2000 (available <a class="reference external" href="http://cise.ufl.edu/research/sparse/matrices/Newman/football.html">here</a>).</p>
+<p>It records American football games between NCAA Div IA colleges in Fall 2000 (available <a class="reference external" href="http://www-personal.umich.edu/~mejn/netdata/">here</a>).</p>
 <p>Each vertex represents a football team, which belongs to a specific conference (Big Ten, Conference USA, Pac-10, etc.).</p>
 <p>An edge between two vertices <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> means that the two teams played each other; the weight of the edge (<span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(v_2\)</span>) is equal to the number of times they played each other.</p>
 <p>(Data from  M. Girvan and M. E. J. Newman,
@@ -938,8 +946,8 @@
 Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/football.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-   <span class="n">football</span> <span class="o">=</span>  <span class="n">nx</span><span class="o">.</span><span class="n">parse_edgelist</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="n">nodetype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data from http://www-personal.umich.edu/~mejn/netdata/                                </span>
+<span class="n">football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">readwrite</span><span class="o">.</span><span class="n">gml</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s1">&#39;data/football.gml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1179,6 +1187,7 @@ The diameter of the equivalent random network is 4 and the average shortest path
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="20-Recommender-Systems.html" title="previous page">Recommender Systems</a>
+    <a class='right-next' id="next-link" href="22-Networks-II-Centrality-Clustering.html" title="next page">Network Centrality and Clustering</a>
 
         </div>
         
