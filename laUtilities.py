@@ -319,8 +319,10 @@ class three_d_figure:
             'points': [{'x': float(x), 'y': float(y), 'z': float(z)}]})
         self.ax.text(x, y, z, mpl_label, size=size)
 
-    def set_title(self, mpl_title, json_title = None, size = 12):
-        self.fig.suptitle(f'Figure {self.fig_num[0]:d}.{self.fig_num[1]:d}')
+    def set_title(self, mpl_title, json_title = None,
+                      number_fig = True, size = 12):
+        if number_fig:
+            self.fig.suptitle(f'Figure {self.fig_num[0]:d}.{self.fig_num[1]:d}')
         self.ax.set_title(mpl_title, size=size)
         if json_title == None:
             json_title = mpl_title
@@ -664,6 +666,245 @@ class three_d_figure:
                  'a22': qf_mat[1][1]
                 })
 
+    def plotGeneralQF(self, qf_mat, vec, cnst, color='Red', alpha=1.0):
+        """
+        Plot the general quadratic form 
+        let Q = qf_mat, V = vec, C = cnst
+        then plot x'Qx + v'x + C
+        """
+        # helper functions
+        
+        # evaluate the qf at a particular x, y
+        def eval_qf(qf, vec, cnst, x, y):
+            xvec = np.array([x, y])
+            return xvec.T @ qf @ xvec + vec.T @ xvec + cnst
+
+        # find the portion that is contained within two ranges r1 and r2
+        def range_intersect(r1, r2):
+            if np.all(np.isnan([r1[0], r2[0]])):
+                lo = np.nan
+            else:
+                lo = np.nanmax([r1[0], r2[0]])
+            if np.all(np.isnan([r1[1], r2[1]])):
+                hi = np.nan
+            else:
+                hi = np.nanmin([r1[1], r2[1]])
+            return [lo, hi]
+
+        # find the union of two ranges r1 and r2
+        def range_union(r1, r2):
+            if np.all(np.isnan([r1[0], r2[0]])):
+                lo = np.nan
+            else:
+                lo = np.nanmin([r1[0], r2[0]])
+            if np.all(np.isnan([r1[1], r2[1]])):
+                hi = np.nan
+            else:
+                hi = np.nanmax([r1[1], r2[1]])
+            return [lo, hi]
+
+        xmin, xmax = self.ax.axes.get_xlim()
+        ymin, ymax = self.ax.axes.get_ylim()
+        zmin, zmax = self.ax.axes.get_zlim()
+
+        # first find the limits of x and y for grid creation
+        # the limits will occur along the eigenvectors of the QF
+        e, v = np.linalg.eig(qf_mat)
+
+        # we will build a grid on which we'll evaluate the QF.
+        # to draw the boundary of the surface precisely,
+        # the boundaries of the grid need to exactly fall where
+        # the QF crosses either the upper or lower Z bounding planes.
+        # furthermore, it is important for the boundary to exactly
+        # hit the points where the most extreme points of the ellipse
+        # fall.
+
+        # first we find the points where the extreme points of the ellipse
+        # fall.  If this is an indefinite QF, this will find the point
+        # where the saddle intersects the z planes
+
+        # this helper function computes those extreme points, ie,
+        # x_limit is the +/- value of x that lies on a given eigenvector
+        # and for which the qf = some_z.
+        # note that when we are on a line, the QF becomes a stanard
+        # quadratic, and we solve for where it equals z by using the
+        # quadratic formula (-b +/ sqrt(b2 - 4ac))/2a.
+        # this fn may return nans, which we handle in range computation later
+        def axes_limit(qf, z, evec):
+            if evec[0] != 0:
+                # for any eigenvector evec, y = alpha x,
+                # so alpha = y/x = evec[1]/evec[0]
+                alf = evec[1]/evec[0]
+                # substituting y = alf x into the quadratric form yields
+                denom = (qf[0, 0] + alf * (qf[0, 1] + qf[1, 0])
+                             + alf**2 * qf[1, 1])
+                if (denom == 0) or ((z / denom) < 0):
+                    return [[np.nan, np.nan],[np.nan, np.nan]]
+                else:
+                    x = np.sqrt(z / denom)
+                    return [[-x, -alf*x], [x, alf*x]]
+            else:
+                # if evec[0] = 0, the evec is parallel to the y axis, so
+                # switch places of x and y since y can't be given in terms of x
+                alf = evec[0]/evec[1]
+                denom = (qf[1, 1] + alf * (qf[0, 1] + qf[1, 0])
+                            + alf**2 * qf[0, 0])
+                if (denom == 0) or ((z / denom) < 0) :
+                    return [[np.nan, np.nan],[np.nan, np.nan]]
+                else:
+                    y = np.sqrt(z / denom)
+                    return [[-alf*y, -y], [alf*y, y]]
+
+        # considering both eigenvectors, find the range of x for y = zmax
+        r1 = axes_limit(qf_mat, zmax, v[:,0])
+        r2 = axes_limit(qf_mat, zmax, v[:,1])
+        # take the union of the x ranges given by the two eignvectors
+        xrange_max = range_union([r1[0][0], r1[1][0]], [r2[0][0], r2[1][0]])
+        # same thing for zmin
+        r1 = axes_limit(qf_mat, zmin, v[:,0])
+        r2 = axes_limit(qf_mat, zmin, v[:,1])
+        xrange_min = range_union([r1[0][0], r1[1][0]], [r2[0][0], r2[1][0]])
+        # final xrange is union of ranges for zmin and zmax
+        final_xrange = range_union(xrange_max, xrange_min)
+        # but not extending beyond the plotting box
+        final_xrange = range_intersect([xmin, xmax], final_xrange)
+
+        gridsize = 50
+
+        # the x values of the grid
+        x_vals = np.linspace(final_xrange[0], final_xrange[1], gridsize)
+
+        # now for each x value, we need to compute the y bounds of the grid
+        # making sure the fall (if needed) on the exact point where the
+        # sruface passes through the zmin or zmax planes
+
+        # helper function to solve a single quadratic equation
+        # a x**2 + b x + c = 0
+        def quad_zeros(a, b, c):
+            disc = b**2 - 4*a*c
+            if disc < 0:
+                return [np.nan, np.nan]
+            elif a == 0:
+                return [np.nan, np.nan]
+            else:
+                return sorted([(-b - np.sqrt(disc))/(2*a),
+                                   (-b + np.sqrt(disc))/(2*a)])
+
+        # helper function to find the y values for which the QF
+        # evaluated along a given constant x line crosses a given z value
+        def solve_y(qf_in, x, z):
+            A = qf_in[1, 1]
+            B = (qf_in[1, 0] + qf_in[0, 1]) * x
+            C = (qf_in[0, 0] * x**2) - z
+            return quad_zeros(A, B, C)
+
+        # the grid points
+        X = []
+        Y = []
+        Z = []
+
+
+        for x in x_vals:
+            y_min_intcpt, y_max_intcpt = solve_y(qf_mat, x, zmax)
+            if np.isnan(y_min_intcpt):
+                # surface does not cross the zmax plane
+                y_min_intcpt, y_max_intcpt = solve_y(qf_mat, x, zmin)
+                if np.isnan(y_min_intcpt):
+                    # surface does not cross the zmin plane
+                    ztest = eval_qf(qf_mat, vec, cnst, x, ymin)
+                    if ((ztest <= zmax) & (ztest >= zmin)):
+                        # surface lies entirely within z boundaries
+                        # (this should not happen)
+                        X += gridsize*[x]
+                        valids = list(np.linspace(ymin, ymax, gridsize))
+                        Y += valids
+                        Z += [eval_qf(qf_mat, vec, cnst, x, y)
+                                for x, y in zip(gridsize*[x], valids)]
+                    else:
+                        # surface lies entirely outside z boundaries
+                        pass
+                else:
+                    # surface crosses zmin but not zmax plane
+                    X += gridsize*[x]
+                    y_start, y_end = range_intersect(
+                        [y_min_intcpt, y_max_intcpt], [ymin, ymax])
+                    valids = list(np.linspace(y_start, y_end, gridsize))
+                    Y += valids 
+                    Z += [eval_qf(qf_mat, vec, cnst, x, y)
+                              for x, y in zip(gridsize*[x], valids)] 
+            else:
+                # surface does cross zmax plane
+                # need to decide if range in between crossings
+                # is in or out of visualization cube
+                # WORK ON THIS -- GENERALIZE to zmin plane --
+                # THEN generalize notion of axes_limits computed above
+                # note that triangulation may have trouble
+                # dealing with region between, where surface is out of box
+                # perhaps put one point in between, with a zvalue of nan?
+                y_start, y_end = range_intersect(
+                    [y_min_intcpt, y_max_intcpt], [ymin, ymax])
+                y_min_intcpt, y_max_intcpt = solve_y(qf_mat, x, zmin)
+                if np.isnan(y_min_intcpt):
+                    # surface does not cross the zmin plane
+                    X += gridsize*[x]
+                    valids = list(np.linspace(y_start, y_end, gridsize))
+                    Y += valids 
+                    Z += [eval_qf(qf_mat, vec, cnst, x, y)
+                              for x, y in zip(gridsize*[x], valids)] 
+                else:
+                    # surface crosses zmin and zmax planes
+                    # have already taken zmax crossings into account
+                    # in y_start, y_end
+                    y_start, y_end = range_intersect(
+                        [y_min_intcpt, y_max_intcpt], [y_start, y_end])
+                    X += gridsize*[x]
+                    valids = list(np.linspace(y_start, y_end, gridsize))
+                    Y += valids 
+                    Z += [eval_qf(qf_mat, vec, cnst, x, y)
+                              for x, y in zip(gridsize*[x], valids)]
+
+        # now that we have the grid defined, define the triangles
+        # to form the triangulation for the surface.   We do our
+        # own triangulation because the standard (delaunay) triangulation
+        # introduces artifacts at the edge of a concave surface.
+        # trigulation scheme used ensures that triangles are only formed
+        # among adjacent points on the grid (never further away)
+        def coord_to_ndx(i, j):
+            return i*gridsize + j
+
+        def triang1(i, j):
+            return [coord_to_ndx(i, j), coord_to_ndx(i+1, j),
+                        coord_to_ndx(i, j+1)]
+
+        def triang2(i, j):
+            return [coord_to_ndx(i+1, j), coord_to_ndx(i+1, j+1),
+                        coord_to_ndx(i, j+1)]
+
+        triangles = []
+        for i in range(gridsize-1):
+            for j in range(gridsize-1):
+                triangles.append(triang1(i,j))
+                triangles.append(triang2(i,j))  
+
+        triang = mp.tri.Triangulation(X, Y, triangles=triangles)
+
+        # and plot it!
+        self.ax.plot_trisurf(triang,
+                            Z,
+                            color=color,
+                            alpha=alpha,
+                            linewidth=0)
+
+        hex_color = colors.to_hex(color)
+        self.desc['objects'].append(
+                {'type': 'quadraticform',
+                     'color': hex_color,
+                 'transparency': alpha,
+                 'a11': qf_mat[0][0],
+                 'a12': qf_mat[0][1],
+                 'a21': qf_mat[1][0],
+                 'a22': qf_mat[1][1]
+                })
 
     def rotate(self, start=0, end=360, increment=5):
         from matplotlib import animation
