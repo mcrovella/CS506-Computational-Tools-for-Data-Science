@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,25 +33,24 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Logistic Regression" href="18-Regression-II-Logistic.html" />
@@ -74,6 +73,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -83,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -92,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -124,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -159,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -189,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -206,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -228,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -247,6 +250,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
    Network Centrality and Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Gradient-Descent.html">
+   Gradient Descent
   </a>
  </li>
 </ul>
@@ -348,7 +356,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#least-squares-lines">
@@ -430,7 +438,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="linear-regression">
+<div class="tex2jax_ignore mathjax_ignore section" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
 <a class="reference internal image-reference" href="_images/Sir_Francis_Galton_by_Charles_Wellington_Furse.jpg"><img alt="Figure" src="_images/Sir_Francis_Galton_by_Charles_Wellington_Furse.jpg" style="width: 45%;" /></a>
 <div class="cell tag_hide-input docutils container">
@@ -1017,6 +1025,10 @@ mpl.figure.prototype._init_canvas = function () {
         'mouseup',
         on_mouse_event_closure('button_release')
     );
+    rubberband_canvas.addEventListener(
+        'dblclick',
+        on_mouse_event_closure('dblclick')
+    );
     // Throttle sequential mouse events to 1 every 20ms.
     rubberband_canvas.addEventListener(
         'mousemove',
@@ -1274,11 +1286,14 @@ mpl.figure.prototype.updated_canvas_event = function () {
 mpl.figure.prototype._make_on_message_function = function (fig) {
     return function socket_on_message(evt) {
         if (evt.data instanceof Blob) {
-            /* FIXME: We get "Resource interpreted as Image but
-             * transferred with MIME type text/plain:" errors on
-             * Chrome.  But how to set the MIME type?  It doesn't seem
-             * to be part of the websocket stream */
-            evt.data.type = 'image/png';
+            var img = evt.data;
+            if (img.type !== 'image/png') {
+                /* FIXME: We get "Resource interpreted as Image but
+                 * transferred with MIME type text/plain:" errors on
+                 * Chrome.  But how to set the MIME type?  It doesn't seem
+                 * to be part of the websocket stream */
+                img.type = 'image/png';
+            }
 
             /* Free the memory for the previous frames */
             if (fig.imageObj.src) {
@@ -1288,7 +1303,7 @@ mpl.figure.prototype._make_on_message_function = function (fig) {
             }
 
             fig.imageObj.src = (window.URL || window.webkitURL).createObjectURL(
-                evt.data
+                img
             );
             fig.updated_canvas_event();
             fig.waiting = false;
@@ -1407,10 +1422,10 @@ mpl.figure.prototype._key_event_extra = function (_event, _name) {
 mpl.figure.prototype.key_event = function (event, name) {
     // Prevent repeat events
     if (name === 'key_press') {
-        if (event.which === this._key) {
+        if (event.key === this._key) {
             return;
         } else {
-            this._key = event.which;
+            this._key = event.key;
         }
     }
     if (name === 'key_release') {
@@ -1418,18 +1433,17 @@ mpl.figure.prototype.key_event = function (event, name) {
     }
 
     var value = '';
-    if (event.ctrlKey && event.which !== 17) {
+    if (event.ctrlKey && event.key !== 'Control') {
         value += 'ctrl+';
     }
-    if (event.altKey && event.which !== 18) {
+    else if (event.altKey && event.key !== 'Alt') {
         value += 'alt+';
     }
-    if (event.shiftKey && event.which !== 16) {
+    else if (event.shiftKey && event.key !== 'Shift') {
         value += 'shift+';
     }
 
-    value += 'k';
-    value += event.which.toString();
+    value += 'k' + event.key;
 
     this._key_event_extra(event, name);
 
@@ -1454,7 +1468,7 @@ mpl.figure.prototype.toolbar_button_onmouseover = function (tooltip) {
 var _JSXTOOLS_RESIZE_OBSERVER=function(A){var t,i=new WeakMap,n=new WeakMap,a=new WeakMap,r=new WeakMap,o=new Set;function s(e){if(!(this instanceof s))throw new TypeError("Constructor requires 'new' operator");i.set(this,e)}function h(){throw new TypeError("Function is not a constructor")}function c(e,t,i,n){e=0 in arguments?Number(arguments[0]):0,t=1 in arguments?Number(arguments[1]):0,i=2 in arguments?Number(arguments[2]):0,n=3 in arguments?Number(arguments[3]):0,this.right=(this.x=this.left=e)+(this.width=i),this.bottom=(this.y=this.top=t)+(this.height=n),Object.freeze(this)}function d(){t=requestAnimationFrame(d);var s=new WeakMap,p=new Set;o.forEach((function(t){r.get(t).forEach((function(i){var r=t instanceof window.SVGElement,o=a.get(t),d=r?0:parseFloat(o.paddingTop),f=r?0:parseFloat(o.paddingRight),l=r?0:parseFloat(o.paddingBottom),u=r?0:parseFloat(o.paddingLeft),g=r?0:parseFloat(o.borderTopWidth),m=r?0:parseFloat(o.borderRightWidth),w=r?0:parseFloat(o.borderBottomWidth),b=u+f,F=d+l,v=(r?0:parseFloat(o.borderLeftWidth))+m,W=g+w,y=r?0:t.offsetHeight-W-t.clientHeight,E=r?0:t.offsetWidth-v-t.clientWidth,R=b+v,z=F+W,M=r?t.width:parseFloat(o.width)-R-E,O=r?t.height:parseFloat(o.height)-z-y;if(n.has(t)){var k=n.get(t);if(k[0]===M&&k[1]===O)return}n.set(t,[M,O]);var S=Object.create(h.prototype);S.target=t,S.contentRect=new c(u,d,M,O),s.has(i)||(s.set(i,[]),p.add(i)),s.get(i).push(S)}))})),p.forEach((function(e){i.get(e).call(e,s.get(e),e)}))}return s.prototype.observe=function(i){if(i instanceof window.Element){r.has(i)||(r.set(i,new Set),o.add(i),a.set(i,window.getComputedStyle(i)));var n=r.get(i);n.has(this)||n.add(this),cancelAnimationFrame(t),t=requestAnimationFrame(d)}},s.prototype.unobserve=function(i){if(i instanceof window.Element&&r.has(i)){var n=r.get(i);n.has(this)&&(n.delete(this),n.size||(r.delete(i),o.delete(i))),n.size||r.delete(i),o.size||cancelAnimationFrame(t)}},A.DOMRectReadOnly=c,A.ResizeObserver=s,A.ResizeObserverEntry=h,A}; // eslint-disable-line
 mpl.toolbar_items = [["Home", "Reset original view", "fa fa-home icon-home", "home"], ["Back", "Back to previous view", "fa fa-arrow-left icon-arrow-left", "back"], ["Forward", "Forward to next view", "fa fa-arrow-right icon-arrow-right", "forward"], ["", "", "", ""], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "fa fa-arrows icon-move", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis, CTRL fixes aspect", "fa fa-square-o icon-check-empty", "zoom"], ["", "", "", ""], ["Download", "Download plot", "fa fa-floppy-o icon-save", "download"]];
 
-mpl.extensions = ["eps", "jpeg", "pdf", "png", "ps", "raw", "svg", "tif"];
+mpl.extensions = ["eps", "jpeg", "pgf", "pdf", "png", "ps", "raw", "svg", "tif"];
 
 mpl.default_extension = "png";/* global mpl */
 
@@ -1463,6 +1477,19 @@ var comm_websocket_adapter = function (comm) {
     // object with the appropriate methods. Currently this is a non binary
     // socket, so there is still some room for performance tuning.
     var ws = {};
+
+    ws.binaryType = comm.kernel.ws.binaryType;
+    ws.readyState = comm.kernel.ws.readyState;
+    function updateReadyState(_event) {
+        if (comm.kernel.ws) {
+            ws.readyState = comm.kernel.ws.readyState;
+        } else {
+            ws.readyState = 3; // Closed state.
+        }
+    }
+    comm.kernel.ws.addEventListener('open', updateReadyState);
+    comm.kernel.ws.addEventListener('close', updateReadyState);
+    comm.kernel.ws.addEventListener('error', updateReadyState);
 
     ws.close = function () {
         comm.close();
@@ -1474,8 +1501,14 @@ var comm_websocket_adapter = function (comm) {
     // Register the callback with on_msg.
     comm.on_msg(function (msg) {
         //console.log('receiving', msg['content']['data'], msg);
+        var data = msg['content']['data'];
+        if (data['blob'] !== undefined) {
+            data = {
+                data: new Blob(msg['buffers'], { type: data['blob'] }),
+            };
+        }
         // Pass the mpl event to the overridden (by mpl) onmessage function.
-        ws.onmessage(msg['content']['data']);
+        ws.onmessage(data);
     });
     return ws;
 };
@@ -1717,7 +1750,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='2959a498-7466-47f6-9db1-26f789ee6298'></div></div></div>
+</script><div class="output text_html"><div id='6b7cd2d3-7c10-4862-adf0-80509e729aed'></div></div></div>
 </div>
 <p><strong>Example.</strong></p>
 <p>In geography, local models of terrain are constructed from data <span class="math notranslate nohighlight">\((u_1, v_1, y_1), \dots, (u_n, v_n, y_n)\)</span> where <span class="math notranslate nohighlight">\(u_j, v_j\)</span>, and <span class="math notranslate nohighlight">\(y_j\)</span> are latitude, longitude, and altitude, respectively.</p>
@@ -1995,6 +2028,10 @@ mpl.figure.prototype._init_canvas = function () {
         'mouseup',
         on_mouse_event_closure('button_release')
     );
+    rubberband_canvas.addEventListener(
+        'dblclick',
+        on_mouse_event_closure('dblclick')
+    );
     // Throttle sequential mouse events to 1 every 20ms.
     rubberband_canvas.addEventListener(
         'mousemove',
@@ -2252,11 +2289,14 @@ mpl.figure.prototype.updated_canvas_event = function () {
 mpl.figure.prototype._make_on_message_function = function (fig) {
     return function socket_on_message(evt) {
         if (evt.data instanceof Blob) {
-            /* FIXME: We get "Resource interpreted as Image but
-             * transferred with MIME type text/plain:" errors on
-             * Chrome.  But how to set the MIME type?  It doesn't seem
-             * to be part of the websocket stream */
-            evt.data.type = 'image/png';
+            var img = evt.data;
+            if (img.type !== 'image/png') {
+                /* FIXME: We get "Resource interpreted as Image but
+                 * transferred with MIME type text/plain:" errors on
+                 * Chrome.  But how to set the MIME type?  It doesn't seem
+                 * to be part of the websocket stream */
+                img.type = 'image/png';
+            }
 
             /* Free the memory for the previous frames */
             if (fig.imageObj.src) {
@@ -2266,7 +2306,7 @@ mpl.figure.prototype._make_on_message_function = function (fig) {
             }
 
             fig.imageObj.src = (window.URL || window.webkitURL).createObjectURL(
-                evt.data
+                img
             );
             fig.updated_canvas_event();
             fig.waiting = false;
@@ -2385,10 +2425,10 @@ mpl.figure.prototype._key_event_extra = function (_event, _name) {
 mpl.figure.prototype.key_event = function (event, name) {
     // Prevent repeat events
     if (name === 'key_press') {
-        if (event.which === this._key) {
+        if (event.key === this._key) {
             return;
         } else {
-            this._key = event.which;
+            this._key = event.key;
         }
     }
     if (name === 'key_release') {
@@ -2396,18 +2436,17 @@ mpl.figure.prototype.key_event = function (event, name) {
     }
 
     var value = '';
-    if (event.ctrlKey && event.which !== 17) {
+    if (event.ctrlKey && event.key !== 'Control') {
         value += 'ctrl+';
     }
-    if (event.altKey && event.which !== 18) {
+    else if (event.altKey && event.key !== 'Alt') {
         value += 'alt+';
     }
-    if (event.shiftKey && event.which !== 16) {
+    else if (event.shiftKey && event.key !== 'Shift') {
         value += 'shift+';
     }
 
-    value += 'k';
-    value += event.which.toString();
+    value += 'k' + event.key;
 
     this._key_event_extra(event, name);
 
@@ -2432,7 +2471,7 @@ mpl.figure.prototype.toolbar_button_onmouseover = function (tooltip) {
 var _JSXTOOLS_RESIZE_OBSERVER=function(A){var t,i=new WeakMap,n=new WeakMap,a=new WeakMap,r=new WeakMap,o=new Set;function s(e){if(!(this instanceof s))throw new TypeError("Constructor requires 'new' operator");i.set(this,e)}function h(){throw new TypeError("Function is not a constructor")}function c(e,t,i,n){e=0 in arguments?Number(arguments[0]):0,t=1 in arguments?Number(arguments[1]):0,i=2 in arguments?Number(arguments[2]):0,n=3 in arguments?Number(arguments[3]):0,this.right=(this.x=this.left=e)+(this.width=i),this.bottom=(this.y=this.top=t)+(this.height=n),Object.freeze(this)}function d(){t=requestAnimationFrame(d);var s=new WeakMap,p=new Set;o.forEach((function(t){r.get(t).forEach((function(i){var r=t instanceof window.SVGElement,o=a.get(t),d=r?0:parseFloat(o.paddingTop),f=r?0:parseFloat(o.paddingRight),l=r?0:parseFloat(o.paddingBottom),u=r?0:parseFloat(o.paddingLeft),g=r?0:parseFloat(o.borderTopWidth),m=r?0:parseFloat(o.borderRightWidth),w=r?0:parseFloat(o.borderBottomWidth),b=u+f,F=d+l,v=(r?0:parseFloat(o.borderLeftWidth))+m,W=g+w,y=r?0:t.offsetHeight-W-t.clientHeight,E=r?0:t.offsetWidth-v-t.clientWidth,R=b+v,z=F+W,M=r?t.width:parseFloat(o.width)-R-E,O=r?t.height:parseFloat(o.height)-z-y;if(n.has(t)){var k=n.get(t);if(k[0]===M&&k[1]===O)return}n.set(t,[M,O]);var S=Object.create(h.prototype);S.target=t,S.contentRect=new c(u,d,M,O),s.has(i)||(s.set(i,[]),p.add(i)),s.get(i).push(S)}))})),p.forEach((function(e){i.get(e).call(e,s.get(e),e)}))}return s.prototype.observe=function(i){if(i instanceof window.Element){r.has(i)||(r.set(i,new Set),o.add(i),a.set(i,window.getComputedStyle(i)));var n=r.get(i);n.has(this)||n.add(this),cancelAnimationFrame(t),t=requestAnimationFrame(d)}},s.prototype.unobserve=function(i){if(i instanceof window.Element&&r.has(i)){var n=r.get(i);n.has(this)&&(n.delete(this),n.size||(r.delete(i),o.delete(i))),n.size||r.delete(i),o.size||cancelAnimationFrame(t)}},A.DOMRectReadOnly=c,A.ResizeObserver=s,A.ResizeObserverEntry=h,A}; // eslint-disable-line
 mpl.toolbar_items = [["Home", "Reset original view", "fa fa-home icon-home", "home"], ["Back", "Back to previous view", "fa fa-arrow-left icon-arrow-left", "back"], ["Forward", "Forward to next view", "fa fa-arrow-right icon-arrow-right", "forward"], ["", "", "", ""], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "fa fa-arrows icon-move", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis, CTRL fixes aspect", "fa fa-square-o icon-check-empty", "zoom"], ["", "", "", ""], ["Download", "Download plot", "fa fa-floppy-o icon-save", "download"]];
 
-mpl.extensions = ["eps", "jpeg", "pdf", "png", "ps", "raw", "svg", "tif"];
+mpl.extensions = ["eps", "jpeg", "pgf", "pdf", "png", "ps", "raw", "svg", "tif"];
 
 mpl.default_extension = "png";/* global mpl */
 
@@ -2441,6 +2480,19 @@ var comm_websocket_adapter = function (comm) {
     // object with the appropriate methods. Currently this is a non binary
     // socket, so there is still some room for performance tuning.
     var ws = {};
+
+    ws.binaryType = comm.kernel.ws.binaryType;
+    ws.readyState = comm.kernel.ws.readyState;
+    function updateReadyState(_event) {
+        if (comm.kernel.ws) {
+            ws.readyState = comm.kernel.ws.readyState;
+        } else {
+            ws.readyState = 3; // Closed state.
+        }
+    }
+    comm.kernel.ws.addEventListener('open', updateReadyState);
+    comm.kernel.ws.addEventListener('close', updateReadyState);
+    comm.kernel.ws.addEventListener('error', updateReadyState);
 
     ws.close = function () {
         comm.close();
@@ -2452,8 +2504,14 @@ var comm_websocket_adapter = function (comm) {
     // Register the callback with on_msg.
     comm.on_msg(function (msg) {
         //console.log('receiving', msg['content']['data'], msg);
+        var data = msg['content']['data'];
+        if (data['blob'] !== undefined) {
+            data = {
+                data: new Blob(msg['buffers'], { type: data['blob'] }),
+            };
+        }
         // Pass the mpl event to the overridden (by mpl) onmessage function.
-        ws.onmessage(msg['content']['data']);
+        ws.onmessage(data);
     });
     return ws;
 };
@@ -2695,7 +2753,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='1bbf0a0e-a40f-48f8-9831-e509810c19cc'></div></div></div>
+</script><div class="output text_html"><div id='2b9a75d1-6485-4873-8fd9-69d7d80c7cd1'></div></div></div>
 </div>
 <p>This example shows that the linear model for multiple regression has the same form as the model for the simple regression in the earlier examples.</p>
 <p>We can see that there the general principle is the same across all the different kinds of linear models.</p>
@@ -2734,8 +2792,8 @@ which is called the <strong>Total Sum of Squares</strong> (TSS).</p>
 \[\text{TSS} = \text{RSS} + \text{ESS}\]</div>
 <p>Now, a good fit is one in which the model explains a large part of the variance of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
 <p>So the measure of fit <span class="math notranslate nohighlight">\(R^2\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-275727d1-43a0-46ae-b606-01f1e9bf7e95">
-<span class="eqno">(2)<a class="headerlink" href="#equation-275727d1-43a0-46ae-b606-01f1e9bf7e95" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-816ef7b8-1746-4ebb-8c2b-878b890e0904">
+<span class="eqno">(2)<a class="headerlink" href="#equation-816ef7b8-1746-4ebb-8c2b-878b890e0904" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}}
 \end{eqnarray}\]</div>
 <p>As a result, <span class="math notranslate nohighlight">\(0\leq R^2\leq 1\)</span>.</p>
@@ -2777,8 +2835,8 @@ R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}
 Dep. Variable:                      y   R-squared (uncentered):                   0.969
 Model:                            OLS   Adj. R-squared (uncentered):              0.961
 Method:                 Least Squares   F-statistic:                              123.8
-Date:                Fri, 26 Nov 2021   Prob (F-statistic):                    1.03e-51
-Time:                        13:54:29   Log-Likelihood:                         -468.30
+Date:                Mon, 29 Nov 2021   Prob (F-statistic):                    1.03e-51
+Time:                        11:29:37   Log-Likelihood:                         -468.30
 No. Observations:                 100   AIC:                                      976.6
 Df Residuals:                      80   BIC:                                      1029.
 Df Model:                          20                                                  
@@ -3079,6 +3137,10 @@ mpl.figure.prototype._init_canvas = function () {
         'mouseup',
         on_mouse_event_closure('button_release')
     );
+    rubberband_canvas.addEventListener(
+        'dblclick',
+        on_mouse_event_closure('dblclick')
+    );
     // Throttle sequential mouse events to 1 every 20ms.
     rubberband_canvas.addEventListener(
         'mousemove',
@@ -3336,11 +3398,14 @@ mpl.figure.prototype.updated_canvas_event = function () {
 mpl.figure.prototype._make_on_message_function = function (fig) {
     return function socket_on_message(evt) {
         if (evt.data instanceof Blob) {
-            /* FIXME: We get "Resource interpreted as Image but
-             * transferred with MIME type text/plain:" errors on
-             * Chrome.  But how to set the MIME type?  It doesn't seem
-             * to be part of the websocket stream */
-            evt.data.type = 'image/png';
+            var img = evt.data;
+            if (img.type !== 'image/png') {
+                /* FIXME: We get "Resource interpreted as Image but
+                 * transferred with MIME type text/plain:" errors on
+                 * Chrome.  But how to set the MIME type?  It doesn't seem
+                 * to be part of the websocket stream */
+                img.type = 'image/png';
+            }
 
             /* Free the memory for the previous frames */
             if (fig.imageObj.src) {
@@ -3350,7 +3415,7 @@ mpl.figure.prototype._make_on_message_function = function (fig) {
             }
 
             fig.imageObj.src = (window.URL || window.webkitURL).createObjectURL(
-                evt.data
+                img
             );
             fig.updated_canvas_event();
             fig.waiting = false;
@@ -3469,10 +3534,10 @@ mpl.figure.prototype._key_event_extra = function (_event, _name) {
 mpl.figure.prototype.key_event = function (event, name) {
     // Prevent repeat events
     if (name === 'key_press') {
-        if (event.which === this._key) {
+        if (event.key === this._key) {
             return;
         } else {
-            this._key = event.which;
+            this._key = event.key;
         }
     }
     if (name === 'key_release') {
@@ -3480,18 +3545,17 @@ mpl.figure.prototype.key_event = function (event, name) {
     }
 
     var value = '';
-    if (event.ctrlKey && event.which !== 17) {
+    if (event.ctrlKey && event.key !== 'Control') {
         value += 'ctrl+';
     }
-    if (event.altKey && event.which !== 18) {
+    else if (event.altKey && event.key !== 'Alt') {
         value += 'alt+';
     }
-    if (event.shiftKey && event.which !== 16) {
+    else if (event.shiftKey && event.key !== 'Shift') {
         value += 'shift+';
     }
 
-    value += 'k';
-    value += event.which.toString();
+    value += 'k' + event.key;
 
     this._key_event_extra(event, name);
 
@@ -3516,7 +3580,7 @@ mpl.figure.prototype.toolbar_button_onmouseover = function (tooltip) {
 var _JSXTOOLS_RESIZE_OBSERVER=function(A){var t,i=new WeakMap,n=new WeakMap,a=new WeakMap,r=new WeakMap,o=new Set;function s(e){if(!(this instanceof s))throw new TypeError("Constructor requires 'new' operator");i.set(this,e)}function h(){throw new TypeError("Function is not a constructor")}function c(e,t,i,n){e=0 in arguments?Number(arguments[0]):0,t=1 in arguments?Number(arguments[1]):0,i=2 in arguments?Number(arguments[2]):0,n=3 in arguments?Number(arguments[3]):0,this.right=(this.x=this.left=e)+(this.width=i),this.bottom=(this.y=this.top=t)+(this.height=n),Object.freeze(this)}function d(){t=requestAnimationFrame(d);var s=new WeakMap,p=new Set;o.forEach((function(t){r.get(t).forEach((function(i){var r=t instanceof window.SVGElement,o=a.get(t),d=r?0:parseFloat(o.paddingTop),f=r?0:parseFloat(o.paddingRight),l=r?0:parseFloat(o.paddingBottom),u=r?0:parseFloat(o.paddingLeft),g=r?0:parseFloat(o.borderTopWidth),m=r?0:parseFloat(o.borderRightWidth),w=r?0:parseFloat(o.borderBottomWidth),b=u+f,F=d+l,v=(r?0:parseFloat(o.borderLeftWidth))+m,W=g+w,y=r?0:t.offsetHeight-W-t.clientHeight,E=r?0:t.offsetWidth-v-t.clientWidth,R=b+v,z=F+W,M=r?t.width:parseFloat(o.width)-R-E,O=r?t.height:parseFloat(o.height)-z-y;if(n.has(t)){var k=n.get(t);if(k[0]===M&&k[1]===O)return}n.set(t,[M,O]);var S=Object.create(h.prototype);S.target=t,S.contentRect=new c(u,d,M,O),s.has(i)||(s.set(i,[]),p.add(i)),s.get(i).push(S)}))})),p.forEach((function(e){i.get(e).call(e,s.get(e),e)}))}return s.prototype.observe=function(i){if(i instanceof window.Element){r.has(i)||(r.set(i,new Set),o.add(i),a.set(i,window.getComputedStyle(i)));var n=r.get(i);n.has(this)||n.add(this),cancelAnimationFrame(t),t=requestAnimationFrame(d)}},s.prototype.unobserve=function(i){if(i instanceof window.Element&&r.has(i)){var n=r.get(i);n.has(this)&&(n.delete(this),n.size||(r.delete(i),o.delete(i))),n.size||r.delete(i),o.size||cancelAnimationFrame(t)}},A.DOMRectReadOnly=c,A.ResizeObserver=s,A.ResizeObserverEntry=h,A}; // eslint-disable-line
 mpl.toolbar_items = [["Home", "Reset original view", "fa fa-home icon-home", "home"], ["Back", "Back to previous view", "fa fa-arrow-left icon-arrow-left", "back"], ["Forward", "Forward to next view", "fa fa-arrow-right icon-arrow-right", "forward"], ["", "", "", ""], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "fa fa-arrows icon-move", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis, CTRL fixes aspect", "fa fa-square-o icon-check-empty", "zoom"], ["", "", "", ""], ["Download", "Download plot", "fa fa-floppy-o icon-save", "download"]];
 
-mpl.extensions = ["eps", "jpeg", "pdf", "png", "ps", "raw", "svg", "tif"];
+mpl.extensions = ["eps", "jpeg", "pgf", "pdf", "png", "ps", "raw", "svg", "tif"];
 
 mpl.default_extension = "png";/* global mpl */
 
@@ -3525,6 +3589,19 @@ var comm_websocket_adapter = function (comm) {
     // object with the appropriate methods. Currently this is a non binary
     // socket, so there is still some room for performance tuning.
     var ws = {};
+
+    ws.binaryType = comm.kernel.ws.binaryType;
+    ws.readyState = comm.kernel.ws.readyState;
+    function updateReadyState(_event) {
+        if (comm.kernel.ws) {
+            ws.readyState = comm.kernel.ws.readyState;
+        } else {
+            ws.readyState = 3; // Closed state.
+        }
+    }
+    comm.kernel.ws.addEventListener('open', updateReadyState);
+    comm.kernel.ws.addEventListener('close', updateReadyState);
+    comm.kernel.ws.addEventListener('error', updateReadyState);
 
     ws.close = function () {
         comm.close();
@@ -3536,8 +3613,14 @@ var comm_websocket_adapter = function (comm) {
     // Register the callback with on_msg.
     comm.on_msg(function (msg) {
         //console.log('receiving', msg['content']['data'], msg);
+        var data = msg['content']['data'];
+        if (data['blob'] !== undefined) {
+            data = {
+                data: new Blob(msg['buffers'], { type: data['blob'] }),
+            };
+        }
         // Pass the mpl event to the overridden (by mpl) onmessage function.
-        ws.onmessage(msg['content']['data']);
+        ws.onmessage(data);
     });
     return ws;
 };
@@ -3779,7 +3862,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='56ccfbe3-b25d-4cae-823c-d0f88528d4df'></div></div></div>
+</script><div class="output text_html"><div id='4621a26d-16fd-4c72-acc1-63b84e6e8caf'></div></div></div>
 </div>
 <p>Note that each parameter of an independent variable has an associated confidence interval.</p>
 <p>If a coefficient is not distinguishable from zero, then we cannot assume that there is any relationship between the independent variable and the observations.</p>
@@ -3865,8 +3948,8 @@ Parameters: [ 1.25672537e+01 -3.83208841e+00 -2.41967305e+00  2.01431564e+00
 Dep. Variable:                      y   R-squared (uncentered):                   0.965
 Model:                            OLS   Adj. R-squared (uncentered):              0.963
 Method:                 Least Squares   F-statistic:                              437.1
-Date:                Fri, 26 Nov 2021   Prob (F-statistic):                    2.38e-66
-Time:                        13:54:29   Log-Likelihood:                         -473.32
+Date:                Mon, 29 Nov 2021   Prob (F-statistic):                    2.38e-66
+Time:                        11:29:37   Log-Likelihood:                         -473.32
 No. Observations:                 100   AIC:                                      958.6
 Df Residuals:                      94   BIC:                                      974.3
 Df Model:                           6                                                  
@@ -4037,6 +4120,12 @@ Ames, Iowa</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
+  x = pd.concat(x[::order], 1)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4066,8 +4155,8 @@ Ames, Iowa</p>
 Dep. Variable:                      y   R-squared:                       0.759
 Model:                            OLS   Adj. R-squared:                  0.757
 Method:                 Least Squares   F-statistic:                     325.5
-Date:                Fri, 26 Nov 2021   Prob (F-statistic):          1.74e-218
-Time:                        13:54:29   Log-Likelihood:                -8746.5
+Date:                Mon, 29 Nov 2021   Prob (F-statistic):          1.74e-218
+Time:                        11:29:37   Log-Likelihood:                -8746.5
 No. Observations:                 730   AIC:                         1.751e+04
 Df Residuals:                     722   BIC:                         1.755e+04
 Df Model:                           7                                         
@@ -4182,16 +4271,36 @@ strong multicollinearity or other numerical problems.
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">Dimensionality Reduction and PCA – SVD II</a>
-    <a class='right-next' id="next-link" href="18-Regression-II-Logistic.html" title="next page">Logistic Regression</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Dimensionality Reduction and PCA – SVD II</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="18-Regression-II-Logistic.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Logistic Regression</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
