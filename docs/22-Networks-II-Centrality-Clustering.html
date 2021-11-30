@@ -984,13 +984,28 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 <p>Now let us think about an <span class="math notranslate nohighlight">\(n\)</span>-component vector <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}^n\)</span> as an <strong>assignment of values</strong> to nodes in the graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <p>For example, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could encode node “importance” or “strength” or even a more concrete notion like “temperature” or “altitude.”</p>
-<p>Then here is an amazing fact about the Laplacian of <span class="math notranslate nohighlight">\(G\)</span>. It’s easy to prove but we won’t do that here.</p>
+<p>Then here is an amazing fact about the Laplacian of <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>(For a proof you can see the notes.)</p>
 <p>The quadratic form</p>
 <div class="math notranslate nohighlight">
 \[ \mathbf{x}^TL\mathbf{x}\]</div>
 <p>is exactly the same as</p>
 <div class="math notranslate nohighlight">
 \[  \sum_{(i,j)\in E} (x_i - x_j)^2 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To see that</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{x}^TL\mathbf{x} = \sum_{(i,j)\in E} (x_i - x_j)^2, \]</div>
+<p>first consider <span class="math notranslate nohighlight">\(\mathbf{x}^TL\mathbf{x}\)</span>.  Writing out the quadratic form explicitly, we have that</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{x}^TL\mathbf{x} = \sum_{i, j} L_{ij}x_i x_j. \]</div>
+<p>Now, taking into account the values in <span class="math notranslate nohighlight">\(L\)</span>, we see that in the sum we will have the term <span class="math notranslate nohighlight">\(d_i x_i^2\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>, and also 2 terms of <span class="math notranslate nohighlight">\(-x_ix_j\)</span> whenever <span class="math notranslate nohighlight">\((i,j)\in E\)</span>.</p>
+<p>Turning to</p>
+<div class="math notranslate nohighlight">
+\[\sum_{(i,j)\in E} (x_i - x_j)^2 = \sum_{(i,j)\in E} x_i^2 - 2x_ix_j + x_j^2, \]</div>
+<p>we have the same set of terms in the sum.</p>
+</div>
 <p>That is, the quadratic form <span class="math notranslate nohighlight">\( \mathbf{x}^TL\mathbf{x}\)</span> is the sum of squared differences of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> <strong>over the edges in <span class="math notranslate nohighlight">\(G\)</span>.</strong></p>
 <p>In other words, “When nodes have the values in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, how much do <strong>adjacent</strong> nodes vary?”</p>
 <p>Now, let’s think about vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that <strong>minimize</strong> the differences over the edges in the graph.</p>
@@ -1012,13 +1027,16 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 <p>Well, what do we know about <span class="math notranslate nohighlight">\(L\)</span>?</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>symmetric.</strong>  Therefore the eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> are orthogonal and its eigenvalues are real.</p></li>
-<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.  (For a proof see the notes.)</p></li>
 </ol>
 <p>We can order the eigenvalues from largest to smallest <span class="math notranslate nohighlight">\(\lambda_n  \geq \dots \geq \lambda_2 \geq \lambda_1 \geq 0.\)</span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>How do we know that <span class="math notranslate nohighlight">\(L\)</span> is positive semidefinite?</p>
 <p>Consider <span class="math notranslate nohighlight">\( \sum_{(i,j)\in E} (x_i - x_j)^2.\)</span></p>
 <p>This is always a nonnegative quantity.</p>
-<p>So <span class="math notranslate nohighlight">\(\mathbf{x}^T L\mathbf{x} \geq 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is the definition of positive-semidefiniteness.</p>
+<p>So <span class="math notranslate nohighlight">\(\mathbf{x}^T L\mathbf{x} \geq 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is in fact the definition of positive-semidefiniteness.</p>
+</div>
 <p>Next, let’s assume that <span class="math notranslate nohighlight">\(G\)</span> is connected.</p>
 <p>Then <span class="math notranslate nohighlight">\(L\)</span> has a single eigenvalue of value <span class="math notranslate nohighlight">\(\lambda_1 = 0\)</span>.   The corresponding eigenvector is <span class="math notranslate nohighlight">\(\mathbf{w}_1 = \mathbf{1} = [1, 1, 1, \dots]^T\)</span>.</p>
 <p>This is easily seen:</p>
@@ -1071,7 +1089,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_110_0.png" src="_images/22-Networks-II-Centrality-Clustering_110_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_111_0.png" src="_images/22-Networks-II-Centrality-Clustering_111_0.png" />
 </div>
 </div>
 <p>So what is the difference between the spectral layout and the spring layout?</p>
@@ -1113,7 +1131,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_117_0.png" src="_images/22-Networks-II-Centrality-Clustering_117_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_118_0.png" src="_images/22-Networks-II-Centrality-Clustering_118_0.png" />
 </div>
 </div>
 <p>Interestingly, this is almost the same as the <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut  based on the president and instructor!</p>
@@ -1155,7 +1173,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_123_0.png" src="_images/22-Networks-II-Centrality-Clustering_123_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_124_0.png" src="_images/22-Networks-II-Centrality-Clustering_124_0.png" />
 </div>
 </div>
 <p>Now, the key idea is that using spectral layout, we have placed nodes into a Euclidean space.</p>
@@ -1177,7 +1195,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_125_0.png" src="_images/22-Networks-II-Centrality-Clustering_125_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_126_0.png" src="_images/22-Networks-II-Centrality-Clustering_126_0.png" />
 </div>
 </div>
 <p>Now the above plot shows that many clusters are well-separated in this space, but some still overlap.</p>
@@ -1256,7 +1274,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_129_0.png" src="_images/22-Networks-II-Centrality-Clustering_129_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_130_0.png" src="_images/22-Networks-II-Centrality-Clustering_130_0.png" />
 </div>
 </div>
 <p>This is pretty good, but we can see that in some cases the clustering is not able to separate clusters that overlap in the visualization.</p>
@@ -1320,7 +1338,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_132_0.png" src="_images/22-Networks-II-Centrality-Clustering_132_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_133_0.png" src="_images/22-Networks-II-Centrality-Clustering_133_0.png" />
 </div>
 </div>
 <p>We can see visually that using 3 dimensions is giving us a better clustering than 2 dimensions.</p>
@@ -1359,7 +1377,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_135_0.png" src="_images/22-Networks-II-Centrality-Clustering_135_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_136_0.png" src="_images/22-Networks-II-Centrality-Clustering_136_0.png" />
 </div>
 </div>
 <p>Based on this plot, it looks like the football graph is best described as about six-dimensional.</p>
