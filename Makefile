@@ -14,3 +14,6 @@ pushbook:
 	git add docs
 	git commit -m 'book update'
 	git push
+
+requirements.txt: requirements.in
+	pip-compile

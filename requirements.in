@@ -12,3 +12,7 @@ networkx
 pandas_datareader 
 qrcode
 kaggle
+functools
+requests
+pydotplus
+pip-tools
