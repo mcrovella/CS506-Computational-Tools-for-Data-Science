@@ -1,3 +1,5 @@
+IMAGE:=mcrovella/bu-cs-basic-book-dev
+TAG?=latest
 
 .PHONY: book
 
@@ -17,3 +19,4 @@ pushbook:
 
 requirements.txt: requirements.in
 	pip-compile
+
