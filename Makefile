@@ -40,3 +40,7 @@ run: PORT?=8888
 run: ## start a jupyter classic notebook server container instance 
 	docker run -it --rm -p $(PORT):8888 $(INAME):$(TAG) $(ARGS) 
 
+push: DARGS?=
+push: INAME?=$(IMAGE)
+push: ## push base image
+	docker push $(INAME):$(TAG)
