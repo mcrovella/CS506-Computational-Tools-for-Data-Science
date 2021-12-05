@@ -1,5 +1,6 @@
 IMAGE:=mcrovella/cs506-lectures
 TAG?=latest
+CONTNAME:=cs506
 
 # force no caching for docker builds
 #DCACHING=--no-cache
@@ -31,16 +32,25 @@ help:
 
 build: DARGS?=
 build: INAME=$(IMAGE)
-build: ## Make the base image
+build: ## Make the container image
 	docker build $(DARGS) $(DCACHING) --rm --force-rm -t $(INAME):$(TAG) .
 
+# container will be removed on exit/stop -- ephemeral
 run: ARGS?=
 run: INAME=$(IMAGE)
 run: PORT?=8888
-run: ## start a jupyter classic notebook server container instance 
-	docker run -it --rm -p $(PORT):8888 $(INAME):$(TAG) $(ARGS) 
+run: ## create & run a jupyter notebook server container instance - ephemeral
+	docker run -it --rm --name $(CONTNAME) -p $(PORT):8888 $(INAME):$(TAG) $(ARGS)
+
+# these can be managed via: "docker stop cs506", "docker start cs506"
+# and contents will be persistent
+runkeep: ARGS?=
+runkeep: INAME=$(IMAGE)
+runkeep: PORT?=8888
+runkeep: ## create a jupyter notebook server container instance - persistent
+	docker run -it --name $(CONTNAME) -p $(PORT):8888 $(INAME):$(TAG) $(ARGS) 
 
 push: DARGS?=
 push: INAME?=$(IMAGE)
-push: ## push base image
+push: ## push container image to dockerhub
 	docker push $(INAME):$(TAG)
