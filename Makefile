@@ -1,6 +1,9 @@
 IMAGE:=mcrovella/cs506-lectures
 TAG?=latest
 
+# force no caching for docker builds
+#DCACHING=--no-cache
+
 .PHONY: book help
 
 book:
@@ -26,4 +29,14 @@ help:
 # http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+build: DARGS?=
+build: INAME=$(IMAGE)
+build: ## Make the base image
+	docker build $(DARGS) $(DCACHING) --rm --force-rm -t $(INAME):$(TAG) .
+
+run: ARGS?=
+run: INAME=$(IMAGE)
+run: PORT?=8888
+run: ## start a jupyter classic notebook server container instance 
+	docker run -it --rm -p $(PORT):8888 $(INAME):$(TAG) $(ARGS) 
 
