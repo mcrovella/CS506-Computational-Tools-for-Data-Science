@@ -24,6 +24,7 @@ pushbook: ## publish the last compiled book
 	git push
 
 requirements.txt: requirements.in
+requirements.txt: ## compile requirements.txt from requirements.in
 	pip-compile
 
 help:

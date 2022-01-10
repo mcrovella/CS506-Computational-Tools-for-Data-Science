@@ -188,8 +188,10 @@ latexcodec==2.0.1
     # via pybtex
 linkify-it-py==1.0.2
     # via jupyter-book
-lxml==4.6.4
-    # via pandas-datareader
+lxml==4.7.1
+    # via
+    #   -r requirements.in
+    #   pandas-datareader
 markdown-it-py==1.1.0
     # via
     #   jupytext
