@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,24 +33,25 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gradient Descent" href="23-Gradient-Descent.html" />
@@ -73,10 +74,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -86,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -95,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -127,7 +124,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Clustering
  </span>
@@ -162,7 +159,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Classification
  </span>
@@ -192,7 +189,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -209,7 +206,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Regression
  </span>
@@ -231,7 +228,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -356,7 +353,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#centrality">
@@ -462,7 +459,7 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="network-centrality-and-clustering">
+<div class="section" id="network-centrality-and-clustering">
 <h1>Network Centrality and Clustering<a class="headerlink" href="#network-centrality-and-clustering" title="Permalink to this headline">¶</a></h1>
 <p>Now we turn to two important concepts in the analysis of networks:</p>
 <ul class="simple">
@@ -839,12 +836,7 @@
 <!--     Alexander Schrijver in Math Programming, 91: 3, 2002. -->
 <center>
 <a class="reference internal image-reference" href="_images/L23-max-flow-soviet-rail-1955.png"><img alt="_images/L23-max-flow-soviet-rail-1955.png" src="_images/L23-max-flow-soviet-rail-1955.png" style="width: 75%;" /></a>
-</center> <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For an interesting historical perspective on the min-cut problem and its relation to the Cold War, see
-<a class="reference external" href="https://link.springer.com/article/10.1007%2Fs101070100259">“On the history of the transportation and maximum flow problems,”</a> by Alexander Schrijver, in Mathematical Programming 91.3 (2002): 437-445.</p>
-</div>
-<p>A min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut problem is as follows.</p>
+</center> <p>A min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut problem is as follows.</p>
 <p>We are given a weighted graph <span class="math notranslate nohighlight">\(G = (V,E)\)</span>.</p>
 <p>An <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut <span class="math notranslate nohighlight">\(C\)</span> of <span class="math notranslate nohighlight">\(G\)</span> is a partition of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\((U, V-U)\)</span> such that <span class="math notranslate nohighlight">\(s \in U\)</span> and <span class="math notranslate nohighlight">\(t \in V-U\)</span>.</p>
 <p>The <strong>cost</strong> of a cut is the total weight of the edges that go between the two parts:</p>
@@ -874,7 +866,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_68_0.png" src="_images/22-Networks-II-Centrality-Clustering_68_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_67_0.png" src="_images/22-Networks-II-Centrality-Clustering_67_0.png" />
 </div>
 </div>
 <p>As mentioned, when Wayne Zachary studied the club, a conflict arose between the instructor and the president (nodes 0 and 33).</p>
@@ -896,7 +888,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_71_0.png" src="_images/22-Networks-II-Centrality-Clustering_71_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_70_0.png" src="_images/22-Networks-II-Centrality-Clustering_70_0.png" />
 </div>
 </div>
 </div>
@@ -925,7 +917,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_76_0.png" src="_images/22-Networks-II-Centrality-Clustering_76_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_75_0.png" src="_images/22-Networks-II-Centrality-Clustering_75_0.png" />
 </div>
 </div>
 <p>This is in fact the minimum cut: node 11 only has one edge to the rest of the graph, so the min cut is 1.</p>
@@ -979,33 +971,18 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_91_0.png" src="_images/22-Networks-II-Centrality-Clustering_91_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_90_0.png" src="_images/22-Networks-II-Centrality-Clustering_90_0.png" />
 </div>
 </div>
 <p>Now let us think about an <span class="math notranslate nohighlight">\(n\)</span>-component vector <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}^n\)</span> as an <strong>assignment of values</strong> to nodes in the graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <p>For example, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could encode node “importance” or “strength” or even a more concrete notion like “temperature” or “altitude.”</p>
-<p>Then here is an amazing fact about the Laplacian of <span class="math notranslate nohighlight">\(G\)</span>.</p>
-<p>(For a proof you can see the notes.)</p>
+<p>Then here is an amazing fact about the Laplacian of <span class="math notranslate nohighlight">\(G\)</span>. It’s easy to prove but we won’t do that here.</p>
 <p>The quadratic form</p>
 <div class="math notranslate nohighlight">
 \[ \mathbf{x}^TL\mathbf{x}\]</div>
 <p>is exactly the same as</p>
 <div class="math notranslate nohighlight">
 \[  \sum_{(i,j)\in E} (x_i - x_j)^2 \]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To see that</p>
-<div class="math notranslate nohighlight">
-\[ \mathbf{x}^TL\mathbf{x} = \sum_{(i,j)\in E} (x_i - x_j)^2, \]</div>
-<p>first consider <span class="math notranslate nohighlight">\(\mathbf{x}^TL\mathbf{x}\)</span>.  Writing out the quadratic form explicitly, we have that</p>
-<div class="math notranslate nohighlight">
-\[ \mathbf{x}^TL\mathbf{x} = \sum_{i, j} L_{ij}x_i x_j. \]</div>
-<p>Now, taking into account the values in <span class="math notranslate nohighlight">\(L\)</span>, we see that in the sum we will have the term <span class="math notranslate nohighlight">\(d_i x_i^2\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>, and also 2 terms of <span class="math notranslate nohighlight">\(-x_ix_j\)</span> whenever <span class="math notranslate nohighlight">\((i,j)\in E\)</span>.</p>
-<p>Turning to</p>
-<div class="math notranslate nohighlight">
-\[\sum_{(i,j)\in E} (x_i - x_j)^2 = \sum_{(i,j)\in E} x_i^2 - 2x_ix_j + x_j^2, \]</div>
-<p>we have the same set of terms in the sum.</p>
-</div>
 <p>That is, the quadratic form <span class="math notranslate nohighlight">\( \mathbf{x}^TL\mathbf{x}\)</span> is the sum of squared differences of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> <strong>over the edges in <span class="math notranslate nohighlight">\(G\)</span>.</strong></p>
 <p>In other words, “When nodes have the values in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, how much do <strong>adjacent</strong> nodes vary?”</p>
 <p>Now, let’s think about vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that <strong>minimize</strong> the differences over the edges in the graph.</p>
@@ -1027,16 +1004,13 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 <p>Well, what do we know about <span class="math notranslate nohighlight">\(L\)</span>?</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>symmetric.</strong>  Therefore the eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> are orthogonal and its eigenvalues are real.</p></li>
-<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.  (For a proof see the notes.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.</p></li>
 </ol>
 <p>We can order the eigenvalues from largest to smallest <span class="math notranslate nohighlight">\(\lambda_n  \geq \dots \geq \lambda_2 \geq \lambda_1 \geq 0.\)</span></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
 <p>How do we know that <span class="math notranslate nohighlight">\(L\)</span> is positive semidefinite?</p>
 <p>Consider <span class="math notranslate nohighlight">\( \sum_{(i,j)\in E} (x_i - x_j)^2.\)</span></p>
 <p>This is always a nonnegative quantity.</p>
-<p>So <span class="math notranslate nohighlight">\(\mathbf{x}^T L\mathbf{x} \geq 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is in fact the definition of positive-semidefiniteness.</p>
-</div>
+<p>So <span class="math notranslate nohighlight">\(\mathbf{x}^T L\mathbf{x} \geq 0\)</span> for all <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which is the definition of positive-semidefiniteness.</p>
 <p>Next, let’s assume that <span class="math notranslate nohighlight">\(G\)</span> is connected.</p>
 <p>Then <span class="math notranslate nohighlight">\(L\)</span> has a single eigenvalue of value <span class="math notranslate nohighlight">\(\lambda_1 = 0\)</span>.   The corresponding eigenvector is <span class="math notranslate nohighlight">\(\mathbf{w}_1 = \mathbf{1} = [1, 1, 1, \dots]^T\)</span>.</p>
 <p>This is easily seen:</p>
@@ -1089,7 +1063,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_111_0.png" src="_images/22-Networks-II-Centrality-Clustering_111_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_109_0.png" src="_images/22-Networks-II-Centrality-Clustering_109_0.png" />
 </div>
 </div>
 <p>So what is the difference between the spectral layout and the spring layout?</p>
@@ -1131,7 +1105,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_118_0.png" src="_images/22-Networks-II-Centrality-Clustering_118_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_116_0.png" src="_images/22-Networks-II-Centrality-Clustering_116_0.png" />
 </div>
 </div>
 <p>Interestingly, this is almost the same as the <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut  based on the president and instructor!</p>
@@ -1173,7 +1147,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_124_0.png" src="_images/22-Networks-II-Centrality-Clustering_124_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_122_0.png" src="_images/22-Networks-II-Centrality-Clustering_122_0.png" />
 </div>
 </div>
 <p>Now, the key idea is that using spectral layout, we have placed nodes into a Euclidean space.</p>
@@ -1195,7 +1169,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_126_0.png" src="_images/22-Networks-II-Centrality-Clustering_126_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_124_0.png" src="_images/22-Networks-II-Centrality-Clustering_124_0.png" />
 </div>
 </div>
 <p>Now the above plot shows that many clusters are well-separated in this space, but some still overlap.</p>
@@ -1274,7 +1248,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_130_0.png" src="_images/22-Networks-II-Centrality-Clustering_130_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_128_0.png" src="_images/22-Networks-II-Centrality-Clustering_128_0.png" />
 </div>
 </div>
 <p>This is pretty good, but we can see that in some cases the clustering is not able to separate clusters that overlap in the visualization.</p>
@@ -1338,7 +1312,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_133_0.png" src="_images/22-Networks-II-Centrality-Clustering_133_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_131_0.png" src="_images/22-Networks-II-Centrality-Clustering_131_0.png" />
 </div>
 </div>
 <p>We can see visually that using 3 dimensions is giving us a better clustering than 2 dimensions.</p>
@@ -1377,7 +1351,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_136_0.png" src="_images/22-Networks-II-Centrality-Clustering_136_0.png" />
+<img alt="_images/22-Networks-II-Centrality-Clustering_134_0.png" src="_images/22-Networks-II-Centrality-Clustering_134_0.png" />
 </div>
 </div>
 <p>Based on this plot, it looks like the football graph is best described as about six-dimensional.</p>
@@ -1421,36 +1395,16 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="21-Networks-I.html" title="previous page">Introduction to Networks</a>
+    <a class='right-next' id="next-link" href="23-Gradient-Descent.html" title="next page">Gradient Descent</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="21-Networks-I.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction to Networks</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="23-Gradient-Descent.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Gradient Descent</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         

@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,17 +33,18 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -71,10 +72,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -84,7 +81,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -93,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -125,7 +122,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Clustering
  </span>
@@ -160,7 +157,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Classification
  </span>
@@ -190,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -207,7 +204,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Regression
  </span>
@@ -229,7 +226,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -354,7 +351,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#critical-course-tools">
@@ -431,7 +428,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="essential-tools-git-and-jupyter">
+  <div class="section" id="essential-tools-git-and-jupyter">
 <h1>Essential Tools: Git and Jupyter<a class="headerlink" href="#essential-tools-git-and-jupyter" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -441,6 +438,20 @@
 <span class="o">%</span><span class="k">run</span> -i ln_preamble.py
 <span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">~/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Teaching</span><span class="o">/</span><span class="n">CS506</span><span class="o">/</span><span class="n">CS506</span><span class="o">-</span><span class="n">Computational</span><span class="o">-</span><span class="n">Tools</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">Data</span><span class="o">-</span><span class="n">Science</span><span class="o">/</span><span class="n">ln_preamble</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">api_url</span><span class="o">=</span><span class="n">localhost_url</span> <span class="o">+</span> <span class="s1">&#39;api/&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">api_term_url</span><span class="o">=</span><span class="n">api_url</span> <span class="o">+</span> <span class="s1">&#39;terminals&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">26</span> <span class="n">api_token</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="c1"># urls used as relative to my server</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="n">base_url</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;base_url&#39;</span><span class="p">]</span>
+
+<span class="ne">KeyError</span>: &#39;token&#39;
 </pre></div>
 </div>
 </div>
@@ -734,60 +745,61 @@ $ cd cs506
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;.git&#39;,
- &#39;01-Intro-to-Python.ipynb&#39;,
- &#39;.ipynb_checkpoints&#39;,
- &#39;_build&#39;,
- &#39;02A-Git-Jupyter.ipynb&#39;,
- &#39;02B-Pandas.ipynb&#39;,
- &#39;ln_preamble.py&#39;,
- &#39;03-Probability-and-Statistics-Refresher.ipynb&#39;,
- &#39;example.txt&#39;,
- &#39;04-Linear-Algebra-Refresher.ipynb&#39;,
- &#39;img.jpg&#39;,
- &#39;05-Distances-Timeseries.ipynb&#39;,
- &#39;__pycache__&#39;,
- &#39;06-Clustering-I-kmeans.ipynb&#39;,
- &#39;.github&#39;,
- &#39;09-Clustering-IV-GMM-EM.ipynb&#39;,
- &#39;13-Learning-From-Data.ipynb&#39;,
- &#39;_toc.yml&#39;,
- &#39;07-Clustering-II-in-practice.ipynb&#39;,
- &#39;15-Classification-II-kNN.ipynb&#39;,
- &#39;_config.yml&#39;,
- &#39;10-Low-Rank-and-SVD.ipynb&#39;,
- &#39;Resources&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;14-Classification-I-Decision-Trees.ipynb&#39;,
  &#39;17-Regression-I-Linear.ipynb&#39;,
+ &#39;03-Probability-and-Statistics-Refresher.ipynb&#39;,
+ &#39;laUtilities.py&#39;,
+ &#39;23-Networks-II-Centrality.ipynb&#39;,
+ &#39;obsolete&#39;,
+ &#39;amazon-recs-dense-submatrix.csv.gz&#39;,
+ &#39;06-Clustering-I-kmeans.ipynb&#39;,
+ &#39;yahoo_data.csv&#39;,
+ &#39;figs&#39;,
+ &#39;02A-Git-Jupyter.ipynb&#39;,
+ &#39;Makefile&#39;,
+ &#39;04-Linear-Algebra-Refresher.ipynb&#39;,
+ &#39;Resources&#39;,
  &#39;18-Regression-II-Logistic.ipynb&#39;,
- &#39;11-Dimensionality-Reduction-SVD-II.ipynb&#39;,
+ &#39;01-Intro-to-Python.ipynb&#39;,
+ &#39;img.jpg&#39;,
+ &#39;02B-Pandas.ipynb&#39;,
+ &#39;lmafit.py&#39;,
+ &#39;git-demo&#39;,
+ &#39;Old&#39;,
+ &#39;__pycache__&#39;,
+ &#39;docs&#39;,
+ &#39;09-Clustering-IV-GMM-EM.ipynb&#39;,
+ &#39;10-Low-Rank-and-SVD.ipynb&#39;,
+ &#39;README.md&#39;,
+ &#39;22-Networks-II-Centrality-Clustering.ipynb&#39;,
+ &#39;als.py&#39;,
+ &#39;19-Regression-III-More-Linear.ipynb&#39;,
+ &#39;_toc.yml&#39;,
+ &#39;15-Classification-II-kNN.ipynb&#39;,
+ &#39;24-Networks-III-Clustering.ipynb&#39;,
+ &#39;common.py&#39;,
+ &#39;13-Learning-From-Data.ipynb&#39;,
+ &#39;07-Clustering-II-in-practice.ipynb&#39;,
  &#39;08-Clustering-III-hierarchical.ipynb&#39;,
- &#39;12-Anomaly-Detection-SVD-III.ipynb&#39;,
+ &#39;_build&#39;,
+ &#39;_config.yml&#39;,
+ &#39;.github&#39;,
+ &#39;16-Classification-III-NB-SVM.ipynb&#39;,
+ &#39;ln_preamble.py&#39;,
+ &#39;example.txt&#39;,
  &#39;20-Recommender-Systems.ipynb&#39;,
  &#39;MF.py&#39;,
- &#39;14-Classification-I-Decision-Trees.ipynb&#39;,
- &#39;als.py&#39;,
- &#39;lmafit.py&#39;,
- &#39;21-Networks-I.ipynb&#39;,
- &#39;16-Classification-III-NB-SVM.ipynb&#39;,
- &#39;19-Regression-III-More-Linear.ipynb&#39;,
- &#39;amazon-recs-dense-submatrix.csv.gz&#39;,
- &#39;sample.csv&#39;,
- &#39;test.csv&#39;,
- &#39;train.csv&#39;,
- &#39;23-Gradient-Descent.ipynb&#39;,
- &#39;laUtilities.py&#39;,
- &#39;22-Networks-II-Centrality-Clustering.ipynb&#39;,
- &#39;requirements.in&#39;,
- &#39;Makefile&#39;,
- &#39;README.md&#39;,
- &#39;yahoo_data.csv&#39;,
- &#39;common.py&#39;,
- &#39;data&#39;,
- &#39;docs&#39;,
- &#39;figs&#39;,
+ &#39;.ipynb_checkpoints&#39;,
+ &#39;05-Distances-Timeseries.ipynb&#39;,
+ &#39;.git&#39;,
  &#39;landing-page.md&#39;,
- &#39;slideUtilities.py&#39;,
- &#39;obsolete&#39;]
+ &#39;data&#39;,
+ &#39;tmp&#39;,
+ &#39;12-Anomaly-Detection-SVD-III.ipynb&#39;,
+ &#39;11-Dimensionality-Reduction-SVD-II.ipynb&#39;,
+ &#39;requirements.in&#39;,
+ &#39;21-Networks-I.ipynb&#39;,
+ &#39;slideUtilities.py&#39;]
 </pre></div>
 </div>
 </div>
@@ -826,36 +838,16 @@ $ cd cs506
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="01-Intro-to-Python.html" title="previous page">Introduction to Python</a>
+    <a class='right-next' id="next-link" href="02B-Pandas.html" title="next page">Essential Tools: Pandas</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="01-Intro-to-Python.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction to Python</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="02B-Pandas.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Essential Tools: Pandas</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         

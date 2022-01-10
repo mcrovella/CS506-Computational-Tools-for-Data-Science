@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,24 +33,25 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Regression" href="17-Regression-I-Linear.html" />
@@ -73,10 +74,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -86,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -95,7 +92,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -127,7 +124,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Clustering
  </span>
@@ -162,7 +159,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Classification
  </span>
@@ -192,7 +189,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -209,7 +206,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Regression
  </span>
@@ -231,7 +228,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -356,7 +353,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#uses-of-pca-svd">
@@ -427,7 +424,7 @@
 </div>
 </div>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dimensionality-reduction-and-pca-svd-ii">
+<div class="section" id="dimensionality-reduction-and-pca-svd-ii">
 <h1>Dimensionality Reduction and PCA – SVD II<a class="headerlink" href="#dimensionality-reduction-and-pca-svd-ii" title="Permalink to this headline">¶</a></h1>
 <p>In the last lecture we learned about the SVD as a tool for constructing low-rank matrices.</p>
 <p>Today we’ll look at it as a way to transform our data objects.</p>
@@ -741,6 +738,77 @@ Silhouette Score is 0.009438086458856245
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="n">f783b427bf84</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
+<span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-13-f783b427bf84&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
+<span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
+<span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
+<span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">     resource_not_found = &#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#39; % (sep, msg, sep)</span>
+<span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">     raise LookupError(resource_not_found)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2"> </span>
+
+<span class="ne">LookupError</span>: 
+<span class="s2">**********************************************************************</span>
+<span class="s2">  Resource punkt not found.</span>
+<span class="s2">  Please use the NLTK Downloader to obtain the resource:</span>
+
+<span class="s2">  &gt;&gt;&gt; import nltk</span>
+<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;punkt&#39;)</span>
+<span class="s2">  </span>
+<span class="s2">  For more information see: https://www.nltk.org/data.html</span>
+
+<span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
+
+<span class="s2">  Searched in:</span>
+<span class="s2">    - &#39;/Users/markcrovella/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/usr/local/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;&#39;</span>
+<span class="s2">**********************************************************************</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>And now let’s see how well we can cluster on the stemmed data.</p>
 <div class="cell docutils container">
@@ -767,8 +835,8 @@ Silhouette Score is 0.009438086458856245
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.844864300823809
-Silhouette Score is 0.010807547769179032
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.8162962282193574
+Silhouette Score is 0.009438086458856245
 </pre></div>
 </div>
 </div>
@@ -853,123 +921,123 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.007831</td>
-      <td>-0.012323</td>
-      <td>-0.000581</td>
-      <td>-0.005558</td>
-      <td>-0.001032</td>
-      <td>-0.002075</td>
-      <td>-0.002008</td>
-      <td>-0.005575</td>
-      <td>-0.001247</td>
-      <td>-0.000813</td>
+      <td>-0.000587</td>
+      <td>-0.014010</td>
+      <td>-0.001577</td>
+      <td>0.001848</td>
+      <td>0.000337</td>
+      <td>0.000398</td>
+      <td>0.000118</td>
+      <td>-0.005458</td>
+      <td>0.001272</td>
+      <td>-0.002208</td>
       <td>...</td>
-      <td>0.000028</td>
-      <td>0.000025</td>
-      <td>0.000200</td>
-      <td>0.000025</td>
-      <td>0.000128</td>
-      <td>0.000207</td>
-      <td>0.000087</td>
-      <td>0.000150</td>
-      <td>0.000113</td>
-      <td>-0.000534</td>
+      <td>6.000575e-05</td>
+      <td>5.338341e-05</td>
+      <td>0.000248</td>
+      <td>4.981051e-05</td>
+      <td>0.000188</td>
+      <td>0.000380</td>
+      <td>0.000112</td>
+      <td>0.000226</td>
+      <td>0.000177</td>
+      <td>0.000267</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.005990</td>
-      <td>0.009540</td>
-      <td>0.002089</td>
-      <td>-0.010679</td>
-      <td>-0.001646</td>
-      <td>-0.003477</td>
-      <td>-0.002687</td>
-      <td>0.002143</td>
-      <td>-0.003394</td>
-      <td>0.002458</td>
+      <td>0.009574</td>
+      <td>0.000962</td>
+      <td>-0.001112</td>
+      <td>0.015316</td>
+      <td>0.002510</td>
+      <td>0.003940</td>
+      <td>0.003854</td>
+      <td>0.002202</td>
+      <td>0.004158</td>
+      <td>-0.001409</td>
       <td>...</td>
-      <td>-0.000015</td>
+      <td>-1.661153e-07</td>
+      <td>5.545667e-07</td>
+      <td>-0.000061</td>
+      <td>2.559084e-08</td>
+      <td>-0.000035</td>
       <td>-0.000013</td>
-      <td>-0.000054</td>
-      <td>-0.000013</td>
-      <td>-0.000042</td>
-      <td>-0.000100</td>
       <td>-0.000026</td>
-      <td>-0.000064</td>
-      <td>-0.000040</td>
-      <td>-0.001041</td>
+      <td>-0.000029</td>
+      <td>-0.000031</td>
+      <td>0.001285</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.012630</td>
-      <td>-0.011904</td>
-      <td>-0.002443</td>
-      <td>0.001438</td>
-      <td>0.000439</td>
-      <td>0.000044</td>
-      <td>0.000349</td>
-      <td>-0.006817</td>
-      <td>0.000692</td>
-      <td>-0.001124</td>
+      <td>-0.013217</td>
+      <td>-0.013083</td>
+      <td>-0.002440</td>
+      <td>0.000634</td>
+      <td>0.000415</td>
+      <td>-0.000179</td>
+      <td>0.000090</td>
+      <td>-0.007515</td>
+      <td>0.000508</td>
+      <td>-0.001386</td>
       <td>...</td>
-      <td>-0.000095</td>
-      <td>-0.000086</td>
-      <td>-0.000289</td>
-      <td>-0.000087</td>
-      <td>-0.000252</td>
-      <td>-0.000576</td>
-      <td>-0.000134</td>
-      <td>-0.000293</td>
-      <td>-0.000204</td>
-      <td>-0.000013</td>
+      <td>-8.760226e-05</td>
+      <td>-7.954655e-05</td>
+      <td>-0.000286</td>
+      <td>-8.452862e-05</td>
+      <td>-0.000243</td>
+      <td>-0.000542</td>
+      <td>-0.000131</td>
+      <td>-0.000288</td>
+      <td>-0.000220</td>
+      <td>-0.000114</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.013576</td>
-      <td>0.017639</td>
-      <td>0.003552</td>
-      <td>0.001148</td>
-      <td>0.003354</td>
-      <td>-0.000410</td>
-      <td>0.000622</td>
-      <td>0.011649</td>
-      <td>0.002237</td>
-      <td>0.001969</td>
+      <td>0.011840</td>
+      <td>0.017939</td>
+      <td>0.002868</td>
+      <td>-0.003492</td>
+      <td>0.002854</td>
+      <td>-0.000352</td>
+      <td>0.000348</td>
+      <td>0.010874</td>
+      <td>0.001753</td>
+      <td>0.002283</td>
       <td>...</td>
-      <td>0.000205</td>
-      <td>0.000186</td>
-      <td>0.000486</td>
-      <td>0.000172</td>
-      <td>0.000464</td>
-      <td>0.001142</td>
-      <td>0.000220</td>
-      <td>0.000508</td>
-      <td>0.000352</td>
-      <td>0.000200</td>
+      <td>1.493999e-04</td>
+      <td>1.355876e-04</td>
+      <td>0.000397</td>
+      <td>1.348767e-04</td>
+      <td>0.000370</td>
+      <td>0.000849</td>
+      <td>0.000178</td>
+      <td>0.000410</td>
+      <td>0.000317</td>
+      <td>0.000160</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.002254</td>
-      <td>-0.004619</td>
-      <td>-0.005458</td>
-      <td>-0.001938</td>
-      <td>-0.000251</td>
-      <td>0.000689</td>
-      <td>0.000043</td>
-      <td>-0.002620</td>
-      <td>-0.000533</td>
-      <td>0.001434</td>
+      <td>-0.004125</td>
+      <td>-0.011432</td>
+      <td>-0.005841</td>
+      <td>0.005180</td>
+      <td>0.000350</td>
+      <td>0.000890</td>
+      <td>0.000504</td>
+      <td>-0.004226</td>
+      <td>0.000166</td>
+      <td>0.000814</td>
       <td>...</td>
-      <td>-0.000310</td>
-      <td>-0.000283</td>
-      <td>-0.000775</td>
-      <td>-0.000252</td>
-      <td>-0.000698</td>
-      <td>-0.001714</td>
-      <td>-0.000331</td>
-      <td>-0.000728</td>
-      <td>-0.000529</td>
-      <td>-0.000961</td>
+      <td>-2.576771e-04</td>
+      <td>-2.359208e-04</td>
+      <td>-0.000762</td>
+      <td>-2.300529e-04</td>
+      <td>-0.000645</td>
+      <td>-0.001460</td>
+      <td>-0.000311</td>
+      <td>-0.000674</td>
+      <td>-0.000551</td>
+      <td>-0.001030</td>
     </tr>
     <tr>
       <th>...</th>
@@ -996,128 +1064,128 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>...</td>
     </tr>
     <tr>
-      <th>8048</th>
-      <td>-0.001151</td>
-      <td>0.001109</td>
-      <td>0.001802</td>
-      <td>0.002160</td>
-      <td>0.002360</td>
-      <td>0.002818</td>
-      <td>-0.000346</td>
-      <td>0.003434</td>
-      <td>-0.001383</td>
-      <td>-0.000951</td>
+      <th>9404</th>
+      <td>0.000034</td>
+      <td>-0.000011</td>
+      <td>0.000298</td>
+      <td>0.000019</td>
+      <td>-0.000062</td>
+      <td>-0.000463</td>
+      <td>0.000346</td>
+      <td>0.000798</td>
+      <td>-0.000410</td>
+      <td>-0.000371</td>
       <td>...</td>
-      <td>-0.001355</td>
-      <td>-0.001920</td>
-      <td>-0.000034</td>
-      <td>-0.001106</td>
-      <td>0.000761</td>
-      <td>0.976340</td>
-      <td>-0.000040</td>
-      <td>0.000256</td>
-      <td>-0.000112</td>
-      <td>0.000471</td>
+      <td>-1.456987e-03</td>
+      <td>-2.021595e-03</td>
+      <td>0.000004</td>
+      <td>-9.918095e-04</td>
+      <td>0.000537</td>
+      <td>0.976193</td>
+      <td>-0.000067</td>
+      <td>0.000276</td>
+      <td>0.000462</td>
+      <td>0.000857</td>
     </tr>
     <tr>
-      <th>8049</th>
-      <td>0.000023</td>
-      <td>0.000196</td>
-      <td>0.000306</td>
-      <td>0.000142</td>
-      <td>-0.000234</td>
-      <td>0.000401</td>
-      <td>-0.000219</td>
-      <td>-0.000228</td>
-      <td>0.000345</td>
-      <td>-0.000031</td>
+      <th>9405</th>
+      <td>0.000064</td>
+      <td>0.000287</td>
+      <td>0.000132</td>
+      <td>-0.000169</td>
+      <td>0.000034</td>
+      <td>-0.000041</td>
+      <td>0.000002</td>
+      <td>-0.000549</td>
+      <td>0.000015</td>
+      <td>-0.000111</td>
       <td>...</td>
-      <td>0.000113</td>
-      <td>0.000101</td>
-      <td>-0.000536</td>
-      <td>-0.000145</td>
-      <td>-0.001075</td>
-      <td>-0.000107</td>
-      <td>0.999361</td>
-      <td>-0.000483</td>
-      <td>-0.000743</td>
-      <td>-0.000853</td>
+      <td>1.166735e-04</td>
+      <td>1.024712e-04</td>
+      <td>-0.000526</td>
+      <td>-1.697576e-04</td>
+      <td>-0.001129</td>
+      <td>-0.000135</td>
+      <td>0.999363</td>
+      <td>-0.000518</td>
+      <td>-0.000893</td>
+      <td>-0.000709</td>
     </tr>
     <tr>
-      <th>8050</th>
-      <td>0.000043</td>
-      <td>-0.000166</td>
-      <td>-0.000025</td>
-      <td>-0.000241</td>
-      <td>-0.000139</td>
-      <td>0.000153</td>
-      <td>-0.000372</td>
-      <td>-0.000207</td>
-      <td>0.001935</td>
-      <td>-0.001964</td>
-      <td>...</td>
-      <td>0.000258</td>
-      <td>0.000217</td>
-      <td>-0.001595</td>
-      <td>-0.000215</td>
-      <td>-0.000898</td>
-      <td>0.000213</td>
-      <td>-0.000506</td>
-      <td>0.997002</td>
-      <td>-0.001090</td>
-      <td>0.000652</td>
-    </tr>
-    <tr>
-      <th>8051</th>
-      <td>-0.000107</td>
-      <td>0.000324</td>
-      <td>0.000349</td>
-      <td>0.000016</td>
-      <td>-0.000281</td>
-      <td>0.000566</td>
-      <td>-0.000152</td>
-      <td>-0.000173</td>
-      <td>0.000697</td>
-      <td>-0.000381</td>
-      <td>...</td>
-      <td>0.000194</td>
-      <td>0.000177</td>
-      <td>-0.000629</td>
-      <td>-0.000273</td>
-      <td>-0.001195</td>
+      <th>9406</th>
+      <td>-0.000064</td>
+      <td>0.000887</td>
       <td>-0.000155</td>
-      <td>-0.000744</td>
-      <td>-0.001063</td>
-      <td>0.998756</td>
-      <td>-0.000834</td>
+      <td>-0.000570</td>
+      <td>-0.000985</td>
+      <td>-0.000018</td>
+      <td>-0.000164</td>
+      <td>-0.000529</td>
+      <td>-0.000116</td>
+      <td>-0.000117</td>
+      <td>...</td>
+      <td>2.555992e-04</td>
+      <td>2.181340e-04</td>
+      <td>-0.001565</td>
+      <td>-1.739749e-04</td>
+      <td>-0.000845</td>
+      <td>0.000159</td>
+      <td>-0.000504</td>
+      <td>0.996867</td>
+      <td>-0.001317</td>
+      <td>0.000632</td>
     </tr>
     <tr>
-      <th>8052</th>
-      <td>-0.001835</td>
-      <td>0.001323</td>
-      <td>-0.001044</td>
-      <td>-0.000361</td>
-      <td>-0.001759</td>
-      <td>0.000855</td>
-      <td>-0.000283</td>
-      <td>0.004546</td>
-      <td>-0.003147</td>
-      <td>0.000455</td>
+      <th>9407</th>
+      <td>0.000122</td>
+      <td>0.000505</td>
+      <td>0.000076</td>
+      <td>-0.000356</td>
+      <td>-0.000919</td>
+      <td>0.000010</td>
+      <td>-0.000074</td>
+      <td>-0.001135</td>
+      <td>-0.000041</td>
+      <td>-0.000211</td>
       <td>...</td>
-      <td>-0.000017</td>
-      <td>0.000006</td>
-      <td>-0.000015</td>
-      <td>-0.000978</td>
-      <td>-0.002103</td>
-      <td>0.000426</td>
-      <td>-0.000826</td>
-      <td>0.000836</td>
-      <td>-0.000775</td>
-      <td>0.978638</td>
+      <td>2.245583e-04</td>
+      <td>2.015770e-04</td>
+      <td>-0.000606</td>
+      <td>3.922154e-05</td>
+      <td>-0.002038</td>
+      <td>0.000330</td>
+      <td>-0.000893</td>
+      <td>-0.001302</td>
+      <td>0.998095</td>
+      <td>-0.000766</td>
+    </tr>
+    <tr>
+      <th>9408</th>
+      <td>-0.000286</td>
+      <td>0.001015</td>
+      <td>0.000202</td>
+      <td>-0.000390</td>
+      <td>0.000923</td>
+      <td>-0.000839</td>
+      <td>0.000787</td>
+      <td>0.001002</td>
+      <td>0.000166</td>
+      <td>-0.000365</td>
+      <td>...</td>
+      <td>-2.335799e-06</td>
+      <td>2.156592e-05</td>
+      <td>-0.000007</td>
+      <td>-1.060416e-03</td>
+      <td>-0.002182</td>
+      <td>0.000662</td>
+      <td>-0.000834</td>
+      <td>0.000638</td>
+      <td>-0.000799</td>
+      <td>0.982585</td>
     </tr>
   </tbody>
 </table>
-<p>8053 rows × 8053 columns</p>
+<p>9409 rows × 9409 columns</p>
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1133,40 +1201,40 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Principal Component 0:
-window       0.449
-file         0.266
-driver       0.190
-dos          0.168
-use          0.125
-card         0.112
-font         0.108
-ms           0.098
-problem      0.090
-program      0.088
+windows      0.352
+file         0.144
+dos          0.142
+files        0.094
+card         0.091
+driver       0.086
+mouse        0.086
+ms           0.086
+drivers      0.081
+nt           0.071
 
 Principal Component 1:
-space        0.260
-nasa         0.218
-henri        0.184
-gov          0.135
-orbit        0.134
-alaska       0.129
-access       0.129
-toronto      0.118
-launch       0.109
-digex        0.102
+team         0.150
+year         0.139
+baseball     0.135
+game         0.133
+edu          0.124
+players      0.120
+runs         0.112
+games        0.109
+jewish       0.107
+pitching     0.093
 
 Principal Component 2:
-henri        0.458
-toronto      0.364
-zoo          0.228
-edu          0.201
-spencer      0.194
-zoolog       0.184
-alaska       0.123
-work         0.112
-umd          0.096
-utzoo        0.092
+henry        0.467
+toronto      0.369
+zoo          0.232
+spencer      0.198
+edu          0.192
+zoology      0.187
+alaska       0.113
+work         0.109
+umd          0.095
+utzoo        0.094
 </pre></div>
 </div>
 </div>
@@ -1466,36 +1534,16 @@ utzoo        0.092
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="10-Low-Rank-and-SVD.html" title="previous page">Low Rank Approximation and the SVD</a>
+    <a class='right-next' id="next-link" href="17-Regression-I-Linear.html" title="next page">Linear Regression</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="10-Low-Rank-and-SVD.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Low Rank Approximation and the SVD</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="17-Regression-I-Linear.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Linear Regression</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
