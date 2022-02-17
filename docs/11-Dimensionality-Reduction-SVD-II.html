@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dimensionality Reduction and PCA – SVD II &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,33 +31,35 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Regression" href="17-Regression-I-Linear.html" />
     <link rel="prev" title="Low Rank Approximation and the SVD" href="10-Low-Rank-and-SVD.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
       
       
@@ -83,7 +89,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -92,7 +98,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -124,7 +130,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -159,7 +165,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -189,7 +195,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -206,7 +212,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -228,7 +234,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -300,7 +306,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -348,12 +354,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#uses-of-pca-svd">
@@ -405,7 +411,67 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dimensionality Reduction and PCA – SVD II</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uses-of-pca-svd">
+   Uses of PCA/SVD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-and-denoising-extended-example">
+   Visualization and Denoising – Extended Example.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-20-newsgroups">
+   Data: 20 Newsgroups
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-clustering">
+     Basic Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#improvement-stemming">
+     Improvement: Stemming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demonstrating-pca">
+   Demonstrating PCA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#denoising">
+   Denoising
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   Visualization
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="cell tag_hide-cell docutils container">
@@ -424,7 +490,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="dimensionality-reduction-and-pca-svd-ii">
+<div class="tex2jax_ignore mathjax_ignore section" id="dimensionality-reduction-and-pca-svd-ii">
 <h1>Dimensionality Reduction and PCA – SVD II<a class="headerlink" href="#dimensionality-reduction-and-pca-svd-ii" title="Permalink to this headline">¶</a></h1>
 <p>In the last lecture we learned about the SVD as a tool for constructing low-rank matrices.</p>
 <p>Today we’ll look at it as a way to transform our data objects.</p>
@@ -741,47 +807,47 @@ Silhouette Score is 0.009438086458856245
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="n">f783b427bf84</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63064</span><span class="o">/</span><span class="mf">868578767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">stemmed_data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">ignore_stopwords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>  
 <span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
 <span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
 
-<span class="nn">&lt;ipython-input-13-f783b427bf84&gt;</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
+<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63064/868578767.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">stemmed_data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">ignore_stopwords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>  
+<span class="nn">----&gt; 6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
 <span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
 
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">105</span><span class="s2">     tokenizer = load(&#39;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&#39;.format(language))</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2">     return tokenizer.tokenize(text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">106</span><span class="s2">     tokenizer = load(f&quot;tokenizers/punkt/</span><span class="si">{language}</span><span class="s2">.pickle&quot;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2">     return tokenizer.tokenize(text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2"> </span>
 
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span><span class="s2">     # Load the resource.</span>
-<span class="ne">--&gt; </span><span class="mi">868</span><span class="s2">     opened_resource = _open(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span><span class="s2">     if format == &#39;raw&#39;:</span>
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">749</span><span class="s2">     # Load the resource.</span>
+<span class="ne">--&gt; </span><span class="mi">750</span><span class="s2">     opened_resource = _open(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2">     if format == &quot;raw&quot;:</span>
 
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">991</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span><span class="s2">     if protocol is None or protocol.lower() == &#39;nltk&#39;:</span>
-<span class="ne">--&gt; </span><span class="mi">993</span><span class="s2">         return find(path_, path + [&#39;&#39;]).open()</span>
-<span class="g g-Whitespace">    </span><span class="mi">994</span><span class="s2">     elif protocol.lower() == &#39;file&#39;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">995</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span><span class="s2">     if protocol is None or protocol.lower() == &quot;nltk&quot;:</span>
+<span class="ne">--&gt; </span><span class="mi">876</span><span class="s2">         return find(path_, path + [&quot;&quot;]).open()</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span><span class="s2">     elif protocol.lower() == &quot;file&quot;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
 
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
-<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">     sep = &#39;*&#39; * 70</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">     resource_not_found = &#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&#39; % (sep, msg, sep)</span>
-<span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">     raise LookupError(resource_not_found)</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2"> </span>
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="g g-Whitespace">    </span><span class="mi">581</span><span class="s2">     sep = &quot;*&quot; * 70</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="s2">     resource_not_found = f&quot;</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="si">{msg}</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">583</span><span class="s2">     raise LookupError(resource_not_found)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span><span class="s2"> </span>
 
 <span class="ne">LookupError</span>: 
 <span class="s2">**********************************************************************</span>
@@ -797,9 +863,9 @@ Silhouette Score is 0.009438086458856245
 
 <span class="s2">  Searched in:</span>
 <span class="s2">    - &#39;/Users/markcrovella/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/opt/anaconda3/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/anaconda3/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/anaconda3/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/markcrovella/anaconda3/lib/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
@@ -926,7 +992,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>-0.001577</td>
       <td>0.001848</td>
       <td>0.000337</td>
-      <td>0.000398</td>
+      <td>3.975025e-04</td>
       <td>0.000118</td>
       <td>-0.005458</td>
       <td>0.001272</td>
@@ -950,7 +1016,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>-0.001112</td>
       <td>0.015316</td>
       <td>0.002510</td>
-      <td>0.003940</td>
+      <td>3.939858e-03</td>
       <td>0.003854</td>
       <td>0.002202</td>
       <td>0.004158</td>
@@ -974,7 +1040,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>-0.002440</td>
       <td>0.000634</td>
       <td>0.000415</td>
-      <td>-0.000179</td>
+      <td>-1.788887e-04</td>
       <td>0.000090</td>
       <td>-0.007515</td>
       <td>0.000508</td>
@@ -998,7 +1064,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>0.002868</td>
       <td>-0.003492</td>
       <td>0.002854</td>
-      <td>-0.000352</td>
+      <td>-3.521713e-04</td>
       <td>0.000348</td>
       <td>0.010874</td>
       <td>0.001753</td>
@@ -1022,7 +1088,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>-0.005841</td>
       <td>0.005180</td>
       <td>0.000350</td>
-      <td>0.000890</td>
+      <td>8.898727e-04</td>
       <td>0.000504</td>
       <td>-0.004226</td>
       <td>0.000166</td>
@@ -1065,123 +1131,123 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
     </tr>
     <tr>
       <th>9404</th>
-      <td>0.000034</td>
-      <td>-0.000011</td>
-      <td>0.000298</td>
-      <td>0.000019</td>
-      <td>-0.000062</td>
-      <td>-0.000463</td>
-      <td>0.000346</td>
-      <td>0.000798</td>
-      <td>-0.000410</td>
-      <td>-0.000371</td>
+      <td>-0.000550</td>
+      <td>-0.000227</td>
+      <td>-0.000082</td>
+      <td>0.004804</td>
+      <td>0.000005</td>
+      <td>2.687989e-03</td>
+      <td>-0.001296</td>
+      <td>0.002454</td>
+      <td>-0.003208</td>
+      <td>-0.002606</td>
       <td>...</td>
-      <td>-1.456987e-03</td>
-      <td>-2.021595e-03</td>
-      <td>0.000004</td>
-      <td>-9.918095e-04</td>
-      <td>0.000537</td>
-      <td>0.976193</td>
-      <td>-0.000067</td>
-      <td>0.000276</td>
-      <td>0.000462</td>
-      <td>0.000857</td>
+      <td>-1.399987e-03</td>
+      <td>-1.947912e-03</td>
+      <td>-0.000078</td>
+      <td>-1.111407e-03</td>
+      <td>0.000623</td>
+      <td>0.976488</td>
+      <td>-0.000149</td>
+      <td>0.000124</td>
+      <td>0.000318</td>
+      <td>0.000800</td>
     </tr>
     <tr>
       <th>9405</th>
-      <td>0.000064</td>
-      <td>0.000287</td>
-      <td>0.000132</td>
-      <td>-0.000169</td>
-      <td>0.000034</td>
-      <td>-0.000041</td>
-      <td>0.000002</td>
-      <td>-0.000549</td>
-      <td>0.000015</td>
-      <td>-0.000111</td>
+      <td>0.000076</td>
+      <td>-0.000160</td>
+      <td>0.000067</td>
+      <td>-0.000242</td>
+      <td>-0.000467</td>
+      <td>1.523733e-04</td>
+      <td>-0.000068</td>
+      <td>-0.000315</td>
+      <td>0.000421</td>
+      <td>-0.000084</td>
       <td>...</td>
-      <td>1.166735e-04</td>
-      <td>1.024712e-04</td>
-      <td>-0.000526</td>
-      <td>-1.697576e-04</td>
-      <td>-0.001129</td>
-      <td>-0.000135</td>
-      <td>0.999363</td>
-      <td>-0.000518</td>
-      <td>-0.000893</td>
-      <td>-0.000709</td>
+      <td>1.144577e-04</td>
+      <td>9.829144e-05</td>
+      <td>-0.000490</td>
+      <td>-1.442753e-04</td>
+      <td>-0.001062</td>
+      <td>-0.000172</td>
+      <td>0.999388</td>
+      <td>-0.000531</td>
+      <td>-0.000884</td>
+      <td>-0.000758</td>
     </tr>
     <tr>
       <th>9406</th>
-      <td>-0.000064</td>
-      <td>0.000887</td>
-      <td>-0.000155</td>
-      <td>-0.000570</td>
-      <td>-0.000985</td>
-      <td>-0.000018</td>
-      <td>-0.000164</td>
-      <td>-0.000529</td>
-      <td>-0.000116</td>
-      <td>-0.000117</td>
+      <td>0.000250</td>
+      <td>-0.000681</td>
+      <td>-0.000157</td>
+      <td>-0.000035</td>
+      <td>-0.000750</td>
+      <td>1.203490e-04</td>
+      <td>0.000354</td>
+      <td>-0.000410</td>
+      <td>0.001721</td>
+      <td>0.001299</td>
       <td>...</td>
-      <td>2.555992e-04</td>
-      <td>2.181340e-04</td>
-      <td>-0.001565</td>
-      <td>-1.739749e-04</td>
-      <td>-0.000845</td>
-      <td>0.000159</td>
-      <td>-0.000504</td>
-      <td>0.996867</td>
-      <td>-0.001317</td>
-      <td>0.000632</td>
+      <td>2.676559e-04</td>
+      <td>2.187585e-04</td>
+      <td>-0.001459</td>
+      <td>-1.620639e-04</td>
+      <td>-0.000905</td>
+      <td>0.000080</td>
+      <td>-0.000492</td>
+      <td>0.996931</td>
+      <td>-0.001320</td>
+      <td>0.000811</td>
     </tr>
     <tr>
       <th>9407</th>
-      <td>0.000122</td>
-      <td>0.000505</td>
-      <td>0.000076</td>
-      <td>-0.000356</td>
-      <td>-0.000919</td>
-      <td>0.000010</td>
-      <td>-0.000074</td>
-      <td>-0.001135</td>
-      <td>-0.000041</td>
-      <td>-0.000211</td>
+      <td>0.000194</td>
+      <td>-0.000353</td>
+      <td>-0.000124</td>
+      <td>-0.000655</td>
+      <td>-0.000650</td>
+      <td>-9.475201e-07</td>
+      <td>0.000169</td>
+      <td>-0.000832</td>
+      <td>0.001045</td>
+      <td>-0.000008</td>
       <td>...</td>
-      <td>2.245583e-04</td>
-      <td>2.015770e-04</td>
-      <td>-0.000606</td>
-      <td>3.922154e-05</td>
-      <td>-0.002038</td>
-      <td>0.000330</td>
-      <td>-0.000893</td>
-      <td>-0.001302</td>
-      <td>0.998095</td>
-      <td>-0.000766</td>
+      <td>2.201108e-04</td>
+      <td>1.936712e-04</td>
+      <td>-0.000602</td>
+      <td>6.778112e-05</td>
+      <td>-0.001912</td>
+      <td>0.000234</td>
+      <td>-0.000857</td>
+      <td>-0.001352</td>
+      <td>0.998111</td>
+      <td>-0.000679</td>
     </tr>
     <tr>
       <th>9408</th>
-      <td>-0.000286</td>
-      <td>0.001015</td>
-      <td>0.000202</td>
-      <td>-0.000390</td>
-      <td>0.000923</td>
-      <td>-0.000839</td>
-      <td>0.000787</td>
-      <td>0.001002</td>
-      <td>0.000166</td>
-      <td>-0.000365</td>
+      <td>-0.001355</td>
+      <td>0.000837</td>
+      <td>0.000403</td>
+      <td>-0.000331</td>
+      <td>-0.000086</td>
+      <td>1.124806e-03</td>
+      <td>-0.001939</td>
+      <td>0.003120</td>
+      <td>-0.002620</td>
+      <td>-0.001618</td>
       <td>...</td>
-      <td>-2.335799e-06</td>
-      <td>2.156592e-05</td>
-      <td>-0.000007</td>
-      <td>-1.060416e-03</td>
-      <td>-0.002182</td>
-      <td>0.000662</td>
-      <td>-0.000834</td>
-      <td>0.000638</td>
-      <td>-0.000799</td>
-      <td>0.982585</td>
+      <td>5.281514e-05</td>
+      <td>6.191577e-05</td>
+      <td>0.000022</td>
+      <td>-1.001098e-03</td>
+      <td>-0.002021</td>
+      <td>0.000579</td>
+      <td>-0.000787</td>
+      <td>0.000768</td>
+      <td>-0.000714</td>
+      <td>0.982181</td>
     </tr>
   </tbody>
 </table>
@@ -1533,34 +1599,42 @@ utzoo        0.094
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="10-Low-Rank-and-SVD.html" title="previous page">Low Rank Approximation and the SVD</a>
-    <a class='right-next' id="next-link" href="17-Regression-I-Linear.html" title="next page">Linear Regression</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="10-Low-Rank-and-SVD.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Low Rank Approximation and the SVD</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="17-Regression-I-Linear.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Mark Crovella<br/>
+    
+        &copy; Copyright 2021-2022.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
