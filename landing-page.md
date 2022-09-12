@@ -1,3 +1,14 @@
+> James later reduced his complaint to a sentence: fielding statistics
+> made sense only as numbers, not as language.  Language, not numbers, is
+> what interested him.  Words, and the meaning they were designed to
+> convey.  "When the numbers acquire the significance of language," he
+> later wrote, "they acquire the power to do all of the things which
+> language can do: to become fiction and drama and poetry."
+> 
+> Michael Lewis, _Moneyball_
+> writing about Bill James, inventor of sabermetrics
+
+
 # Preface
 
 Welcome to this book!
