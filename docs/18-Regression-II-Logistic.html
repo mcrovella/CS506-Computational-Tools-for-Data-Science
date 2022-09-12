@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Logistic Regression &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Regularization" href="19-Regression-III-More-Linear.html" />
     <link rel="prev" title="Linear Regression" href="17-Regression-I-Linear.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -399,55 +396,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Logistic Regression</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-the-probability-i-will-be-admitted-to-grad-school">
-   What is the probability I will be admitted to Grad School?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Logistic Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#logistic-vs-linear-regression">
-   Logistic vs Linear Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#logistic-regression-in-practice">
-   Logistic Regression In Practice
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-the-model">
-   Using the Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#logistic-regression-in-perspective">
-   Logistic Regression in Perspective
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="cell tag_hide-cell docutils container">
@@ -708,8 +657,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63085/196177421.py:2: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
-  df.hist(ax = ax);
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
+  
 </pre></div>
 </div>
 <img alt="_images/18-Regression-II-Logistic_12_1.png" src="_images/18-Regression-II-Logistic_12_1.png" />
@@ -959,10 +908,10 @@ $<span class="math notranslate nohighlight">\(p(x) = P(y=1\mid x) = \frac{e^{\al
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 17 Feb 2022</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
+  <th>Date:</th>            <td>Mon, 12 Sep 2022</td> <th>  Pseudo R-squ.:     </th>  <td>0.08107</td> 
 </tr>
 <tr>
-  <th>Time:</th>                <td>12:44:49</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
+  <th>Time:</th>                <td>16:51:15</td>     <th>  Log-Likelihood:    </th> <td> -229.72</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -249.99</td> 
@@ -1140,7 +1089,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.583, Average Recall: 0.232
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision: 0.662, Average Recall: 0.218
 </pre></div>
 </div>
 </div>
@@ -1193,7 +1142,7 @@ $<span class="math notranslate nohighlight">\(\mbox{Recall} = \frac{\mbox{True P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.436, Best Recall: 0.703
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Precision: 0.420, Best Recall: 0.701
 </pre></div>
 </div>
 </div>
@@ -1226,42 +1175,54 @@ where you can find additional details.</p>
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="17-Regression-I-Linear.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Linear Regression</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="19-Regression-III-More-Linear.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Regularization</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="17-Regression-I-Linear.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear Regression</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="19-Regression-III-More-Linear.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Regularization</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hierarchical Clustering &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Gaussian Mixture Models" href="09-Clustering-IV-GMM-EM.html" />
     <link rel="prev" title="Clustering In Practice" href="07-Clustering-II-in-practice.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -449,105 +446,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Hierarchical Clustering</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-many-clusters">
-   How Many Clusters?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Hierarchical Clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strengths-of-hierarchical-clustering">
-     Strengths of Hierarchical Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compared-to-k-means">
-     Compared to
-     <span class="math notranslate nohighlight">
-      \(k\)
-     </span>
-     -means
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-algorithms">
-   Hierarchical Clustering Algorithms
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#defining-cluster-proximity">
-     Defining Cluster Proximity
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#single-linkage-clustering">
-     Single-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complete-linkage-clustering">
-     Complete-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#average-linkage-clustering">
-     Average-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#all-three-compared">
-     All Three Compared
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ward-s-distance">
-   Ward’s Distance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-in-practice">
-   Hierarchical Clustering In Practice
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-real-data">
-   Hierarchical Clustering Real Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selecting-the-number-of-clusters">
-     Selecting the Number of Clusters
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="cell tag_hide-input docutils container">
@@ -773,7 +672,7 @@
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_5a194_">
+<table id="T_e58fe_">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
@@ -787,58 +686,58 @@
   </thead>
   <tbody>
     <tr>
-      <th id="T_5a194_level0_row0" class="row_heading level0 row0" >p0</th>
-      <td id="T_5a194_row0_col0" class="data row0 col0" >0.00</td>
-      <td id="T_5a194_row0_col1" class="data row0 col1" >0.23</td>
-      <td id="T_5a194_row0_col2" class="data row0 col2" >0.22</td>
-      <td id="T_5a194_row0_col3" class="data row0 col3" >0.37</td>
-      <td id="T_5a194_row0_col4" class="data row0 col4" >0.34</td>
-      <td id="T_5a194_row0_col5" class="data row0 col5" >0.24</td>
+      <th id="T_e58fe_level0_row0" class="row_heading level0 row0" >p0</th>
+      <td id="T_e58fe_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_e58fe_row0_col1" class="data row0 col1" >0.23</td>
+      <td id="T_e58fe_row0_col2" class="data row0 col2" >0.22</td>
+      <td id="T_e58fe_row0_col3" class="data row0 col3" >0.37</td>
+      <td id="T_e58fe_row0_col4" class="data row0 col4" >0.34</td>
+      <td id="T_e58fe_row0_col5" class="data row0 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_5a194_level0_row1" class="row_heading level0 row1" >p1</th>
-      <td id="T_5a194_row1_col0" class="data row1 col0" >0.23</td>
-      <td id="T_5a194_row1_col1" class="data row1 col1" >0.00</td>
-      <td id="T_5a194_row1_col2" class="data row1 col2" >0.14</td>
-      <td id="T_5a194_row1_col3" class="data row1 col3" >0.19</td>
-      <td id="T_5a194_row1_col4" class="data row1 col4" >0.14</td>
-      <td id="T_5a194_row1_col5" class="data row1 col5" >0.24</td>
+      <th id="T_e58fe_level0_row1" class="row_heading level0 row1" >p1</th>
+      <td id="T_e58fe_row1_col0" class="data row1 col0" >0.23</td>
+      <td id="T_e58fe_row1_col1" class="data row1 col1" >0.00</td>
+      <td id="T_e58fe_row1_col2" class="data row1 col2" >0.14</td>
+      <td id="T_e58fe_row1_col3" class="data row1 col3" >0.19</td>
+      <td id="T_e58fe_row1_col4" class="data row1 col4" >0.14</td>
+      <td id="T_e58fe_row1_col5" class="data row1 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_5a194_level0_row2" class="row_heading level0 row2" >p2</th>
-      <td id="T_5a194_row2_col0" class="data row2 col0" >0.22</td>
-      <td id="T_5a194_row2_col1" class="data row2 col1" >0.14</td>
-      <td id="T_5a194_row2_col2" class="data row2 col2" >0.00</td>
-      <td id="T_5a194_row2_col3" class="data row2 col3" >0.16</td>
-      <td id="T_5a194_row2_col4" class="data row2 col4" >0.28</td>
-      <td id="T_5a194_row2_col5" class="data row2 col5" >0.10</td>
+      <th id="T_e58fe_level0_row2" class="row_heading level0 row2" >p2</th>
+      <td id="T_e58fe_row2_col0" class="data row2 col0" >0.22</td>
+      <td id="T_e58fe_row2_col1" class="data row2 col1" >0.14</td>
+      <td id="T_e58fe_row2_col2" class="data row2 col2" >0.00</td>
+      <td id="T_e58fe_row2_col3" class="data row2 col3" >0.16</td>
+      <td id="T_e58fe_row2_col4" class="data row2 col4" >0.28</td>
+      <td id="T_e58fe_row2_col5" class="data row2 col5" >0.10</td>
     </tr>
     <tr>
-      <th id="T_5a194_level0_row3" class="row_heading level0 row3" >p3</th>
-      <td id="T_5a194_row3_col0" class="data row3 col0" >0.37</td>
-      <td id="T_5a194_row3_col1" class="data row3 col1" >0.19</td>
-      <td id="T_5a194_row3_col2" class="data row3 col2" >0.16</td>
-      <td id="T_5a194_row3_col3" class="data row3 col3" >0.00</td>
-      <td id="T_5a194_row3_col4" class="data row3 col4" >0.28</td>
-      <td id="T_5a194_row3_col5" class="data row3 col5" >0.22</td>
+      <th id="T_e58fe_level0_row3" class="row_heading level0 row3" >p3</th>
+      <td id="T_e58fe_row3_col0" class="data row3 col0" >0.37</td>
+      <td id="T_e58fe_row3_col1" class="data row3 col1" >0.19</td>
+      <td id="T_e58fe_row3_col2" class="data row3 col2" >0.16</td>
+      <td id="T_e58fe_row3_col3" class="data row3 col3" >0.00</td>
+      <td id="T_e58fe_row3_col4" class="data row3 col4" >0.28</td>
+      <td id="T_e58fe_row3_col5" class="data row3 col5" >0.22</td>
     </tr>
     <tr>
-      <th id="T_5a194_level0_row4" class="row_heading level0 row4" >p4</th>
-      <td id="T_5a194_row4_col0" class="data row4 col0" >0.34</td>
-      <td id="T_5a194_row4_col1" class="data row4 col1" >0.14</td>
-      <td id="T_5a194_row4_col2" class="data row4 col2" >0.28</td>
-      <td id="T_5a194_row4_col3" class="data row4 col3" >0.28</td>
-      <td id="T_5a194_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_5a194_row4_col5" class="data row4 col5" >0.39</td>
+      <th id="T_e58fe_level0_row4" class="row_heading level0 row4" >p4</th>
+      <td id="T_e58fe_row4_col0" class="data row4 col0" >0.34</td>
+      <td id="T_e58fe_row4_col1" class="data row4 col1" >0.14</td>
+      <td id="T_e58fe_row4_col2" class="data row4 col2" >0.28</td>
+      <td id="T_e58fe_row4_col3" class="data row4 col3" >0.28</td>
+      <td id="T_e58fe_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_e58fe_row4_col5" class="data row4 col5" >0.39</td>
     </tr>
     <tr>
-      <th id="T_5a194_level0_row5" class="row_heading level0 row5" >p5</th>
-      <td id="T_5a194_row5_col0" class="data row5 col0" >0.24</td>
-      <td id="T_5a194_row5_col1" class="data row5 col1" >0.24</td>
-      <td id="T_5a194_row5_col2" class="data row5 col2" >0.10</td>
-      <td id="T_5a194_row5_col3" class="data row5 col3" >0.22</td>
-      <td id="T_5a194_row5_col4" class="data row5 col4" >0.39</td>
-      <td id="T_5a194_row5_col5" class="data row5 col5" >0.00</td>
+      <th id="T_e58fe_level0_row5" class="row_heading level0 row5" >p5</th>
+      <td id="T_e58fe_row5_col0" class="data row5 col0" >0.24</td>
+      <td id="T_e58fe_row5_col1" class="data row5 col1" >0.24</td>
+      <td id="T_e58fe_row5_col2" class="data row5 col2" >0.10</td>
+      <td id="T_e58fe_row5_col3" class="data row5 col3" >0.22</td>
+      <td id="T_e58fe_row5_col4" class="data row5 col4" >0.39</td>
+      <td id="T_e58fe_row5_col5" class="data row5 col5" >0.00</td>
     </tr>
   </tbody>
 </table>
@@ -1337,42 +1236,54 @@ Cluster 5:
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="07-Clustering-II-in-practice.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Clustering In Practice</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="09-Clustering-IV-GMM-EM.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Gaussian Mixture Models</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="07-Clustering-II-in-practice.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Clustering In Practice</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="09-Clustering-IV-GMM-EM.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Gaussian Mixture Models</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dimensionality Reduction and PCA – SVD II &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Linear Regression" href="17-Regression-I-Linear.html" />
     <link rel="prev" title="Low Rank Approximation and the SVD" href="10-Low-Rank-and-SVD.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -411,67 +408,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Dimensionality Reduction and PCA – SVD II</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uses-of-pca-svd">
-   Uses of PCA/SVD
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization-and-denoising-extended-example">
-   Visualization and Denoising – Extended Example.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-20-newsgroups">
-   Data: 20 Newsgroups
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basic-clustering">
-     Basic Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improvement-stemming">
-     Improvement: Stemming
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#demonstrating-pca">
-   Demonstrating PCA
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#denoising">
-   Denoising
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization">
-   Visualization
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="cell tag_hide-cell docutils container">
@@ -807,44 +744,44 @@ Silhouette Score is 0.009438086458856245
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63064</span><span class="o">/</span><span class="mf">868578767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">stemmed_data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">ignore_stopwords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>  
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46668</span><span class="o">/</span><span class="mf">868578767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
 <span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63064/868578767.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">stemmed_data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SnowballStemmer</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">ignore_stopwords</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>  
-<span class="nn">----&gt; 6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46668/868578767.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
 <span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
 
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">106</span><span class="s2">     tokenizer = load(f&quot;tokenizers/punkt/</span><span class="si">{language}</span><span class="s2">.pickle&quot;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2">     return tokenizer.tokenize(text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2"> </span>
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">107</span><span class="s2">     tokenizer = load(&quot;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&quot;.format(language))</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2">     return tokenizer.tokenize(text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="s2"> </span>
 
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
 <span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">749</span><span class="s2">     # Load the resource.</span>
 <span class="ne">--&gt; </span><span class="mi">750</span><span class="s2">     opened_resource = _open(resource_url)</span>
 <span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2">     if format == &quot;raw&quot;:</span>
 
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">875</span><span class="s2">     if protocol is None or protocol.lower() == &quot;nltk&quot;:</span>
-<span class="ne">--&gt; </span><span class="mi">876</span><span class="s2">         return find(path_, path + [&quot;&quot;]).open()</span>
-<span class="g g-Whitespace">    </span><span class="mi">877</span><span class="s2">     elif protocol.lower() == &quot;file&quot;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">878</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="s2">     if protocol is None or protocol.lower() == &quot;nltk&quot;:</span>
+<span class="ne">--&gt; </span><span class="mi">875</span><span class="s2">         return find(path_, path + [&quot;&quot;]).open()</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span><span class="s2">     elif protocol.lower() == &quot;file&quot;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
 
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
+<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
 <span class="g g-Whitespace">    </span><span class="mi">581</span><span class="s2">     sep = &quot;*&quot; * 70</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="s2">     resource_not_found = f&quot;</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="si">{msg}</span><span class="se">\n</span><span class="si">{sep}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="s2">     resource_not_found = &quot;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot; % (sep, msg, sep)</span>
 <span class="ne">--&gt; </span><span class="mi">583</span><span class="s2">     raise LookupError(resource_not_found)</span>
 <span class="g g-Whitespace">    </span><span class="mi">584</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">585</span><span class="s2"> </span>
@@ -862,10 +799,10 @@ Silhouette Score is 0.009438086458856245
 <span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
 
 <span class="s2">  Searched in:</span>
-<span class="s2">    - &#39;/Users/markcrovella/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/anaconda3/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/anaconda3/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/markcrovella/anaconda3/lib/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/crovella/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/share/nltk_data&#39;</span>
+<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/lib/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
 <span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
@@ -1599,42 +1536,54 @@ utzoo        0.094
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="10-Low-Rank-and-SVD.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Low Rank Approximation and the SVD</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="17-Regression-I-Linear.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Regression</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="10-Low-Rank-and-SVD.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Low Rank Approximation and the SVD</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="17-Regression-I-Linear.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Linear Regression</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

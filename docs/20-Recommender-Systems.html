@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recommender Systems &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Introduction to Networks" href="21-Networks-I.html" />
     <link rel="prev" title="Regularization" href="19-Regression-III-More-Linear.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -438,94 +435,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Recommender Systems</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-recommender-systems">
-   What are Recommender Systems?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inferring-preferences">
-   Inferring Preferences
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#challenges">
-   Challenges
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#collaborative-filtering">
-   Collaborative Filtering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#item-item-cf">
-     Item-item CF
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#similarity">
-     Similarity
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improving-cf">
-     Improving CF
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assessing-cf">
-     Assessing CF
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-factorization">
-   Matrix Factorization
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solving-matrix-factorization">
-     Solving Matrix Factorization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#als-in-practice">
-     ALS in Practice
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assessing-mf">
-     Assessing MF
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assessing-recommender-systems">
-   Assessing Recommender Systems
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="cell tag_hide-input docutils container">
@@ -659,8 +569,263 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sh: kaggle: command not found
-unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.zip or cs-506-midterm-a1-b1.zip.ZIP.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0.00/650M [00:00&lt;?, ?B/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Your Kaggle API key is readable by other users on this system! To fix this, you can run &#39;chmod 600 /Users/crovella/.kaggle/kaggle.json&#39;
+Downloading cs-506-midterm-a1-b1.zip to /Volumes/crovella/Shared/Teaching/CS506/CS506-Computational-Tools-for-Data-Science
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 1.00M/650M [00:00&lt;02:55, 3.87MB/s]
+  1%|          | 6.00M/650M [00:00&lt;00:33, 20.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 11.0M/650M [00:00&lt;00:21, 30.7MB/s]
+  2%|▏         | 15.0M/650M [00:00&lt;00:19, 33.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 19.0M/650M [00:00&lt;00:24, 26.8MB/s]
+  4%|▍         | 26.0M/650M [00:00&lt;00:17, 37.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▌         | 33.0M/650M [00:01&lt;00:14, 45.4MB/s]
+  6%|▌         | 38.0M/650M [00:01&lt;00:13, 46.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 44.0M/650M [00:01&lt;00:12, 49.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 50.0M/650M [00:01&lt;00:16, 39.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 57.0M/650M [00:01&lt;00:16, 36.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 65.0M/650M [00:01&lt;00:16, 36.3MB/s]
+ 11%|█         | 71.0M/650M [00:02&lt;00:14, 40.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 76.0M/650M [00:02&lt;00:27, 21.9MB/s]
+ 12%|█▏        | 81.0M/650M [00:02&lt;00:25, 23.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|█▎        | 88.0M/650M [00:02&lt;00:19, 29.8MB/s]
+ 14%|█▍        | 93.0M/650M [00:03&lt;00:18, 32.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▌        | 98.0M/650M [00:03&lt;00:18, 30.9MB/s]
+ 16%|█▌        | 105M/650M [00:03&lt;00:16, 34.0MB/s] 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 17%|█▋        | 113M/650M [00:03&lt;00:14, 38.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|█▊        | 121M/650M [00:03&lt;00:15, 36.6MB/s]
+ 20%|█▉        | 129M/650M [00:03&lt;00:13, 39.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 136M/650M [00:04&lt;00:11, 45.2MB/s]
+ 22%|██▏       | 141M/650M [00:04&lt;00:12, 42.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|██▏       | 146M/650M [00:04&lt;00:13, 40.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██▎       | 153M/650M [00:04&lt;00:13, 38.8MB/s]
+ 24%|██▍       | 158M/650M [00:04&lt;00:13, 39.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▍       | 162M/650M [00:04&lt;00:14, 34.7MB/s]
+ 26%|██▌       | 168M/650M [00:05&lt;00:12, 40.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 173M/650M [00:05&lt;00:12, 38.6MB/s]
+ 27%|██▋       | 177M/650M [00:05&lt;00:14, 35.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██▊       | 185M/650M [00:05&lt;00:12, 38.6MB/s]
+ 30%|██▉       | 192M/650M [00:05&lt;00:10, 44.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 197M/650M [00:05&lt;00:11, 41.3MB/s]
+ 31%|███       | 202M/650M [00:05&lt;00:11, 39.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███▏      | 208M/650M [00:06&lt;00:10, 43.6MB/s]
+ 33%|███▎      | 213M/650M [00:06&lt;00:10, 42.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|███▎      | 218M/650M [00:06&lt;00:11, 39.8MB/s]
+ 35%|███▍      | 225M/650M [00:06&lt;00:11, 39.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|███▌      | 233M/650M [00:06&lt;00:12, 36.3MB/s]
+ 37%|███▋      | 241M/650M [00:06&lt;00:11, 38.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|███▊      | 249M/650M [00:07&lt;00:14, 29.1MB/s]
+ 40%|███▉      | 257M/650M [00:07&lt;00:12, 33.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 263M/650M [00:07&lt;00:10, 37.6MB/s]
+ 41%|████      | 268M/650M [00:07&lt;00:11, 34.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 42%|████▏     | 272M/650M [00:07&lt;00:11, 36.0MB/s]
+ 42%|████▏     | 276M/650M [00:08&lt;00:10, 37.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|████▎     | 281M/650M [00:08&lt;00:11, 34.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▍     | 289M/650M [00:08&lt;00:10, 36.0MB/s]
+ 46%|████▌     | 297M/650M [00:08&lt;00:09, 39.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 304M/650M [00:08&lt;00:07, 45.9MB/s]
+ 48%|████▊     | 309M/650M [00:08&lt;00:08, 43.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 48%|████▊     | 314M/650M [00:09&lt;00:09, 38.6MB/s]
+ 49%|████▉     | 320M/650M [00:09&lt;00:07, 43.3MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 325M/650M [00:09&lt;00:08, 41.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 51%|█████     | 330M/650M [00:09&lt;00:10, 33.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 52%|█████▏    | 336M/650M [00:09&lt;00:10, 31.3MB/s]
+ 52%|█████▏    | 341M/650M [00:09&lt;00:09, 33.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 345M/650M [00:10&lt;00:09, 32.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 54%|█████▍    | 353M/650M [00:10&lt;00:08, 35.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|█████▌    | 361M/650M [00:10&lt;00:10, 28.5MB/s]
+ 57%|█████▋    | 368M/650M [00:10&lt;00:08, 35.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 373M/650M [00:11&lt;00:10, 27.5MB/s]
+ 58%|█████▊    | 377M/650M [00:11&lt;00:10, 27.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████▉    | 383M/650M [00:11&lt;00:08, 33.5MB/s]
+ 60%|█████▉    | 387M/650M [00:11&lt;00:08, 33.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 392M/650M [00:11&lt;00:07, 36.7MB/s]
+ 61%|██████    | 396M/650M [00:11&lt;00:07, 37.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 401M/650M [00:11&lt;00:07, 34.9MB/s]
+ 63%|██████▎   | 409M/650M [00:11&lt;00:06, 38.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 64%|██████▍   | 416M/650M [00:12&lt;00:05, 44.8MB/s]
+ 65%|██████▍   | 421M/650M [00:12&lt;00:05, 42.3MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 66%|██████▌   | 426M/650M [00:12&lt;00:05, 39.4MB/s]
+ 67%|██████▋   | 433M/650M [00:12&lt;00:05, 39.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|██████▊   | 440M/650M [00:12&lt;00:04, 45.3MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|██████▊   | 445M/650M [00:12&lt;00:06, 33.8MB/s]
+ 69%|██████▉   | 449M/650M [00:13&lt;00:07, 29.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 457M/650M [00:13&lt;00:05, 33.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████▏  | 465M/650M [00:13&lt;00:05, 35.7MB/s]
+ 73%|███████▎  | 472M/650M [00:13&lt;00:04, 41.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 477M/650M [00:13&lt;00:04, 40.0MB/s]
+ 74%|███████▍  | 482M/650M [00:14&lt;00:04, 36.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 489M/650M [00:14&lt;00:04, 37.6MB/s]
+ 76%|███████▋  | 496M/650M [00:14&lt;00:03, 44.3MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|███████▋  | 501M/650M [00:14&lt;00:03, 41.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 78%|███████▊  | 506M/650M [00:15&lt;00:06, 21.6MB/s]
+ 79%|███████▉  | 513M/650M [00:15&lt;00:05, 25.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 521M/650M [00:15&lt;00:04, 31.0MB/s]
+ 81%|████████▏ | 528M/650M [00:15&lt;00:03, 37.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|████████▏ | 533M/650M [00:15&lt;00:03, 37.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 83%|████████▎ | 538M/650M [00:15&lt;00:03, 30.2MB/s]
+ 84%|████████▍ | 545M/650M [00:16&lt;00:03, 33.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▍ | 551M/650M [00:16&lt;00:02, 38.5MB/s]
+ 86%|████████▌ | 556M/650M [00:16&lt;00:02, 36.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|████████▌ | 560M/650M [00:16&lt;00:02, 36.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 564M/650M [00:16&lt;00:03, 26.9MB/s]
+ 88%|████████▊ | 569M/650M [00:16&lt;00:03, 27.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|████████▊ | 576M/650M [00:17&lt;00:02, 35.6MB/s]
+ 89%|████████▉ | 581M/650M [00:17&lt;00:02, 36.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 585M/650M [00:17&lt;00:02, 29.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████▏| 593M/650M [00:17&lt;00:02, 26.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|█████████▏| 601M/650M [00:17&lt;00:01, 29.3MB/s]
+ 94%|█████████▎| 608M/650M [00:18&lt;00:01, 35.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▍| 613M/650M [00:18&lt;00:01, 36.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▍| 617M/650M [00:18&lt;00:01, 27.0MB/s]
+ 96%|█████████▌| 625M/650M [00:18&lt;00:00, 32.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 97%|█████████▋| 633M/650M [00:18&lt;00:00, 34.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▊| 641M/650M [00:19&lt;00:00, 36.6MB/s]
+100%|█████████▉| 648M/650M [00:19&lt;00:00, 42.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 650M/650M [00:19&lt;00:00, 34.2MB/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archive:  cs-506-midterm-a1-b1.zip
+  inflating: sample.csv              
+  inflating: test.csv                
+  inflating: train.csv               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -668,72 +833,6 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">2436019669.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span> 
-<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> 
-<span class="g g-Whitespace">    </span><span class="mi">588</span> 
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">480</span> 
-<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">483</span> 
-<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">810</span> 
-<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">812</span> 
-<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span> 
-<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span> 
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHandles</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">         self.handles = get_handle(</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="s2">             src,</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="s2">             &quot;r&quot;,</span>
-
-<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">         if ioargs.encoding and &quot;b&quot; not in ioargs.mode:</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2">             # Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">702</span><span class="s2">             handle = open(</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">                 handle,</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2">                 ioargs.mode,</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;train.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -749,16 +848,8 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">398630940.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">n_users</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;UserId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">n_movies</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ProductId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n_reviews</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="n">n_reviews</span><span class="si">}</span><span class="s1"> reviews, </span><span class="si">{</span><span class="n">n_movies</span><span class="si">}</span><span class="s1"> movies and </span><span class="si">{</span><span class="n">n_users</span><span class="si">}</span><span class="s1"> users.&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="n">n_users</span> <span class="o">*</span> <span class="n">n_movies</span><span class="si">}</span><span class="s1"> potential reviews, meaning sparsity of </span><span class="si">{</span><span class="p">(</span><span class="n">n_reviews</span><span class="o">/</span><span class="p">(</span><span class="n">n_users</span> <span class="o">*</span> <span class="n">n_movies</span><span class="p">))</span><span class="si">:</span><span class="s1">0.4%</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 1697533 reviews, 50052 movies and 123960 users.
+There are 6204445920 potential reviews, meaning sparsity of 0.0274%
 </pre></div>
 </div>
 </div>
@@ -780,13 +871,7 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">2159379574.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;There are on average </span><span class="si">{</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_movies</span><span class="si">:</span><span class="s1">0.1f</span><span class="si">}</span><span class="s1"> reviews per movie&#39;</span> <span class="o">+</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>      <span class="sa">f</span><span class="s1">&#39; and </span><span class="si">{</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_users</span><span class="si">:</span><span class="s1">0.1f</span><span class="si">}</span><span class="s1"> reviews per user&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;n_reviews&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are on average 33.9 reviews per movie and 13.7 reviews per user
 </pre></div>
 </div>
 </div>
@@ -808,18 +893,7 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">1574333136.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reviews_per_movie</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ProductId&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">frac_below_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">reviews_per_movie</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_movies</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reviews_per_movie</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">reviews_per_movie</span><span class="p">),</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_movies</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/20-Recommender-Systems_28_0.png" src="_images/20-Recommender-Systems_28_0.png" />
 </div>
 </div>
 <p>Likewise, although the average user writes 14 reviews, almost all users write even fewer reviews.</p>
@@ -838,18 +912,7 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">90271622.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reviews_per_user</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;UserId&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">frac_below_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">reviews_per_user</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_users</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reviews_per_user</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">reviews_per_user</span><span class="p">),</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">n_reviews</span><span class="o">/</span><span class="n">n_users</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/20-Recommender-Systems_30_0.png" src="_images/20-Recommender-Systems_30_0.png" />
 </div>
 </div>
 <p>A typical objective function is root mean square error (RMSE)</p>
@@ -1118,20 +1181,6 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">4166432057.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># The densest columns: products with more than 50 reviews</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">pids</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ProductId&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">hi_pids</span> <span class="o">=</span> <span class="n">pids</span><span class="p">[</span><span class="n">pids</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># reviews that are for these products</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now we create a matrix from these reviews.</p>
 <p>Missing entries will be filled with NaNs.</p>
@@ -1143,18 +1192,6 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">2145171017.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dense_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">goodrec</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">good_df</span> <span class="o">=</span> <span class="n">dense_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">R</span> <span class="o">=</span> <span class="n">good_df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;ProductId&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;UserId&#39;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">&#39;Score&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1163,15 +1200,340 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">3511108735.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">R</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;R&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductId</th>
+      <th>0005019281</th>
+      <th>0005119367</th>
+      <th>0307142485</th>
+      <th>0307142493</th>
+      <th>0307514161</th>
+      <th>0310263662</th>
+      <th>0310274281</th>
+      <th>0718000315</th>
+      <th>0764001035</th>
+      <th>0764003828</th>
+      <th>...</th>
+      <th>B00IKM5OCO</th>
+      <th>B00IWULQQ2</th>
+      <th>B00J4LMHMK</th>
+      <th>B00J5JSV1W</th>
+      <th>B00JA3RPAG</th>
+      <th>B00JAQJMJ0</th>
+      <th>B00JBBJJ24</th>
+      <th>B00JKPHUE0</th>
+      <th>B00K2CHVJ4</th>
+      <th>B00L4IDS4W</th>
+    </tr>
+    <tr>
+      <th>UserId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A02755422E9NI29TCQ5W3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>A100JCBNALJFAW</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>A10175AMUHOQC4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>A103KNDW8GN92L</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>A106016KSI0YQ</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>AZUBX0AYYNTFF</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>AZXGPM8EKSHE9</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>AZXHK8IO25FL6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>AZXR5HB99P936</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>AZZ4GD20C58ND</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>3677 rows × 7244 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1191,11 +1553,8 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-
-<span class="ne">NameError</span>: name &#39;R&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 52s, sys: 30 s, total: 5min 22s
+Wall time: 1min 20s
 </pre></div>
 </div>
 </div>
@@ -1207,12 +1566,7 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">4087629102.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;RMSE on visible entries (training data): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">error</span><span class="o">/</span><span class="n">R</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;error&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE on visible entries (training data): 0.342
 </pre></div>
 </div>
 </div>
@@ -1224,15 +1578,340 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">2686397780.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pred</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;pred&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductId</th>
+      <th>0005019281</th>
+      <th>0005119367</th>
+      <th>0307142485</th>
+      <th>0307142493</th>
+      <th>0307514161</th>
+      <th>0310263662</th>
+      <th>0310274281</th>
+      <th>0718000315</th>
+      <th>0764001035</th>
+      <th>0764003828</th>
+      <th>...</th>
+      <th>B00IKM5OCO</th>
+      <th>B00IWULQQ2</th>
+      <th>B00J4LMHMK</th>
+      <th>B00J5JSV1W</th>
+      <th>B00JA3RPAG</th>
+      <th>B00JAQJMJ0</th>
+      <th>B00JBBJJ24</th>
+      <th>B00JKPHUE0</th>
+      <th>B00K2CHVJ4</th>
+      <th>B00L4IDS4W</th>
+    </tr>
+    <tr>
+      <th>UserId</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A02755422E9NI29TCQ5W3</th>
+      <td>5.100975</td>
+      <td>5.119204</td>
+      <td>4.333302</td>
+      <td>4.887910</td>
+      <td>5.316881</td>
+      <td>5.121651</td>
+      <td>5.041386</td>
+      <td>4.370913</td>
+      <td>5.391349</td>
+      <td>4.098545</td>
+      <td>...</td>
+      <td>3.889617</td>
+      <td>5.308247</td>
+      <td>5.622747</td>
+      <td>3.112950</td>
+      <td>4.163296</td>
+      <td>4.966438</td>
+      <td>4.613630</td>
+      <td>5.289434</td>
+      <td>3.648711</td>
+      <td>4.975231</td>
+    </tr>
+    <tr>
+      <th>A100JCBNALJFAW</th>
+      <td>3.612516</td>
+      <td>4.252247</td>
+      <td>3.201877</td>
+      <td>4.083492</td>
+      <td>3.986821</td>
+      <td>3.624903</td>
+      <td>3.979580</td>
+      <td>3.528707</td>
+      <td>3.401549</td>
+      <td>2.463759</td>
+      <td>...</td>
+      <td>2.668156</td>
+      <td>3.599727</td>
+      <td>3.482493</td>
+      <td>2.326533</td>
+      <td>4.237363</td>
+      <td>4.716050</td>
+      <td>4.240459</td>
+      <td>2.583677</td>
+      <td>2.971772</td>
+      <td>2.456296</td>
+    </tr>
+    <tr>
+      <th>A10175AMUHOQC4</th>
+      <td>4.854183</td>
+      <td>5.414784</td>
+      <td>5.776878</td>
+      <td>4.806956</td>
+      <td>4.591342</td>
+      <td>5.173318</td>
+      <td>4.768054</td>
+      <td>4.297230</td>
+      <td>5.632776</td>
+      <td>4.857786</td>
+      <td>...</td>
+      <td>3.569939</td>
+      <td>4.686768</td>
+      <td>5.938452</td>
+      <td>2.320290</td>
+      <td>3.858068</td>
+      <td>5.074609</td>
+      <td>3.789647</td>
+      <td>3.404186</td>
+      <td>2.932516</td>
+      <td>3.509346</td>
+    </tr>
+    <tr>
+      <th>A103KNDW8GN92L</th>
+      <td>4.943295</td>
+      <td>4.702966</td>
+      <td>4.447471</td>
+      <td>5.686882</td>
+      <td>5.190389</td>
+      <td>3.923600</td>
+      <td>4.968715</td>
+      <td>3.830214</td>
+      <td>4.745838</td>
+      <td>4.076173</td>
+      <td>...</td>
+      <td>4.112139</td>
+      <td>4.690006</td>
+      <td>5.499074</td>
+      <td>3.411291</td>
+      <td>4.243021</td>
+      <td>4.562817</td>
+      <td>3.985037</td>
+      <td>3.959456</td>
+      <td>3.230848</td>
+      <td>4.491063</td>
+    </tr>
+    <tr>
+      <th>A106016KSI0YQ</th>
+      <td>4.450244</td>
+      <td>4.268892</td>
+      <td>2.949996</td>
+      <td>3.587045</td>
+      <td>4.749854</td>
+      <td>4.870327</td>
+      <td>3.622757</td>
+      <td>3.157592</td>
+      <td>3.243920</td>
+      <td>4.679466</td>
+      <td>...</td>
+      <td>2.919665</td>
+      <td>4.116127</td>
+      <td>3.071681</td>
+      <td>3.589449</td>
+      <td>2.720650</td>
+      <td>2.936457</td>
+      <td>3.043959</td>
+      <td>2.910815</td>
+      <td>3.529131</td>
+      <td>2.366702</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>AZUBX0AYYNTFF</th>
+      <td>4.045136</td>
+      <td>4.266329</td>
+      <td>3.078389</td>
+      <td>4.266071</td>
+      <td>4.693189</td>
+      <td>3.908015</td>
+      <td>3.888886</td>
+      <td>3.399116</td>
+      <td>3.500477</td>
+      <td>3.378818</td>
+      <td>...</td>
+      <td>3.261483</td>
+      <td>3.748871</td>
+      <td>3.651527</td>
+      <td>2.336060</td>
+      <td>2.690770</td>
+      <td>4.650991</td>
+      <td>4.129803</td>
+      <td>2.949724</td>
+      <td>2.633462</td>
+      <td>2.758282</td>
+    </tr>
+    <tr>
+      <th>AZXGPM8EKSHE9</th>
+      <td>2.938998</td>
+      <td>3.356421</td>
+      <td>2.177582</td>
+      <td>4.089955</td>
+      <td>3.090558</td>
+      <td>4.584430</td>
+      <td>2.935708</td>
+      <td>3.198558</td>
+      <td>2.656719</td>
+      <td>3.661284</td>
+      <td>...</td>
+      <td>1.270248</td>
+      <td>2.896776</td>
+      <td>3.823822</td>
+      <td>2.766064</td>
+      <td>2.936563</td>
+      <td>2.464751</td>
+      <td>2.967671</td>
+      <td>1.668792</td>
+      <td>2.347817</td>
+      <td>2.155735</td>
+    </tr>
+    <tr>
+      <th>AZXHK8IO25FL6</th>
+      <td>3.464134</td>
+      <td>3.634450</td>
+      <td>2.904390</td>
+      <td>4.444406</td>
+      <td>3.929107</td>
+      <td>2.503361</td>
+      <td>3.582192</td>
+      <td>3.386580</td>
+      <td>3.998785</td>
+      <td>3.345320</td>
+      <td>...</td>
+      <td>3.222353</td>
+      <td>3.735539</td>
+      <td>5.158029</td>
+      <td>1.588288</td>
+      <td>3.561522</td>
+      <td>3.632792</td>
+      <td>3.942168</td>
+      <td>2.315941</td>
+      <td>1.835319</td>
+      <td>4.047951</td>
+    </tr>
+    <tr>
+      <th>AZXR5HB99P936</th>
+      <td>3.978342</td>
+      <td>4.488699</td>
+      <td>3.611286</td>
+      <td>3.676219</td>
+      <td>4.034246</td>
+      <td>5.092121</td>
+      <td>4.032061</td>
+      <td>3.718001</td>
+      <td>3.298402</td>
+      <td>3.751125</td>
+      <td>...</td>
+      <td>2.904649</td>
+      <td>4.014029</td>
+      <td>3.807784</td>
+      <td>2.696673</td>
+      <td>2.900181</td>
+      <td>3.918890</td>
+      <td>4.153465</td>
+      <td>3.823922</td>
+      <td>2.765552</td>
+      <td>3.682287</td>
+    </tr>
+    <tr>
+      <th>AZZ4GD20C58ND</th>
+      <td>4.343198</td>
+      <td>4.795054</td>
+      <td>3.767498</td>
+      <td>5.495121</td>
+      <td>5.221801</td>
+      <td>3.706220</td>
+      <td>4.584233</td>
+      <td>4.011738</td>
+      <td>4.027776</td>
+      <td>2.919974</td>
+      <td>...</td>
+      <td>3.230749</td>
+      <td>4.134182</td>
+      <td>5.377073</td>
+      <td>2.594930</td>
+      <td>3.440165</td>
+      <td>4.519055</td>
+      <td>4.639637</td>
+      <td>3.092475</td>
+      <td>2.346707</td>
+      <td>3.754861</td>
+    </tr>
+  </tbody>
+</table>
+<p>3677 rows × 7244 columns</p>
+</div></div></div>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
@@ -1241,20 +1920,6 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 <span class="n">visible</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">RN</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">model_selection</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">visible</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">visible</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">2590439686.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">## todo: hold out test data, compute oos error</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">RN</span> <span class="o">=</span> <span class="o">~</span><span class="n">R</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">visible</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">RN</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">sklearn.model_selection</span> <span class="k">as</span> <span class="nn">model_selection</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">visible</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">visible</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;R&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1275,16 +1940,8 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">3576879530.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">good_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span> <span class="s1">&#39;ProductId&#39;</span><span class="p">,</span> <span class="s1">&#39;UserId&#39;</span><span class="p">,</span> <span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="s1">&#39;Summary&#39;</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">good_df</span><span class="p">[</span><span class="s1">&#39;Score&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Using k-NN on features HelpfulnessNumerator, HelpfulnessDenominator, Score, Time</span>
-
-<span class="ne">NameError</span>: name &#39;good_df&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.6 s, sys: 34.9 ms, total: 6.64 s
+Wall time: 6.64 s
 </pre></div>
 </div>
 </div>
@@ -1296,12 +1953,7 @@ unzip:  cannot find or open cs-506-midterm-a1-b1.zip, cs-506-midterm-a1-b1.zip.z
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63076</span><span class="o">/</span><span class="mf">3990949995.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;RMSE on visible entries (test set): </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="n">squared</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;y_train&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE on visible entries (test set): 0.647
 </pre></div>
 </div>
 </div>
@@ -1404,42 +2056,54 @@ Bashir Rastegarpanah, Krishna P. Gummadi and Mark Crovella
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="19-Regression-III-More-Linear.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Regularization</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="21-Networks-I.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction to Networks</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="19-Regression-III-More-Linear.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Regularization</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="21-Networks-I.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Introduction to Networks</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

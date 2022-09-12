@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Linear Regression &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Logistic Regression" href="18-Regression-II-Logistic.html" />
     <link rel="prev" title="Dimensionality Reduction and PCA – SVD II" href="11-Dimensionality-Reduction-SVD-II.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -407,63 +404,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Linear Regression</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-squares-lines">
-   Least-Squares Lines
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-general-linear-model">
-   The General Linear Model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-squares-fitting-of-other-models">
-   Least-Squares Fitting of Other Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiple-regression">
-   Multiple Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#measuring-the-fit-of-a-regression-model-r-2">
-   Measuring the fit of a regression model:
-   <span class="math notranslate nohighlight">
-    \(R^2\)
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ols-in-practice">
-   OLS in Practice
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#real-data-house-prices-in-ames-iowa">
-   Real Data: House Prices in Ames, Iowa
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="cell tag_hide-cell docutils container">
@@ -1809,7 +1750,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='a283aac0-1410-4677-b619-dab8adc8e8b9'></div></div></div>
+</script><div class="output text_html"><div id='17d15c15-1e14-4d11-8bb5-c3801e8eae63'></div></div></div>
 </div>
 <p><strong>Example.</strong></p>
 <p>In geography, local models of terrain are constructed from data <span class="math notranslate nohighlight">\((u_1, v_1, y_1), \dots, (u_n, v_n, y_n)\)</span> where <span class="math notranslate nohighlight">\(u_j, v_j\)</span>, and <span class="math notranslate nohighlight">\(y_j\)</span> are latitude, longitude, and altitude, respectively.</p>
@@ -2812,7 +2753,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='f46c883c-ba58-4537-9e2b-bf8364976d6a'></div></div></div>
+</script><div class="output text_html"><div id='c5fb0779-1cd6-4e3d-aa53-dcc0b0edc25f'></div></div></div>
 </div>
 <p>This example shows that the linear model for multiple regression has the same form as the model for the simple regression in the earlier examples.</p>
 <p>We can see that there the general principle is the same across all the different kinds of linear models.</p>
@@ -2851,8 +2792,8 @@ which is called the <strong>Total Sum of Squares</strong> (TSS).</p>
 \[\text{TSS} = \text{RSS} + \text{ESS}\]</div>
 <p>Now, a good fit is one in which the model explains a large part of the variance of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
 <p>So the measure of fit <span class="math notranslate nohighlight">\(R^2\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32586346-9abf-421a-b101-862011247009">
-<span class="eqno">(2)<a class="headerlink" href="#equation-32586346-9abf-421a-b101-862011247009" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
+<div class="amsmath math notranslate nohighlight" id="equation-7723c0a8-bca6-430a-b869-81c6299814c0">
+<span class="eqno">(2)<a class="headerlink" href="#equation-7723c0a8-bca6-430a-b869-81c6299814c0" title="Permalink to this equation">¶</a></span>\[\begin{eqnarray}
 R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}}
 \end{eqnarray}\]</div>
 <p>As a result, <span class="math notranslate nohighlight">\(0\leq R^2\leq 1\)</span>.</p>
@@ -2894,8 +2835,8 @@ R^2 &amp; = &amp; \frac{\text{ESS}}{\text{TSS}} = 1-\frac{\text{RSS}}{\text{TSS}
 Dep. Variable:                      y   R-squared (uncentered):                   0.969
 Model:                            OLS   Adj. R-squared (uncentered):              0.961
 Method:                 Least Squares   F-statistic:                              123.8
-Date:                Thu, 17 Feb 2022   Prob (F-statistic):                    1.03e-51
-Time:                        12:44:39   Log-Likelihood:                         -468.30
+Date:                Mon, 12 Sep 2022   Prob (F-statistic):                    1.03e-51
+Time:                        16:56:24   Log-Likelihood:                         -468.30
 No. Observations:                 100   AIC:                                      976.6
 Df Residuals:                      80   BIC:                                      1029.
 Df Model:                          20                                                  
@@ -3921,7 +3862,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='bc41c44c-bf5b-491a-8ace-9d55e912de49'></div></div></div>
+</script><div class="output text_html"><div id='3d4a733c-9fab-463b-b763-5c565975f1ff'></div></div></div>
 </div>
 <p>Note that each parameter of an independent variable has an associated confidence interval.</p>
 <p>If a coefficient is not distinguishable from zero, then we cannot assume that there is any relationship between the independent variable and the observations.</p>
@@ -4007,8 +3948,8 @@ Parameters: [ 1.25672537e+01 -3.83208841e+00 -2.41967305e+00  2.01431564e+00
 Dep. Variable:                      y   R-squared (uncentered):                   0.965
 Model:                            OLS   Adj. R-squared (uncentered):              0.963
 Method:                 Least Squares   F-statistic:                              437.1
-Date:                Thu, 17 Feb 2022   Prob (F-statistic):                    2.38e-66
-Time:                        12:44:40   Log-Likelihood:                         -473.32
+Date:                Mon, 12 Sep 2022   Prob (F-statistic):                    2.38e-66
+Time:                        16:56:24   Log-Likelihood:                         -473.32
 No. Observations:                 100   AIC:                                      958.6
 Df Residuals:                      94   BIC:                                      974.3
 Df Model:                           6                                                  
@@ -4180,7 +4121,7 @@ Ames, Iowa</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.9/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/opt/anaconda3/lib/python3.7/site-packages/statsmodels/tsa/tsatools.py:142: FutureWarning: In a future version of pandas all arguments of concat except for the argument &#39;objs&#39; will be keyword-only
   x = pd.concat(x[::order], 1)
 </pre></div>
 </div>
@@ -4214,8 +4155,8 @@ Ames, Iowa</p>
 Dep. Variable:                      y   R-squared:                       0.759
 Model:                            OLS   Adj. R-squared:                  0.757
 Method:                 Least Squares   F-statistic:                     325.5
-Date:                Thu, 17 Feb 2022   Prob (F-statistic):          1.74e-218
-Time:                        12:44:40   Log-Likelihood:                -8746.5
+Date:                Mon, 12 Sep 2022   Prob (F-statistic):          1.74e-218
+Time:                        16:56:24   Log-Likelihood:                -8746.5
 No. Observations:                 730   AIC:                         1.751e+04
 Df Residuals:                     722   BIC:                         1.755e+04
 Df Model:                           7                                         
@@ -4329,42 +4270,54 @@ strong multicollinearity or other numerical problems.
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Dimensionality Reduction and PCA – SVD II</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="18-Regression-II-Logistic.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Logistic Regression</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="11-Dimensionality-Reduction-SVD-II.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Dimensionality Reduction and PCA – SVD II</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="18-Regression-II-Logistic.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Logistic Regression</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

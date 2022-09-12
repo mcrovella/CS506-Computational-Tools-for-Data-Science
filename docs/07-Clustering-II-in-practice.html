@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clustering In Practice &#8212; Computational Tools for Data Science</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -56,10 +56,7 @@
     <link rel="next" title="Hierarchical Clustering" href="08-Clustering-III-hierarchical.html" />
     <link rel="prev" title="\(k\)-means" href="06-Clustering-I-kmeans.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -98,7 +95,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Preliminaries
  </span>
@@ -130,7 +127,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Clustering
  </span>
@@ -165,7 +162,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Classification
  </span>
@@ -195,7 +192,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Dimensionality Reduction
  </span>
@@ -212,7 +209,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Regression
  </span>
@@ -234,7 +231,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Selected Topics
  </span>
@@ -306,7 +303,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -354,7 +351,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -453,109 +450,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Clustering In Practice</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-wheels-synthetic-data">
-   Training wheels: Synthetic data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-with-multidimensional-scaling">
-     Visualizing with Multidimensional Scaling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applying-k-means">
-   Applying
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Means
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-the-results-of-clustering">
-     Visualizing the Results of Clustering
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cluster-evaluation">
-   Cluster Evaluation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rand-index">
-     Rand Index
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deciding-on-the-number-of-clusters">
-   Deciding on the Number of Clusters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inspecting-clustering-error">
-     Inspecting Clustering Error
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#silhouette-coefficient">
-     Silhouette Coefficient
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#taking-the-training-wheels-off-real-data">
-   Taking the Training Wheels Off: Real Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#feature-extraction">
-     Feature Extraction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-to-know-the-data">
-     Getting to know the Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selecting-the-number-of-clusters">
-     Selecting the Number of Clusters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#looking-into-the-clusters">
-     Looking into the clusters
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="clustering-in-practice">
@@ -597,7 +492,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">3893147494.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">3893147494.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">);</span>
 
 <span class="ne">NameError</span>: name &#39;sns&#39; is not defined
@@ -668,7 +563,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">2296113112.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">2296113112.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fit</span> <span class="o">=</span> <span class="n">mds</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">embedding_</span>
 <span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
@@ -691,7 +586,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1125199211.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1125199211.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">euclidean_dists</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
 <span class="g g-Whitespace">      </span><span class="mi">2</span>             <span class="n">square</span><span class="o">=</span><span class="kc">True</span> <span class="p">);</span>
 
@@ -726,11 +621,11 @@ the model, and</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 2, 2, 0, 1, 0, 0, 1, 0, 2, 1, 2, 1, 0, 2, 2, 1, 2, 0, 2, 0,
-       2, 1, 0, 0, 1, 2, 2, 2, 2, 1, 2, 1, 2, 0, 2, 0, 2, 0, 0, 0, 1, 2,
-       1, 2, 1, 0, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0, 0, 2, 1, 2, 0, 1, 1, 0,
-       2, 1, 1, 0, 0, 0, 1, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0, 1, 2, 2, 0, 1,
-       1, 2, 1, 0, 0, 2, 1, 2, 2, 0, 0, 2], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 0, 1, 1, 0, 2, 0, 0, 2, 0, 1, 2, 1, 2, 0, 1, 1, 2, 1, 0, 1, 0,
+       1, 2, 0, 0, 2, 1, 1, 1, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0, 2, 1,
+       2, 1, 2, 0, 2, 1, 1, 2, 2, 2, 2, 1, 2, 0, 0, 1, 2, 1, 0, 2, 2, 0,
+       1, 2, 2, 0, 0, 0, 2, 2, 1, 2, 0, 2, 0, 2, 0, 0, 0, 2, 1, 1, 0, 2,
+       2, 1, 2, 0, 0, 1, 2, 1, 1, 0, 0, 1], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -765,9 +660,9 @@ the model, and</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total error of the clustering is: 2733.8.
 
 Cluster labels:
-[1 0 2 2 0 1 0 0 1 0 2 1 2 1 0 2 2 1 2 0 2 0 2 1 0 0 1 2 2 2 2 1 2 1 2 0 2
- 0 2 0 0 0 1 2 1 2 1 0 1 2 2 1 1 1 1 2 1 0 0 2 1 2 0 1 1 0 2 1 1 0 0 0 1 1
- 2 1 0 1 0 1 0 0 0 1 2 2 0 1 1 2 1 0 0 2 1 2 2 0 0 2]
+[2 0 1 1 0 2 0 0 2 0 1 2 1 2 0 1 1 2 1 0 1 0 1 2 0 0 2 1 1 1 1 2 1 2 1 0 1
+ 0 1 0 0 0 2 1 2 1 2 0 2 1 1 2 2 2 2 1 2 0 0 1 2 1 0 2 2 0 1 2 2 0 0 0 2 2
+ 1 2 0 2 0 2 0 0 0 2 1 1 0 2 2 1 2 0 0 1 2 1 1 0 0 1]
 
 Cluster centroids:
 [[-7.0489904  -7.92501873  2.89710462 -7.17088692 -6.01151677 -2.66405834
@@ -775,16 +670,16 @@ Cluster centroids:
    9.25897119  1.73061823  4.84528928 -9.26418246 -4.54021612 -7.47784575
   -4.15060719 -7.85665458 -3.76688414 -1.6692291  -8.78048843  3.78904162
    1.24247168 -4.73618733  0.27327032 -7.93180624  1.59974866  8.78601576]
- [ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
-  -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
-   1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
-   5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
-  -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]
  [-4.7833887   5.32946939 -0.87141823  1.38900567 -9.59956915  2.35207348
    2.22988468  2.03394692  8.9797878   3.67857655 -2.67618716 -1.17595897
    3.76433199 -8.46317271  3.28114395  3.73803392 -5.73436869 -7.0844462
   -3.75643598 -3.07904369  1.36974653 -0.95918462  9.91135428 -8.17722281
-  -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]]
+  -5.8656831  -6.76869078  3.12196673 -4.85745245 -0.70449349 -4.94582258]
+ [ 0.88697885  4.29142902  1.93200132  1.10877989 -1.55994342  2.80616392
+  -1.11495818  7.74595341  8.92512875 -2.29656298  6.09588722  0.47062896
+   1.36408008  8.63168509 -8.54512921 -8.59161818 -9.64308952  6.92270491
+   5.65321496  7.29061444  9.58822315  5.79602014 -0.84970449  5.46127493
+  -7.77730238  2.75092191 -7.17026663  9.07475984  0.04245798 -1.98719465]]
 </pre></div>
 </div>
 </div>
@@ -803,7 +698,7 @@ Cluster centroids:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1776620269.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1776620269.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rX</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rX</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
@@ -823,7 +718,7 @@ Cluster centroids:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1512537559.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1512537559.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rearranged_dists</span> <span class="o">=</span> <span class="n">euclidean_dists</span><span class="p">[</span><span class="n">idx</span><span class="p">,:][:,</span><span class="n">idx</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rearranged_dists</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">square</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
 
@@ -854,7 +749,7 @@ Cluster centroids:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1887515152.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1887515152.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">unif_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">unif_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">unif_X</span><span class="p">,</span> <span class="n">unif_Y</span><span class="p">]),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">])</span>
@@ -901,7 +796,7 @@ Cluster centroids:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1190079482.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1190079482.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">X_rand</span><span class="p">,</span> <span class="n">y_rand</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>                           <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.2</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">df_rand_gt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_rand</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_rand</span><span class="p">]),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">])</span>
@@ -930,7 +825,7 @@ Cluster centroids:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1695262378.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1695262378.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">figs</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_rand_gt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>                    <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -955,8 +850,8 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <p>To “calibrate” the Rand Index this way, we use the expected Rand Index of random labelings, denoted <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span>.</p>
 <p>The Expected Rand Index considers <span class="math notranslate nohighlight">\(C\)</span> to be a clustering that has the same cluster sizes as <span class="math notranslate nohighlight">\(T\)</span>, but labels are assigned at random.</p>
 <p>Using that, we define the adjusted Rand index as a simple <strong>rescaling</strong> of RI:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c27cc406-524f-4879-9286-fcd306b5615a">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c27cc406-524f-4879-9286-fcd306b5615a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-08e5c467-3b0d-48a1-a053-6fae6f628f21">
+<span class="eqno">(1)<a class="headerlink" href="#equation-08e5c467-3b0d-48a1-a053-6fae6f628f21" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{ARI} = \frac{\text{RI} - E[\text{RI}]}{\max(\text{RI}) - E[\text{RI}]}
 \end{equation}\]</div>
 <p>The computation of the <span class="math notranslate nohighlight">\(E[\text{RI}]\)</span> and the <span class="math notranslate nohighlight">\(\max(\text{RI})\)</span> are simple combinatorics (we’ll omit the derivation).</p>
@@ -971,7 +866,7 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">389416263.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">389416263.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">rX</span><span class="p">,</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
 
 <span class="ne">NameError</span>: name &#39;sns&#39; is not defined
@@ -1002,14 +897,14 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">3224119722.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">3224119722.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">return</span> <span class="n">ri</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> 
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">ri_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ri</span><span class="p">)),</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63042/3224119722.py</span> in <span class="ni">ri_evaluate_clusters</span><span class="nt">(X, max_clusters, ground_truth)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46500/3224119722.py</span> in <span class="ni">ri_evaluate_clusters</span><span class="nt">(X, max_clusters, ground_truth)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">ri_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">max_clusters</span><span class="p">,</span><span class="n">ground_truth</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">ri</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1045,7 +940,7 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">3292785389.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">3292785389.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
@@ -1070,7 +965,7 @@ $<span class="math notranslate nohighlight">\( \mbox{RI}(T,C) = \frac{a+b}{n \ch
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">2011763870.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">2011763870.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="p">)),</span> <span class="n">error</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k$-means clustering performance of synthetic data&#39;</span><span class="p">)</span>
@@ -1150,14 +1045,14 @@ $<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">4047633185.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">4047633185.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="n">s</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span> 
 <span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sc_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters&#39;</span><span class="p">)</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63042/4047633185.py</span> in <span class="ni">sc_evaluate_clusters</span><span class="nt">(X, max_clusters, n_init, seed)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46500/4047633185.py</span> in <span class="ni">sc_evaluate_clusters</span><span class="nt">(X, max_clusters, n_init, seed)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">sc_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">max_clusters</span><span class="p">,</span> <span class="n">n_init</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1298,7 +1193,7 @@ $<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">849854612.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">849854612.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dum</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
 <span class="g g-Whitespace">      </span><span class="mi">3</span>             <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
@@ -1338,14 +1233,14 @@ $<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1877957018.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1877957018.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">error</span> <span class="o">=</span> <span class="n">evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">error</span><span class="p">)),</span> <span class="n">error</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means Clustering Performance on Newsgroup Articles&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">);</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63042/2110852087.py</span> in <span class="ni">evaluate_clusters</span><span class="nt">(X, max_clusters)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46500/2110852087.py</span> in <span class="ni">evaluate_clusters</span><span class="nt">(X, max_clusters)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">max_clusters</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">error</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1370,14 +1265,14 @@ $<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">2445964420.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">2445964420.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ri</span> <span class="o">=</span> <span class="n">ri_evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ri</span><span class="p">)),</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means Clustering Compared to Known Labels</span><span class="se">\n</span><span class="s1">Newsgroup Articles&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Adjusted Rand Index&#39;</span><span class="p">);</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63042/3224119722.py</span> in <span class="ni">ri_evaluate_clusters</span><span class="nt">(X, max_clusters, ground_truth)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46500/3224119722.py</span> in <span class="ni">ri_evaluate_clusters</span><span class="nt">(X, max_clusters, ground_truth)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">ri_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">max_clusters</span><span class="p">,</span><span class="n">ground_truth</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">ri</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1402,14 +1297,14 @@ $<span class="math notranslate nohighlight">\(s = \frac{b-a}{\max(a, b)}\)</span
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">4111295666.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">4111295666.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span> <span class="o">=</span> <span class="n">sc_evaluate_clusters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$k$-means clustering performance on Newsgroup Articles&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">);</span>
 
-<span class="nn">/var/folders/j0/5mrrz4gn0ls56tvw9q3_f8d40000gn/T/ipykernel_63042/4047633185.py</span> in <span class="ni">sc_evaluate_clusters</span><span class="nt">(X, max_clusters, n_init, seed)</span>
+<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46500/4047633185.py</span> in <span class="ni">sc_evaluate_clusters</span><span class="nt">(X, max_clusters, n_init, seed)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">sc_evaluate_clusters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">max_clusters</span><span class="p">,</span> <span class="n">n_init</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -1519,7 +1414,7 @@ Cluster 3:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">1057292278.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">1057292278.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">euclidean_dists</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">euclidean_distances</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
@@ -1567,7 +1462,7 @@ Cluster 3:
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">j0</span><span class="o">/</span><span class="mi">5</span><span class="n">mrrz4gn0ls56tvw9q3_f8d40000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63042</span><span class="o">/</span><span class="mf">3624538189.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46500</span><span class="o">/</span><span class="mf">3624538189.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">[</span><span class="n">subset</span><span class="p">]]</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pos</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pos</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cols</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MDS Embedding of Newsgroup Articles&#39;</span><span class="p">);</span>
@@ -1603,42 +1498,54 @@ Cluster 3:
 
               </div>
               
+        
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="06-Clustering-I-kmeans.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="math notranslate nohighlight">\(k\)</span>-means</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="08-Clustering-III-hierarchical.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Hierarchical Clustering</p>
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="06-Clustering-I-kmeans.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="math notranslate nohighlight">\(k\)</span>-means</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="08-Clustering-III-hierarchical.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Hierarchical Clustering</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Mark Crovella<br/>
-    
-        &copy; Copyright 2021-2022.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Mark Crovella<br/>
+        
+            &copy; Copyright 2021-2022.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>
