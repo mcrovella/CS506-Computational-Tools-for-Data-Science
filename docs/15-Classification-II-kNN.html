@@ -691,6 +691,13 @@
 <li><p>Second, since Euclidean distance is the most common distance function used, data scaling is important.</p></li>
 </ol>
 <p>As previously discussed, features should be scaled to prevent distance measures from being dominated by a small subset of features.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The phrase `curse of dimensionality’ was coined by the mathematician Richard Bellman in 1957 in his book <em>Dynamic Programming.</em></p>
+</div>
+</div>
 <div style = "float: left; width: 55%;">
 <ol class="simple">
 <li><p>Third concerns the <strong>curse of dimensionality.</strong></p></li>
@@ -712,6 +719,13 @@
 <p>One very intuitive way to think about it is this:</p>
 <p>In order for two points to be close in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>, they must be close in <strong>each</strong> of the <span class="math notranslate nohighlight">\(d\)</span> dimensions.</p>
 <p>As the number of dimensions grows, it becomes harder and harder for a pair of points to be close in <strong>each</strong> dimension.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a fascinating exploration of the properties of unit spheres in high dimension, see <a class="reference external" href="https://www.americanscientist.org/article/an-adventure-in-the-nth-dimension">An Adventure in the Nth Dimension</a> by Brian Hayes in <em>American Scientist.</em></p>
+</div>
+</div>
 <p><strong>2. Points tend to all be at similar distances in high dimension.</strong></p>
 <p>This one is a little harder to visualize.  We’ll use formulas instead to guide us.</p>
 <p>Let’s say points are uniformly distributed in space, so that number of points in a region is proportional to the region’s volume.</p>
@@ -744,7 +758,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_40_0.png" src="_images/15-Classification-II-kNN_40_0.png" />
+<img alt="_images/15-Classification-II-kNN_42_0.png" src="_images/15-Classification-II-kNN_42_0.png" />
 </div>
 </div>
 <p>Let’s also ask how many points are within a slightly smaller distance, let’s say 0.99.</p>
@@ -752,8 +766,9 @@
 <p>The number of points then of course is proprtional to <span class="math notranslate nohighlight">\(k_d (1-\epsilon)^d\)</span></p>
 <p>Now, what is the fraction <span class="math notranslate nohighlight">\(f_d\)</span> of all the points that are within a unit distance, but <strong>not</strong> within a distance of 0.99?</p>
 <p>(That is, not within the the hypersphere with radius <span class="math notranslate nohighlight">\(1-\epsilon\)</span>)?</p>
-<p>This is
-$<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\epsilon)^d}{k^d 1^d} \)</span>$</p>
+<p>This is</p>
+<div class="math notranslate nohighlight">
+\[ f_d = \frac{k_d 1^d - k_d (1-\epsilon)^d}{k^d 1^d} \]</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
@@ -779,7 +794,7 @@ $<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\eps
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_43_0.png" src="_images/15-Classification-II-kNN_43_0.png" />
+<img alt="_images/15-Classification-II-kNN_45_0.png" src="_images/15-Classification-II-kNN_45_0.png" />
 </div>
 </div>
 <p>Now, <span class="math notranslate nohighlight">\((1-\epsilon)^d\)</span> goes to 0 as <span class="math notranslate nohighlight">\(d \rightarrow \infty\)</span>.</p>
@@ -810,12 +825,15 @@ $<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\eps
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_46_0.png" src="_images/15-Classification-II-kNN_46_0.png" />
+<img alt="_images/15-Classification-II-kNN_48_0.png" src="_images/15-Classification-II-kNN_48_0.png" />
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following example is based on <em>Data Science from Scratch,</em> Joel Grus, Second Edition, Chapter 12.</p>
+</div>
 </div>
 <p>Let’s demonstrate this effect in practice.</p>
 <p>What we will do is create 100 points, scattered at random within a <span class="math notranslate nohighlight">\(d\)</span>-dimensional space.</p>
@@ -858,7 +876,7 @@ $<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\eps
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_50_0.png" src="_images/15-Classification-II-kNN_50_0.png" />
+<img alt="_images/15-Classification-II-kNN_52_0.png" src="_images/15-Classification-II-kNN_52_0.png" />
 </div>
 </div>
 <p>The average distance between points grows, but it seems that the minimum distance between points grows about as fast.</p>
@@ -874,7 +892,7 @@ $<span class="math notranslate nohighlight">\( f_d = \frac{k_d 1^d - k_d (1-\eps
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_53_0.png" src="_images/15-Classification-II-kNN_53_0.png" />
+<img alt="_images/15-Classification-II-kNN_55_0.png" src="_images/15-Classification-II-kNN_55_0.png" />
 </div>
 </div>
 <p>This shows that, for any test point <span class="math notranslate nohighlight">\(x\)</span>, the distance to the <strong>closest</strong> point to <span class="math notranslate nohighlight">\(x\)</span>, relatively speaking, gets closer and closer to the <strong>average</strong> distance between points.</p>
@@ -951,7 +969,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_68_0.png" src="_images/15-Classification-II-kNN_68_0.png" />
+<img alt="_images/15-Classification-II-kNN_70_0.png" src="_images/15-Classification-II-kNN_70_0.png" />
 </div>
 </div>
 <p>Recall that we always want to test on data separate from our training data.</p>
@@ -991,7 +1009,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_72_0.png" src="_images/15-Classification-II-kNN_72_0.png" />
+<img alt="_images/15-Classification-II-kNN_74_0.png" src="_images/15-Classification-II-kNN_74_0.png" />
 </div>
 </div>
 <p>For our first example, we will classify the points (in the two classes) using a k-nn classifier.</p>
@@ -1092,7 +1110,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_81_0.png" src="_images/15-Classification-II-kNN_81_0.png" />
+<img alt="_images/15-Classification-II-kNN_83_0.png" src="_images/15-Classification-II-kNN_83_0.png" />
 </div>
 </div>
 <p>Indeed, the Positive (red) points in the upper half of the test data are all classified incorrectly.</p>
@@ -1128,7 +1146,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_84_0.png" src="_images/15-Classification-II-kNN_84_0.png" />
+<img alt="_images/15-Classification-II-kNN_86_0.png" src="_images/15-Classification-II-kNN_86_0.png" />
 </div>
 </div>
 <p>For comparison purposes, let’s try <span class="math notranslate nohighlight">\(k\)</span> = 3.</p>
@@ -1155,7 +1173,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_86_0.png" src="_images/15-Classification-II-kNN_86_0.png" />
+<img alt="_images/15-Classification-II-kNN_88_0.png" src="_images/15-Classification-II-kNN_88_0.png" />
 </div>
 </div>
 <p>And let’s look at the same individual point as before:</p>
@@ -1190,7 +1208,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_88_0.png" src="_images/15-Classification-II-kNN_88_0.png" />
+<img alt="_images/15-Classification-II-kNN_90_0.png" src="_images/15-Classification-II-kNN_90_0.png" />
 </div>
 </div>
 <p>So how confident can we be that the test accuracy is 92% in general?</p>
@@ -1240,7 +1258,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_92_0.png" src="_images/15-Classification-II-kNN_92_0.png" />
+<img alt="_images/15-Classification-II-kNN_94_0.png" src="_images/15-Classification-II-kNN_94_0.png" />
 </div>
 </div>
 <p>Based on the generalization error (ie, accuracy on test (held-out) data), it looks like <span class="math notranslate nohighlight">\(k = 2\)</span> is the best choice.</p>
@@ -1292,7 +1310,7 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_96_0.png" src="_images/15-Classification-II-kNN_96_0.png" />
+<img alt="_images/15-Classification-II-kNN_98_0.png" src="_images/15-Classification-II-kNN_98_0.png" />
 </div>
 </div>
 </div>
@@ -1332,7 +1350,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_100_0.png" src="_images/15-Classification-II-kNN_100_0.png" />
+<img alt="_images/15-Classification-II-kNN_102_0.png" src="_images/15-Classification-II-kNN_102_0.png" />
 </div>
 </div>
 <p>Let’s visualize the <strong>decision boundary</strong> of the Decision Tree.</p>
@@ -1363,7 +1381,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_102_0.png" src="_images/15-Classification-II-kNN_102_0.png" />
+<img alt="_images/15-Classification-II-kNN_104_0.png" src="_images/15-Classification-II-kNN_104_0.png" />
 </div>
 </div>
 </div>
@@ -1391,7 +1409,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_106_0.png" src="_images/15-Classification-II-kNN_106_0.png" />
+<img alt="_images/15-Classification-II-kNN_108_0.png" src="_images/15-Classification-II-kNN_108_0.png" />
 </div>
 </div>
 </div>
@@ -1493,7 +1511,7 @@ DT accuracy on training data:  0.98
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max Test Accuracy at k = 13 with accuracy 0.969
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_119_1.png" src="_images/15-Classification-II-kNN_119_1.png" />
+<img alt="_images/15-Classification-II-kNN_121_1.png" src="_images/15-Classification-II-kNN_121_1.png" />
 </div>
 </div>
 <p>Now, it looks llike <span class="math notranslate nohighlight">\(k\)</span> = 13 is the best-performing value of the hyperparameter.</p>
@@ -1514,7 +1532,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_122_0.png" src="_images/15-Classification-II-kNN_122_0.png" />
+<img alt="_images/15-Classification-II-kNN_124_0.png" src="_images/15-Classification-II-kNN_124_0.png" />
 </div>
 </div>
 <p>It looks like <span class="math notranslate nohighlight">\(k\)</span> = 13 is a reasonable value,</p>
@@ -1556,7 +1574,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_124_0.png" src="_images/15-Classification-II-kNN_124_0.png" />
+<img alt="_images/15-Classification-II-kNN_126_0.png" src="_images/15-Classification-II-kNN_126_0.png" />
 </div>
 </div>
 <p>There are a few artifacts, but overall this looks like a reasonably smooth set of decision boundaries.</p>
@@ -1611,7 +1629,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_129_0.png" src="_images/15-Classification-II-kNN_129_0.png" />
+<img alt="_images/15-Classification-II-kNN_131_0.png" src="_images/15-Classification-II-kNN_131_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1626,7 +1644,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_130_0.png" src="_images/15-Classification-II-kNN_130_0.png" />
+<img alt="_images/15-Classification-II-kNN_132_0.png" src="_images/15-Classification-II-kNN_132_0.png" />
 </div>
 </div>
 <p>It looks like 9 leaf nodes is appropriate, but we would be justified to choose 4 or 13 as well.</p>
@@ -1660,7 +1678,7 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_133_0.png" src="_images/15-Classification-II-kNN_133_0.png" />
+<img alt="_images/15-Classification-II-kNN_135_0.png" src="_images/15-Classification-II-kNN_135_0.png" />
 </div>
 </div>
 </div>
@@ -1723,7 +1741,7 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_140_1.png" src="_images/15-Classification-II-kNN_140_1.png" />
+<img alt="_images/15-Classification-II-kNN_142_1.png" src="_images/15-Classification-II-kNN_142_1.png" />
 </div>
 </div>
 <p>It is easier to visualize if we blur the pixels a little bit.</p>
@@ -1737,7 +1755,7 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_142_0.png" src="_images/15-Classification-II-kNN_142_0.png" />
+<img alt="_images/15-Classification-II-kNN_144_0.png" src="_images/15-Classification-II-kNN_144_0.png" />
 </div>
 </div>
 <p>Here are some more samples from the dataset:</p>
@@ -1753,10 +1771,10 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_144_0.png" src="_images/15-Classification-II-kNN_144_0.png" />
-<img alt="_images/15-Classification-II-kNN_144_1.png" src="_images/15-Classification-II-kNN_144_1.png" />
-<img alt="_images/15-Classification-II-kNN_144_2.png" src="_images/15-Classification-II-kNN_144_2.png" />
-<img alt="_images/15-Classification-II-kNN_144_3.png" src="_images/15-Classification-II-kNN_144_3.png" />
+<img alt="_images/15-Classification-II-kNN_146_0.png" src="_images/15-Classification-II-kNN_146_0.png" />
+<img alt="_images/15-Classification-II-kNN_146_1.png" src="_images/15-Classification-II-kNN_146_1.png" />
+<img alt="_images/15-Classification-II-kNN_146_2.png" src="_images/15-Classification-II-kNN_146_2.png" />
+<img alt="_images/15-Classification-II-kNN_146_3.png" src="_images/15-Classification-II-kNN_146_3.png" />
 </div>
 </div>
 <p>Although this is an 8 <span class="math notranslate nohighlight">\(\times\)</span> 8 image, we can just treat it as a vector of length 64.</p>
@@ -1814,7 +1832,7 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_149_0.png" src="_images/15-Classification-II-kNN_149_0.png" />
+<img alt="_images/15-Classification-II-kNN_151_0.png" src="_images/15-Classification-II-kNN_151_0.png" />
 </div>
 </div>
 <p>These plots illustrate important principles:</p>
@@ -1854,9 +1872,9 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_153_0.png" src="_images/15-Classification-II-kNN_153_0.png" />
-<img alt="_images/15-Classification-II-kNN_153_1.png" src="_images/15-Classification-II-kNN_153_1.png" />
-<img alt="_images/15-Classification-II-kNN_153_2.png" src="_images/15-Classification-II-kNN_153_2.png" />
+<img alt="_images/15-Classification-II-kNN_155_0.png" src="_images/15-Classification-II-kNN_155_0.png" />
+<img alt="_images/15-Classification-II-kNN_155_1.png" src="_images/15-Classification-II-kNN_155_1.png" />
+<img alt="_images/15-Classification-II-kNN_155_2.png" src="_images/15-Classification-II-kNN_155_2.png" />
 </div>
 </div>
 </div>
