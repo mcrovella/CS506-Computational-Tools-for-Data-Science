@@ -1,417 +1,392 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Dimensionality Reduction and PCA – SVD II &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '11-Dimensionality-Reduction-SVD-II';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Regression" href="17-Regression-I-Linear.html" />
     <link rel="prev" title="Low Rank Approximation and the SVD" href="10-Low-Rank-and-SVD.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Networks-I.html">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/11-Dimensionality-Reduction-SVD-II.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/11-Dimensionality-Reduction-SVD-II.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
 
-        </div>
+</a>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uses-of-pca-svd">
-   Uses of PCA/SVD
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization-and-denoising-extended-example">
-   Visualization and Denoising – Extended Example.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-20-newsgroups">
-   Data: 20 Newsgroups
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basic-clustering">
-     Basic Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#improvement-stemming">
-     Improvement: Stemming
-    </a>
-   </li>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/11-Dimensionality-Reduction-SVD-II.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#demonstrating-pca">
-   Demonstrating PCA
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#denoising">
-   Denoising
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization">
-   Visualization
-  </a>
- </li>
-</ul>
+</div>
 
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dimensionality Reduction and PCA – SVD II</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-pca-svd">Uses of PCA/SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-and-denoising-extended-example">Visualization and Denoising – Extended Example.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-20-newsgroups">Data: 20 Newsgroups</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-clustering">Basic Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improvement-stemming">Improvement: Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-pca">Demonstrating PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denoising">Denoising</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -426,9 +401,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dimensionality-reduction-and-pca-svd-ii">
-<h1>Dimensionality Reduction and PCA – SVD II<a class="headerlink" href="#dimensionality-reduction-and-pca-svd-ii" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="dimensionality-reduction-and-pca-svd-ii">
+<h1>Dimensionality Reduction and PCA – SVD II<a class="headerlink" href="#dimensionality-reduction-and-pca-svd-ii" title="Permalink to this heading">#</a></h1>
 <p>In the last lecture we learned about the SVD as a tool for constructing low-rank matrices.</p>
 <p>Today we’ll look at it as a way to transform our data objects.</p>
 <p>As a reminder, here is what the SVD looks like:</p>
@@ -500,6 +476,11 @@ Some figures and discusion are taken from there.</p>
 <p>And the squared distance of the blue point from the origin (red dashed line) is its contribution to the new <span class="math notranslate nohighlight">\(k\)</span>-dimensional sample variance.</p>
 <p>In other words, the <strong>distance-minimizing</strong> projection is the <strong>variance-maximizing</strong> projection!</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="s1">&#39;zero&#39;</span><span class="p">)</span>
@@ -514,8 +495,14 @@ Some figures and discusion are taken from there.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">.6</span><span class="p">]])</span>
@@ -529,12 +516,18 @@ Some figures and discusion are taken from there.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_24_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_24_0.png" />
+<img alt="_images/6febf5d4ccf36443f99485cfe28b54bed42fddfd3e434ec9ec0f68aa4e06394e.png" src="_images/6febf5d4ccf36443f99485cfe28b54bed42fddfd3e434ec9ec0f68aa4e06394e.png" />
 </div>
 </div>
 <p>For example, here is a dataset <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xc</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
@@ -547,8 +540,9 @@ Some figures and discusion are taken from there.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_26_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_26_0.png" />
+<img alt="_images/899ee69b7b991f3cfe028c97450e2436cb9d203a608d37434d4ee9061e0b6b35.png" src="_images/899ee69b7b991f3cfe028c97450e2436cb9d203a608d37434d4ee9061e0b6b35.png" />
 </div>
 </div>
 <p>By taking</p>
@@ -576,6 +570,11 @@ Some figures and discusion are taken from there.</p>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
 <span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -587,13 +586,14 @@ Some figures and discusion are taken from there.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_32_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_32_0.png" />
+<img alt="_images/061c3ac09b6b005714abe74f8bc3cb7110634c52bf719196558bae0a2d4f885c.png" src="_images/061c3ac09b6b005714abe74f8bc3cb7110634c52bf719196558bae0a2d4f885c.png" />
 </div>
 </div>
 <p>This method is called <strong>Principal Component Analysis.</strong></p>
 <p>In summary, PCA consists of:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Mean center the data, and</p></li>
 <li><p>Reduce the dimension of the mean-centered data via SVD.</p></li>
 </ol>
@@ -601,19 +601,19 @@ Some figures and discusion are taken from there.</p>
 <p>It winds up constructing the <strong>best low dimensional linear approximation of the data.</strong></p>
 <p>What are “principal components”?</p>
 <p>These are nothing more than the columns of <span class="math notranslate nohighlight">\(U\)</span> (or the rows of <span class="math notranslate nohighlight">\(V^T\)</span>).  Because they capture the direction of maximum variation, they are called “principal” components.</p>
-<div class="section" id="uses-of-pca-svd">
-<h2>Uses of PCA/SVD<a class="headerlink" href="#uses-of-pca-svd" title="Permalink to this headline">¶</a></h2>
+<section id="uses-of-pca-svd">
+<h2>Uses of PCA/SVD<a class="headerlink" href="#uses-of-pca-svd" title="Permalink to this heading">#</a></h2>
 <p>There are many uses of PCA (and SVD).</p>
 <p>We’ll cover three of the main uses:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Visualization</p></li>
 <li><p>Denoising</p></li>
 <li><p>Anomaly Detection</p></li>
 </ol>
 <p>As already mentioned, SVD is also useful for data compression – we won’t discuss it in detail, but it is the principle behind audio and video compression (MP3s, HDTV, etc).</p>
-</div>
-<div class="section" id="visualization-and-denoising-extended-example">
-<h2>Visualization and Denoising – Extended Example.<a class="headerlink" href="#visualization-and-denoising-extended-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visualization-and-denoising-extended-example">
+<h2>Visualization and Denoising – Extended Example.<a class="headerlink" href="#visualization-and-denoising-extended-example" title="Permalink to this heading">#</a></h2>
 <p>We will study both visualization and denoising in the context of text processing.</p>
 <p>As we have seen, a common way to work with documents is using the bag-of-words model (perhaps considering n-grams), which results in a term-document matrix.</p>
 <p>Entries in the matrix are generally TF-IDF scores.</p>
@@ -623,9 +623,9 @@ Some figures and discusion are taken from there.</p>
 <p>The application of PCA to term-document matrices is called <strong>Latent Semantic Analysis (LSA).</strong></p>
 <p>Among other benefits, LSA can improve the performance of clustering of documents.</p>
 <p>This happens because the important concepts are captured in the most significant principal components.</p>
-</div>
-<div class="section" id="data-20-newsgroups">
-<h2>Data: 20 Newsgroups<a class="headerlink" href="#data-20-newsgroups" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-20-newsgroups">
+<h2>Data: 20 Newsgroups<a class="headerlink" href="#data-20-newsgroups" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
@@ -650,8 +650,8 @@ Some figures and discusion are taken from there.</p>
 </div>
 </div>
 </div>
-<div class="section" id="basic-clustering">
-<h3>Basic Clustering<a class="headerlink" href="#basic-clustering" title="Permalink to this headline">¶</a></h3>
+<section id="basic-clustering">
+<h3>Basic Clustering<a class="headerlink" href="#basic-clustering" title="Permalink to this heading">#</a></h3>
 <p>To get started, let’s compute tf-idf scores.</p>
 <p>Notice that we will let the tokenizer compute <span class="math notranslate nohighlight">\(n\)</span>-grams for <span class="math notranslate nohighlight">\(n=\)</span>1 and 2.</p>
 <p>An <span class="math notranslate nohighlight">\(n\)</span>-gram is a set of <span class="math notranslate nohighlight">\(n\)</span> consecutive terms.</p>
@@ -669,12 +669,12 @@ Some figures and discusion are taken from there.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dtm</span><span class="p">),</span> <span class="n">dtm</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;scipy.sparse.csr.csr_matrix&#39;&gt; (1781, 9409)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;scipy.sparse._csr.csr_matrix&#39;&gt; (1781, 9409)
 </pre></div>
 </div>
 </div>
@@ -696,6 +696,11 @@ Some figures and discusion are taken from there.</p>
 </div>
 <p>Let’s evaluate the clusters.  We’ll assume that the newgroup the article came from is the ‘ground truth.’</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
 <span class="n">ri</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
@@ -705,16 +710,17 @@ Some figures and discusion are taken from there.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.8162962282193574
-Silhouette Score is 0.009438086458856245
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.7203279994023624
+Silhouette Score is 0.009377353619567392
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="improvement-stemming">
-<h3>Improvement: Stemming<a class="headerlink" href="#improvement-stemming" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="improvement-stemming">
+<h3>Improvement: Stemming<a class="headerlink" href="#improvement-stemming" title="Permalink to this heading">#</a></h3>
 <p>One source of noise that we can eliminate (before we use LSA) comes from word endings.</p>
 <p>For example: a Google search on ‘run’ will return web pages on ‘running.’</p>
 <p>This is useful, because the difference between ‘run’ and ‘running’ in practice is not enough to matter.</p>
@@ -737,78 +743,7 @@ Silhouette Score is 0.009438086458856245
         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
 
 <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
-<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">LookupError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">w3</span><span class="o">/</span><span class="mi">82</span><span class="n">mb3p_n0kg08n_x6rsp6xyc0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46668</span><span class="o">/</span><span class="mf">868578767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
-<span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
-
-<span class="nn">/var/folders/w3/82mb3p_n0kg08n_x6rsp6xyc0000gp/T/ipykernel_46668/868578767.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="nn">      6          for sent</span> in <span class="ni">sent_tokenize</span><span class="nt">(message)</span>
-<span class="nn">      7         for word</span> in <span class="ni">word_tokenize</span><span class="nt">(sent))</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">news_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">stemmed_data</span><span class="p">)</span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">107</span><span class="s2">     tokenizer = load(&quot;tokenizers/punkt/</span><span class="si">{0}</span><span class="s2">.pickle&quot;.format(language))</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2">     return tokenizer.tokenize(text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="s2"> </span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span><span class="s2">     # Load the resource.</span>
-<span class="ne">--&gt; </span><span class="mi">750</span><span class="s2">     opened_resource = _open(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2">     if format == &quot;raw&quot;:</span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">_open</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">873</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="s2">     if protocol is None or protocol.lower() == &quot;nltk&quot;:</span>
-<span class="ne">--&gt; </span><span class="mi">875</span><span class="s2">         return find(path_, path + [&quot;&quot;]).open()</span>
-<span class="g g-Whitespace">    </span><span class="mi">876</span><span class="s2">     elif protocol.lower() == &quot;file&quot;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">877</span><span class="s2">         # urllib might not use mode=&#39;rb&#39;, so handle this one ourselves:</span>
-
-<span class="nn">~/opt/anaconda3/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">find</span><span class="nt">(resource_name, paths)</span>
-<span class="g g-Whitespace">    </span><span class="mi">581</span><span class="s2">     sep = &quot;*&quot; * 70</span>
-<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="s2">     resource_not_found = &quot;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot; % (sep, msg, sep)</span>
-<span class="ne">--&gt; </span><span class="mi">583</span><span class="s2">     raise LookupError(resource_not_found)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span><span class="s2"> </span>
-
-<span class="ne">LookupError</span>: 
-<span class="s2">**********************************************************************</span>
-<span class="s2">  Resource punkt not found.</span>
-<span class="s2">  Please use the NLTK Downloader to obtain the resource:</span>
-
-<span class="s2">  &gt;&gt;&gt; import nltk</span>
-<span class="s2">  &gt;&gt;&gt; nltk.download(&#39;punkt&#39;)</span>
-<span class="s2">  </span>
-<span class="s2">  For more information see: https://www.nltk.org/data.html</span>
-
-<span class="s2">  Attempted to load tokenizers/punkt/PY3/english.pickle</span>
-
-<span class="s2">  Searched in:</span>
-<span class="s2">    - &#39;/Users/crovella/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/Users/crovella/opt/anaconda3/lib/nltk_data&#39;</span>
-<span class="s2">    - &#39;/usr/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/usr/local/share/nltk_data&#39;</span>
-<span class="s2">    - &#39;/usr/lib/nltk_data&#39;</span>
-<span class="s2">    - &#39;/usr/local/lib/nltk_data&#39;</span>
-<span class="s2">    - &#39;&#39;</span>
-<span class="s2">**********************************************************************</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -828,6 +763,11 @@ Silhouette Score is 0.009438086458856245
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
 <span class="n">ri</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">adjusted_rand_score</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">news_data</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
@@ -837,18 +777,19 @@ Silhouette Score is 0.009438086458856245
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.8162962282193574
-Silhouette Score is 0.009438086458856245
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rand Index is 0.844864300823809
+Silhouette Score is 0.01080754741232728
 </pre></div>
 </div>
 </div>
 </div>
 <p>So the Rand Index went from 0.816 to 0.846 as a result of stemming.</p>
-</div>
-</div>
-<div class="section" id="demonstrating-pca">
-<h2>Demonstrating PCA<a class="headerlink" href="#demonstrating-pca" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="demonstrating-pca">
+<h2>Demonstrating PCA<a class="headerlink" href="#demonstrating-pca" title="Permalink to this heading">#</a></h2>
 <p>OK.  Now, let’s apply PCA.</p>
 <p>Our data matrix is in sparse form.</p>
 <p>First, we mean center the data.
@@ -875,7 +816,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
 <p>Each LSA <strong>concept</strong> is a linear combination of words.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">vt</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">vt</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -924,123 +865,123 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.000587</td>
-      <td>-0.014010</td>
-      <td>-0.001577</td>
-      <td>0.001848</td>
-      <td>0.000337</td>
-      <td>3.975025e-04</td>
-      <td>0.000118</td>
-      <td>-0.005458</td>
-      <td>0.001272</td>
-      <td>-0.002208</td>
+      <td>0.007831</td>
+      <td>0.012323</td>
+      <td>0.000581</td>
+      <td>0.005558</td>
+      <td>0.001032</td>
+      <td>0.002075</td>
+      <td>0.002008</td>
+      <td>0.005575</td>
+      <td>0.001247</td>
+      <td>0.000813</td>
       <td>...</td>
-      <td>6.000575e-05</td>
-      <td>5.338341e-05</td>
-      <td>0.000248</td>
-      <td>4.981051e-05</td>
-      <td>0.000188</td>
-      <td>0.000380</td>
-      <td>0.000112</td>
-      <td>0.000226</td>
-      <td>0.000177</td>
-      <td>0.000267</td>
+      <td>-0.000028</td>
+      <td>-0.000025</td>
+      <td>-0.000200</td>
+      <td>-0.000025</td>
+      <td>-0.000128</td>
+      <td>-0.000207</td>
+      <td>-0.000087</td>
+      <td>-0.000150</td>
+      <td>-0.000113</td>
+      <td>0.000534</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.009574</td>
-      <td>0.000962</td>
-      <td>-0.001112</td>
-      <td>0.015316</td>
-      <td>0.002510</td>
-      <td>3.939858e-03</td>
-      <td>0.003854</td>
-      <td>0.002202</td>
-      <td>0.004158</td>
-      <td>-0.001409</td>
+      <td>-0.005990</td>
+      <td>0.009540</td>
+      <td>0.002089</td>
+      <td>-0.010679</td>
+      <td>-0.001646</td>
+      <td>-0.003477</td>
+      <td>-0.002687</td>
+      <td>0.002143</td>
+      <td>-0.003394</td>
+      <td>0.002458</td>
       <td>...</td>
-      <td>-1.661153e-07</td>
-      <td>5.545667e-07</td>
-      <td>-0.000061</td>
-      <td>2.559084e-08</td>
-      <td>-0.000035</td>
+      <td>-0.000015</td>
       <td>-0.000013</td>
+      <td>-0.000054</td>
+      <td>-0.000013</td>
+      <td>-0.000042</td>
+      <td>-0.000100</td>
       <td>-0.000026</td>
-      <td>-0.000029</td>
-      <td>-0.000031</td>
-      <td>0.001285</td>
+      <td>-0.000064</td>
+      <td>-0.000040</td>
+      <td>-0.001041</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.013217</td>
-      <td>-0.013083</td>
-      <td>-0.002440</td>
-      <td>0.000634</td>
-      <td>0.000415</td>
-      <td>-1.788887e-04</td>
-      <td>0.000090</td>
-      <td>-0.007515</td>
-      <td>0.000508</td>
-      <td>-0.001386</td>
+      <td>-0.012630</td>
+      <td>-0.011904</td>
+      <td>-0.002443</td>
+      <td>0.001438</td>
+      <td>0.000439</td>
+      <td>0.000044</td>
+      <td>0.000349</td>
+      <td>-0.006817</td>
+      <td>0.000692</td>
+      <td>-0.001124</td>
       <td>...</td>
-      <td>-8.760226e-05</td>
-      <td>-7.954655e-05</td>
-      <td>-0.000286</td>
-      <td>-8.452862e-05</td>
-      <td>-0.000243</td>
-      <td>-0.000542</td>
-      <td>-0.000131</td>
-      <td>-0.000288</td>
-      <td>-0.000220</td>
-      <td>-0.000114</td>
+      <td>-0.000095</td>
+      <td>-0.000086</td>
+      <td>-0.000289</td>
+      <td>-0.000087</td>
+      <td>-0.000252</td>
+      <td>-0.000576</td>
+      <td>-0.000134</td>
+      <td>-0.000293</td>
+      <td>-0.000204</td>
+      <td>-0.000013</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.011840</td>
-      <td>0.017939</td>
-      <td>0.002868</td>
-      <td>-0.003492</td>
-      <td>0.002854</td>
-      <td>-3.521713e-04</td>
-      <td>0.000348</td>
-      <td>0.010874</td>
-      <td>0.001753</td>
-      <td>0.002283</td>
+      <td>0.013576</td>
+      <td>0.017639</td>
+      <td>0.003552</td>
+      <td>0.001148</td>
+      <td>0.003354</td>
+      <td>-0.000410</td>
+      <td>0.000622</td>
+      <td>0.011649</td>
+      <td>0.002237</td>
+      <td>0.001969</td>
       <td>...</td>
-      <td>1.493999e-04</td>
-      <td>1.355876e-04</td>
-      <td>0.000397</td>
-      <td>1.348767e-04</td>
-      <td>0.000370</td>
-      <td>0.000849</td>
-      <td>0.000178</td>
-      <td>0.000410</td>
-      <td>0.000317</td>
-      <td>0.000160</td>
+      <td>0.000205</td>
+      <td>0.000186</td>
+      <td>0.000486</td>
+      <td>0.000172</td>
+      <td>0.000464</td>
+      <td>0.001142</td>
+      <td>0.000220</td>
+      <td>0.000508</td>
+      <td>0.000352</td>
+      <td>0.000200</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.004125</td>
-      <td>-0.011432</td>
-      <td>-0.005841</td>
-      <td>0.005180</td>
-      <td>0.000350</td>
-      <td>8.898727e-04</td>
-      <td>0.000504</td>
-      <td>-0.004226</td>
-      <td>0.000166</td>
-      <td>0.000814</td>
+      <td>-0.002254</td>
+      <td>-0.004619</td>
+      <td>-0.005458</td>
+      <td>-0.001938</td>
+      <td>-0.000251</td>
+      <td>0.000689</td>
+      <td>0.000043</td>
+      <td>-0.002620</td>
+      <td>-0.000533</td>
+      <td>0.001434</td>
       <td>...</td>
-      <td>-2.576771e-04</td>
-      <td>-2.359208e-04</td>
-      <td>-0.000762</td>
-      <td>-2.300529e-04</td>
-      <td>-0.000645</td>
-      <td>-0.001460</td>
-      <td>-0.000311</td>
-      <td>-0.000674</td>
-      <td>-0.000551</td>
-      <td>-0.001030</td>
+      <td>-0.000310</td>
+      <td>-0.000283</td>
+      <td>-0.000775</td>
+      <td>-0.000252</td>
+      <td>-0.000698</td>
+      <td>-0.001714</td>
+      <td>-0.000331</td>
+      <td>-0.000728</td>
+      <td>-0.000529</td>
+      <td>-0.000961</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1067,189 +1008,200 @@ Note that <code class="docutils literal notranslate"><span class="pre">vectors</
       <td>...</td>
     </tr>
     <tr>
-      <th>9404</th>
-      <td>-0.000550</td>
-      <td>-0.000227</td>
-      <td>-0.000082</td>
-      <td>0.004804</td>
-      <td>0.000005</td>
-      <td>2.687989e-03</td>
-      <td>-0.001296</td>
-      <td>0.002454</td>
-      <td>-0.003208</td>
-      <td>-0.002606</td>
+      <th>8048</th>
+      <td>0.000043</td>
+      <td>-0.000048</td>
+      <td>-0.000207</td>
+      <td>0.000041</td>
+      <td>-0.002082</td>
+      <td>-0.000734</td>
+      <td>-0.000556</td>
+      <td>0.000508</td>
+      <td>-0.000423</td>
+      <td>-0.000179</td>
       <td>...</td>
-      <td>-1.399987e-03</td>
-      <td>-1.947912e-03</td>
-      <td>-0.000078</td>
-      <td>-1.111407e-03</td>
-      <td>0.000623</td>
-      <td>0.976488</td>
+      <td>-0.001449</td>
+      <td>-0.002007</td>
+      <td>0.000133</td>
+      <td>-0.000929</td>
+      <td>0.000642</td>
+      <td>0.976204</td>
+      <td>-0.000030</td>
+      <td>0.000284</td>
+      <td>-0.000042</td>
+      <td>0.000657</td>
+    </tr>
+    <tr>
+      <th>8049</th>
+      <td>0.000137</td>
+      <td>0.000255</td>
+      <td>-0.000053</td>
       <td>-0.000149</td>
-      <td>0.000124</td>
-      <td>0.000318</td>
-      <td>0.000800</td>
-    </tr>
-    <tr>
-      <th>9405</th>
-      <td>0.000076</td>
-      <td>-0.000160</td>
-      <td>0.000067</td>
-      <td>-0.000242</td>
-      <td>-0.000467</td>
-      <td>1.523733e-04</td>
-      <td>-0.000068</td>
-      <td>-0.000315</td>
-      <td>0.000421</td>
-      <td>-0.000084</td>
+      <td>0.001295</td>
+      <td>-0.000098</td>
+      <td>-0.000018</td>
+      <td>-0.000708</td>
+      <td>-0.000041</td>
+      <td>-0.000346</td>
       <td>...</td>
-      <td>1.144577e-04</td>
-      <td>9.829144e-05</td>
-      <td>-0.000490</td>
-      <td>-1.442753e-04</td>
-      <td>-0.001062</td>
-      <td>-0.000172</td>
-      <td>0.999388</td>
-      <td>-0.000531</td>
-      <td>-0.000884</td>
-      <td>-0.000758</td>
+      <td>0.000114</td>
+      <td>0.000102</td>
+      <td>-0.000522</td>
+      <td>-0.000170</td>
+      <td>-0.001086</td>
+      <td>-0.000132</td>
+      <td>0.999364</td>
+      <td>-0.000520</td>
+      <td>-0.000747</td>
+      <td>-0.000892</td>
     </tr>
     <tr>
-      <th>9406</th>
-      <td>0.000250</td>
-      <td>-0.000681</td>
-      <td>-0.000157</td>
-      <td>-0.000035</td>
-      <td>-0.000750</td>
-      <td>1.203490e-04</td>
-      <td>0.000354</td>
-      <td>-0.000410</td>
-      <td>0.001721</td>
-      <td>0.001299</td>
+      <th>8050</th>
+      <td>-0.000186</td>
+      <td>0.000999</td>
+      <td>-0.000025</td>
+      <td>-0.000613</td>
+      <td>-0.000284</td>
+      <td>-0.000495</td>
+      <td>-0.000221</td>
+      <td>0.000041</td>
+      <td>0.000112</td>
+      <td>0.000328</td>
       <td>...</td>
-      <td>2.676559e-04</td>
-      <td>2.187585e-04</td>
-      <td>-0.001459</td>
-      <td>-1.620639e-04</td>
-      <td>-0.000905</td>
-      <td>0.000080</td>
-      <td>-0.000492</td>
-      <td>0.996931</td>
-      <td>-0.001320</td>
-      <td>0.000811</td>
+      <td>0.000246</td>
+      <td>0.000210</td>
+      <td>-0.001592</td>
+      <td>-0.000179</td>
+      <td>-0.000888</td>
+      <td>0.000155</td>
+      <td>-0.000515</td>
+      <td>0.996858</td>
+      <td>-0.001115</td>
+      <td>0.000816</td>
     </tr>
     <tr>
-      <th>9407</th>
-      <td>0.000194</td>
-      <td>-0.000353</td>
+      <th>8051</th>
+      <td>0.000019</td>
+      <td>0.000606</td>
+      <td>-0.000161</td>
+      <td>-0.000327</td>
+      <td>0.000523</td>
       <td>-0.000124</td>
-      <td>-0.000655</td>
-      <td>-0.000650</td>
-      <td>-9.475201e-07</td>
-      <td>0.000169</td>
-      <td>-0.000832</td>
-      <td>0.001045</td>
-      <td>-0.000008</td>
+      <td>-0.000112</td>
+      <td>-0.000705</td>
+      <td>-0.000055</td>
+      <td>0.000097</td>
       <td>...</td>
-      <td>2.201108e-04</td>
-      <td>1.936712e-04</td>
-      <td>-0.000602</td>
-      <td>6.778112e-05</td>
-      <td>-0.001912</td>
-      <td>0.000234</td>
-      <td>-0.000857</td>
-      <td>-0.001352</td>
-      <td>0.998111</td>
-      <td>-0.000679</td>
+      <td>0.000202</td>
+      <td>0.000184</td>
+      <td>-0.000606</td>
+      <td>-0.000288</td>
+      <td>-0.001271</td>
+      <td>-0.000157</td>
+      <td>-0.000769</td>
+      <td>-0.001136</td>
+      <td>0.998706</td>
+      <td>-0.000867</td>
     </tr>
     <tr>
-      <th>9408</th>
-      <td>-0.001355</td>
-      <td>0.000837</td>
-      <td>0.000403</td>
-      <td>-0.000331</td>
-      <td>-0.000086</td>
-      <td>1.124806e-03</td>
-      <td>-0.001939</td>
-      <td>0.003120</td>
-      <td>-0.002620</td>
-      <td>-0.001618</td>
+      <th>8052</th>
+      <td>0.000098</td>
+      <td>0.000264</td>
+      <td>0.000639</td>
+      <td>-0.000181</td>
+      <td>-0.003336</td>
+      <td>0.002154</td>
+      <td>0.001583</td>
+      <td>-0.001134</td>
+      <td>0.000224</td>
+      <td>0.000040</td>
       <td>...</td>
-      <td>5.281514e-05</td>
-      <td>6.191577e-05</td>
-      <td>0.000022</td>
-      <td>-1.001098e-03</td>
-      <td>-0.002021</td>
-      <td>0.000579</td>
-      <td>-0.000787</td>
-      <td>0.000768</td>
-      <td>-0.000714</td>
-      <td>0.982181</td>
+      <td>-0.000003</td>
+      <td>0.000017</td>
+      <td>0.000071</td>
+      <td>-0.001074</td>
+      <td>-0.002254</td>
+      <td>0.000697</td>
+      <td>-0.000814</td>
+      <td>0.000834</td>
+      <td>-0.000757</td>
+      <td>0.978108</td>
     </tr>
   </tbody>
 </table>
-<p>9409 rows × 9409 columns</p>
+<p>8053 rows × 8053 columns</p>
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
 <span class="k">for</span> <span class="n">cl</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Principal Component </span><span class="si">{</span><span class="n">cl</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">vt</span><span class="p">[</span><span class="n">cl</span><span class="p">]))[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">12s</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">vt</span><span class="p">[</span><span class="n">cl</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">12s</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">vt</span><span class="p">[</span><span class="n">cl</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Principal Component 0:
-windows      0.352
-file         0.144
-dos          0.142
-files        0.094
-card         0.091
-driver       0.086
-mouse        0.086
-ms           0.086
-drivers      0.081
-nt           0.071
+year         0.140
+game         0.111
+henri        0.108
+team         0.107
+space        0.106
+nasa         0.091
+toronto      0.086
+alaska       0.083
+player       0.079
+hit          0.077
 
 Principal Component 1:
-team         0.150
-year         0.139
-baseball     0.135
-game         0.133
-edu          0.124
-players      0.120
-runs         0.112
-games        0.109
-jewish       0.107
-pitching     0.093
+space        0.260
+nasa         0.218
+henri        0.184
+gov          0.135
+orbit        0.134
+alaska       0.129
+access       0.129
+toronto      0.118
+launch       0.109
+digex        0.102
 
 Principal Component 2:
-henry        0.467
-toronto      0.369
-zoo          0.232
-spencer      0.198
-edu          0.192
-zoology      0.187
-alaska       0.113
-work         0.109
-umd          0.095
-utzoo        0.094
+henri        0.458
+toronto      0.364
+zoo          0.228
+edu          0.201
+spencer      0.194
+zoolog       0.184
+alaska       0.123
+work         0.112
+umd          0.096
+utzoo        0.092
 </pre></div>
 </div>
 </div>
 </div>
 <p>The rows of <span class="math notranslate nohighlight">\(U\)</span> correpond to documents, which are linear combinations of <strong>concepts</strong>.</p>
-</div>
-<div class="section" id="denoising">
-<h2>Denoising<a class="headerlink" href="#denoising" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="denoising">
+<h2>Denoising<a class="headerlink" href="#denoising" title="Permalink to this heading">#</a></h2>
 <p>In order to improve our clustering accuracy, we will <strong>exclude</strong> the less significant concepts from the documents’ feature vectors.</p>
 <p>That is, we will choose the leftmost <span class="math notranslate nohighlight">\(k\)</span> columns of <span class="math notranslate nohighlight">\(U\)</span> and the topmost <span class="math notranslate nohighlight">\(k\)</span> rows of <span class="math notranslate nohighlight">\(V^T\)</span>.</p>
 <p>The reduced set of columns of <span class="math notranslate nohighlight">\(U\)</span> are our new document encodings, and it is those that we will cluster.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Principal Components (Rank $k$)&#39;</span><span class="p">)</span>
@@ -1258,18 +1210,24 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_79_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_79_0.png" />
+<img alt="_images/ea329b24218b5c361b8e1df7a36469d14604de72f0d496fb9289766efdd6d0a8.png" src="_images/ea329b24218b5c361b8e1df7a36469d14604de72f0d496fb9289766efdd6d0a8.png" />
 </div>
 </div>
 <p>It looks like 2 is a reasonable number of principal components.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ri</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">ss</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="nb">max</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">vectorsk</span> <span class="o">=</span> <span class="n">u</span><span class="p">[:,:</span><span class="n">k</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">vectorsk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">[:,:</span><span class="n">k</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">]))</span>
     <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">vectorsk</span><span class="p">)</span>
     <span class="n">labelsk</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
@@ -1278,8 +1236,14 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">ri</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Rand Score&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1287,8 +1251,9 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_82_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_82_0.png" />
+<img alt="_images/4bdc385f77d0441268f3216fcdd756449917ed8d96f8f7716ba0c8314bf93aaf.png" src="_images/4bdc385f77d0441268f3216fcdd756449917ed8d96f8f7716ba0c8314bf93aaf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1304,6 +1269,11 @@ utzoo        0.094
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span><span class="n">ss</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1311,20 +1281,26 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_84_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_84_0.png" />
+<img alt="_images/1dead680e9fde07194e52df615b1a31a8168f8c45f40cb9a56efb174834e1702.png" src="_images/1dead680e9fde07194e52df615b1a31a8168f8c45f40cb9a56efb174834e1702.png" />
 </div>
 </div>
 <p>Note that we can get good accuracy and coherent clusters with just <strong>two</strong> principal components.</p>
-</div>
-<div class="section" id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h2>
 <p>That’s a good thing, because it means that we can also <strong>visualize</strong> the data well with the help of PCA.</p>
 <p>Recall that the challenge of visualization is that the data live in a high dimensional space.</p>
 <p>We can only look at 2 (or maybe 3) dimensions at a time, so it’s not clear <strong>which</strong> dimensions to look at.</p>
 <p>The idea behind using PCA for visualization is that since low-numbered principal components capture most of the <strong>variance</strong> in the data, these are the “directions” from which it is most useful to inspect the data.</p>
 <p>We saw that the first two principal components were particularly large – let’s start by using them for visualization.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">Xk</span> <span class="o">=</span> <span class="n">u</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -1342,14 +1318,20 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_91_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_91_0.png" />
+<img alt="_images/f39cbe0d944d564b289c858e6850e2b2966ebf6b084608a7a5564b42c40d5d18.png" src="_images/f39cbe0d944d564b289c858e6850e2b2966ebf6b084608a7a5564b42c40d5d18.png" />
 </div>
 </div>
 <p>Points in this plot have been labelled with their “true” (aka “ground truth”) cluster labels.</p>
 <p>Notice how clearly the clusters separate and how coherently they present themselves.   This is obvious an excellent visualization that is provided by PCA.</p>
 <p>Since this visualization is so clear, we can use it to examine the results of our various clustering methods and get some insight into how they differ.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1373,15 +1355,21 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_94_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_94_0.png" />
+<img alt="_images/5fa417bb56557f1f2592cc4a9d1afe15770f21b9ae8b85020e0b32e71f48b37c.png" src="_images/5fa417bb56557f1f2592cc4a9d1afe15770f21b9ae8b85020e0b32e71f48b37c.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Xk</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Xk</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]))</span>
 <span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
 <span class="n">Xklabels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
@@ -1400,11 +1388,17 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_95_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_95_0.png" />
+<img alt="_images/56d4f24952a436118c7b96c9f107290c5fca5b8e68af6824e0fd974d96b0cb57.png" src="_images/56d4f24952a436118c7b96c9f107290c5fca5b8e68af6824e0fd974d96b0cb57.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1430,16 +1424,22 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_96_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_96_0.png" />
+<img alt="_images/4131543b68e57c2af62938e2718c7635fb7a00b05ffba89338c430a6c577355f.png" src="_images/4131543b68e57c2af62938e2718c7635fb7a00b05ffba89338c430a6c577355f.png" />
 </div>
 </div>
 <p>What happens if we misjudge the number of clusters?  Let’s form 6 clusters.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Xk</span><span class="p">[:,:</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Xk</span><span class="p">[:,:</span><span class="mi">6</span><span class="p">]))</span>
 <span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span>
@@ -1457,11 +1457,17 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_98_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_98_0.png" />
+<img alt="_images/9d8084432a95ad76a4997d2035fa2d6e58f1607df8cfbefde9783d4513762333.png" src="_images/9d8084432a95ad76a4997d2035fa2d6e58f1607df8cfbefde9783d4513762333.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1484,13 +1490,19 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_99_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_99_0.png" />
+<img alt="_images/6f64649f01860a2e7444028a185db19dc0664439a384d0da3d6928b0b89e0bb7.png" src="_images/6f64649f01860a2e7444028a185db19dc0664439a384d0da3d6928b0b89e0bb7.png" />
 </div>
 </div>
 <p>What about the other principal components?   Are they useful for visualization?</p>
 <p>A common approach is to look at all pairs of (low-numbered) principal components, to look for additional structure in the data.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">Xk</span> <span class="o">=</span> <span class="n">u</span><span class="p">[:,:</span><span class="n">k</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
@@ -1507,12 +1519,13 @@ utzoo        0.094
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/11-Dimensionality-Reduction-SVD-II_101_0.png" src="_images/11-Dimensionality-Reduction-SVD-II_101_0.png" />
+<img alt="_images/251cdf6567fc472f93e2a3b1e28f4e92f20e45ef29bb38159dbcbee604c4ecd9.png" src="_images/251cdf6567fc472f93e2a3b1e28f4e92f20e45ef29bb38159dbcbee604c4ecd9.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1526,7 +1539,7 @@ utzoo        0.094
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1534,56 +1547,114 @@ utzoo        0.094
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="10-Low-Rank-and-SVD.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Low Rank Approximation and the SVD</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="17-Regression-I-Linear.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Linear Regression</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10-Low-Rank-and-SVD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Low Rank Approximation and the SVD</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="17-Regression-I-Linear.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uses-of-pca-svd">Uses of PCA/SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-and-denoising-extended-example">Visualization and Denoising – Extended Example.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-20-newsgroups">Data: 20 Newsgroups</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-clustering">Basic Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improvement-stemming">Improvement: Stemming</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrating-pca">Demonstrating PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denoising">Denoising</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

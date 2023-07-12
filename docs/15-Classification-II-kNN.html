@@ -1,465 +1,401 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>\(k\)-Nearest Neighbors &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '15-Classification-II-kNN';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Naive Bayes and Support Vector Machines" href="16-Classification-III-NB-SVM.html" />
     <link rel="prev" title="Decision Trees" href="14-Classification-I-Decision-Trees.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Networks-I.html">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/15-Classification-II-kNN.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/15-Classification-II-kNN.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/15-Classification-II-kNN.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>k-Nearest Neighbors</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parametric-vs-nonparametric-models">
-   Parametric vs. Nonparametric Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-selection-for-k-nn">
-   Model Selection for
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -NN
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#challenges-for-k-nn">
-   Challenges for
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -NN
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-curse-of-dimensionality">
-     The Curse of Dimensionality
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#in-practice">
-   In Practice
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-do-we-evaluate-a-classifier">
-     How do we evaluate a classifier?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluating-k-nearest-neighbors-and-decision-trees">
-     Evaluating
-     <span class="math notranslate nohighlight">
-      \(k\)
-     </span>
-     - Nearest Neighbors and Decision Trees
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decision-tree">
-   Decision Tree
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#comparing-k-nn-and-decision-tree">
-   Comparing
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -NN and Decision Tree
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#real-data">
-   Real Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-iris-dataset">
-     The Iris Dataset
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mnist-dataset">
-     MNIST dataset
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-vs-nonparametric-models">Parametric vs. Nonparametric Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-for-k-nn">Model Selection for <span class="math notranslate nohighlight">\(k\)</span>-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-for-k-nn">Challenges for <span class="math notranslate nohighlight">\(k\)</span>-NN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The Curse of Dimensionality</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-practice">In Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-evaluate-a-classifier">How do we evaluate a classifier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-k-nearest-neighbors-and-decision-trees">Evaluating <span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors and Decision Trees</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-k-nn-and-decision-tree">Comparing <span class="math notranslate nohighlight">\(k\)</span>-NN and Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-data">Real Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iris-dataset">The Iris Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-dataset">MNIST dataset</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -476,13 +412,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="k-nearest-neighbors">
-<h1><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="k-nearest-neighbors">
+<h1><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors<a class="headerlink" href="#k-nearest-neighbors" title="Permalink to this heading">#</a></h1>
 <p>Today we’ll expand our repetoire of classification techniques.</p>
 <p>In so doing we’ll look at a first example of a new kind of model: nonparametric.</p>
-<div class="section" id="parametric-vs-nonparametric-models">
-<h2>Parametric vs. Nonparametric Models<a class="headerlink" href="#parametric-vs-nonparametric-models" title="Permalink to this headline">¶</a></h2>
+<section id="parametric-vs-nonparametric-models">
+<h2>Parametric vs. Nonparametric Models<a class="headerlink" href="#parametric-vs-nonparametric-models" title="Permalink to this heading">#</a></h2>
 <p>There are many ways to define models (whether supervised or unsupervised).</p>
 <p>However a key distinction is this:  does the model have a fixed number of parameters, or does the number of parameters grow with the training data?</p>
 <p>If the model has a <strong>fixed number</strong> of parameters, it is called <strong>parametric.</strong></p>
@@ -499,6 +436,11 @@
 </ul>
 <p>The classic example of a nonparametric classifier is called <strong><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors.</strong></p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 <span class="n">cmap_light</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;#FFAAAA&#39;</span><span class="p">,</span> <span class="s1">&#39;#AAFFAA&#39;</span><span class="p">,</span> <span class="s1">&#39;#AAAAFF&#39;</span><span class="p">])</span>
@@ -506,10 +448,11 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-</div>
-<div class="section" id="id1">
-<h2><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <blockquote>
 <div><p>When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.</p>
 </div></blockquote>
@@ -519,6 +462,11 @@
 </center><p>Like any classifier, <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors is trained by providing it a set of labeled data.</p>
 <p>However, at training time, the classifier does very little.   It just stores away the training data.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">demo_y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">demo_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
@@ -531,13 +479,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_12_0.png" src="_images/15-Classification-II-kNN_12_0.png" />
+<img alt="_images/7e1a3c1561d426d05681d84e4a9ecfd77b90958ac6db5bc067a5f55cd90f6981.png" src="_images/7e1a3c1561d426d05681d84e4a9ecfd77b90958ac6db5bc067a5f55cd90f6981.png" />
 </div>
 </div>
 <p>The idea of the <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors classifier is that, at test time, it simply “looks at” the <span class="math notranslate nohighlight">\(k\)</span> points in the training set that are nearest to the test input <span class="math notranslate nohighlight">\(x\)</span>, and makes a decision based on the labels on those points.</p>
 <p>By “nearest” we usually mean in Euclidean distance.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">demo_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">demo_X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">demo_y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_bold</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
@@ -550,11 +504,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_14_0.png" src="_images/15-Classification-II-kNN_14_0.png" />
+<img alt="_images/af47e9602b7964b34a599fc8d8042d814bb962af653fd58c769c4e5bc9498a65.png" src="_images/af47e9602b7964b34a599fc8d8042d814bb962af653fd58c769c4e5bc9498a65.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">demo_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">demo_X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">demo_y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_bold</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>
@@ -567,11 +527,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_15_0.png" src="_images/15-Classification-II-kNN_15_0.png" />
+<img alt="_images/deb333da0dfbc23af3eb83d2ea2dd3a3d25afbc40b07aedb6fc2a79346ecbfc1.png" src="_images/deb333da0dfbc23af3eb83d2ea2dd3a3d25afbc40b07aedb6fc2a79346ecbfc1.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">demo_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">demo_X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">demo_y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_bold</span><span class="p">)</span>
 <span class="n">test_X</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
@@ -586,11 +552,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_16_0.png" src="_images/15-Classification-II-kNN_16_0.png" />
+<img alt="_images/86f0da6589c6af5e50fc17b31f07f2e8537bcbb0b85ac34f269c77800e5e1bbe.png" src="_images/86f0da6589c6af5e50fc17b31f07f2e8537bcbb0b85ac34f269c77800e5e1bbe.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -606,8 +578,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_17_0.png" src="_images/15-Classification-II-kNN_17_0.png" />
+<img alt="_images/6c06e4be33f20b26df67c3f8a2256d89948ef1c18015d046dc54d004a7ac196c.png" src="_images/6c06e4be33f20b26df67c3f8a2256d89948ef1c18015d046dc54d004a7ac196c.png" />
 </div>
 </div>
 <p>Note that <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors can do either <strong>hard</strong> or <strong>soft</strong> classification.</p>
@@ -617,14 +590,19 @@
 <p>As a soft classifier it returns:</p>
 <div class="math notranslate nohighlight">
 \[ p(x = c\,|\,\mathbf{x}, k) = \frac{\text{number of points in neighborhood with label } c}{k} \]</div>
-</div>
-<div class="section" id="model-selection-for-k-nn">
-<h2>Model Selection for <span class="math notranslate nohighlight">\(k\)</span>-NN<a class="headerlink" href="#model-selection-for-k-nn" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="model-selection-for-k-nn">
+<h2>Model Selection for <span class="math notranslate nohighlight">\(k\)</span>-NN<a class="headerlink" href="#model-selection-for-k-nn" title="Permalink to this heading">#</a></h2>
 <p>Each value of <span class="math notranslate nohighlight">\(k\)</span> results in a different model.</p>
 <p>The complexity of the resulting model is therefore controlled by the hyperparameter <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p>Hence we will want to select <span class="math notranslate nohighlight">\(k\)</span> using held-out data to avoid overfitting.</p>
 <p>Consider this dataset where items fall into three classes:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">sk_data</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> 
@@ -639,13 +617,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_24_0.png" src="_images/15-Classification-II-kNN_24_0.png" />
+<img alt="_images/cafb6a02ec859bdbc40e6a34d050d4899fd22902b4d3b63e6d0db3d713ff37bb.png" src="_images/cafb6a02ec859bdbc40e6a34d050d4899fd22902b4d3b63e6d0db3d713ff37bb.png" />
 </div>
 </div>
 <p>Let’s observe how the complexity of the resulting model changes as we vary <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p>We’ll do this by plotting the <strong>decision regions</strong>.   These show how the method would classify each potential test point in the space.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the decision boundary. For that, we will assign a color to each</span>
 <span class="c1"># point in the mesh [x_min, x_max]x[y_min, y_max].</span>
@@ -657,8 +641,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">]):</span>
@@ -673,41 +663,42 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_27_0.png" src="_images/15-Classification-II-kNN_27_0.png" />
+<img alt="_images/f9fb5536589de32c89b869c928153c54215e86eb9d0f11052594109822ef5c0b.png" src="_images/f9fb5536589de32c89b869c928153c54215e86eb9d0f11052594109822ef5c0b.png" />
 </div>
 </div>
 <p>Notice how increasing <span class="math notranslate nohighlight">\(k\)</span> results in smoother decision boundaries.</p>
 <p>These are more likely to show good generalization ability.</p>
-</div>
-<div class="section" id="challenges-for-k-nn">
-<h2>Challenges for <span class="math notranslate nohighlight">\(k\)</span>-NN<a class="headerlink" href="#challenges-for-k-nn" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="challenges-for-k-nn">
+<h2>Challenges for <span class="math notranslate nohighlight">\(k\)</span>-NN<a class="headerlink" href="#challenges-for-k-nn" title="Permalink to this heading">#</a></h2>
 <p>Working with a <span class="math notranslate nohighlight">\(k\)</span>-NN classifier can involve some challenges.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>First and foremost, the computational cost of classification grows with the size of the training data. (Why?) While certain data structures may help, essentially the classification time grows linearly with the data set size.</p></li>
 </ol>
 <p>Note the tradeoff here: the training step is trivial, but the classification step can be prohibitively expensive.</p>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>Second, since Euclidean distance is the most common distance function used, data scaling is important.</p></li>
 </ol>
 <p>As previously discussed, features should be scaled to prevent distance measures from being dominated by a small subset of features.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The phrase `curse of dimensionality’ was coined by the mathematician Richard Bellman in 1957 in his book <em>Dynamic Programming.</em></p>
 </div>
-</div>
+</aside>
 <div style = "float: left; width: 55%;">
-<ol class="simple">
+<ol class="arabic simple" start="3">
 <li><p>Third concerns the <strong>curse of dimensionality.</strong></p></li>
 </ol>
 <p>If training data lives in a high dimensional space, Euclidean distance measures become less effective.</p>
 <p>This is subtle but important, so we will now look at the curse of dimensionality more closely.</p>
 </div>
 <a class="reference internal image-reference" href="_images/L15-curse-frankenstein-edited.jpeg"><img alt="Figure" src="_images/L15-curse-frankenstein-edited.jpeg" style="width: 20%;" /></a>
-<div class="section" id="the-curse-of-dimensionality">
-<h3>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
+<section id="the-curse-of-dimensionality">
+<h3>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this heading">#</a></h3>
 <p>The Curse of Dimensionality is a somewhat tongue in cheek term for serious problems that arise when we use geometric algorithms in high dimensions.</p>
 <p>There are various aspects of the Curse that affect <span class="math notranslate nohighlight">\(k\)</span>-NN.</p>
 <p><strong>1. Points are far apart in high dimension.</strong></p>
@@ -719,13 +710,13 @@
 <p>One very intuitive way to think about it is this:</p>
 <p>In order for two points to be close in <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>, they must be close in <strong>each</strong> of the <span class="math notranslate nohighlight">\(d\)</span> dimensions.</p>
 <p>As the number of dimensions grows, it becomes harder and harder for a pair of points to be close in <strong>each</strong> dimension.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For a fascinating exploration of the properties of unit spheres in high dimension, see <a class="reference external" href="https://www.americanscientist.org/article/an-adventure-in-the-nth-dimension">An Adventure in the Nth Dimension</a> by Brian Hayes in <em>American Scientist.</em></p>
 </div>
-</div>
+</aside>
 <p><strong>2. Points tend to all be at similar distances in high dimension.</strong></p>
 <p>This one is a little harder to visualize.  We’ll use formulas instead to guide us.</p>
 <p>Let’s say points are uniformly distributed in space, so that number of points in a region is proportional to the region’s volume.</p>
@@ -740,6 +731,11 @@
 <li><p>etc.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="c1"># coordinates of sphere surface</span>
@@ -757,8 +753,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_42_0.png" src="_images/15-Classification-II-kNN_42_0.png" />
+<img alt="_images/cedb9f720b21a65f3356fe6bc4609fd181c0fa1fc700694687c48ddb6188ff69.png" src="_images/cedb9f720b21a65f3356fe6bc4609fd181c0fa1fc700694687c48ddb6188ff69.png" />
 </div>
 </div>
 <p>Let’s also ask how many points are within a slightly smaller distance, let’s say 0.99.</p>
@@ -770,6 +767,11 @@
 <div class="math notranslate nohighlight">
 \[ f_d = \frac{k_d 1^d - k_d (1-\epsilon)^d}{k^d 1^d} \]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="c1"># coordinates of sphere surface</span>
@@ -793,14 +795,20 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_45_0.png" src="_images/15-Classification-II-kNN_45_0.png" />
+<img alt="_images/9faf73e7f18be607c6a19f22fdac8083a17e0cb85b4371aab2efd2a51b0c71d4.png" src="_images/9faf73e7f18be607c6a19f22fdac8083a17e0cb85b4371aab2efd2a51b0c71d4.png" />
 </div>
 </div>
 <p>Now, <span class="math notranslate nohighlight">\((1-\epsilon)^d\)</span> goes to 0 as <span class="math notranslate nohighlight">\(d \rightarrow \infty\)</span>.</p>
 <p>So, <span class="math notranslate nohighlight">\(f_d\)</span> goes to 1 as <span class="math notranslate nohighlight">\(d \rightarrow \infty\)</span>.</p>
 <p>Which means: in the limit of high <span class="math notranslate nohighlight">\(d\)</span>, all of the points that are <strong>within</strong> 1 unit of our location, are almost <strong>exactly</strong> 1 unit from our location!</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 <span class="c1"># coordinates of sphere surface</span>
@@ -824,17 +832,18 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_48_0.png" src="_images/15-Classification-II-kNN_48_0.png" />
+<img alt="_images/5f70b5adda7c3744ec3db89b94296226b684d901eb4f1e7aea3d3a33a7d7aa23.png" src="_images/5f70b5adda7c3744ec3db89b94296226b684d901eb4f1e7aea3d3a33a7d7aa23.png" />
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following example is based on <em>Data Science from Scratch,</em> Joel Grus, Second Edition, Chapter 12.</p>
 </div>
-</div>
+</aside>
 <p>Let’s demonstrate this effect in practice.</p>
 <p>What we will do is create 100 points, scattered at random within a <span class="math notranslate nohighlight">\(d\)</span>-dimensional space.</p>
 <p>We will look at two quantities:</p>
@@ -844,6 +853,11 @@
 </ul>
 <p>as we vary <span class="math notranslate nohighlight">\(d\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
 
@@ -863,8 +877,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">min_dists</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Minimum Distance&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_dists</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Average Distance&quot;</span><span class="p">)</span>
@@ -875,14 +895,20 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_52_0.png" src="_images/15-Classification-II-kNN_52_0.png" />
+<img alt="_images/2bf966779ba45781acef2c7253ee6a33c56d2576a518f8b31913e826604627e1.png" src="_images/2bf966779ba45781acef2c7253ee6a33c56d2576a518f8b31913e826604627e1.png" />
 </div>
 </div>
 <p>The average distance between points grows, but it seems that the minimum distance between points grows about as fast.</p>
 <p>So the ratio of the minimum distance to the average distance grows as well!</p>
 <p>Let’s look at that ratio:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="o">/</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">min_dists</span><span class="p">,</span> <span class="n">mean_dists</span><span class="p">)])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Number of dimensions ($d$)&#39;</span><span class="p">)</span>
@@ -891,8 +917,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_55_0.png" src="_images/15-Classification-II-kNN_55_0.png" />
+<img alt="_images/2e1d6b28a69df720fbf886ca0bfe679b86a85865f36118fd21c72f12e9bb07fb.png" src="_images/2e1d6b28a69df720fbf886ca0bfe679b86a85865f36118fd21c72f12e9bb07fb.png" />
 </div>
 </div>
 <p>This shows that, for any test point <span class="math notranslate nohighlight">\(x\)</span>, the distance to the <strong>closest</strong> point to <span class="math notranslate nohighlight">\(x\)</span>, relatively speaking, gets closer and closer to the <strong>average</strong> distance between points.</p>
@@ -905,18 +932,18 @@
 <p>If you must use <span class="math notranslate nohighlight">\(k\)</span>-NN for your task, the only option may be to <strong>reduce</strong> the dimension of your data.</p>
 <p>Surprisingly, this can often be done at little cost in accuracy.</p>
 <p>We will discuss dimensionality reduction techniques at length later in the course.</p>
-</div>
-</div>
-<div class="section" id="in-practice">
-<h2>In Practice<a class="headerlink" href="#in-practice" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="in-practice">
+<h2>In Practice<a class="headerlink" href="#in-practice" title="Permalink to this heading">#</a></h2>
 <p>Next we’ll look at two classification methods in practice:</p>
 <ul class="simple">
 <li><p>Decision Trees, and</p></li>
 <li><p>k-Nearest Neighbors.</p></li>
 </ul>
 <p>To compare these methods, the question arises:</p>
-<div class="section" id="how-do-we-evaluate-a-classifier">
-<h3>How do we evaluate a classifier?<a class="headerlink" href="#how-do-we-evaluate-a-classifier" title="Permalink to this headline">¶</a></h3>
+<section id="how-do-we-evaluate-a-classifier">
+<h3>How do we evaluate a classifier?<a class="headerlink" href="#how-do-we-evaluate-a-classifier" title="Permalink to this heading">#</a></h3>
 <p>In the simple case of a binary classifier, we can call one class the ‘Positive’ class and one the ‘Negative’ class.</p>
 <p>The most basic measure of success for a classifer is <strong>accuracy</strong>: what fraction of test points are correctly classified?</p>
 <p>Of course, accuracy is important, but it can be too simplistic at times.</p>
@@ -938,9 +965,9 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="evaluating-k-nearest-neighbors-and-decision-trees">
-<h3>Evaluating <span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors and Decision Trees<a class="headerlink" href="#evaluating-k-nearest-neighbors-and-decision-trees" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="evaluating-k-nearest-neighbors-and-decision-trees">
+<h3>Evaluating <span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors and Decision Trees<a class="headerlink" href="#evaluating-k-nearest-neighbors-and-decision-trees" title="Permalink to this heading">#</a></h3>
 <p>First we’ll generate some synthetic data to work with.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -959,6 +986,11 @@ Unique labels: [0 1]
 </div>
 <p>Here is what the data looks like:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">prism</span><span class="p">()</span>  <span class="c1"># this sets a nice color map</span>
@@ -968,8 +1000,9 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_70_0.png" src="_images/15-Classification-II-kNN_70_0.png" />
+<img alt="_images/037db81e67dccaa672c2de750cd5694b6f463d99e4035f9301f19c70c3b0a702.png" src="_images/037db81e67dccaa672c2de750cd5694b6f463d99e4035f9301f19c70c3b0a702.png" />
 </div>
 </div>
 <p>Recall that we always want to test on data separate from our training data.</p>
@@ -985,13 +1018,24 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="n">fig_size</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1008,8 +1052,9 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_74_0.png" src="_images/15-Classification-II-kNN_74_0.png" />
+<img alt="_images/f54571f5ed3be4ce4fc3db66fdc06088dd23581dc8122b33f50d6279e984985b.png" src="_images/f54571f5ed3be4ce4fc3db66fdc06088dd23581dc8122b33f50d6279e984985b.png" />
 </div>
 </div>
 <p>For our first example, we will classify the points (in the two classes) using a k-nn classifier.</p>
@@ -1026,7 +1071,7 @@ Unique labels: [0 1]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn5</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on test data: </span><span class="si">{</span><span class="n">knn5</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on test data: </span><span class="si">{</span><span class="n">knn5</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1040,6 +1085,11 @@ Unique labels: [0 1]
 <p>We’ll call the red points the Positive class and the green points the Negative class.</p>
 <p>Here is the confusion matrix:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">knn5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">),</span> 
@@ -1048,6 +1098,7 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1090,6 +1141,11 @@ Unique labels: [0 1]
 <p>That is, its <strong>precision</strong> is 100%, but its <strong>recall</strong> is only 50%.</p>
 <p>Let’s visualize the results.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -1103,19 +1159,25 @@ Unique labels: [0 1]
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">y_pred_test</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn5</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn5</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_83_0.png" src="_images/15-Classification-II-kNN_83_0.png" />
+<img alt="_images/48a46cc694669d9738b5db1ca59a7714f514b53bcd3a73a2a983fd54a9bc6319.png" src="_images/48a46cc694669d9738b5db1ca59a7714f514b53bcd3a73a2a983fd54a9bc6319.png" />
 </div>
 </div>
 <p>Indeed, the Positive (red) points in the upper half of the test data are all classified incorrectly.</p>
 <p>Let’s look at one of the points that the classifier got wrong:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">5</span> 
 <span class="n">test_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
@@ -1145,12 +1207,18 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_86_0.png" src="_images/15-Classification-II-kNN_86_0.png" />
+<img alt="_images/36dc80526e94072f5a7b83e9cfd95f92f76adb9be1990998bb1699210aa647e8.png" src="_images/36dc80526e94072f5a7b83e9cfd95f92f76adb9be1990998bb1699210aa647e8.png" />
 </div>
 </div>
 <p>For comparison purposes, let’s try <span class="math notranslate nohighlight">\(k\)</span> = 3.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">knn3</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>    
@@ -1166,18 +1234,24 @@ Unique labels: [0 1]
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_test</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_88_0.png" src="_images/15-Classification-II-kNN_88_0.png" />
+<img alt="_images/15f2fb64dd7811ad14fc4ce7b2a1ee2eb3b4e79b085a1d4d54383b81176e7c80.png" src="_images/15f2fb64dd7811ad14fc4ce7b2a1ee2eb3b4e79b085a1d4d54383b81176e7c80.png" />
 </div>
 </div>
 <p>And let’s look at the same individual point as before:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">test_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
@@ -1201,20 +1275,21 @@ Unique labels: [0 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">y_pred_test</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">test_point</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[</span><span class="n">test_point</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> 
             <span class="n">facecolors</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Testing $k$=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_90_0.png" src="_images/15-Classification-II-kNN_90_0.png" />
+<img alt="_images/8be09c5a5253847bc2a96d72e5e366359f751a8fabb3d9093652524b3556113a.png" src="_images/8be09c5a5253847bc2a96d72e5e366359f751a8fabb3d9093652524b3556113a.png" />
 </div>
 </div>
 <p>So how confident can we be that the test accuracy is 92% in general?</p>
 <p>What we really need to do is consider <strong>many</strong> different train/test splits.</p>
 <p>Thus, the proper way to evaluate generalization ability (accuracy on the test data) is:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Form a random train/test split</p></li>
 <li><p>Train the classifier on the training split</p></li>
 <li><p>Test the classifier on the testing split</p></li>
@@ -1247,6 +1322,11 @@ Unique labels: [0 1]
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kvals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Test Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kvals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Training Data&#39;</span><span class="p">)</span>
@@ -1257,13 +1337,19 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_94_0.png" src="_images/15-Classification-II-kNN_94_0.png" />
+<img alt="_images/2a3f9b88b52caeb51fa241d41759ef3d24fc20aee321a381a628fb490e84184e.png" src="_images/2a3f9b88b52caeb51fa241d41759ef3d24fc20aee321a381a628fb490e84184e.png" />
 </div>
 </div>
 <p>Based on the generalization error (ie, accuracy on test (held-out) data), it looks like <span class="math notranslate nohighlight">\(k = 2\)</span> is the best choice.</p>
 <p>Here is the <strong>decision boundary</strong> for <span class="math notranslate nohighlight">\(k\)</span>-NN with <span class="math notranslate nohighlight">\(k = 2\)</span>.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.1</span>
 <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.1</span>
@@ -1273,8 +1359,14 @@ Unique labels: [0 1]
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -1296,7 +1388,7 @@ Unique labels: [0 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">-NN - Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">-NN - Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">cs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -1305,18 +1397,19 @@ Unique labels: [0 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">-NN - Test Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">-NN - Test Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_98_0.png" src="_images/15-Classification-II-kNN_98_0.png" />
+<img alt="_images/cd4ca0ad0fb103394e236fcf8cefed0292557b85596658ffc2acbb2a6d6621db.png" src="_images/cd4ca0ad0fb103394e236fcf8cefed0292557b85596658ffc2acbb2a6d6621db.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="decision-tree">
-<h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="decision-tree">
+<h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this heading">#</a></h2>
 <p>Next, we’ll use a decision tree on the same data set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1339,22 +1432,33 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_test</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">F</span><span class="s1">&#39;Decision Tree</span><span class="se">\n</span><span class="s1"> Triangles: Test Data, Circles: Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">F</span><span class="s1">&#39;Decision Tree</span><span class="se">\n</span><span class="s1"> Triangles: Test Data, Circles: Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_102_0.png" src="_images/15-Classification-II-kNN_102_0.png" />
+<img alt="_images/8617966da275f4ca783feeadd09005da574d4421009e25789007b1cf7a7b42dd.png" src="_images/8617966da275f4ca783feeadd09005da574d4421009e25789007b1cf7a7b42dd.png" />
 </div>
 </div>
 <p>Let’s visualize the <strong>decision boundary</strong> of the Decision Tree.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">dtc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1367,7 +1471,7 @@ DT accuracy on training data:  0.98
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Tree - Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Tree - Training Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">cs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -1376,17 +1480,18 @@ DT accuracy on training data:  0.98
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Tree - Test Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Tree - Test Data</span><span class="se">\n</span><span class="s1">Accuracy: </span><span class="si">{</span><span class="n">dtc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_104_0.png" src="_images/15-Classification-II-kNN_104_0.png" />
+<img alt="_images/d423e7b4a0e979026fb95afad3c69d76a0e47458fa5aee5112940e834f185faf.png" src="_images/d423e7b4a0e979026fb95afad3c69d76a0e47458fa5aee5112940e834f185faf.png" />
 </div>
 </div>
-</div>
-<div class="section" id="comparing-k-nn-and-decision-tree">
-<h2>Comparing <span class="math notranslate nohighlight">\(k\)</span>-NN and Decision Tree<a class="headerlink" href="#comparing-k-nn-and-decision-tree" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="comparing-k-nn-and-decision-tree">
+<h2>Comparing <span class="math notranslate nohighlight">\(k\)</span>-NN and Decision Tree<a class="headerlink" href="#comparing-k-nn-and-decision-tree" title="Permalink to this heading">#</a></h2>
 <p>It appears that <span class="math notranslate nohighlight">\(k\)</span>-NN and a Decision Tree have approximately comparable performance on this dataset.</p>
 <p>However - there is a difference in <strong>interpretability.</strong></p>
 <p>Interpretability is a big deal!  It means the ability to <strong>explain</strong> why the classifier made the decision it did.</p>
@@ -1395,6 +1500,11 @@ DT accuracy on training data:  0.98
 <p>We sometimes use the terms “black box” for an uninterpretable classifier like <span class="math notranslate nohighlight">\(k\)</span>-NN, and “white box” for an interpretable classifier like DT.</p>
 <p>Let’s see an example of the interpretability of the Decision Tree:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">dtc</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">],</span>
@@ -1408,16 +1518,17 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_108_0.png" src="_images/15-Classification-II-kNN_108_0.png" />
+<img alt="_images/e30ca63cfc2fabcdef35479f05d85520861b25b361c58f69fb903991f917211c.png" src="_images/e30ca63cfc2fabcdef35479f05d85520861b25b361c58f69fb903991f917211c.png" />
 </div>
 </div>
-</div>
-<div class="section" id="real-data">
-<h2>Real Data<a class="headerlink" href="#real-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="real-data">
+<h2>Real Data<a class="headerlink" href="#real-data" title="Permalink to this heading">#</a></h2>
 <p>To explore a few more issues, we’ll now turn to some famous datasets that have been extensively studied in the past.</p>
-<div class="section" id="the-iris-dataset">
-<h3>The Iris Dataset<a class="headerlink" href="#the-iris-dataset" title="Permalink to this headline">¶</a></h3>
+<section id="the-iris-dataset">
+<h3>The Iris Dataset<a class="headerlink" href="#the-iris-dataset" title="Permalink to this heading">#</a></h3>
 <p>The Iris dataset is a famous dataset used by Ronald Fisher in a classic 1936 paper on classification.</p>
 <center>
 <a class="reference internal image-reference" href="_images/R._A._Fisher.png"><img alt="Figure" src="_images/R._A._Fisher.png" style="width: 35%;" /></a>
@@ -1494,6 +1605,11 @@ DT accuracy on training data:  0.98
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span>
 <span class="n">stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">std</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nreps</span><span class="p">)</span>
@@ -1503,15 +1619,16 @@ DT accuracy on training data:  0.98
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">kvals</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Test Accuracy at k = </span><span class="si">{</span><span class="n">kvals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])]</span><span class="si">}</span><span class="s1"> with accuracy </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max Test Accuracy at k = </span><span class="si">{</span><span class="n">kvals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span><span class="w"> </span><span class="mi">0</span><span class="p">])]</span><span class="si">}</span><span class="s1"> with accuracy </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max Test Accuracy at k = 13 with accuracy 0.969
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_121_1.png" src="_images/15-Classification-II-kNN_121_1.png" />
+<img alt="_images/0882afa462eeb3befa3c4296ec1cf066208752699e7c11139dd4ee6e16f75814.png" src="_images/0882afa462eeb3befa3c4296ec1cf066208752699e7c11139dd4ee6e16f75814.png" />
 </div>
 </div>
 <p>Now, it looks llike <span class="math notranslate nohighlight">\(k\)</span> = 13 is the best-performing value of the hyperparameter.</p>
@@ -1521,6 +1638,11 @@ DT accuracy on training data:  0.98
 <p>To make this call, let’s plot <span class="math notranslate nohighlight">\(\pm 1 \sigma\)</span> confidence intervals on the mean values.</p>
 <p>(See the Probability Refresher for details on the proper formula.)</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">kvals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">stds</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Test Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
@@ -1531,8 +1653,9 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_124_0.png" src="_images/15-Classification-II-kNN_124_0.png" />
+<img alt="_images/35201d51a722bc401742959d2929e7ee6bc918fa6de29d44e0cf42706e627090.png" src="_images/35201d51a722bc401742959d2929e7ee6bc918fa6de29d44e0cf42706e627090.png" />
 </div>
 </div>
 <p>It looks like <span class="math notranslate nohighlight">\(k\)</span> = 13 is a reasonable value,</p>
@@ -1540,6 +1663,11 @@ DT accuracy on training data:  0.98
 <p>To gain insight onto the complexity of the model for <span class="math notranslate nohighlight">\(k\)</span> = 13, let’s look at the decision boundary.</p>
 <p>Note that we will re-run the classifier using only two (of four) features, so we can visualize.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create color maps</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
@@ -1573,8 +1701,9 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_126_0.png" src="_images/15-Classification-II-kNN_126_0.png" />
+<img alt="_images/09a3ea6a5d4e3dbc9e3095b8a830dd7289f5d9f91cb80f12e60f582dc1561960.png" src="_images/09a3ea6a5d4e3dbc9e3095b8a830dd7289f5d9f91cb80f12e60f582dc1561960.png" />
 </div>
 </div>
 <p>There are a few artifacts, but overall this looks like a reasonably smooth set of decision boundaries.</p>
@@ -1583,14 +1712,25 @@ DT accuracy on training data:  0.98
 <p>There are a variety of ways (see the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> documentation) but the simplest one is to control the number of leaf nodes in the tree.</p>
 <p>A small number of leaf nodes is a low-complexity model, and a large number of nodes is a high-complexity model.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leaf_vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">nreps</span> <span class="o">=</span> <span class="mi">50</span>
@@ -1614,8 +1754,14 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">leaf_vals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Test Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">leaf_vals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Training Data&#39;</span><span class="p">)</span>
@@ -1624,15 +1770,21 @@ DT accuracy on training data:  0.98
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;best&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">leaf_vals</span><span class="p">)</span>
 <span class="n">best_leaf</span> <span class="o">=</span> <span class="n">leaf_vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test/Train Error for Decision Tree</span><span class="se">\n</span><span class="s1">Max Test Accuracy at </span><span class="si">{</span><span class="n">best_leaf</span><span class="si">}</span><span class="s1"> leaf nodes with accuracy </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test/Train Error for Decision Tree</span><span class="se">\n</span><span class="s1">Max Test Accuracy at </span><span class="si">{</span><span class="n">best_leaf</span><span class="si">}</span><span class="s1"> leaf nodes with accuracy </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">accy</span><span class="p">[:,</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span><span class="si">:</span><span class="s1">.03f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_131_0.png" src="_images/15-Classification-II-kNN_131_0.png" />
+<img alt="_images/de9bc71c77ee1afd0c83b9ce89c6fa50ce60b8c7d39976a448f17795641f8d95.png" src="_images/de9bc71c77ee1afd0c83b9ce89c6fa50ce60b8c7d39976a448f17795641f8d95.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">leaf_vals</span><span class="p">,</span> <span class="n">accy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">stds</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Accuracy on Test Data&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Max Leaf Nodes&#39;</span><span class="p">)</span>
@@ -1643,13 +1795,19 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_132_0.png" src="_images/15-Classification-II-kNN_132_0.png" />
+<img alt="_images/ae49bdd31fc2a6143a29e3542812c01906158f4dd3bb6b7ea9b5a4c8ecf11ac4.png" src="_images/ae49bdd31fc2a6143a29e3542812c01906158f4dd3bb6b7ea9b5a4c8ecf11ac4.png" />
 </div>
 </div>
 <p>It looks like 9 leaf nodes is appropriate, but we would be justified to choose 4 or 13 as well.</p>
 <p>And now let’s visualize the decision boundary for the DT:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we will use only the first two (of four) features, so we can visualize</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> 
@@ -1677,13 +1835,14 @@ DT accuracy on training data:  0.98
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_135_0.png" src="_images/15-Classification-II-kNN_135_0.png" />
+<img alt="_images/20e8b0d5ecac2338671dc6f3f22e76f1717fc478aa170635c2e2a29de0817a24.png" src="_images/20e8b0d5ecac2338671dc6f3f22e76f1717fc478aa170635c2e2a29de0817a24.png" />
 </div>
 </div>
-</div>
-<div class="section" id="mnist-dataset">
-<h3>MNIST dataset<a class="headerlink" href="#mnist-dataset" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="mnist-dataset">
+<h3>MNIST dataset<a class="headerlink" href="#mnist-dataset" title="Permalink to this heading">#</a></h3>
 <p>NIST used to be called the “National Bureau of Standards.”  These are the folks who bring you the reference meter, reference kilogram, etc.</p>
 <p>NIST constructed datasets for machine learning of handwritten digits. These were collected from Census Bureau employees and also from high-school students.</p>
 <p>These data have been used repeatedly for many years to evaluate classifiers.  For a peek at some of the work done with this dataset you can visit <a class="reference external" href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/</a>.</p>
@@ -1730,6 +1889,11 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 <p>Let’s show the matrix as an image:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span> 
 <span class="c1"># plt.rc(&#39;axes&#39;, grid = False);</span>
@@ -1737,15 +1901,21 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/15-Classification-II-kNN_142_1.png" src="_images/15-Classification-II-kNN_142_1.png" />
+<img alt="_images/bcb947dd09c3d2691eb1d28dacb0edd310120529734164a296f64fb20eb85b87.png" src="_images/bcb947dd09c3d2691eb1d28dacb0edd310120529734164a296f64fb20eb85b87.png" />
 </div>
 </div>
 <p>It is easier to visualize if we blur the pixels a little bit.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1754,12 +1924,18 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_144_0.png" src="_images/15-Classification-II-kNN_144_0.png" />
+<img alt="_images/549dfae8cfd04142bc024d8822c29d5bd7b7a55150c441fa79449d1e642739bc.png" src="_images/549dfae8cfd04142bc024d8822c29d5bd7b7a55150c441fa79449d1e642739bc.png" />
 </div>
 </div>
 <p>Here are some more samples from the dataset:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -1770,11 +1946,12 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_146_0.png" src="_images/15-Classification-II-kNN_146_0.png" />
-<img alt="_images/15-Classification-II-kNN_146_1.png" src="_images/15-Classification-II-kNN_146_1.png" />
-<img alt="_images/15-Classification-II-kNN_146_2.png" src="_images/15-Classification-II-kNN_146_2.png" />
-<img alt="_images/15-Classification-II-kNN_146_3.png" src="_images/15-Classification-II-kNN_146_3.png" />
+<img alt="_images/219c953497ffcaea0fb3484973f943015ee4895ad453eab47a86c04325565e07.png" src="_images/219c953497ffcaea0fb3484973f943015ee4895ad453eab47a86c04325565e07.png" />
+<img alt="_images/d3fa2db197ea2b852a6fbb992dc6bfcf61b84b4123233f3bcf54fa860bf9a18b.png" src="_images/d3fa2db197ea2b852a6fbb992dc6bfcf61b84b4123233f3bcf54fa860bf9a18b.png" />
+<img alt="_images/aef4e9d7b89f6aab0f01be9f8562268f104df6be07206db665691704bcf34736.png" src="_images/aef4e9d7b89f6aab0f01be9f8562268f104df6be07206db665691704bcf34736.png" />
+<img alt="_images/be006775ac6999d67c2c1c730263e831ad24b2f1e934d282c38aff635bf8dd97.png" src="_images/be006775ac6999d67c2c1c730263e831ad24b2f1e934d282c38aff635bf8dd97.png" />
 </div>
 </div>
 <p>Although this is an 8 <span class="math notranslate nohighlight">\(\times\)</span> 8 image, we can just treat it as a vector of length 64.</p>
@@ -1783,7 +1960,7 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 <p>We may thus decide to limit the size of our testing set to speed up testing.</p>
 <p>How does the train/test split affect results?</p>
 <p>Let’s consider two cases:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Train: 90% of data, Test: 10% of data</p></li>
 <li><p>Train: 67% of data, Test: 33% of data</p></li>
 </ol>
@@ -1816,6 +1993,11 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">kvals</span><span class="p">,</span> <span class="n">accy1</span><span class="p">,</span> <span class="n">stds1</span><span class="p">,</span> 
@@ -1831,8 +2013,9 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_151_0.png" src="_images/15-Classification-II-kNN_151_0.png" />
+<img alt="_images/883e302b0d1be2aba9ef56f139e0e40311163cc8625e9d533850c0b75dea1c7f.png" src="_images/883e302b0d1be2aba9ef56f139e0e40311163cc8625e9d533850c0b75dea1c7f.png" />
 </div>
 </div>
 <p>These plots illustrate important principles:</p>
@@ -1844,6 +2027,11 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 <p>Note that the key decision here is what value to choose for <span class="math notranslate nohighlight">\(k\)</span>.   So it makes sense to use the 33% test split, because the smaller error bars give us better confidence in our decision.</p>
 <p>We can get a sense of why <span class="math notranslate nohighlight">\(k\)</span>-NN can succeed at this task by looking at the nearest neighbors of some points:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>    
 <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -1851,8 +2039,14 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>  <span class="c1"># this sets a black on white colormap</span>
 <span class="c1"># plot X_digits_valid[0]</span>
@@ -1871,15 +2065,16 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/15-Classification-II-kNN_155_0.png" src="_images/15-Classification-II-kNN_155_0.png" />
-<img alt="_images/15-Classification-II-kNN_155_1.png" src="_images/15-Classification-II-kNN_155_1.png" />
-<img alt="_images/15-Classification-II-kNN_155_2.png" src="_images/15-Classification-II-kNN_155_2.png" />
+<img alt="_images/859c76a639c4bd1893b9a3cebe5af73990199b293a7ffa183e353d5e2d08706e.png" src="_images/859c76a639c4bd1893b9a3cebe5af73990199b293a7ffa183e353d5e2d08706e.png" />
+<img alt="_images/ecc4e18b72c1b9ce2e3f4e020bcba3fb9fbc6fd3f3f8fee264f1d852eca91f01.png" src="_images/ecc4e18b72c1b9ce2e3f4e020bcba3fb9fbc6fd3f3f8fee264f1d852eca91f01.png" />
+<img alt="_images/eb78ba886e4b68d43673e688481f44ce9358552ed782bd9bdb2ea699449497d8.png" src="_images/eb78ba886e4b68d43673e688481f44ce9358552ed782bd9bdb2ea699449497d8.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1893,7 +2088,7 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1901,56 +2096,123 @@ Unique labels: [0 1 2 3 4 5 6 7 8 9]
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="14-Classification-I-Decision-Trees.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Decision Trees</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="16-Classification-III-NB-SVM.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Naive Bayes and Support Vector Machines</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="14-Classification-I-Decision-Trees.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Decision Trees</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="16-Classification-III-NB-SVM.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Naive Bayes and Support Vector Machines</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric-vs-nonparametric-models">Parametric vs. Nonparametric Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-for-k-nn">Model Selection for <span class="math notranslate nohighlight">\(k\)</span>-NN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-for-k-nn">Challenges for <span class="math notranslate nohighlight">\(k\)</span>-NN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The Curse of Dimensionality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-practice">In Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-evaluate-a-classifier">How do we evaluate a classifier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-k-nearest-neighbors-and-decision-trees">Evaluating <span class="math notranslate nohighlight">\(k\)</span>- Nearest Neighbors and Decision Trees</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-k-nn-and-decision-tree">Comparing <span class="math notranslate nohighlight">\(k\)</span>-NN and Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-data">Real Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iris-dataset">The Iris Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-dataset">MNIST dataset</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

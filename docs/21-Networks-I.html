@@ -1,452 +1,403 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Introduction to Networks &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '21-Networks-I';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Network Centrality and Clustering" href="22-Networks-II-Centrality-Clustering.html" />
     <link rel="prev" title="Recommender Systems" href="20-Recommender-Systems.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/21-Networks-I.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/21-Networks-I.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/21-Networks-I.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-definitions">
-   Basic Definitions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degree">
-     Degree
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#connectivity">
-     Connectivity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#characterizing-graphs">
-   Characterizing Graphs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comparison-case-the-g-n-p-random-graph">
-     Comparison Case: the
-     <span class="math notranslate nohighlight">
-      \(G(n, p)\)
-     </span>
-     Random Graph
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degree-distributions">
-     Degree Distributions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#power-law-degree-distributions">
-       Power Law Degree Distributions
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#power-law-degree-distributions-are-ubiquitous">
-       Power Law Degree Distributions are Ubiquitous
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering">
-     Clustering
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-and-path-length-small-worlds">
-   Clustering and Path Length: Small Worlds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analyzing-graphs">
-   Analyzing Graphs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-networks">
-     Visualizing Networks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Characterizing Graphs
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-definitions">Basic Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree">Degree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity">Connectivity</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-graphs">Characterizing Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-case-the-g-n-p-random-graph">Comparison Case: the <span class="math notranslate nohighlight">\(G(n, p)\)</span> Random Graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distributions">Degree Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-law-degree-distributions">Power Law Degree Distributions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-law-degree-distributions-are-ubiquitous">Power Law Degree Distributions are Ubiquitous</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-and-path-length-small-worlds">Clustering and Path Length: Small Worlds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-graphs">Analyzing Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-networks">Visualizing Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Characterizing Graphs</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -464,13 +415,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-networks">
-<h1>Introduction to Networks<a class="headerlink" href="#introduction-to-networks" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-networks">
+<h1>Introduction to Networks<a class="headerlink" href="#introduction-to-networks" title="Permalink to this heading">#</a></h1>
 <p>Now we will encounter a new kind of data: <strong>networks</strong>, also called <strong>graphs.</strong></p>
 <p>(We’re going to use the two terms interchangeably).</p>
-<div class="section" id="basic-definitions">
-<h2>Basic Definitions<a class="headerlink" href="#basic-definitions" title="Permalink to this headline">¶</a></h2>
+<section id="basic-definitions">
+<h2>Basic Definitions<a class="headerlink" href="#basic-definitions" title="Permalink to this heading">#</a></h2>
 <p>A graph is a pair <span class="math notranslate nohighlight">\((V, E)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is a set of <strong>vertices</strong> and <span class="math notranslate nohighlight">\(E\)</span> is a set of vertex pairs called <strong>edges.</strong></p>
 <p>We’ll also use the term <strong>nodes</strong> for vertices,</p>
 <p>and we’ll use the term <strong>links</strong> for edges.</p>
@@ -478,6 +430,11 @@
 <p>In an underdirected graph, an edge <span class="math notranslate nohighlight">\((u, v)\)</span> is an unordered pair.  The edge <span class="math notranslate nohighlight">\((v, u)\)</span> is the same thing.</p>
 <p>In a directed graph, <span class="math notranslate nohighlight">\((u, v)\)</span> is an ordered pair, and it is different from <span class="math notranslate nohighlight">\((v, u)\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
@@ -517,15 +474,16 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_6_0.png" src="_images/21-Networks-I_6_0.png" />
+<img alt="_images/2b7c1560355e1d695313422b71b7664f6cc383be7b762640937211ffb24c2f8b.png" src="_images/2b7c1560355e1d695313422b71b7664f6cc383be7b762640937211ffb24c2f8b.png" />
 </div>
 </div>
 <p>A <strong>path</strong> in a graph from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(v\)</span> is a sequence of edges that starts at <span class="math notranslate nohighlight">\(u\)</span> and ends at <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>In a directed graph, all of the edges in a path need to be oriented head-to-tail.</p>
 <p>If there is a path from <span class="math notranslate nohighlight">\(u\)</span> to <span class="math notranslate nohighlight">\(v\)</span>, we say that <span class="math notranslate nohighlight">\(v\)</span> is <strong>reachable</strong> from <span class="math notranslate nohighlight">\(u\)</span>.</p>
-<div class="section" id="degree">
-<h3>Degree<a class="headerlink" href="#degree" title="Permalink to this headline">¶</a></h3>
+<section id="degree">
+<h3>Degree<a class="headerlink" href="#degree" title="Permalink to this heading">#</a></h3>
 <p>The <strong>degree</strong> of a node is the number of edges that connect to it.</p>
 <p>In a directed graph, we distinguish between:</p>
 <ul class="simple">
@@ -533,6 +491,11 @@
 <li><p><strong>out-degree</strong>: the number of outgoing edges to the node</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
@@ -572,21 +535,27 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_11_0.png" src="_images/21-Networks-I_11_0.png" />
+<img alt="_images/2b7c1560355e1d695313422b71b7664f6cc383be7b762640937211ffb24c2f8b.png" src="_images/2b7c1560355e1d695313422b71b7664f6cc383be7b762640937211ffb24c2f8b.png" />
 </div>
 </div>
 <p>The <strong>neighbors</strong> of a node are the nodes to which it is connected.</p>
 <p>So the degree of a node is the number of neighbors it has.</p>
 <p>Node that in a network with <span class="math notranslate nohighlight">\(n\)</span> nodes and <span class="math notranslate nohighlight">\(e\)</span> edges, the average node degree is <span class="math notranslate nohighlight">\(2e/n\)</span>.</p>
 <p>Make sure that this is obvious to you!</p>
-</div>
-<div class="section" id="connectivity">
-<h3>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="connectivity">
+<h3>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this heading">#</a></h3>
 <p>The first question to ask about a graph is: is it <strong>connected</strong>?</p>
 <p>For an undirected graph to be connected, for each pair of nodes <span class="math notranslate nohighlight">\((u, v)\)</span>, <span class="math notranslate nohighlight">\(u\)</span> is reachable from <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>We say a directed graph is connected when its undirected version is connected.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)])</span>
@@ -629,8 +598,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_16_0.png" src="_images/21-Networks-I_16_0.png" />
+<img alt="_images/dd6b05df07633e050ca85057feb9fe8b6e187a95c0cac7bb2106a7200aa84d19.png" src="_images/dd6b05df07633e050ca85057feb9fe8b6e187a95c0cac7bb2106a7200aa84d19.png" />
 </div>
 </div>
 <p>If the graph is not connected, it may contain <strong>connected components</strong>.</p>
@@ -641,6 +611,11 @@
 <p>Within a directed graph, only a subset of nodes may be strongly connected.</p>
 <p>These are called the <strong>strongly connected component</strong> (SCC).</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
@@ -681,18 +656,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_20_0.png" src="_images/21-Networks-I_20_0.png" />
+<img alt="_images/1ad7bd055ff554955c3c02d5189ccc432f735b6f645bc214ffb89bb309ec6334.png" src="_images/1ad7bd055ff554955c3c02d5189ccc432f735b6f645bc214ffb89bb309ec6334.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="characterizing-graphs">
-<h2>Characterizing Graphs<a class="headerlink" href="#characterizing-graphs" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="characterizing-graphs">
+<h2>Characterizing Graphs<a class="headerlink" href="#characterizing-graphs" title="Permalink to this heading">#</a></h2>
 <p>When you first start working with a network, there are some basic questions that are very helpful to ask.</p>
 <p>It is helpful to characterize the degrees, components, and other structures in the graph.</p>
-<div class="section" id="comparison-case-the-g-n-p-random-graph">
-<h3>Comparison Case: the <span class="math notranslate nohighlight">\(G(n, p)\)</span> Random Graph<a class="headerlink" href="#comparison-case-the-g-n-p-random-graph" title="Permalink to this headline">¶</a></h3>
+<section id="comparison-case-the-g-n-p-random-graph">
+<h3>Comparison Case: the <span class="math notranslate nohighlight">\(G(n, p)\)</span> Random Graph<a class="headerlink" href="#comparison-case-the-g-n-p-random-graph" title="Permalink to this heading">#</a></h3>
 <p>In studying real-world graphs, it is helpful to have a case to compare against.</p>
 <p>The most common comparison is the <strong><span class="math notranslate nohighlight">\(G(n, p)\)</span> random graph</strong>.   It is also called the <strong>Erdős–Rényi</strong> graph, after the two mathematicians who developed and studied it.</p>
 <p>The <span class="math notranslate nohighlight">\(G(n, p)\)</span> random graph model is very simple:</p>
@@ -702,6 +678,11 @@
 </ul>
 <p>It is easy to see that in this graph, the average node degree is <span class="math notranslate nohighlight">\(np\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">35</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mf">0.15</span>
@@ -716,23 +697,24 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_26_0.png" src="_images/21-Networks-I_26_0.png" />
+<img alt="_images/a6ba3c31dc9dbfdfe428792cbf0f8942d479c77afa5e6d3d2b767b2618fb304a.png" src="_images/a6ba3c31dc9dbfdfe428792cbf0f8942d479c77afa5e6d3d2b767b2618fb304a.png" />
 </div>
 </div>
 <p>In this graph, the average degree is <span class="math notranslate nohighlight">\(np = 35 \cdot 0.15 = 5.25\)</span></p>
 <p>As it turns out, most real-world graphs do <strong>not</strong> match the properties of <span class="math notranslate nohighlight">\(G(n, p)\)</span> graphs.</p>
 <p>But it is useful to have a comparison to a “random” graph.</p>
-</div>
-<div class="section" id="degree-distributions">
-<h3>Degree Distributions<a class="headerlink" href="#degree-distributions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="degree-distributions">
+<h3>Degree Distributions<a class="headerlink" href="#degree-distributions" title="Permalink to this heading">#</a></h3>
 <p>Understanding connectivity starts with asking about observed degrees in the graph.</p>
 <p>This is captured in the <strong>degree distribution.</strong></p>
 <div class="math notranslate nohighlight">
 \[ P[D &gt; x] = \text{probability that a node has degree at least } x \]</div>
 <p>We typically focus our attention on large values of <span class="math notranslate nohighlight">\(x\)</span> – nodes that are highly connected.</p>
-<div class="section" id="power-law-degree-distributions">
-<h4>Power Law Degree Distributions<a class="headerlink" href="#power-law-degree-distributions" title="Permalink to this headline">¶</a></h4>
+<section id="power-law-degree-distributions">
+<h4>Power Law Degree Distributions<a class="headerlink" href="#power-law-degree-distributions" title="Permalink to this heading">#</a></h4>
 <p>It’s common for a degree distribution to <strong>approximately</strong> follow a power-law.</p>
 <p>The simplest power-law distribution is called the Pareto distribution:</p>
 <div class="math notranslate nohighlight">
@@ -740,6 +722,11 @@
 \leq 2. \]</div>
 <p>It takes on values in the range <span class="math notranslate nohighlight">\([k, \infty]\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.3</span>
@@ -752,8 +739,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_32_0.png" src="_images/21-Networks-I_32_0.png" />
+<img alt="_images/9293721a5fff01035a9e09a231d2a0448e69f555ccd4c11b494ccb7c6a2a3e2a.png" src="_images/9293721a5fff01035a9e09a231d2a0448e69f555ccd4c11b494ccb7c6a2a3e2a.png" />
 </div>
 </div>
 <p>We’ve seen distributions like this before when looking at recommender system data.</p>
@@ -770,6 +758,11 @@
 <p>To capture such high-variable degree distributions, a common strategy is to plot them on <strong>log-log</strong> axes.</p>
 <p>On log-log axes, a Pareto distribution appears as a straight line:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pareto</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.3</span>
@@ -782,13 +775,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_38_0.png" src="_images/21-Networks-I_38_0.png" />
+<img alt="_images/64ba4e7d27f0e2200a20b080e5a49e3bd3ee6bbeb7d6dad5e7e1644ae48a32bf.png" src="_images/64ba4e7d27f0e2200a20b080e5a49e3bd3ee6bbeb7d6dad5e7e1644ae48a32bf.png" />
 </div>
 </div>
-</div>
-<div class="section" id="power-law-degree-distributions-are-ubiquitous">
-<h4>Power Law Degree Distributions are Ubiquitous<a class="headerlink" href="#power-law-degree-distributions-are-ubiquitous" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="power-law-degree-distributions-are-ubiquitous">
+<h4>Power Law Degree Distributions are Ubiquitous<a class="headerlink" href="#power-law-degree-distributions-are-ubiquitous" title="Permalink to this heading">#</a></h4>
 <center>
 <a class="reference internal image-reference" href="_images/L21-newman-powerlaws.png"><img alt="Figure" src="_images/L21-newman-powerlaws.png" style="width: 800px;" /></a>
 </center><blockquote>
@@ -798,10 +792,10 @@
 </div></blockquote>
 <p>Note that <span class="math notranslate nohighlight">\(G(n, p)\)</span> random graphs do <strong>not</strong> have power-law degree distributions.</p>
 <p>Their degree distributions have exponential tails (like the power grid example above.)</p>
-</div>
-</div>
-<div class="section" id="clustering">
-<h3>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="clustering">
+<h3>Clustering<a class="headerlink" href="#clustering" title="Permalink to this heading">#</a></h3>
 <p>The next important property of a network to understand is <strong>clustering</strong>.</p>
 <p>In the context of networks, clustering refers to the tendency for groups of nodes to have higher connectivity within the group than the network-wide average.</p>
 <p>The simplest measure of local clustering is <strong>clustering coefficient</strong>.</p>
@@ -814,6 +808,11 @@
 <p>This is the ratio of the mean triangle count to mean neighbor pair count.</p>
 <p>It is the probability that a <strong>random pair</strong> of neighbors are connected.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
@@ -826,8 +825,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_47_0.png" src="_images/21-Networks-I_47_0.png" />
+<img alt="_images/dc05a1d3416dda182de6dcff3810e02e2c42e1ed061472c26fc8f803c5134859.png" src="_images/dc05a1d3416dda182de6dcff3810e02e2c42e1ed061472c26fc8f803c5134859.png" />
 </div>
 </div>
 <div class="math notranslate nohighlight">
@@ -846,10 +846,10 @@
 <p>For example, consider a social network.  Your friends are much more likely to be themselves friends than two randomly chosen people.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L21-clustering-coefs.png"><img alt="Figure" src="_images/L21-clustering-coefs.png" style="width: 800px;" /></a>
-</center></div>
-</div>
-<div class="section" id="clustering-and-path-length-small-worlds">
-<h2>Clustering and Path Length: Small Worlds<a class="headerlink" href="#clustering-and-path-length-small-worlds" title="Permalink to this headline">¶</a></h2>
+</center></section>
+</section>
+<section id="clustering-and-path-length-small-worlds">
+<h2>Clustering and Path Length: Small Worlds<a class="headerlink" href="#clustering-and-path-length-small-worlds" title="Permalink to this heading">#</a></h2>
 <p>The strong presence of clustering in networks leads to a question: how long is a typical shortest path between nodes?</p>
 <p>The average shortest path length between nodes is one way to measure a network’s “diameter.”</p>
 <p>Let’s consider a highly clustered graph:</p>
@@ -932,9 +932,9 @@
 <center>
 <a class="reference internal image-reference" href="_images/F2.large.jpeg"><img alt="Figure" src="_images/F2.large.jpeg" style="width: 500px;" /></a>
 </center> <p>These “high social capital” individuals play a big role in creating long-range, path-shortening connections in social networks.</p>
-</div>
-<div class="section" id="analyzing-graphs">
-<h2>Analyzing Graphs<a class="headerlink" href="#analyzing-graphs" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="analyzing-graphs">
+<h2>Analyzing Graphs<a class="headerlink" href="#analyzing-graphs" title="Permalink to this heading">#</a></h2>
 <p>When first starting to work with a network, understanding its properties can be difficult.</p>
 <p>Clustering and the presence of high-degree nodes both contribute to the problem.</p>
 <p>Nonetheless, there are a number of strategies that are used to “get to know” a new network dataset.</p>
@@ -943,8 +943,8 @@
 <li><p>visualize the network in a way that communicates as much insight as possible, and</p></li>
 <li><p>compute important metrics of the network</p></li>
 </ul>
-<div class="section" id="visualizing-networks">
-<h3>Visualizing Networks<a class="headerlink" href="#visualizing-networks" title="Permalink to this headline">¶</a></h3>
+<section id="visualizing-networks">
+<h3>Visualizing Networks<a class="headerlink" href="#visualizing-networks" title="Permalink to this heading">#</a></h3>
 <p>As an example, we’ll use the following network.</p>
 <p>It records American football games between NCAA Div IA colleges in Fall 2000 (available <a class="reference external" href="http://www-personal.umich.edu/~mejn/netdata/">here</a>).</p>
 <p>Each vertex represents a football team, which belongs to a specific conference (Big Ten, Conference USA, Pac-10, etc.).</p>
@@ -986,6 +986,11 @@ Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 <p>One way to visualize is to use a circular layout, which keeps all the edges in the interior.</p>
 <p>This can make things easier to see sometimes.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1007,8 +1012,9 @@ Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_90_0.png" src="_images/21-Networks-I_90_0.png" />
+<img alt="_images/45581d71ce80e7bc42f84eb7d7d3c76f6ee6691fbb36d1a3a781522c3fc2ec2c.png" src="_images/45581d71ce80e7bc42f84eb7d7d3c76f6ee6691fbb36d1a3a781522c3fc2ec2c.png" />
 </div>
 </div>
 <p>There is some non-random structure here, but it’s not clear exactly what it is.</p>
@@ -1027,6 +1033,11 @@ Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 </ul>
 <p>This is a kind of minimal distortion in a least-squares sense.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1048,14 +1059,20 @@ Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_94_0.png" src="_images/21-Networks-I_94_0.png" />
+<img alt="_images/fcc89821b39ffaaada3cc71cbde97139f6facb8c006400effa1981fb19cc7d88.png" src="_images/fcc89821b39ffaaada3cc71cbde97139f6facb8c006400effa1981fb19cc7d88.png" />
 </div>
 </div>
 <p>Notice how the spring layout tends to bring clusters of densely connected nodes close to each other.</p>
 <p>Finally, we can try the spectral layout.</p>
 <p>(We will define the spectral layout in the next lecture.)</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1077,16 +1094,17 @@ Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002).)</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_97_0.png" src="_images/21-Networks-I_97_0.png" />
+<img alt="_images/c49196912717121865914d1288602ce04d02348e1afc3b53ee664b1d66e689d9.png" src="_images/c49196912717121865914d1288602ce04d02348e1afc3b53ee664b1d66e689d9.png" />
 </div>
 </div>
 <p>With this layout, we can start to understand the structure of the network –</p>
 <p>see clusters of teams that correspond to conferences, –</p>
 <p>and understand that there are not too many high-degree nodes.</p>
-</div>
-<div class="section" id="id1">
-<h3>Characterizing Graphs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Characterizing Graphs<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Another way to undersand network structured data is to look at important metrics.</p>
 <p>For example, we can start with <strong>clustering coefficient:</strong></p>
 <div class="cell docutils container">
@@ -1132,6 +1150,11 @@ The diameter of the equivalent random network is 4 and the average shortest path
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">degree_freq</span><span class="p">)</span>
@@ -1141,12 +1164,18 @@ The diameter of the equivalent random network is 4 and the average shortest path
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_106_0.png" src="_images/21-Networks-I_106_0.png" />
+<img alt="_images/9b4002d94ac95d4888599c2c8bcb824ed2698d0eb256dfe5ee9814ec17b39297.png" src="_images/9b4002d94ac95d4888599c2c8bcb824ed2698d0eb256dfe5ee9814ec17b39297.png" />
 </div>
 </div>
 <p>To get a sense of what is unusual here, we can again compare this to the equivalent random network:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand_degree_freq</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_histogram</span><span class="p">(</span><span class="n">F_random</span><span class="p">)</span>
 <span class="n">rand_degrees</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rand_degree_freq</span><span class="p">))</span>
@@ -1160,14 +1189,15 @@ The diameter of the equivalent random network is 4 and the average shortest path
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/21-Networks-I_108_0.png" src="_images/21-Networks-I_108_0.png" />
+<img alt="_images/ae66b416a584703fbf8dc2ea38410296ee5b058ca28d5119472bb70899f43e99.png" src="_images/ae66b416a584703fbf8dc2ea38410296ee5b058ca28d5119472bb70899f43e99.png" />
 </div>
 </div>
 <p>We can see the evidence of scheduling of games in this distribution: a much larger number of teams plays 11 games than would occur by chance.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1181,7 +1211,7 @@ The diameter of the equivalent random network is 4 and the average shortest path
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1189,56 +1219,125 @@ The diameter of the equivalent random network is 4 and the average shortest path
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="20-Recommender-Systems.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Recommender Systems</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="22-Networks-II-Centrality-Clustering.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Network Centrality and Clustering</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="20-Recommender-Systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Recommender Systems</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="22-Networks-II-Centrality-Clustering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Network Centrality and Clustering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-definitions">Basic Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree">Degree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity">Connectivity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characterizing-graphs">Characterizing Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-case-the-g-n-p-random-graph">Comparison Case: the <span class="math notranslate nohighlight">\(G(n, p)\)</span> Random Graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distributions">Degree Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-law-degree-distributions">Power Law Degree Distributions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-law-degree-distributions-are-ubiquitous">Power Law Degree Distributions are Ubiquitous</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-and-path-length-small-worlds">Clustering and Path Length: Small Worlds</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-graphs">Analyzing Graphs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-networks">Visualizing Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Characterizing Graphs</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

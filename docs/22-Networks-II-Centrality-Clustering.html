@@ -1,449 +1,400 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Network Centrality and Clustering &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '22-Networks-II-Centrality-Clustering';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gradient Descent" href="23-Gradient-Descent.html" />
     <link rel="prev" title="Introduction to Networks" href="21-Networks-I.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Networks-I.html">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/22-Networks-II-Centrality-Clustering.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/22-Networks-II-Centrality-Clustering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/22-Networks-II-Centrality-Clustering.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Network Centrality and Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#centrality">
-   Centrality
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#closeness-centrality">
-     Closeness Centrality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#betweenness-centrality">
-     Betweenness Centrality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adjacency-matrices">
-     Adjacency Matrices
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#status-centrality">
-     Status Centrality
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-and-partitioning">
-   Clustering and Partitioning
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#min-s-t-cut">
-     Min
-     <span class="math notranslate nohighlight">
-      \(s\)
-     </span>
-     -
-     <span class="math notranslate nohighlight">
-      \(t\)
-     </span>
-     cut
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#minimum-cuts">
-     Minimum Cuts
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#balanced-cuts">
-     Balanced Cuts
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spectral-graph-theory">
-   Spectral Graph Theory
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spectral-partitioning">
-     Spectral Partitioning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#spectral-clustering">
-     Spectral Clustering
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrality">Centrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#betweenness-centrality">Betweenness Centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrices">Adjacency Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#status-centrality">Status Centrality</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-and-partitioning">Clustering and Partitioning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-s-t-cut">Min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-cuts">Minimum Cuts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-cuts">Balanced Cuts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-graph-theory">Spectral Graph Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-partitioning">Spectral Partitioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-clustering">Spectral Clustering</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -461,9 +412,10 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="network-centrality-and-clustering">
-<h1>Network Centrality and Clustering<a class="headerlink" href="#network-centrality-and-clustering" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="network-centrality-and-clustering">
+<h1>Network Centrality and Clustering<a class="headerlink" href="#network-centrality-and-clustering" title="Permalink to this heading">#</a></h1>
 <p>Now we turn to two important concepts in the analysis of networks:</p>
 <ul class="simple">
 <li><p>Important <strong>nodes</strong>, and</p></li>
@@ -472,8 +424,8 @@
 <p>The question of important nodes leads to the notion of <strong>centrality,</strong></p>
 <p>And the question of important groups of nodes leads to the notion of <strong>clustering.</strong></p>
 <p>In both cases, we will draw connections between graphs and linear algebra.</p>
-<div class="section" id="centrality">
-<h2>Centrality<a class="headerlink" href="#centrality" title="Permalink to this headline">¶</a></h2>
+<section id="centrality">
+<h2>Centrality<a class="headerlink" href="#centrality" title="Permalink to this heading">#</a></h2>
 <p>An common question in the analysis of networks is to understand the relative “importance” of the nodes in the network.</p>
 <p>For example:</p>
 <ul class="simple">
@@ -492,6 +444,11 @@
 </div>
 <p>Here’s a view of the social network of the karate club.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
@@ -509,8 +466,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_9_0.png" src="_images/22-Networks-II-Centrality-Clustering_9_0.png" />
+<img alt="_images/e0cb95d71b72f574ca4c253ca2200db05991cfe34c304e889fbc34b7bc2e128d.png" src="_images/e0cb95d71b72f574ca4c253ca2200db05991cfe34c304e889fbc34b7bc2e128d.png" />
 </div>
 </div>
 <p>Do some nodes in the network have a special role?</p>
@@ -518,13 +476,13 @@
 <p>These are often termed questions of <strong>centrality</strong> (or <strong>prestige</strong>).</p>
 <p>Today we’ll study metrics for these notions.   We’ll work with a graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <p>We will study three basic notions of centrality:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>Closeness</strong> Centrality:  A central node is close to all others.</p></li>
 <li><p><strong>Betweenness</strong> Centrality: A central node is on many paths through the network.</p></li>
 <li><p><strong>Status</strong> Centrality: A central node is connected to other central nodes.</p></li>
 </ol>
-<div class="section" id="closeness-centrality">
-<h3>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">¶</a></h3>
+<section id="closeness-centrality">
+<h3>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this heading">#</a></h3>
 <p>The closeness centrality of a node <span class="math notranslate nohighlight">\(i\)</span> is an indicator of the proximity between <span class="math notranslate nohighlight">\(i\)</span> and all the other nodes in the graph.</p>
 <p>We assume that <span class="math notranslate nohighlight">\(G\)</span> is connected; let <span class="math notranslate nohighlight">\(d(i,j)\)</span> be the shortest path distance between <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <p>(Although other dissimilarity measures could be used.)</p>
@@ -532,6 +490,11 @@
 <div class="math notranslate nohighlight">
 \[ \text{closeness}(i) = \frac{1}{\sum_{j \in V} d(i,j)}.\]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -554,13 +517,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_18_0.png" src="_images/22-Networks-II-Centrality-Clustering_18_0.png" />
+<img alt="_images/a07fc8a58b82ff402cc8abf7ff5999996240bf5097f16f5792cb7539a3057af1.png" src="_images/a07fc8a58b82ff402cc8abf7ff5999996240bf5097f16f5792cb7539a3057af1.png" />
 </div>
 </div>
 <p>In this graph, most nodes are close to most other nodes.</p>
 <p>However we can see that some nodes are slightly more central than others.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
@@ -570,13 +539,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_20_0.png" src="_images/22-Networks-II-Centrality-Clustering_20_0.png" />
+<img alt="_images/0193aa55e64961095d44e5a73161a5069b811c6fa48c49d6071bc95d8817933a.png" src="_images/0193aa55e64961095d44e5a73161a5069b811c6fa48c49d6071bc95d8817933a.png" />
 </div>
 </div>
-</div>
-<div class="section" id="betweenness-centrality">
-<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="betweenness-centrality">
+<h3>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this heading">#</a></h3>
 <p>Another way to think about centrality is “is the node on many paths?”</p>
 <p>If we picture the network as a conduit for information, then betweenness captures how important a node is to the communication process (or “how much” information passes through the node).</p>
 <p>First, let’s consider the case in which there is only one shortest path between any pair of nodes.</p>
@@ -599,6 +569,11 @@
 <div class="math notranslate nohighlight">
 \[ \text{betweenness}(i) = \sum_{i \neq j \neq k \in V} \text{dependency}(i \mid j, k) \]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -621,13 +596,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_28_0.png" src="_images/22-Networks-II-Centrality-Clustering_28_0.png" />
+<img alt="_images/16dac42ecd5b3f280dbdee7047e83046a1ab317195f9544f63211f4969525c34.png" src="_images/16dac42ecd5b3f280dbdee7047e83046a1ab317195f9544f63211f4969525c34.png" />
 </div>
 </div>
 <p>We start to see with this metric the “importance” of two or three key members of the karate club.</p>
 <p>Note that many nodes will have a betweenness centrality of zero – no shortest paths go through them.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
@@ -637,13 +618,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_31_0.png" src="_images/22-Networks-II-Centrality-Clustering_31_0.png" />
+<img alt="_images/b0dd09718df4d74c9bdf8adc27524c342ab698223c81b49031a79005bff655c4.png" src="_images/b0dd09718df4d74c9bdf8adc27524c342ab698223c81b49031a79005bff655c4.png" />
 </div>
 </div>
-</div>
-<div class="section" id="adjacency-matrices">
-<h3>Adjacency Matrices<a class="headerlink" href="#adjacency-matrices" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="adjacency-matrices">
+<h3>Adjacency Matrices<a class="headerlink" href="#adjacency-matrices" title="Permalink to this heading">#</a></h3>
 <p>To define the next centrality, we need to start thinking about graphs as <strong>matrices.</strong></p>
 <p>Given an <span class="math notranslate nohighlight">\(n\)</span>-node undirected graph <span class="math notranslate nohighlight">\(G = (V, E)\)</span>, its adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -652,6 +634,11 @@
     \end{array}\right. \end{split}\]</div>
 <p>Here is what the adjacency matrix of the karate club graph looks like:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFont</span><span class="p">,</span> <span class="n">ImageDraw</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
@@ -675,8 +662,13 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_36_0.png" src="_images/22-Networks-II-Centrality-Clustering_36_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/nm/m_437v6x2qj7_7k4k5wjbk9r000s6y/T/ipykernel_46700/2850787089.py:14: FutureWarning: adjacency_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+  A = nx.adjacency_matrix(Gk).astype(&#39;int&#39;).todense()
+</pre></div>
+</div>
+<img alt="_images/07c47ebd264d9707491763a9f13a21d3430a090e24c54c9e451b9cf29b191d9d.png" src="_images/07c47ebd264d9707491763a9f13a21d3430a090e24c54c9e451b9cf29b191d9d.png" />
 </div>
 </div>
 <p>An important way to think about adjacency matrices: <strong>column <span class="math notranslate nohighlight">\(j\)</span> holds <span class="math notranslate nohighlight">\(j\)</span>’s neighbors.</strong></p>
@@ -685,9 +677,9 @@
 <li><p>It is nonnegative, and</p></li>
 <li><p>It is symmetric.</p></li>
 </ul>
-</div>
-<div class="section" id="status-centrality">
-<h3>Status Centrality<a class="headerlink" href="#status-centrality" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="status-centrality">
+<h3>Status Centrality<a class="headerlink" href="#status-centrality" title="Permalink to this heading">#</a></h3>
 <p>The third notion of centrality is more subtle.</p>
 <p>In this context, one often talks of “prestige” rather than “centrality.”  But the concepts are related.</p>
 <p>The idea of status centrality is that <strong>“high status” nodes are those that are connected to “high status” nodes.</strong></p>
@@ -712,6 +704,11 @@
 <p>Then there is a good argument for choosing the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>, in which case all of the entries in <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> will be nonnegative.</p>
 <p>(This fact comes from the Perron-Frobenius theorem, which tells us that if <span class="math notranslate nohighlight">\(G\)</span> is connected, then the largest eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> is positive and the corresponding eigenvector is nonnegative.)</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">cent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">Gk</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -734,11 +731,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_50_0.png" src="_images/22-Networks-II-Centrality-Clustering_50_0.png" />
+<img alt="_images/3dae0afaa79d8b8563ae8039d08beb7815277b5b439da0efea7bec17a640cb54.png" src="_images/3dae0afaa79d8b8563ae8039d08beb7815277b5b439da0efea7bec17a640cb54.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cent</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
@@ -748,13 +751,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_51_0.png" src="_images/22-Networks-II-Centrality-Clustering_51_0.png" />
+<img alt="_images/e1ee294d2374d18e095606cebf773c8a1fd956622979c50cf68bac4cb753120b.png" src="_images/e1ee294d2374d18e095606cebf773c8a1fd956622979c50cf68bac4cb753120b.png" />
 </div>
 </div>
 <p>As a more detailed example, we can ask whether this definition of “prestige” applies to NCAA Division 1A football teams, based on who they play against.</p>
 <p>(Remember this data is from 2000!)</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data from http://www-personal.umich.edu/~mejn/netdata/</span>
 <span class="n">football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">readwrite</span><span class="o">.</span><span class="n">gml</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s1">&#39;data/football.gml&#39;</span><span class="p">)</span>
@@ -771,12 +780,18 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_53_0.png" src="_images/22-Networks-II-Centrality-Clustering_53_0.png" />
+<img alt="_images/05075d849e497f1d96c9e5da4f15a9d62219f4407c8589be6c676a4dff8e3d62.png" src="_images/05075d849e497f1d96c9e5da4f15a9d62219f4407c8589be6c676a4dff8e3d62.png" />
 </div>
 </div>
 <p>So let’s compare the three versions of centrality we’ve looked at:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gk</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">fn</span> <span class="o">=</span> <span class="p">[</span><span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">]</span>
@@ -801,11 +816,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_55_0.png" src="_images/22-Networks-II-Centrality-Clustering_55_0.png" />
+<img alt="_images/7e4709fe02292f4136605f1302a280388754e956adad6b35862c202ee4d9930f.png" src="_images/7e4709fe02292f4136605f1302a280388754e956adad6b35862c202ee4d9930f.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># consider discussing node ranking</span>
 <span class="c1"># this is a fun paper: http://stat.wharton.upenn.edu/~steele/Courses/956/Ranking/RankingFootballSIAM93.pdf</span>
@@ -815,11 +836,12 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-</div>
-</div>
-<div class="section" id="clustering-and-partitioning">
-<h2>Clustering and Partitioning<a class="headerlink" href="#clustering-and-partitioning" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="clustering-and-partitioning">
+<h2>Clustering and Partitioning<a class="headerlink" href="#clustering-and-partitioning" title="Permalink to this heading">#</a></h2>
 <p>We now turn to the question of finding important <strong>groups</strong> of nodes.</p>
 <p>Why might we want to cluster graph nodes?</p>
 <ul class="simple">
@@ -830,8 +852,8 @@
 <li><p>Circuit layout in VLSI</p></li>
 <li><p>Community detection in social networks</p></li>
 </ul>
-<div class="section" id="min-s-t-cut">
-<h3>Min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut<a class="headerlink" href="#min-s-t-cut" title="Permalink to this headline">¶</a></h3>
+<section id="min-s-t-cut">
+<h3>Min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut<a class="headerlink" href="#min-s-t-cut" title="Permalink to this heading">#</a></h3>
 <p>We’ll start with a problem that is fundamental to many other problems in graph analysis.</p>
 <p>Let’s say we have a graph <span class="math notranslate nohighlight">\(G\)</span> and two nodes in mind, <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>We would like to <strong>isolate</strong> <span class="math notranslate nohighlight">\(s\)</span> from <span class="math notranslate nohighlight">\(t\)</span>.  What is the cheapest way to do it?</p>
@@ -855,6 +877,11 @@
 <p>What can a min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut tell us about a graph?</p>
 <p>Let’s look at the karate club, in which I’ve highlighted the president and the instructor:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
@@ -873,14 +900,20 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_68_0.png" src="_images/22-Networks-II-Centrality-Clustering_68_0.png" />
+<img alt="_images/c49b9a881ff86152f10572bdc9141955cea8aa3a093dde27ec162306bd2bbe51.png" src="_images/c49b9a881ff86152f10572bdc9141955cea8aa3a093dde27ec162306bd2bbe51.png" />
 </div>
 </div>
 <p>As mentioned, when Wayne Zachary studied the club, a conflict arose between the instructor and the president (nodes 0 and 33).</p>
 <p>Zachary predicted the way the club would split based on an <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut.</p>
 <p>In fact, he <strong>correctly</strong> predicted every single member’s eventual association except for node 8!</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gcopy</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">Gcopy</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">cut_edges</span><span class="p">)</span>
@@ -895,13 +928,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_71_0.png" src="_images/22-Networks-II-Centrality-Clustering_71_0.png" />
+<img alt="_images/cfe6d332b343fff00db925f30708a1c54670a19a44f3937ca21782acd20c4051.png" src="_images/cfe6d332b343fff00db925f30708a1c54670a19a44f3937ca21782acd20c4051.png" />
 </div>
 </div>
-</div>
-<div class="section" id="minimum-cuts">
-<h3>Minimum Cuts<a class="headerlink" href="#minimum-cuts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="minimum-cuts">
+<h3>Minimum Cuts<a class="headerlink" href="#minimum-cuts" title="Permalink to this heading">#</a></h3>
 <p>Now, in partitioning a graph, we may not have any particular <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> in mind.</p>
 <p>Rather, we may want to simply find the “cheapest” way to disconnect the graph.</p>
 <p>Clearly, we can do this using <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut, by simply trying all <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> pairs.</p>
@@ -909,6 +943,11 @@
 <a class="reference internal image-reference" href="_images/L23-min-cut.png"><img alt="_images/L23-min-cut.png" src="_images/L23-min-cut.png" style="width: 35%;" /></a>
 </center> <p>Let’s try this approach of finding the minimum <span class="math notranslate nohighlight">\(s-t\)</span> cut over all possibilities in the karate club graph:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Gcopy</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">Gcopy</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">minimum_edge_cut</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
@@ -924,16 +963,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_76_0.png" src="_images/22-Networks-II-Centrality-Clustering_76_0.png" />
+<img alt="_images/60b29f04d820997fccdb1f2388b8a78802d8e986c798833b909c79f58d7e4eac.png" src="_images/60b29f04d820997fccdb1f2388b8a78802d8e986c798833b909c79f58d7e4eac.png" />
 </div>
 </div>
 <p>This is in fact the minimum cut: node 11 only has one edge to the rest of the graph, so the min cut is 1.</p>
 <p>As this example shows, minimum cut is not, in general, a good approach for clustering or partitioning.</p>
 <p>To get a more useful partition, we need to define a new goal:  finding a <strong>balanced cut.</strong></p>
-</div>
-<div class="section" id="balanced-cuts">
-<h3>Balanced Cuts<a class="headerlink" href="#balanced-cuts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="balanced-cuts">
+<h3>Balanced Cuts<a class="headerlink" href="#balanced-cuts" title="Permalink to this heading">#</a></h3>
 <p>The idea to avoid the problem above is to normalize the cut by the size of the <strong>smaller</strong> of the two components.</p>
 <p>The problem above would be avoided because the smaller of the two cuts is just a single node.</p>
 <p>This leads us to define the <strong>isoperimetric ratio</strong>:</p>
@@ -947,10 +987,10 @@
 <p>Unfortunately, it’s not computable in polynomial time.</p>
 <p>However, we can make good approximations, which we’ll look at now.</p>
 <p>To do so, we’ll return to using linear algebra for graphs, and introduce <strong>spectral graph theory.</strong></p>
-</div>
-</div>
-<div class="section" id="spectral-graph-theory">
-<h2>Spectral Graph Theory<a class="headerlink" href="#spectral-graph-theory" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="spectral-graph-theory">
+<h2>Spectral Graph Theory<a class="headerlink" href="#spectral-graph-theory" title="Permalink to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to study this in more detail, some excellent references are</p>
@@ -969,6 +1009,11 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 \[ L = D - A \]</div>
 <p>Here is the Laplacian matrix <span class="math notranslate nohighlight">\(L\)</span> for the karate club network, shown as a heatmap:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">laplacian_matrix</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">())</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
@@ -978,8 +1023,12 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_91_0.png" src="_images/22-Networks-II-Centrality-Clustering_91_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;networkx.utils.decorators.argmap&#39;&gt; compilation 37:4: FutureWarning: laplacian_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+</pre></div>
+</div>
+<img alt="_images/395a7e40eadcdf7c88a55ebe7ca0c7ac8f45fc33133a5326f6da1090dbecd91f.png" src="_images/395a7e40eadcdf7c88a55ebe7ca0c7ac8f45fc33133a5326f6da1090dbecd91f.png" />
 </div>
 </div>
 <p>Now let us think about an <span class="math notranslate nohighlight">\(n\)</span>-component vector <span class="math notranslate nohighlight">\(\mathbf{x} \in \mathbb{R}^n\)</span> as an <strong>assignment of values</strong> to nodes in the graph <span class="math notranslate nohighlight">\(G\)</span>.</p>
@@ -1025,7 +1074,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 <p>So … we are connecting functions on the graph <span class="math notranslate nohighlight">\(G\)</span> with eigenvectors of the matrix <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <p>Quite remarkable!</p>
 <p>Well, what do we know about <span class="math notranslate nohighlight">\(L\)</span>?</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>symmetric.</strong>  Therefore the eigenvectors of <span class="math notranslate nohighlight">\(L\)</span> are orthogonal and its eigenvalues are real.</p></li>
 <li><p><span class="math notranslate nohighlight">\(L\)</span> is <strong>positive semidefinite.</strong>  Therefore the eigenvalues of <span class="math notranslate nohighlight">\(L\)</span> are all positive or zero.  (For a proof see the notes.)</p></li>
 </ol>
@@ -1067,6 +1116,11 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 \[\lambda_3 = \min_{\Vert \mathbf{x}\Vert = 1, \;\mathbf{x}\perp \{\mathbf{1}, \mathbf{w}_2\}} \mathbf{x}^TL\mathbf{x}\]</div>
 <p>Let’s look again at layouts for the football network:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1088,14 +1142,15 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_111_0.png" src="_images/22-Networks-II-Centrality-Clustering_111_0.png" />
+<img alt="_images/40124378630124ea14ab5bba9b435867ed554a57c2df265f238783f534eeb6f7.png" src="_images/40124378630124ea14ab5bba9b435867ed554a57c2df265f238783f534eeb6f7.png" />
 </div>
 </div>
 <p>So what is the difference between the spectral layout and the spring layout?</p>
 <p>In one dimension, they are the same, but in multiple dimensions, spectral layout optimizes each dimension separately.</p>
-<div class="section" id="spectral-partitioning">
-<h3>Spectral Partitioning<a class="headerlink" href="#spectral-partitioning" title="Permalink to this headline">¶</a></h3>
+<section id="spectral-partitioning">
+<h3>Spectral Partitioning<a class="headerlink" href="#spectral-partitioning" title="Permalink to this heading">#</a></h3>
 <p>This leads to key ideas in node partitioning.</p>
 <p>The basic idea is to partition nodes according to the Fiedler vector <span class="math notranslate nohighlight">\(\mathbf{w}_2\)</span>.</p>
 <p>This can be shown to have provably good performance for the <strong>balanced cut</strong> problem.</p>
@@ -1113,6 +1168,11 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </ul>
 <p>Here is a spectral parititioning for the karate club graph:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">karate_club_graph</span><span class="p">()</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">fiedler_vector</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -1130,19 +1190,25 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_118_0.png" src="_images/22-Networks-II-Centrality-Clustering_118_0.png" />
+<img alt="_images/fe0b51c351d022f0409673f4d8c69d460ecc4b463b1957469627b7e63b0fd61a.png" src="_images/fe0b51c351d022f0409673f4d8c69d460ecc4b463b1957469627b7e63b0fd61a.png" />
 </div>
 </div>
 <p>Interestingly, this is almost the same as the <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> min cut  based on the president and instructor!</p>
-</div>
-<div class="section" id="spectral-clustering">
-<h3>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="spectral-clustering">
+<h3>Spectral Clustering<a class="headerlink" href="#spectral-clustering" title="Permalink to this heading">#</a></h3>
 <p>In many cases we would like to move beyond graph partitioning, to allow for clustering nodes into, say, <span class="math notranslate nohighlight">\(k\)</span> clusters.</p>
 <p>The idea of spectral clustering takes the observations about the Fiedler vector and extends them to more than one dimension.</p>
 <p>Let’s look again at the spectral layout of the football dataset.</p>
 <p>Here we’ve labelled the nodes according to their conference, which we will think of as ground-truth labels.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -1172,13 +1238,19 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_124_0.png" src="_images/22-Networks-II-Centrality-Clustering_124_0.png" />
+<img alt="_images/583fc6b7de9026b42282919f85f481c8352b6f60178d5d0352f5621b43449fc5.png" src="_images/583fc6b7de9026b42282919f85f481c8352b6f60178d5d0352f5621b43449fc5.png" />
 </div>
 </div>
 <p>Now, the key idea is that using spectral layout, we have placed nodes into a Euclidean space.</p>
 <p>So … we could use a <strong>standard clustering algorithm</strong> in that space.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">football</span><span class="p">,</span>
@@ -1194,8 +1266,9 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_126_0.png" src="_images/22-Networks-II-Centrality-Clustering_126_0.png" />
+<img alt="_images/23ec8180200edfa35db53d0efef3efc7294fc3526e5a8c4d7fbebc4171f31f78.png" src="_images/23ec8180200edfa35db53d0efef3efc7294fc3526e5a8c4d7fbebc4171f31f78.png" />
 </div>
 </div>
 <p>Now the above plot shows that many clusters are well-separated in this space, but some still overlap.</p>
@@ -1215,6 +1288,11 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </ul>
 <p>Let’s explore the results of spectral clustering using <span class="math notranslate nohighlight">\(d = 2\)</span> dimensions.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a complete example of spectral clustering</span>
 <span class="c1">#</span>
@@ -1273,14 +1351,20 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_130_0.png" src="_images/22-Networks-II-Centrality-Clustering_130_0.png" />
+<img alt="_images/626322f913fa24bf6fae8e47ba37d5e8b8563fdd586173e0026ea3a3afc7487f.png" src="_images/626322f913fa24bf6fae8e47ba37d5e8b8563fdd586173e0026ea3a3afc7487f.png" />
 </div>
 </div>
 <p>This is pretty good, but we can see that in some cases the clustering is not able to separate clusters that overlap in the visualization.</p>
 <p>Which makes sense, as for the case <span class="math notranslate nohighlight">\(d = 2\)</span>, we are running <span class="math notranslate nohighlight">\(k\)</span>-means on the points just as we see them in the visualization.</p>
 <p>Let’s try <span class="math notranslate nohighlight">\(d = 3\)</span>.   Now there will be another dimension available to the clustering, which we can’t see in the visualization.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is a complete example of spectral clustering</span>
 <span class="c1">#</span>
@@ -1337,14 +1421,23 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_133_0.png" src="_images/22-Networks-II-Centrality-Clustering_133_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;networkx.utils.decorators.argmap&#39;&gt; compilation 37:4: FutureWarning: laplacian_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+</pre></div>
+</div>
+<img alt="_images/35410a70f02120c1928977c5551539bdef37c92a91c3b4a5701ba6b0110524e5.png" src="_images/35410a70f02120c1928977c5551539bdef37c92a91c3b4a5701ba6b0110524e5.png" />
 </div>
 </div>
 <p>We can see visually that using 3 dimensions is giving us a better clustering than 2 dimensions.</p>
 <p>What happens as we increase the dimension further?</p>
 <p>To evaluate this question we can use Adjusted Rand Index:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
 <span class="c1">#</span>
@@ -1376,27 +1469,37 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Networks-II-Centrality-Clustering_136_0.png" src="_images/22-Networks-II-Centrality-Clustering_136_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;networkx.utils.decorators.argmap&#39;&gt; compilation 37:4: FutureWarning: laplacian_matrix will return a scipy.sparse array instead of a matrix in Networkx 3.0.
+</pre></div>
+</div>
+<img alt="_images/2fa99e17cb7ab4204df434d5d0d2be282a29a858f233fd85b0b4063809bb52e2.png" src="_images/2fa99e17cb7ab4204df434d5d0d2be282a29a858f233fd85b0b4063809bb52e2.png" />
 </div>
 </div>
 <p>Based on this plot, it looks like the football graph is best described as about six-dimensional.</p>
 <p>When we embed it in six dimensions and cluster there we get an extremely high Adjusted Rand Index.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum ARI is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">, using </span><span class="si">{</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">}</span><span class="s1"> dimensions for spectral embedding.&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum ARI is </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">:</span><span class="s1">0.3f</span><span class="si">}</span><span class="s1">, using </span><span class="si">{</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span><span class="si">}</span><span class="s1"> dimensions for spectral embedding.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum ARI is 0.868, using 6 dimensions for spectral embedding.
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1410,7 +1513,7 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1418,56 +1521,122 @@ Spectral and Isoperimetric Graph Partitioning</a> by Jonathan Shewchuck, which h
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="21-Networks-I.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Introduction to Networks</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="23-Gradient-Descent.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Gradient Descent</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="21-Networks-I.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Networks</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="23-Gradient-Descent.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Gradient Descent</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#centrality">Centrality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#betweenness-centrality">Betweenness Centrality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrices">Adjacency Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#status-centrality">Status Centrality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-and-partitioning">Clustering and Partitioning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-s-t-cut">Min <span class="math notranslate nohighlight">\(s\)</span>-<span class="math notranslate nohighlight">\(t\)</span> cut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-cuts">Minimum Cuts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-cuts">Balanced Cuts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-graph-theory">Spectral Graph Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-partitioning">Spectral Partitioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-clustering">Spectral Clustering</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

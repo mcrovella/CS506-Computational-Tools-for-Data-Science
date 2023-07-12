@@ -1,455 +1,402 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Hierarchical Clustering &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08-Clustering-III-hierarchical';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gaussian Mixture Models" href="09-Clustering-IV-GMM-EM.html" />
     <link rel="prev" title="Clustering In Practice" href="07-Clustering-II-in-practice.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Networks-I.html">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/08-Clustering-III-hierarchical.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/08-Clustering-III-hierarchical.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/08-Clustering-III-hierarchical.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hierarchical Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-many-clusters">
-   How Many Clusters?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Hierarchical Clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strengths-of-hierarchical-clustering">
-     Strengths of Hierarchical Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compared-to-k-means">
-     Compared to
-     <span class="math notranslate nohighlight">
-      \(k\)
-     </span>
-     -means
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-algorithms">
-   Hierarchical Clustering Algorithms
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#defining-cluster-proximity">
-     Defining Cluster Proximity
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#single-linkage-clustering">
-     Single-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complete-linkage-clustering">
-     Complete-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#average-linkage-clustering">
-     Average-Linkage Clustering
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#all-three-compared">
-     All Three Compared
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ward-s-distance">
-   Ward’s Distance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-in-practice">
-   Hierarchical Clustering In Practice
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering-real-data">
-   Hierarchical Clustering Real Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#selecting-the-number-of-clusters">
-     Selecting the Number of Clusters
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-clusters">How Many Clusters?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Hierarchical Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths-of-hierarchical-clustering">Strengths of Hierarchical Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compared-to-k-means">Compared to <span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-algorithms">Hierarchical Clustering Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-cluster-proximity">Defining Cluster Proximity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-linkage-clustering">Single-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-linkage-clustering">Complete-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-linkage-clustering">Average-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-three-compared">All Three Compared</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ward-s-distance">Ward’s Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-in-practice">Hierarchical Clustering In Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-real-data">Hierarchical Clustering Real Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-number-of-clusters">Selecting the Number of Clusters</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -464,17 +411,23 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="hierarchical-clustering">
-<h1>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="hierarchical-clustering">
+<h1>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this heading">#</a></h1>
 <p>Today we will look at a fairly different approach to clustering.</p>
 <p>So far, we have been thinking of clustering as finding a <strong>partition</strong> of our dataset.</p>
 <p>That is, a set of nonoverlapping clusters, in which each data item is in one cluster.</p>
 <p>However, in many cases, the notion of a strict partition is not as useful.</p>
-<div class="section" id="how-many-clusters">
-<h2>How Many Clusters?<a class="headerlink" href="#how-many-clusters" title="Permalink to this headline">¶</a></h2>
+<section id="how-many-clusters">
+<h2>How Many Clusters?<a class="headerlink" href="#how-many-clusters" title="Permalink to this heading">#</a></h2>
 <p>How many clusters would you say there are here?</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand</span><span class="p">,</span> <span class="n">y_rand</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                           <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.15</span><span class="p">,</span> <span class="mf">.15</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
@@ -487,8 +440,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
                    <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -497,12 +456,22 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_6_0.png" src="_images/08-Clustering-III-hierarchical_6_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/miniconda3/lib/python3.9/site-packages/pandas/plotting/_matplotlib/core.py:1259: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+  scatter = ax.scatter(
+</pre></div>
+</div>
+<img alt="_images/9c0398b63f0f12aafa7a38cbbc1fcd981ba6591960d407e5b7b814773b2c4291.png" src="_images/9c0398b63f0f12aafa7a38cbbc1fcd981ba6591960d407e5b7b814773b2c4291.png" />
 </div>
 </div>
 <p><strong>Three clusters?</strong></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label3&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
                    <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -511,12 +480,18 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_8_0.png" src="_images/08-Clustering-III-hierarchical_8_0.png" />
+<img alt="_images/222591a9a6af11c3786ba6af466d40db815c4c7404f71ce6d84b8be52abd5025.png" src="_images/222591a9a6af11c3786ba6af466d40db815c4c7404f71ce6d84b8be52abd5025.png" />
 </div>
 </div>
 <p><strong>Four clusters?</strong></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label2&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
                    <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -525,12 +500,18 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_10_0.png" src="_images/08-Clustering-III-hierarchical_10_0.png" />
+<img alt="_images/df1e6f2da488e3732fd66e9f705f618b0247dcb848d21332b713b56db9c623ea.png" src="_images/df1e6f2da488e3732fd66e9f705f618b0247dcb848d21332b713b56db9c623ea.png" />
 </div>
 </div>
 <p><strong>Six clusters?</strong></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_rand</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
                    <span class="n">colorbar</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -539,22 +520,23 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_12_0.png" src="_images/08-Clustering-III-hierarchical_12_0.png" />
+<img alt="_images/93e6489b8eba9233e43184fdda1b1fb8c47cf524fa792ae0a7c92a7785f6808b.png" src="_images/93e6489b8eba9233e43184fdda1b1fb8c47cf524fa792ae0a7c92a7785f6808b.png" />
 </div>
 </div>
 <p>This dataset shows clustering on <strong>multiple scales.</strong></p>
 <p>To fully capture the structure in this dataset, two things are needed:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Capturing the differing clusters depending on the scale</p></li>
 <li><p>Capturing the containment relations – which clusters lie within other clusters</p></li>
 </ol>
 <p>These observations motivate the notion of <strong>hierarchical</strong> clustering.</p>
 <p>In hierarchical clustering, we move away from the <strong>partition</strong> notion of <span class="math notranslate nohighlight">\(k\)</span>-means,</p>
 <p>and instead capture a more complex arrangement that includes containment of one cluster within another.</p>
-</div>
-<div class="section" id="id1">
-<h2>Hierarchical Clustering<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Hierarchical Clustering<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>A hierarchical clustering produces a set of <strong>nested</strong> clusters organized into a tree.</p>
 <p>A hierarchical clustering is visualized using a <strong>dendrogram</strong></p>
 <ul class="simple">
@@ -562,8 +544,8 @@
 </ul>
 <center>
 <a class="reference internal image-reference" href="_images/L08-dendrogram.png"><img alt="_images/L08-dendrogram.png" src="_images/L08-dendrogram.png" style="width: 600px;" /></a>
-</center><div class="section" id="strengths-of-hierarchical-clustering">
-<h3>Strengths of Hierarchical Clustering<a class="headerlink" href="#strengths-of-hierarchical-clustering" title="Permalink to this headline">¶</a></h3>
+</center><section id="strengths-of-hierarchical-clustering">
+<h3>Strengths of Hierarchical Clustering<a class="headerlink" href="#strengths-of-hierarchical-clustering" title="Permalink to this heading">#</a></h3>
 <p>Hierarchical clustering has a number of advantages:</p>
 <p>First, a hierarchical clustering encodes many <strong>different</strong> clusterings.  That is, it does not itself decide on the correct number of clusters.</p>
 <p>A clustering is obtained by “cutting” the dendrogram at some level.</p>
@@ -577,9 +559,9 @@
 </center><p>The third advantage is that many hierarchical clustering methods can be performed using either similarity (proximity) or dissimilarity (distance) metrics.</p>
 <p>This can be very helpful!</p>
 <p>(Note that techniques like <span class="math notranslate nohighlight">\(k\)</span>-means cannot be used with unmodified similarity metrics.)</p>
-</div>
-<div class="section" id="compared-to-k-means">
-<h3>Compared to <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#compared-to-k-means" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="compared-to-k-means">
+<h3>Compared to <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#compared-to-k-means" title="Permalink to this heading">#</a></h3>
 <p>Another aspect of hierachical clustering is that it can handle certain cases better than <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
 <p>Because of the nature of the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm, <span class="math notranslate nohighlight">\(k\)</span>-means tends to produce:</p>
 <ul class="simple">
@@ -589,10 +571,10 @@
 </ul>
 <p>In many real-world situations, clusters may not be round, they may be of unequal size, and they may overlap.</p>
 <p>Hence we would like clustering algorithms that can work in those cases also.</p>
-</div>
-</div>
-<div class="section" id="hierarchical-clustering-algorithms">
-<h2>Hierarchical Clustering Algorithms<a class="headerlink" href="#hierarchical-clustering-algorithms" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="hierarchical-clustering-algorithms">
+<h2>Hierarchical Clustering Algorithms<a class="headerlink" href="#hierarchical-clustering-algorithms" title="Permalink to this heading">#</a></h2>
 <p>There are two main approaches to hierarchical clustering: “bottom-up” and “top-down.”</p>
 <p><strong>Agglomerative</strong> Clustering (“bottom-up”):</p>
 <ul class="simple">
@@ -610,8 +592,8 @@
 <p>The key to both of these methods is defining <strong>the distance between two clusters.</strong></p>
 <p>Different definitions for the inter-cluster distance yield different clusterings.</p>
 <p>To illustrate the impact of the choice of cluster distances, we’ll focus on agglomerative clustering.</p>
-<div class="section" id="defining-cluster-proximity">
-<h3>Defining Cluster Proximity<a class="headerlink" href="#defining-cluster-proximity" title="Permalink to this headline">¶</a></h3>
+<section id="defining-cluster-proximity">
+<h3>Defining Cluster Proximity<a class="headerlink" href="#defining-cluster-proximity" title="Permalink to this heading">#</a></h3>
 <p>Given two clusters, how do we define the <em>distance</em> between them?</p>
 <p>Here are three natural ways to do it:</p>
 <ul class="simple">
@@ -642,6 +624,11 @@
 </div><p>Notice that it is easy to express the definitions above in terms of similarity instead of distance.</p>
 <p>Here is a set of 6 points that we will cluster to show differences between distance metrics.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pt_x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.22</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">]</span>
 <span class="n">pt_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.53</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">]</span>
@@ -655,11 +642,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_44_0.png" src="_images/08-Clustering-III-hierarchical_44_0.png" />
+<img alt="_images/42885deea5f9f3558da50d9e50b97eeb43f3deb0ac8bd3af8f042980a0fdef97.png" src="_images/42885deea5f9f3558da50d9e50b97eeb43f3deb0ac8bd3af8f042980a0fdef97.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pt_x</span><span class="p">,</span> <span class="n">pt_y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance_matrix</span>
@@ -669,85 +662,91 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_e58fe_">
+<table id="T_e9a3b">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th class="col_heading level0 col0" >p0</th>
-      <th class="col_heading level0 col1" >p1</th>
-      <th class="col_heading level0 col2" >p2</th>
-      <th class="col_heading level0 col3" >p3</th>
-      <th class="col_heading level0 col4" >p4</th>
-      <th class="col_heading level0 col5" >p5</th>
+      <th id="T_e9a3b_level0_col0" class="col_heading level0 col0" >p0</th>
+      <th id="T_e9a3b_level0_col1" class="col_heading level0 col1" >p1</th>
+      <th id="T_e9a3b_level0_col2" class="col_heading level0 col2" >p2</th>
+      <th id="T_e9a3b_level0_col3" class="col_heading level0 col3" >p3</th>
+      <th id="T_e9a3b_level0_col4" class="col_heading level0 col4" >p4</th>
+      <th id="T_e9a3b_level0_col5" class="col_heading level0 col5" >p5</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_e58fe_level0_row0" class="row_heading level0 row0" >p0</th>
-      <td id="T_e58fe_row0_col0" class="data row0 col0" >0.00</td>
-      <td id="T_e58fe_row0_col1" class="data row0 col1" >0.23</td>
-      <td id="T_e58fe_row0_col2" class="data row0 col2" >0.22</td>
-      <td id="T_e58fe_row0_col3" class="data row0 col3" >0.37</td>
-      <td id="T_e58fe_row0_col4" class="data row0 col4" >0.34</td>
-      <td id="T_e58fe_row0_col5" class="data row0 col5" >0.24</td>
+      <th id="T_e9a3b_level0_row0" class="row_heading level0 row0" >p0</th>
+      <td id="T_e9a3b_row0_col0" class="data row0 col0" >0.00</td>
+      <td id="T_e9a3b_row0_col1" class="data row0 col1" >0.23</td>
+      <td id="T_e9a3b_row0_col2" class="data row0 col2" >0.22</td>
+      <td id="T_e9a3b_row0_col3" class="data row0 col3" >0.37</td>
+      <td id="T_e9a3b_row0_col4" class="data row0 col4" >0.34</td>
+      <td id="T_e9a3b_row0_col5" class="data row0 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_e58fe_level0_row1" class="row_heading level0 row1" >p1</th>
-      <td id="T_e58fe_row1_col0" class="data row1 col0" >0.23</td>
-      <td id="T_e58fe_row1_col1" class="data row1 col1" >0.00</td>
-      <td id="T_e58fe_row1_col2" class="data row1 col2" >0.14</td>
-      <td id="T_e58fe_row1_col3" class="data row1 col3" >0.19</td>
-      <td id="T_e58fe_row1_col4" class="data row1 col4" >0.14</td>
-      <td id="T_e58fe_row1_col5" class="data row1 col5" >0.24</td>
+      <th id="T_e9a3b_level0_row1" class="row_heading level0 row1" >p1</th>
+      <td id="T_e9a3b_row1_col0" class="data row1 col0" >0.23</td>
+      <td id="T_e9a3b_row1_col1" class="data row1 col1" >0.00</td>
+      <td id="T_e9a3b_row1_col2" class="data row1 col2" >0.14</td>
+      <td id="T_e9a3b_row1_col3" class="data row1 col3" >0.19</td>
+      <td id="T_e9a3b_row1_col4" class="data row1 col4" >0.14</td>
+      <td id="T_e9a3b_row1_col5" class="data row1 col5" >0.24</td>
     </tr>
     <tr>
-      <th id="T_e58fe_level0_row2" class="row_heading level0 row2" >p2</th>
-      <td id="T_e58fe_row2_col0" class="data row2 col0" >0.22</td>
-      <td id="T_e58fe_row2_col1" class="data row2 col1" >0.14</td>
-      <td id="T_e58fe_row2_col2" class="data row2 col2" >0.00</td>
-      <td id="T_e58fe_row2_col3" class="data row2 col3" >0.16</td>
-      <td id="T_e58fe_row2_col4" class="data row2 col4" >0.28</td>
-      <td id="T_e58fe_row2_col5" class="data row2 col5" >0.10</td>
+      <th id="T_e9a3b_level0_row2" class="row_heading level0 row2" >p2</th>
+      <td id="T_e9a3b_row2_col0" class="data row2 col0" >0.22</td>
+      <td id="T_e9a3b_row2_col1" class="data row2 col1" >0.14</td>
+      <td id="T_e9a3b_row2_col2" class="data row2 col2" >0.00</td>
+      <td id="T_e9a3b_row2_col3" class="data row2 col3" >0.16</td>
+      <td id="T_e9a3b_row2_col4" class="data row2 col4" >0.28</td>
+      <td id="T_e9a3b_row2_col5" class="data row2 col5" >0.10</td>
     </tr>
     <tr>
-      <th id="T_e58fe_level0_row3" class="row_heading level0 row3" >p3</th>
-      <td id="T_e58fe_row3_col0" class="data row3 col0" >0.37</td>
-      <td id="T_e58fe_row3_col1" class="data row3 col1" >0.19</td>
-      <td id="T_e58fe_row3_col2" class="data row3 col2" >0.16</td>
-      <td id="T_e58fe_row3_col3" class="data row3 col3" >0.00</td>
-      <td id="T_e58fe_row3_col4" class="data row3 col4" >0.28</td>
-      <td id="T_e58fe_row3_col5" class="data row3 col5" >0.22</td>
+      <th id="T_e9a3b_level0_row3" class="row_heading level0 row3" >p3</th>
+      <td id="T_e9a3b_row3_col0" class="data row3 col0" >0.37</td>
+      <td id="T_e9a3b_row3_col1" class="data row3 col1" >0.19</td>
+      <td id="T_e9a3b_row3_col2" class="data row3 col2" >0.16</td>
+      <td id="T_e9a3b_row3_col3" class="data row3 col3" >0.00</td>
+      <td id="T_e9a3b_row3_col4" class="data row3 col4" >0.28</td>
+      <td id="T_e9a3b_row3_col5" class="data row3 col5" >0.22</td>
     </tr>
     <tr>
-      <th id="T_e58fe_level0_row4" class="row_heading level0 row4" >p4</th>
-      <td id="T_e58fe_row4_col0" class="data row4 col0" >0.34</td>
-      <td id="T_e58fe_row4_col1" class="data row4 col1" >0.14</td>
-      <td id="T_e58fe_row4_col2" class="data row4 col2" >0.28</td>
-      <td id="T_e58fe_row4_col3" class="data row4 col3" >0.28</td>
-      <td id="T_e58fe_row4_col4" class="data row4 col4" >0.00</td>
-      <td id="T_e58fe_row4_col5" class="data row4 col5" >0.39</td>
+      <th id="T_e9a3b_level0_row4" class="row_heading level0 row4" >p4</th>
+      <td id="T_e9a3b_row4_col0" class="data row4 col0" >0.34</td>
+      <td id="T_e9a3b_row4_col1" class="data row4 col1" >0.14</td>
+      <td id="T_e9a3b_row4_col2" class="data row4 col2" >0.28</td>
+      <td id="T_e9a3b_row4_col3" class="data row4 col3" >0.28</td>
+      <td id="T_e9a3b_row4_col4" class="data row4 col4" >0.00</td>
+      <td id="T_e9a3b_row4_col5" class="data row4 col5" >0.39</td>
     </tr>
     <tr>
-      <th id="T_e58fe_level0_row5" class="row_heading level0 row5" >p5</th>
-      <td id="T_e58fe_row5_col0" class="data row5 col0" >0.24</td>
-      <td id="T_e58fe_row5_col1" class="data row5 col1" >0.24</td>
-      <td id="T_e58fe_row5_col2" class="data row5 col2" >0.10</td>
-      <td id="T_e58fe_row5_col3" class="data row5 col3" >0.22</td>
-      <td id="T_e58fe_row5_col4" class="data row5 col4" >0.39</td>
-      <td id="T_e58fe_row5_col5" class="data row5 col5" >0.00</td>
+      <th id="T_e9a3b_level0_row5" class="row_heading level0 row5" >p5</th>
+      <td id="T_e9a3b_row5_col0" class="data row5 col0" >0.24</td>
+      <td id="T_e9a3b_row5_col1" class="data row5 col1" >0.24</td>
+      <td id="T_e9a3b_row5_col2" class="data row5 col2" >0.10</td>
+      <td id="T_e9a3b_row5_col3" class="data row5 col3" >0.22</td>
+      <td id="T_e9a3b_row5_col4" class="data row5 col4" >0.39</td>
+      <td id="T_e9a3b_row5_col5" class="data row5 col5" >0.00</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-</div>
-<div class="section" id="single-linkage-clustering">
-<h3>Single-Linkage Clustering<a class="headerlink" href="#single-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="single-linkage-clustering">
+<h3>Single-Linkage Clustering<a class="headerlink" href="#single-linkage-clustering" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="_images/L08-singlelink-pointset.png"><img alt="_images/L08-singlelink-pointset.png" src="_images/L08-singlelink-pointset.png" style="width: 100%;" /></a>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.cluster</span>
 <span class="kn">import</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="k">as</span> <span class="nn">hierarchy</span>
@@ -756,8 +755,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_48_0.png" src="_images/08-Clustering-III-hierarchical_48_0.png" />
+<img alt="_images/f73b9ec14a9d29e52859e1ee4b27e63be0b34b46fceeff6906bc8867bd13f751.png" src="_images/f73b9ec14a9d29e52859e1ee4b27e63be0b34b46fceeff6906bc8867bd13f751.png" />
 </div>
 </div>
 <p><strong>Advantages</strong>:</p>
@@ -766,6 +766,11 @@
 </ul>
 <p>In fact it can produce long, elongated clusters:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">y_moon_05</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
@@ -776,11 +781,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_50_0.png" src="_images/08-Clustering-III-hierarchical_50_0.png" />
+<img alt="_images/5c54a72b8028bfd950ab1b7aec9bd6c336b2abaecab9269d6c18a25ecc0c4824.png" src="_images/5c54a72b8028bfd950ab1b7aec9bd6c336b2abaecab9269d6c18a25ecc0c4824.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand_lo</span><span class="p">,</span> <span class="n">y_rand_lo</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                           <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
@@ -792,8 +803,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_51_0.png" src="_images/08-Clustering-III-hierarchical_51_0.png" />
+<img alt="_images/dbfbe3787f66b1d39ecbbfce49861b09c58553efefb3defcbf25f5e1f07cd7e9.png" src="_images/dbfbe3787f66b1d39ecbbfce49861b09c58553efefb3defcbf25f5e1f07cd7e9.png" />
 </div>
 </div>
 <p><strong>Disadvantages:</strong></p>
@@ -801,6 +813,11 @@
 <li><p>Single-linkage clustering can be sensitive to noise and outliers.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">y_moon_10</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">)</span>
@@ -811,11 +828,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_53_0.png" src="_images/08-Clustering-III-hierarchical_53_0.png" />
+<img alt="_images/8177d4d014be8d71e34fa97cea7edcde4d88eb2ab70feb895575d1e0f1d4ef31.png" src="_images/8177d4d014be8d71e34fa97cea7edcde4d88eb2ab70feb895575d1e0f1d4ef31.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">y_rand_hi</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">centers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                           <span class="n">center_box</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.15</span><span class="p">,</span> <span class="mf">.6</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
@@ -827,23 +850,30 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_54_0.png" src="_images/08-Clustering-III-hierarchical_54_0.png" />
+<img alt="_images/97b1bda4937a3620bf7566d45fba93264a00bf27f59f8d5d698509de2b9d6c43.png" src="_images/97b1bda4937a3620bf7566d45fba93264a00bf27f59f8d5d698509de2b9d6c43.png" />
 </div>
 </div>
-</div>
-<div class="section" id="complete-linkage-clustering">
-<h3>Complete-Linkage Clustering<a class="headerlink" href="#complete-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="complete-linkage-clustering">
+<h3>Complete-Linkage Clustering<a class="headerlink" href="#complete-linkage-clustering" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="_images/L08-completelink-pointset.png"><img alt="_images/L08-completelink-pointset.png" src="_images/L08-completelink-pointset.png" style="width: 100%;" /></a>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
 <span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_57_0.png" src="_images/08-Clustering-III-hierarchical_57_0.png" />
+<img alt="_images/2a413637e199d96fc98661172f01c31871c8201651f6b5657c2fd62690d8306a.png" src="_images/2a413637e199d96fc98661172f01c31871c8201651f6b5657c2fd62690d8306a.png" />
 </div>
 </div>
 <p><strong>Advantages</strong>:</p>
@@ -851,6 +881,11 @@
 <li><p>Produces more-balanced clusters – more-equal diameters</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">y_moon_05</span> <span class="o">=</span> <span class="n">sk_data</span><span class="o">.</span><span class="n">make_moons</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_05</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
@@ -861,11 +896,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_59_0.png" src="_images/08-Clustering-III-hierarchical_59_0.png" />
+<img alt="_images/0c7d96a7a27d13462d09bc5a2048ed1bf1132965711a512565d7d724f640a392.png" src="_images/0c7d96a7a27d13462d09bc5a2048ed1bf1132965711a512565d7d724f640a392.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
@@ -875,12 +916,18 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_60_0.png" src="_images/08-Clustering-III-hierarchical_60_0.png" />
+<img alt="_images/aebc41732ee6a0793c9fa9e97411288859d50d05eda4c6b0bdc093b2d2a58cac.png" src="_images/aebc41732ee6a0793c9fa9e97411288859d50d05eda4c6b0bdc093b2d2a58cac.png" />
 </div>
 </div>
 <p>Less susceptible to noise:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
@@ -890,23 +937,30 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_62_0.png" src="_images/08-Clustering-III-hierarchical_62_0.png" />
+<img alt="_images/ca025323947578a439702724d255aefc1f7339645f733a43cae6ae0dde92af3c.png" src="_images/ca025323947578a439702724d255aefc1f7339645f733a43cae6ae0dde92af3c.png" />
 </div>
 </div>
-</div>
-<div class="section" id="average-linkage-clustering">
-<h3>Average-Linkage Clustering<a class="headerlink" href="#average-linkage-clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="average-linkage-clustering">
+<h3>Average-Linkage Clustering<a class="headerlink" href="#average-linkage-clustering" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="_images/L08-averagelink-pointset.png"><img alt="_images/L08-averagelink-pointset.png" src="_images/L08-averagelink-pointset.png" style="width: 100%;" /></a>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
 <span class="n">hierarchy</span><span class="o">.</span><span class="n">dendrogram</span><span class="p">(</span><span class="n">Z</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_65_0.png" src="_images/08-Clustering-III-hierarchical_65_0.png" />
+<img alt="_images/5b864045cfd4623bf8a8895b6fe8e04827de2eee383556b94a4b2ffae78a68a2.png" src="_images/5b864045cfd4623bf8a8895b6fe8e04827de2eee383556b94a4b2ffae78a68a2.png" />
 </div>
 </div>
 <p>Average-Linkage clustering is in some sense a compromise between Single-linkage and Complete-linkage clustering.</p>
@@ -919,6 +973,11 @@
 <li><p>Biased toward elliptical clusters</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_moon_10</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
@@ -928,11 +987,17 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_67_0.png" src="_images/08-Clustering-III-hierarchical_67_0.png" />
+<img alt="_images/64c8594c039b5c8d4305db07c9aceb04de45b2625d4a1c9531f961c69539f281.png" src="_images/64c8594c039b5c8d4305db07c9aceb04de45b2625d4a1c9531f961c69539f281.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">linkage</span><span class="p">(</span><span class="n">X_rand_hi</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
@@ -942,13 +1007,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_68_0.png" src="_images/08-Clustering-III-hierarchical_68_0.png" />
+<img alt="_images/ad1adae9f68c4a48e27f1f93f133057441d9615e01eb2474c8253dbfca45d8c3.png" src="_images/ad1adae9f68c4a48e27f1f93f133057441d9615e01eb2474c8253dbfca45d8c3.png" />
 </div>
 </div>
-</div>
-<div class="section" id="all-three-compared">
-<h3>All Three Compared<a class="headerlink" href="#all-three-compared" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="all-three-compared">
+<h3>All Three Compared<a class="headerlink" href="#all-three-compared" title="Permalink to this heading">#</a></h3>
 <div style = "float: left; width: 33%; text-align: center;">
     <img src="figs/L08-singlelink-pointset.png" style="width:100%">
     Single-Linkage
@@ -960,10 +1026,10 @@
 <div style = "float: left; width: 33%; text-align: center;">
     <img src="figs/L08-averagelink-pointset.png" style="width:100%">
     Average-Linkage
-</div></div>
-</div>
-<div class="section" id="ward-s-distance">
-<h2>Ward’s Distance<a class="headerlink" href="#ward-s-distance" title="Permalink to this headline">¶</a></h2>
+</div></section>
+</section>
+<section id="ward-s-distance">
+<h2>Ward’s Distance<a class="headerlink" href="#ward-s-distance" title="Permalink to this heading">#</a></h2>
 <p>Finally, we consider one more cluster distance.</p>
 <p>Ward’s distance asks “what if”.</p>
 <p>That is, “What if we combined these two clusters – how would clustering improve?”</p>
@@ -980,9 +1046,9 @@
 <li><p>Biased toward elliptical clusters</p></li>
 </ul>
 <p>Hence it tends to behave more like group-average hierarchical clustering.</p>
-</div>
-<div class="section" id="hierarchical-clustering-in-practice">
-<h2>Hierarchical Clustering In Practice<a class="headerlink" href="#hierarchical-clustering-in-practice" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hierarchical-clustering-in-practice">
+<h2>Hierarchical Clustering In Practice<a class="headerlink" href="#hierarchical-clustering-in-practice" title="Permalink to this heading">#</a></h2>
 <p>Now we’ll look at doing hierarchical clustering in practice, using python.</p>
 <p>We’ll use the same synthetic data as we did in the k-means case – ie.,
 three “blobs” living in 30 dimensions.</p>
@@ -1002,7 +1068,7 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_82_0.png" src="_images/08-Clustering-III-hierarchical_82_0.png" />
+<img alt="_images/be370f3f53ae5c2cd0f7ea39f0cec21642cd737681128baa36de0cd4265b6412.png" src="_images/be370f3f53ae5c2cd0f7ea39f0cec21642cd737681128baa36de0cd4265b6412.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1020,7 +1086,11 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_83_0.png" src="_images/08-Clustering-III-hierarchical_83_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/miniconda3/lib/python3.9/site-packages/sklearn/manifold/_mds.py:299: FutureWarning: The default value of `normalized_stress` will change to `&#39;auto&#39;` in version 1.4. To suppress this warning, manually set the value of `normalized_stress`.
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="_images/c26283a1c394d2f7a1080cf9355988a69656e815e38853b0ee89f19426622d63.png" src="_images/c26283a1c394d2f7a1080cf9355988a69656e815e38853b0ee89f19426622d63.png" />
 </div>
 </div>
 <p>Hierarchical clustering is available in <strong><code class="docutils literal notranslate"><span class="pre">sklearn</span></code></strong>, but there is a much more fully developed set of tools in the <strong><code class="docutils literal notranslate"><span class="pre">scipy</span></code></strong> package and that is the one to use.</p>
@@ -1043,12 +1113,12 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_86_0.png" src="_images/08-Clustering-III-hierarchical_86_0.png" />
+<img alt="_images/ee148f74dc55564a047e727e369eb92b0470655b1dffde64214e372f420ae2be.png" src="_images/ee148f74dc55564a047e727e369eb92b0470655b1dffde64214e372f420ae2be.png" />
 </div>
 </div>
-</div>
-<div class="section" id="hierarchical-clustering-real-data">
-<h2>Hierarchical Clustering Real Data<a class="headerlink" href="#hierarchical-clustering-real-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hierarchical-clustering-real-data">
+<h2>Hierarchical Clustering Real Data<a class="headerlink" href="#hierarchical-clustering-real-data" title="Permalink to this heading">#</a></h2>
 <p>Once again we’ll use the “20 Newsgroup” data provided as example data in sklearn.</p>
 <p>(<a class="reference external" href="http://scikit-learn.org/stable/datasets/twenty_newsgroups.html">http://scikit-learn.org/stable/datasets/twenty_newsgroups.html</a>).</p>
 <div class="cell docutils container">
@@ -1088,11 +1158,11 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_91_0.png" src="_images/08-Clustering-III-hierarchical_91_0.png" />
+<img alt="_images/ddb6121dfe41e06780c2995041630532e43da9055fb7c24b50e1f37537b8cbfb.png" src="_images/ddb6121dfe41e06780c2995041630532e43da9055fb7c24b50e1f37537b8cbfb.png" />
 </div>
 </div>
-<div class="section" id="selecting-the-number-of-clusters">
-<h3>Selecting the Number of Clusters<a class="headerlink" href="#selecting-the-number-of-clusters" title="Permalink to this headline">¶</a></h3>
+<section id="selecting-the-number-of-clusters">
+<h3>Selecting the Number of Clusters<a class="headerlink" href="#selecting-the-number-of-clusters" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clusters</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z_20ng</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
@@ -1116,7 +1186,7 @@ three “blobs” living in 30 dimensions.</p>
 <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_clusters</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">clusters</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="o">.</span><span class="n">fcluster</span><span class="p">(</span><span class="n">Z_20ng</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">criterion</span> <span class="o">=</span> <span class="s1">&#39;maxclust&#39;</span><span class="p">)</span>
-    <span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">clusters</span><span class="p">,</span> <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of clusters&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Silhouette Score&#39;</span><span class="p">);</span>
@@ -1124,7 +1194,7 @@ three “blobs” living in 30 dimensions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-Clustering-III-hierarchical_94_0.png" src="_images/08-Clustering-III-hierarchical_94_0.png" />
+<img alt="_images/35eb011731afbc6ffb4b898bb70a2c093593485fd769c2f1edc179cb3b8e180b.png" src="_images/35eb011731afbc6ffb4b898bb70a2c093593485fd769c2f1edc179cb3b8e180b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1137,7 +1207,7 @@ three “blobs” living in 30 dimensions.</p>
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">asc_order_centroids</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span><span class="c1">#[:, ::-1]</span>
     <span class="n">order_centroids</span> <span class="o">=</span> <span class="n">asc_order_centroids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">order_centroids</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">terms</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1210,9 +1280,9 @@ Cluster 5:
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1226,7 +1296,7 @@ Cluster 5:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1234,56 +1304,124 @@ Cluster 5:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="07-Clustering-II-in-practice.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Clustering In Practice</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="09-Clustering-IV-GMM-EM.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Gaussian Mixture Models</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-Clustering-II-in-practice.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering In Practice</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="09-Clustering-IV-GMM-EM.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Gaussian Mixture Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-clusters">How Many Clusters?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Hierarchical Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths-of-hierarchical-clustering">Strengths of Hierarchical Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compared-to-k-means">Compared to <span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-algorithms">Hierarchical Clustering Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-cluster-proximity">Defining Cluster Proximity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-linkage-clustering">Single-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-linkage-clustering">Complete-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-linkage-clustering">Average-Linkage Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-three-compared">All Three Compared</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ward-s-distance">Ward’s Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-in-practice">Hierarchical Clustering In Practice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering-real-data">Hierarchical Clustering Real Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-the-number-of-clusters">Selecting the Number of Clusters</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

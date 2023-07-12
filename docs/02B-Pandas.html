@@ -1,451 +1,395 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Essential Tools: Pandas &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02B-Pandas';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Algebra Refresher" href="04-Linear-Algebra-Refresher.html" />
     <link rel="prev" title="Essential Tools: Git and Jupyter" href="02A-Git-Jupyter.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Networks-I.html">
-   Introduction to Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">
-   Network Centrality and Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Gradient-Descent.html">
-   Gradient Descent
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/02B-Pandas.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02B-Pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/02B-Pandas.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Essential Tools: Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#getting-started">
-   Getting started
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fetching-storing-and-retrieving-your-data">
-   Fetching, storing and retrieving your data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-to-from-a-csv-file">
-     Reading to/from a
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       .csv
-      </span>
-     </code>
-     file
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#working-with-data-columns">
-   Working with data columns
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-sampling-of-dataframe-methods">
-   A sampling of DataFrame methods.
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-methods">
-     Plotting methods
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bulk-operations">
-     Bulk Operations
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#accessing-rows-of-the-dataframe">
-     Accessing rows of the DataFrame
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#filtering">
-   Filtering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-new-columns">
-   Creating new columns
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grouping">
-   Grouping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-pandas-classes">
-   Other Pandas Classes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#comparing-multiple-stocks">
-   Comparing multiple stocks
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-storing-and-retrieving-your-data">Fetching, storing and retrieving your data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-to-from-a-csv-file">Reading to/from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-data-columns">Working with data columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sampling-of-dataframe-methods">A sampling of DataFrame methods.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-methods">Plotting methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-operations">Bulk Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-rows-of-the-dataframe">Accessing rows of the DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-columns">Creating new columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">Grouping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-pandas-classes">Other Pandas Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-multiple-stocks">Comparing multiple stocks</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="essential-tools-pandas">
-<h1>Essential Tools: Pandas<a class="headerlink" href="#essential-tools-pandas" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="essential-tools-pandas">
+<h1>Essential Tools: Pandas<a class="headerlink" href="#essential-tools-pandas" title="Permalink to this heading">#</a></h1>
 <p>Pandas is the Python Data Analysis Library.</p>
 <p>Pandas is an extremely versatile tool for manipulating datasets.</p>
 <p>It also produces high quality plots with matplotlib, and integrates nicely with other libraries that expect NumPy arrays.</p>
@@ -455,8 +399,8 @@
 <p>Pandas DataFrames are documented at:</p>
 <p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html">http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html</a></p>
 <p>Get in the habit: whenever you load data, place it into a dataframe as your first step.</p>
-<div class="section" id="getting-started">
-<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -475,18 +419,15 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fetching-storing-and-retrieving-your-data">
-<h2>Fetching, storing and retrieving your data<a class="headerlink" href="#fetching-storing-and-retrieving-your-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fetching-storing-and-retrieving-your-data">
+<h2>Fetching, storing and retrieving your data<a class="headerlink" href="#fetching-storing-and-retrieving-your-data" title="Permalink to this heading">#</a></h2>
 <p>For demonstration purposes, we’ll use a utility library that fetches data from standard online sources, such as Yahoo! Finance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="s1">&#39;YELP&#39;</span>
-<span class="n">data_source</span> <span class="o">=</span> <span class="s1">&#39;yahoo&#39;</span>
-<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 
-<span class="n">yahoo_stocks</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> <span class="n">data_source</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="n">yahoo_stocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;YELP&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2015-01-01&#39;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;2015-12-31&#39;</span><span class="p">,</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
 
 <span class="n">yahoo_stocks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -511,12 +452,12 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Open</th>
       <th>High</th>
       <th>Low</th>
-      <th>Open</th>
       <th>Close</th>
-      <th>Volume</th>
       <th>Adj Close</th>
+      <th>Volume</th>
     </tr>
     <tr>
       <th>Date</th>
@@ -531,48 +472,48 @@
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
     </tr>
   </tbody>
 </table>
@@ -590,24 +531,24 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-DatetimeIndex: 252 entries, 2015-01-02 to 2015-12-31
+DatetimeIndex: 251 entries, 2015-01-02 to 2015-12-30
 Data columns (total 6 columns):
  #   Column     Non-Null Count  Dtype  
 ---  ------     --------------  -----  
- 0   High       252 non-null    float64
- 1   Low        252 non-null    float64
- 2   Open       252 non-null    float64
- 3   Close      252 non-null    float64
- 4   Volume     252 non-null    int64  
- 5   Adj Close  252 non-null    float64
+ 0   Open       251 non-null    float64
+ 1   High       251 non-null    float64
+ 2   Low        251 non-null    float64
+ 3   Close      251 non-null    float64
+ 4   Adj Close  251 non-null    float64
+ 5   Volume     251 non-null    int64  
 dtypes: float64(5), int64(1)
-memory usage: 13.8 KB
+memory usage: 13.7 KB
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="reading-to-from-a-csv-file">
-<h3>Reading to/from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file<a class="headerlink" href="#reading-to-from-a-csv-file" title="Permalink to this headline">¶</a></h3>
+<section id="reading-to-from-a-csv-file">
+<h3>Reading to/from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file<a class="headerlink" href="#reading-to-from-a-csv-file" title="Permalink to this heading">#</a></h3>
 <p>Continuing to explore methods, let’s write the dataframe out to a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,21 +559,21 @@ memory usage: 13.8 KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head yahoo_data.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>yahoo_data.csv
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date,High,Low,Open,Close,Volume,Adj Close
-2015-01-02,55.599998474121094,54.2400016784668,55.459999084472656,55.150001525878906,1664500,55.150001525878906
-2015-01-05,54.95000076293945,52.33000183105469,54.540000915527344,52.529998779296875,2023000,52.529998779296875
-2015-01-06,53.93000030517578,50.75,52.54999923706055,52.439998626708984,3762800,52.439998626708984
-2015-01-07,53.75,51.7599983215332,53.31999969482422,52.209999084472656,1548200,52.209999084472656
-2015-01-08,54.13999938964844,51.7599983215332,52.59000015258789,53.83000183105469,2015300,53.83000183105469
-2015-01-09,56.9900016784668,54.720001220703125,55.959999084472656,56.06999969482422,6224200,56.06999969482422
-2015-01-12,56.060001373291016,53.43000030517578,56.0,54.02000045776367,2407700,54.02000045776367
-2015-01-13,54.79999923706055,52.52000045776367,54.470001220703125,53.18000030517578,1958400,53.18000030517578
-2015-01-14,53.68000030517578,51.459999084472656,52.79999923706055,52.20000076293945,1854600,52.20000076293945
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date,Open,High,Low,Close,Adj Close,Volume
+2015-01-02,55.459999084472656,55.599998474121094,54.2400016784668,55.150001525878906,55.150001525878906,1664500
+2015-01-05,54.540000915527344,54.95000076293945,52.33000183105469,52.529998779296875,52.529998779296875,2023000
+2015-01-06,52.54999923706055,53.93000030517578,50.75,52.439998626708984,52.439998626708984,3762800
+2015-01-07,53.31999969482422,53.75,51.7599983215332,52.209999084472656,52.209999084472656,1548200
+2015-01-08,52.59000015258789,54.13999938964844,51.7599983215332,53.83000183105469,53.83000183105469,2015300
+2015-01-09,55.959999084472656,56.9900016784668,54.720001220703125,56.06999969482422,56.06999969482422,6224200
+2015-01-12,56.0,56.060001373291016,53.43000030517578,54.02000045776367,54.02000045776367,2407700
+2015-01-13,54.470001220703125,54.79999923706055,52.52000045776367,53.18000030517578,53.18000030517578,1958400
+2015-01-14,52.79999923706055,53.68000030517578,51.459999084472656,52.20000076293945,52.20000076293945,1854600
 </pre></div>
 </div>
 </div>
@@ -665,73 +606,73 @@ memory usage: 13.8 KB
     <tr style="text-align: right;">
       <th></th>
       <th>Date</th>
+      <th>Open</th>
       <th>High</th>
       <th>Low</th>
-      <th>Open</th>
       <th>Close</th>
-      <th>Volume</th>
       <th>Adj Close</th>
+      <th>Volume</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>2015-01-02</td>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2015-01-05</td>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2015-01-06</td>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2015-01-07</td>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2015-01-08</td>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="working-with-data-columns">
-<h2>Working with data columns<a class="headerlink" href="#working-with-data-columns" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="working-with-data-columns">
+<h2>Working with data columns<a class="headerlink" href="#working-with-data-columns" title="Permalink to this heading">#</a></h2>
 <p>In general, we’ll usually organize things so that rows in the dataframe are <strong>items</strong> and columns are <strong>features</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -740,7 +681,7 @@ memory usage: 13.8 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Date&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Open&#39;, &#39;Close&#39;, &#39;Volume&#39;, &#39;Adj Close&#39;], dtype=&#39;object&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Date&#39;, &#39;Open&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Close&#39;, &#39;Adj Close&#39;, &#39;Volume&#39;], dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -759,12 +700,12 @@ memory usage: 13.8 KB
 3      53.320000
 4      52.590000
          ...    
+246    27.950001
 247    28.270000
 248    28.120001
 249    27.950001
 250    28.580000
-251    28.100000
-Name: Open, Length: 252, dtype: float64
+Name: Open, Length: 251, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -784,12 +725,12 @@ Name: Open, Length: 252, dtype: float64
 3      53.320000
 4      52.590000
          ...    
+246    27.950001
 247    28.270000
 248    28.120001
 249    27.950001
 250    28.580000
-251    28.100000
-Name: Open, Length: 252, dtype: float64
+Name: Open, Length: 251, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -884,7 +825,8 @@ Name: Date, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>242    2015-12-17
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>241    2015-12-16
+242    2015-12-17
 243    2015-12-18
 244    2015-12-21
 245    2015-12-22
@@ -893,7 +835,6 @@ Name: Date, dtype: object
 248    2015-12-28
 249    2015-12-29
 250    2015-12-30
-251    2015-12-31
 Name: Date, dtype: object
 </pre></div>
 </div>
@@ -911,17 +852,17 @@ Name: Date, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 252 entries, 0 to 251
+RangeIndex: 251 entries, 0 to 250
 Data columns (total 7 columns):
  #   Column     Non-Null Count  Dtype  
 ---  ------     --------------  -----  
- 0   date       252 non-null    object 
- 1   high       252 non-null    float64
- 2   low        252 non-null    float64
- 3   open       252 non-null    float64
- 4   close      252 non-null    float64
- 5   volume     252 non-null    int64  
- 6   adj_close  252 non-null    float64
+ 0   date       251 non-null    object 
+ 1   open       251 non-null    float64
+ 2   high       251 non-null    float64
+ 3   low        251 non-null    float64
+ 4   close      251 non-null    float64
+ 5   adj_close  251 non-null    float64
+ 6   volume     251 non-null    int64  
 dtypes: float64(5), int64(1), object(1)
 memory usage: 13.9+ KB
 </pre></div>
@@ -947,9 +888,9 @@ Name: adj_close, dtype: float64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="a-sampling-of-dataframe-methods">
-<h2>A sampling of DataFrame methods.<a class="headerlink" href="#a-sampling-of-dataframe-methods" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-sampling-of-dataframe-methods">
+<h2>A sampling of DataFrame methods.<a class="headerlink" href="#a-sampling-of-dataframe-methods" title="Permalink to this heading">#</a></h2>
 <p>A dataframe object has many useful methods.</p>
 <p>Familiarize yourself with dataframe methods – they are very useful.</p>
 <p>These should be self-explanatory.</p>
@@ -960,12 +901,12 @@ Name: adj_close, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.805464e+01
-low          3.656373e+01
-open         3.728766e+01
-close        3.729917e+01
-volume       3.492407e+06
-adj_close    3.729917e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.809084e+01
+low          3.659777e+01
+open         3.732426e+01
+close        3.733303e+01
+volume       3.501135e+06
+adj_close    3.733303e+01
 dtype: float64
 </pre></div>
 </div>
@@ -978,12 +919,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         1.138111e+01
-low          1.113097e+01
-open         1.128093e+01
-close        1.125233e+01
-volume       4.146378e+06
-adj_close    1.125233e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         1.138931e+01
+low          1.114006e+01
+open         1.128846e+01
+close        1.126194e+01
+volume       4.152341e+06
+adj_close    1.126194e+01
 dtype: float64
 </pre></div>
 </div>
@@ -996,12 +937,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.871500e+01
-low          3.637500e+01
-open         3.796500e+01
-close        3.783500e+01
-volume       2.354050e+06
-adj_close    3.783500e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         3.909000e+01
+low          3.665000e+01
+open         3.822000e+01
+close        3.818000e+01
+volume       2.356000e+06
+adj_close    3.818000e+01
 dtype: float64
 </pre></div>
 </div>
@@ -1014,7 +955,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.28765870654394
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.3242629229785
 </pre></div>
 </div>
 </div>
@@ -1026,13 +967,13 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.05464292707897
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.09083672633684
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="plotting-methods">
-<h3>Plotting methods<a class="headerlink" href="#plotting-methods" title="Permalink to this headline">¶</a></h3>
+<section id="plotting-methods">
+<h3>Plotting methods<a class="headerlink" href="#plotting-methods" title="Permalink to this heading">#</a></h3>
 <p>Pandas has an extensive library of plotting functions, and they are very easy to use.</p>
 <p>These are your “first look” functions.</p>
 <p>(Later you will use specialized graphics packages for more sophisticated visualizations.)</p>
@@ -1047,7 +988,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_44_0.png" src="_images/02B-Pandas_44_0.png" />
+<img alt="_images/32ea0100910636826e2fb2cda7ce824300ea12fd01a41762cc9da40b14859886.png" src="_images/32ea0100910636826e2fb2cda7ce824300ea12fd01a41762cc9da40b14859886.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1060,12 +1001,12 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_45_0.png" src="_images/02B-Pandas_45_0.png" />
+<img alt="_images/35ec8461fc88f64c4f89fe6a33a0b6c81592a60004774886c6962e1ede57b84b.png" src="_images/35ec8461fc88f64c4f89fe6a33a0b6c81592a60004774886c6962e1ede57b84b.png" />
 </div>
 </div>
-</div>
-<div class="section" id="bulk-operations">
-<h3>Bulk Operations<a class="headerlink" href="#bulk-operations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="bulk-operations">
+<h3>Bulk Operations<a class="headerlink" href="#bulk-operations" title="Permalink to this heading">#</a></h3>
 <p>Methods like <code class="docutils literal notranslate"><span class="pre">sum()</span></code> and <code class="docutils literal notranslate"><span class="pre">std()</span></code> work on entire columns.</p>
 <p>We can run our own functions across all values in a column (or row) using <code class="docutils literal notranslate"><span class="pre">apply()</span></code>.</p>
 <p>As an example, let’s go back to this plot:</p>
@@ -1080,7 +1021,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_49_0.png" src="_images/02B-Pandas_49_0.png" />
+<img alt="_images/32ea0100910636826e2fb2cda7ce824300ea12fd01a41762cc9da40b14859886.png" src="_images/32ea0100910636826e2fb2cda7ce824300ea12fd01a41762cc9da40b14859886.png" />
 </div>
 </div>
 <p>It’s <strong>almost</strong> perfect.  The only problem is the <span class="math notranslate nohighlight">\(x\)</span>-axis: it should show time.</p>
@@ -1180,12 +1121,12 @@ Name: date, dtype: datetime64[ns]
     <tr style="text-align: right;">
       <th></th>
       <th>date</th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
     </tr>
     <tr>
       <th>date</th>
@@ -1202,52 +1143,52 @@ Name: date, dtype: datetime64[ns]
     <tr>
       <th>2015-01-02</th>
       <td>2015-01-02</td>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
       <td>2015-01-05</td>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
       <td>2015-01-06</td>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
       <td>2015-01-07</td>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
       <td>2015-01-08</td>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
     </tr>
   </tbody>
 </table>
@@ -1280,12 +1221,12 @@ Name: date, dtype: datetime64[ns]
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
     </tr>
     <tr>
       <th>date</th>
@@ -1300,48 +1241,48 @@ Name: date, dtype: datetime64[ns]
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
     </tr>
   </tbody>
 </table>
@@ -1359,12 +1300,12 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_65_0.png" src="_images/02B-Pandas_65_0.png" />
+<img alt="_images/a39f5c385d6e934469bd0efdc9f6a615c192668b3a0a0bc7e35945e38cf8e4e1.png" src="_images/a39f5c385d6e934469bd0efdc9f6a615c192668b3a0a0bc7e35945e38cf8e4e1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="accessing-rows-of-the-dataframe">
-<h3>Accessing rows of the DataFrame<a class="headerlink" href="#accessing-rows-of-the-dataframe" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="accessing-rows-of-the-dataframe">
+<h3>Accessing rows of the DataFrame<a class="headerlink" href="#accessing-rows-of-the-dataframe" title="Permalink to this heading">#</a></h3>
 <p>So far we’ve seen how to access a column of the DataFrame.  To access a row we use a different notation.</p>
 <p>To access a row by its index value, use the <strong><code class="docutils literal notranslate"><span class="pre">.loc()</span></code></strong> method.</p>
 <div class="cell docutils container">
@@ -1374,12 +1315,12 @@ Name: date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         5.564000e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         5.466000e+01
+high         5.564000e+01
 low          5.430000e+01
-open         5.466000e+01
 close        5.519000e+01
-volume       1.636400e+06
 adj_close    5.519000e+01
+volume       1.636400e+06
 Name: 2015-01-23 00:00:00, dtype: float64
 </pre></div>
 </div>
@@ -1393,12 +1334,12 @@ Name: 2015-01-23 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>high         5.560000e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>open         5.546000e+01
+high         5.560000e+01
 low          5.424000e+01
-open         5.546000e+01
 close        5.515000e+01
-volume       1.664500e+06
 adj_close    5.515000e+01
+volume       1.664500e+06
 Name: 2015-01-02 00:00:00, dtype: float64
 </pre></div>
 </div>
@@ -1417,15 +1358,15 @@ Name: 2015-01-02 00:00:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of positive-gain days is 126.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of positive-gain days is 125.
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="filtering">
-<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading">#</a></h2>
 <p>It is easy to select interesting rows from the data.</p>
 <p>All the operations below return a new DataFrame, which itself can be treated the same way as all DataFrames we have seen so far.</p>
 <div class="cell docutils container">
@@ -1486,12 +1427,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
     </tr>
     <tr>
       <th>date</th>
@@ -1506,102 +1447,102 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
     </tr>
     <tr>
       <th>2015-01-09</th>
+      <td>55.959999</td>
       <td>56.990002</td>
       <td>54.720001</td>
-      <td>55.959999</td>
+      <td>56.070000</td>
       <td>56.070000</td>
       <td>6224200</td>
-      <td>56.070000</td>
     </tr>
     <tr>
       <th>2015-01-12</th>
+      <td>56.000000</td>
       <td>56.060001</td>
       <td>53.430000</td>
-      <td>56.000000</td>
+      <td>54.020000</td>
       <td>54.020000</td>
       <td>2407700</td>
-      <td>54.020000</td>
     </tr>
     <tr>
       <th>2015-01-22</th>
+      <td>53.869999</td>
       <td>55.279999</td>
       <td>53.119999</td>
-      <td>53.869999</td>
+      <td>54.799999</td>
       <td>54.799999</td>
       <td>2295400</td>
-      <td>54.799999</td>
     </tr>
     <tr>
       <th>2015-01-23</th>
+      <td>54.660000</td>
       <td>55.639999</td>
       <td>54.299999</td>
-      <td>54.660000</td>
+      <td>55.189999</td>
       <td>55.189999</td>
       <td>1636400</td>
-      <td>55.189999</td>
     </tr>
     <tr>
       <th>2015-01-26</th>
+      <td>55.119999</td>
       <td>55.790001</td>
       <td>54.830002</td>
-      <td>55.119999</td>
+      <td>55.410000</td>
       <td>55.410000</td>
       <td>1450300</td>
-      <td>55.410000</td>
     </tr>
     <tr>
       <th>2015-01-27</th>
+      <td>56.060001</td>
       <td>56.160000</td>
       <td>54.570000</td>
-      <td>56.060001</td>
+      <td>55.630001</td>
       <td>55.630001</td>
       <td>2410400</td>
-      <td>55.630001</td>
     </tr>
     <tr>
       <th>2015-01-28</th>
       <td>56.150002</td>
-      <td>52.919998</td>
       <td>56.150002</td>
+      <td>52.919998</td>
+      <td>53.000000</td>
       <td>53.000000</td>
       <td>2013100</td>
-      <td>53.000000</td>
     </tr>
     <tr>
       <th>2015-02-03</th>
+      <td>53.830002</td>
       <td>55.930000</td>
       <td>53.410000</td>
-      <td>53.830002</td>
+      <td>55.779999</td>
       <td>55.779999</td>
       <td>2885400</td>
-      <td>55.779999</td>
     </tr>
     <tr>
       <th>2015-02-04</th>
+      <td>55.529999</td>
       <td>57.070000</td>
       <td>55.250000</td>
-      <td>55.529999</td>
+      <td>56.740002</td>
       <td>56.740002</td>
       <td>2498600</td>
-      <td>56.740002</td>
     </tr>
     <tr>
       <th>2015-02-05</th>
+      <td>57.599998</td>
       <td>57.700001</td>
       <td>56.080002</td>
-      <td>57.599998</td>
+      <td>57.470001</td>
       <td>57.470001</td>
       <td>4657300</td>
-      <td>57.470001</td>
     </tr>
   </tbody>
 </table>
@@ -1634,12 +1575,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
     </tr>
     <tr>
       <th>date</th>
@@ -1654,48 +1595,48 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
     </tr>
     <tr>
       <th>2015-01-09</th>
+      <td>55.959999</td>
       <td>56.990002</td>
       <td>54.720001</td>
-      <td>55.959999</td>
+      <td>56.070000</td>
       <td>56.070000</td>
       <td>6224200</td>
-      <td>56.070000</td>
     </tr>
     <tr>
       <th>2015-01-16</th>
+      <td>50.180000</td>
       <td>51.490002</td>
       <td>50.029999</td>
-      <td>50.180000</td>
+      <td>51.389999</td>
       <td>51.389999</td>
       <td>2183300</td>
-      <td>51.389999</td>
     </tr>
     <tr>
       <th>2015-01-21</th>
+      <td>51.200001</td>
       <td>53.500000</td>
       <td>51.200001</td>
-      <td>51.200001</td>
+      <td>53.410000</td>
       <td>53.410000</td>
       <td>3248100</td>
-      <td>53.410000</td>
     </tr>
     <tr>
       <th>2015-01-22</th>
+      <td>53.869999</td>
       <td>55.279999</td>
       <td>53.119999</td>
-      <td>53.869999</td>
+      <td>54.799999</td>
       <td>54.799999</td>
       <td>2295400</td>
-      <td>54.799999</td>
     </tr>
   </tbody>
 </table>
@@ -1727,12 +1668,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
     </tr>
     <tr>
       <th>date</th>
@@ -1747,20 +1688,20 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-05-07</th>
+      <td>38.220001</td>
       <td>48.73</td>
       <td>38.220001</td>
-      <td>38.220001</td>
+      <td>47.009998</td>
       <td>47.009998</td>
       <td>33831600</td>
-      <td>47.009998</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="creating-new-columns">
-<h2>Creating new columns<a class="headerlink" href="#creating-new-columns" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-new-columns">
+<h2>Creating new columns<a class="headerlink" href="#creating-new-columns" title="Permalink to this heading">#</a></h2>
 <p>To create a new column, simply assign values to it.  Think of the columns as a dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1788,12 +1729,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
       <th>profit</th>
     </tr>
     <tr>
@@ -1810,52 +1751,52 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
       <td>False</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
       <td>False</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
       <td>False</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
       <td>False</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
       <td>True</td>
     </tr>
   </tbody>
@@ -1897,12 +1838,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
       <th>profit</th>
       <th>gain</th>
     </tr>
@@ -1921,56 +1862,56 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
       <td>True</td>
       <td>medium_gain</td>
     </tr>
@@ -2022,12 +1963,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
       <th>profit</th>
       <th>gain</th>
       <th>test_column</th>
@@ -2048,60 +1989,60 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
       <td>False</td>
       <td>negative</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
       <td>False</td>
       <td>negative</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
       <td>False</td>
       <td>negative</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
       <td>False</td>
       <td>negative</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
       <td>True</td>
       <td>medium_gain</td>
       <td>medium_gain</td>
@@ -2136,12 +2077,12 @@ Name: high, dtype: bool
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>open</th>
       <th>high</th>
       <th>low</th>
-      <th>open</th>
       <th>close</th>
-      <th>volume</th>
       <th>adj_close</th>
+      <th>volume</th>
       <th>profit</th>
       <th>gain</th>
     </tr>
@@ -2160,56 +2101,56 @@ Name: high, dtype: bool
   <tbody>
     <tr>
       <th>2015-01-02</th>
+      <td>55.459999</td>
       <td>55.599998</td>
       <td>54.240002</td>
-      <td>55.459999</td>
+      <td>55.150002</td>
       <td>55.150002</td>
       <td>1664500</td>
-      <td>55.150002</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-05</th>
+      <td>54.540001</td>
       <td>54.950001</td>
       <td>52.330002</td>
-      <td>54.540001</td>
+      <td>52.529999</td>
       <td>52.529999</td>
       <td>2023000</td>
-      <td>52.529999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-06</th>
+      <td>52.549999</td>
       <td>53.930000</td>
       <td>50.750000</td>
-      <td>52.549999</td>
+      <td>52.439999</td>
       <td>52.439999</td>
       <td>3762800</td>
-      <td>52.439999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-07</th>
+      <td>53.320000</td>
       <td>53.750000</td>
       <td>51.759998</td>
-      <td>53.320000</td>
+      <td>52.209999</td>
       <td>52.209999</td>
       <td>1548200</td>
-      <td>52.209999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-01-08</th>
+      <td>52.590000</td>
       <td>54.139999</td>
       <td>51.759998</td>
-      <td>52.590000</td>
+      <td>53.830002</td>
       <td>53.830002</td>
       <td>2015300</td>
-      <td>53.830002</td>
       <td>True</td>
       <td>medium_gain</td>
     </tr>
@@ -2225,68 +2166,68 @@ Name: high, dtype: bool
       <td>...</td>
     </tr>
     <tr>
+      <th>2015-12-23</th>
+      <td>27.950001</td>
+      <td>28.420000</td>
+      <td>27.440001</td>
+      <td>28.150000</td>
+      <td>28.150000</td>
+      <td>1001000</td>
+      <td>True</td>
+      <td>small_gain</td>
+    </tr>
+    <tr>
       <th>2015-12-24</th>
+      <td>28.270000</td>
       <td>28.590000</td>
       <td>27.900000</td>
-      <td>28.270000</td>
+      <td>28.400000</td>
       <td>28.400000</td>
       <td>587400</td>
-      <td>28.400000</td>
       <td>True</td>
       <td>small_gain</td>
     </tr>
     <tr>
       <th>2015-12-28</th>
+      <td>28.120001</td>
       <td>28.379999</td>
       <td>27.770000</td>
-      <td>28.120001</td>
+      <td>27.879999</td>
       <td>27.879999</td>
       <td>1004500</td>
-      <td>27.879999</td>
       <td>False</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>2015-12-29</th>
+      <td>27.950001</td>
       <td>28.540001</td>
       <td>27.740000</td>
-      <td>27.950001</td>
+      <td>28.480000</td>
       <td>28.480000</td>
       <td>1103900</td>
-      <td>28.480000</td>
       <td>True</td>
       <td>small_gain</td>
     </tr>
     <tr>
       <th>2015-12-30</th>
+      <td>28.580000</td>
       <td>28.780001</td>
       <td>28.170000</td>
-      <td>28.580000</td>
+      <td>28.250000</td>
       <td>28.250000</td>
       <td>1068000</td>
-      <td>28.250000</td>
       <td>False</td>
       <td>negative</td>
     </tr>
-    <tr>
-      <th>2015-12-31</th>
-      <td>28.969999</td>
-      <td>28.020000</td>
-      <td>28.100000</td>
-      <td>28.799999</td>
-      <td>1301500</td>
-      <td>28.799999</td>
-      <td>True</td>
-      <td>small_gain</td>
-    </tr>
   </tbody>
 </table>
-<p>252 rows × 8 columns</p>
+<p>251 rows × 8 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="grouping">
-<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="grouping">
+<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this heading">#</a></h2>
 <p>An <strong>extremely</strong> powerful DataFrame method is <strong><code class="docutils literal notranslate"><span class="pre">groupby()</span></code></strong>.</p>
 <p>This is entirely analagous to <strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong> in SQL.</p>
 <p>It will group the rows of a DataFrame by the values in one (or more) columns, and let you iterate through each group.</p>
@@ -2314,22 +2255,22 @@ Name: high, dtype: bool
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>large_gain
-             high        low       open      close    volume  adj_close  \
+                 open   high        low      close  adj_close    volume  \
 date                                                                      
-2015-05-07  48.73  38.220001  38.220001  47.009998  33831600  47.009998   
+2015-05-07  38.220001  48.73  38.220001  47.009998  47.009998  33831600   
 
             profit        gain test_column  
 date                                        
 2015-05-07    True  large_gain  large_gain  
 =============================
 medium_gain
-                 high        low       open      close   volume  adj_close  \
+                 open       high        low      close  adj_close   volume  \
 date                                                                         
-2015-01-08  54.139999  51.759998  52.590000  53.830002  2015300  53.830002   
-2015-01-16  51.490002  50.029999  50.180000  51.389999  2183300  51.389999   
-2015-01-21  53.500000  51.200001  51.200001  53.410000  3248100  53.410000   
-2015-02-03  55.930000  53.410000  53.830002  55.779999  2885400  55.779999   
-2015-02-04  57.070000  55.250000  55.529999  56.740002  2498600  56.740002   
+2015-01-08  52.590000  54.139999  51.759998  53.830002  53.830002  2015300   
+2015-01-16  50.180000  51.490002  50.029999  51.389999  51.389999  2183300   
+2015-01-21  51.200001  53.500000  51.200001  53.410000  53.410000  3248100   
+2015-02-03  53.830002  55.930000  53.410000  55.779999  55.779999  2885400   
+2015-02-04  55.529999  57.070000  55.250000  56.740002  56.740002  2498600   
 
             profit         gain  test_column  
 date                                          
@@ -2340,13 +2281,13 @@ date
 2015-02-04    True  medium_gain  medium_gain  
 =============================
 negative
-                 high        low       open      close   volume  adj_close  \
+                 open       high        low      close  adj_close   volume  \
 date                                                                         
-2015-01-02  55.599998  54.240002  55.459999  55.150002  1664500  55.150002   
-2015-01-05  54.950001  52.330002  54.540001  52.529999  2023000  52.529999   
-2015-01-06  53.930000  50.750000  52.549999  52.439999  3762800  52.439999   
-2015-01-07  53.750000  51.759998  53.320000  52.209999  1548200  52.209999   
-2015-01-12  56.060001  53.430000  56.000000  54.020000  2407700  54.020000   
+2015-01-02  55.459999  55.599998  54.240002  55.150002  55.150002  1664500   
+2015-01-05  54.540001  54.950001  52.330002  52.529999  52.529999  2023000   
+2015-01-06  52.549999  53.930000  50.750000  52.439999  52.439999  3762800   
+2015-01-07  53.320000  53.750000  51.759998  52.209999  52.209999  1548200   
+2015-01-12  56.000000  56.060001  53.430000  54.020000  54.020000  2407700   
 
             profit      gain test_column  
 date                                      
@@ -2357,13 +2298,13 @@ date
 2015-01-12   False  negative    negative  
 =============================
 small_gain
-                 high        low       open      close   volume  adj_close  \
+                 open       high        low      close  adj_close   volume  \
 date                                                                         
-2015-01-09  56.990002  54.720001  55.959999  56.070000  6224200  56.070000   
-2015-01-22  55.279999  53.119999  53.869999  54.799999  2295400  54.799999   
-2015-01-23  55.639999  54.299999  54.660000  55.189999  1636400  55.189999   
-2015-01-26  55.790001  54.830002  55.119999  55.410000  1450300  55.410000   
-2015-01-29  53.310001  51.410000  52.849998  52.930000  1844100  52.930000   
+2015-01-09  55.959999  56.990002  54.720001  56.070000  56.070000  6224200   
+2015-01-22  53.869999  55.279999  53.119999  54.799999  54.799999  2295400   
+2015-01-23  54.660000  55.639999  54.299999  55.189999  55.189999  1636400   
+2015-01-26  55.119999  55.790001  54.830002  55.410000  55.410000  1450300   
+2015-01-29  52.849998  53.310001  51.410000  52.930000  52.930000  1844100   
 
             profit        gain test_column  
 date                                        
@@ -2389,31 +2330,29 @@ date
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average closing value for the large_gain group is 47.0099983215332
 The average closing value for the medium_gain group is 39.72307696709266
 The average closing value for the negative group is 37.38476184057811
-The average closing value for the small_gain group is 36.45555554014264
+The average closing value for the small_gain group is 36.53367346160266
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="other-pandas-classes">
-<h2>Other Pandas Classes<a class="headerlink" href="#other-pandas-classes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="other-pandas-classes">
+<h2>Other Pandas Classes<a class="headerlink" href="#other-pandas-classes" title="Permalink to this heading">#</a></h2>
 <p>A DataFrame is essentially an annotated 2-D array.</p>
 <p>Pandas also has annotated versions of 1-D and 3-D arrays.</p>
 <p>A 1-D array in Pandas is called a <code class="docutils literal notranslate"><span class="pre">Series</span></code>.</p>
 <p>A 3-D array in Pandas is created using a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>.</p>
 <p>To use these, read the documentation!</p>
-</div>
-<div class="section" id="comparing-multiple-stocks">
-<h2>Comparing multiple stocks<a class="headerlink" href="#comparing-multiple-stocks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="comparing-multiple-stocks">
+<h2>Comparing multiple stocks<a class="headerlink" href="#comparing-multiple-stocks" title="Permalink to this heading">#</a></h2>
 <p>As a last task, we will use the experience we obtained so far – and learn some new things – in order to compare the performance of different stocks we obtained from Yahoo finance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ORCL&#39;</span><span class="p">,</span> <span class="s1">&#39;TSLA&#39;</span><span class="p">,</span> <span class="s1">&#39;IBM&#39;</span><span class="p">,</span><span class="s1">&#39;YELP&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">]</span>
-<span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Close&#39;</span>
-<span class="n">stock_df</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">stocks</span><span class="p">,</span> 
-                    <span class="n">data_source</span><span class="p">,</span>                               
-                    <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
-                    <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))[</span><span class="n">attr</span><span class="p">]</span>
+<span class="n">stock_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stocks</span><span class="p">:</span>
+    <span class="n">stock_df</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">yf</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2014-01-01&#39;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;2014-12-31&#39;</span><span class="p">,</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span>
 <span class="n">stock_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2436,7 +2375,7 @@ The average closing value for the small_gain group is 36.45555554014264
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Symbols</th>
+      <th></th>
       <th>ORCL</th>
       <th>TSLA</th>
       <th>IBM</th>
@@ -2504,7 +2443,7 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_104_0.png" src="_images/02B-Pandas_104_0.png" />
+<img alt="_images/e154867c67ed856817eeeb050d89f4802c945d6616086508d87a708110a0d91a.png" src="_images/e154867c67ed856817eeeb050d89f4802c945d6616086508d87a708110a0d91a.png" />
 </div>
 </div>
 <p>Next, we will calculate returns over a period of length <span class="math notranslate nohighlight">\(T,\)</span> defined as:</p>
@@ -2536,7 +2475,7 @@ The average closing value for the small_gain group is 36.45555554014264
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Symbols</th>
+      <th></th>
       <th>ORCL</th>
       <th>TSLA</th>
       <th>IBM</th>
@@ -2646,7 +2585,7 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_109_0.png" src="_images/02B-Pandas_109_0.png" />
+<img alt="_images/6b36dd35f5f7f66a5d8600ae1f0c0732df24177581c8be3516a20ffa5fc1023e.png" src="_images/6b36dd35f5f7f66a5d8600ae1f0c0732df24177581c8be3516a20ffa5fc1023e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2658,7 +2597,7 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_110_0.png" src="_images/02B-Pandas_110_0.png" />
+<img alt="_images/27f083d0adb013b42c2f5197155dca5ea7765b67653522383d9743e81d592f21.png" src="_images/27f083d0adb013b42c2f5197155dca5ea7765b67653522383d9743e81d592f21.png" />
 </div>
 </div>
 <p>There appears to be some (fairly strong) correlation between the movement of TSLA and YELP stocks.  Let’s measure this.</p>
@@ -2690,61 +2629,53 @@ The average closing value for the small_gain group is 36.45555554014264
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Symbols</th>
+      <th></th>
       <th>ORCL</th>
       <th>TSLA</th>
       <th>IBM</th>
       <th>YELP</th>
       <th>MSFT</th>
-    </tr>
-    <tr>
-      <th>Symbols</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>ORCL</th>
       <td>1.000000</td>
-      <td>0.000981</td>
-      <td>0.025742</td>
-      <td>-0.084176</td>
-      <td>0.114090</td>
+      <td>0.007218</td>
+      <td>0.026666</td>
+      <td>-0.083688</td>
+      <td>0.131830</td>
     </tr>
     <tr>
       <th>TSLA</th>
-      <td>0.000981</td>
+      <td>0.007218</td>
       <td>1.000000</td>
-      <td>0.196504</td>
-      <td>0.768509</td>
-      <td>0.415746</td>
+      <td>0.196371</td>
+      <td>0.769623</td>
+      <td>0.411348</td>
     </tr>
     <tr>
       <th>IBM</th>
-      <td>0.025742</td>
-      <td>0.196504</td>
+      <td>0.026666</td>
+      <td>0.196371</td>
       <td>1.000000</td>
-      <td>0.104776</td>
-      <td>0.340422</td>
+      <td>0.104705</td>
+      <td>0.343697</td>
     </tr>
     <tr>
       <th>YELP</th>
-      <td>-0.084176</td>
-      <td>0.768509</td>
-      <td>0.104776</td>
+      <td>-0.083688</td>
+      <td>0.769623</td>
+      <td>0.104705</td>
       <td>1.000000</td>
-      <td>0.262595</td>
+      <td>0.264703</td>
     </tr>
     <tr>
       <th>MSFT</th>
-      <td>0.114090</td>
-      <td>0.415746</td>
-      <td>0.340422</td>
-      <td>0.262595</td>
+      <td>0.131830</td>
+      <td>0.411348</td>
+      <td>0.343697</td>
+      <td>0.264703</td>
       <td>1.000000</td>
     </tr>
   </tbody>
@@ -2761,7 +2692,7 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_115_0.png" src="_images/02B-Pandas_115_0.png" />
+<img alt="_images/734b13b0c632caf6c81005ca5a91be433ce0a00e15f423b6e9a88aa801680e94.png" src="_images/734b13b0c632caf6c81005ca5a91be433ce0a00e15f423b6e9a88aa801680e94.png" />
 </div>
 </div>
 <p>Finally, it is important to know that the plotting performed by Pandas is just a layer on top of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (i.e., the <code class="docutils literal notranslate"><span class="pre">plt</span></code> package).</p>
@@ -2786,12 +2717,12 @@ The average closing value for the small_gain group is 36.45555554014264
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/02B-Pandas_118_0.png" src="_images/02B-Pandas_118_0.png" />
+<img alt="_images/26d1bc3889f0ace9b14130be6d894b78f098f2229bac7c0be9ab5fa7a29919af.png" src="_images/26d1bc3889f0ace9b14130be6d894b78f098f2229bac7c0be9ab5fa7a29919af.png" />
 </div>
 </div>
 <p>To understand what these functions are doing, (especially the <code class="docutils literal notranslate"><span class="pre">annotate</span></code> function), you will need to consult the online documentation for matplotlib.  Just use Google to find it.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2805,7 +2736,7 @@ The average closing value for the small_gain group is 36.45555554014264
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -2813,56 +2744,121 @@ The average closing value for the small_gain group is 36.45555554014264
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="02A-Git-Jupyter.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Essential Tools: Git and Jupyter</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="04-Linear-Algebra-Refresher.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Linear Algebra Refresher</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02A-Git-Jupyter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Essential Tools: Git and Jupyter</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="04-Linear-Algebra-Refresher.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Algebra Refresher</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-storing-and-retrieving-your-data">Fetching, storing and retrieving your data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-to-from-a-csv-file">Reading to/from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-data-columns">Working with data columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sampling-of-dataframe-methods">A sampling of DataFrame methods.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-methods">Plotting methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-operations">Bulk Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-rows-of-the-dataframe">Accessing rows of the DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-columns">Creating new columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">Grouping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-pandas-classes">Other Pandas Classes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-multiple-stocks">Comparing multiple stocks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
