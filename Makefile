@@ -10,7 +10,7 @@ book:
 	jupyter-book build -v -n --keep-going .
 
 pushbook:
-	cp -r _build/html/* docs
+	rsync -avb _build/html docs
 	git add docs
 	git commit -m 'book update'
 	git push
