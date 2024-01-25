@@ -33,3 +33,6 @@ parts:
 - caption: Selected Topics
   chapters:
   - file: 20-Recommender-Systems
+  - file: 21-Networks-I
+  - file: 22-Networks-II-Centrality-Clustering
+  - file: 23-Gradient-Descent

@@ -1,414 +1,388 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>\(k\)-means &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06-Clustering-I-kmeans';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Clustering In Practice" href="07-Clustering-II-in-practice.html" />
     <link rel="prev" title="Distances and Timeseries" href="05-Distances-Timeseries.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/06-Clustering-I-kmeans.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/06-Clustering-I-kmeans.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
 
-        </div>
+</a>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-is-unsupervised-learning">
-   Clustering is Unsupervised Learning
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-clustering-problem">
-   The Clustering Problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-k-means-problem">
-   The
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means Problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-k-means-algorithm">
-   The
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means Algorithm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#limitations-of-k-means">
-   Limitations of
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choosing-a-good-initialization">
-     Choosing a Good Initialization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choosing-the-right-k">
-     Choosing the right
-     <span class="math notranslate nohighlight">
-      \(k\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#feature-scaling">
-     Feature Scaling
-    </a>
-   </li>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/06-Clustering-I-kmeans.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
- </li>
-</ul>
+</div>
 
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>k-means</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-is-unsupervised-learning">Clustering is Unsupervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-clustering-problem">The Clustering Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-k-means-problem">The <span class="math notranslate nohighlight">\(k\)</span>-means Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-k-means-algorithm">The <span class="math notranslate nohighlight">\(k\)</span>-means Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">Limitations of <span class="math notranslate nohighlight">\(k\)</span>-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-good-initialization">Choosing a Good Initialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-k">Choosing the right <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling">Feature Scaling</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="k-means">
-<h1><span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#k-means" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="k-means">
+<h1><span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#k-means" title="Permalink to this heading">#</a></h1>
 <center>
 <a class="reference internal image-reference" href="_images/L6-John_Snow_memorial_and_pub.png"><img alt="Figure" src="_images/L6-John_Snow_memorial_and_pub.png" style="width: 400px;" /></a>
 </center><div style = "float: left; width: 55%;">
@@ -429,8 +403,8 @@
 <a class="reference internal image-reference" href="_images/L6-John_Snow_memorial_and_pub.png"><img alt="Figure" src="_images/L6-John_Snow_memorial_and_pub.png" style="width: 400px;" /></a>
 </center><p><a href="http://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=357998">https://commons.wikimedia.org/w/index.php?curid=357998</a></p>
 <p>John Snow’s original data is available here: <a class="reference external" href="http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/">http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/</a></p>
-<div class="section" id="clustering-is-unsupervised-learning">
-<h2>Clustering is Unsupervised Learning<a class="headerlink" href="#clustering-is-unsupervised-learning" title="Permalink to this headline">¶</a></h2>
+<section id="clustering-is-unsupervised-learning">
+<h2>Clustering is Unsupervised Learning<a class="headerlink" href="#clustering-is-unsupervised-learning" title="Permalink to this heading">#</a></h2>
 <p>Clustering is a very important way of discovering <strong>structure</strong> in data.</p>
 <p>It is so important because it is <strong>common</strong> for data to show clusters.</p>
 <ul class="simple">
@@ -467,9 +441,9 @@
 </li>
 <li><p>And many more …</p></li>
 </ul>
-</div>
-<div class="section" id="the-clustering-problem">
-<h2>The Clustering Problem<a class="headerlink" href="#the-clustering-problem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-clustering-problem">
+<h2>The Clustering Problem<a class="headerlink" href="#the-clustering-problem" title="Permalink to this heading">#</a></h2>
 <p>When we do clustering, what problem are we trying to solve?</p>
 <p>We will answer this question informally at first.</p>
 <p>(But soon we will look at formal criteria!)</p>
@@ -517,9 +491,9 @@
 </ul>
 <p>We are going to assume for now that the number of clusters is given in advance.</p>
 <p>We will denote the number of clusters as <span class="math notranslate nohighlight">\(k\)</span>.</p>
-</div>
-<div class="section" id="the-k-means-problem">
-<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Problem<a class="headerlink" href="#the-k-means-problem" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-k-means-problem">
+<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Problem<a class="headerlink" href="#the-k-means-problem" title="Permalink to this heading">#</a></h2>
 <p>Now, we are ready to state our first formalization of the clustering problem.</p>
 <p>We will assume that</p>
 <ul class="simple">
@@ -530,7 +504,7 @@
 <p><strong><span class="math notranslate nohighlight">\(k\)</span>-means Problem:</strong></p>
 <p>Find <span class="math notranslate nohighlight">\(k\)</span> points <span class="math notranslate nohighlight">\(c_1, \dots, c_k\)</span> (called <font color="blue"> <em>centers</em>, <em>centroids</em>,</font> or <font color = "blue"> <em>means</em>,</font> so that the cost</p>
 <div class="math notranslate nohighlight">
-\[ \sum_{i=1}^n \min_j \Vert x_i-c_j\Vert^2_2 \]</div>
+\[ \sum_{i=1}^n \min_k \Vert x_i-c_j\Vert^2_2 \]</div>
 <p>is minimized.</p>
 <p><strong>Equivalently:</strong> we can think in terms of the partition itself.</p>
 <p>Consider the set <span class="math notranslate nohighlight">\(X = \{x_1, \dots, x_n\}\)</span> where <span class="math notranslate nohighlight">\(x_i \in \mathbb{R}^n\)</span>.</p>
@@ -552,9 +526,9 @@
 </li>
 </ul>
 <p><strong>Nonetheless,</strong> there is a simple algorithm that works quite well in practice!</p>
-</div>
-<div class="section" id="the-k-means-algorithm">
-<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-k-means-algorithm">
+<h2>The <span class="math notranslate nohighlight">\(k\)</span>-means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Permalink to this heading">#</a></h2>
 <p>There is a “classic” algorithm for this problem.</p>
 <p>It was voted among the <strong>top-10 algorithms</strong> in data mining!</p>
 <p>It is such a good idea that it has been independently discovered multiple times.</p>
@@ -564,7 +538,7 @@
 <center>
 <a class="reference internal image-reference" href="_images/L06-top-ten-algorithms-cover.png"><img alt="Figure" src="_images/L06-top-ten-algorithms-cover.png" style="width: 300px;" /></a>
 </center><p>The <span class="math notranslate nohighlight">\(k\)</span>-means algorithm:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Pick <span class="math notranslate nohighlight">\(k\)</span> cluster centers <span class="math notranslate nohighlight">\(\{c_1, \dots, c_k\}\)</span>.  These can be chosen randomly, or by some other method.</p></li>
 <li><p>For each <span class="math notranslate nohighlight">\(j\)</span>, define the cluster <span class="math notranslate nohighlight">\(X_j\)</span> as the set of points in <span class="math notranslate nohighlight">\(X\)</span> that are <font color="blue">closest to center</font> <span class="math notranslate nohighlight">\(c_k\)</span>.<br />
 (Nearer to <span class="math notranslate nohighlight">\(c_k\)</span> than to any other center.)</p></li>
@@ -575,40 +549,40 @@
 <p>Let’s see this in practice:</p>
 <center>
 <a class="reference internal image-reference" href="_images/L06-kmeans-example.png"><img alt="Figure" src="_images/L06-kmeans-example.png" style="width: 600px;" /></a>
-</center></div>
-<div class="section" id="limitations-of-k-means">
-<h2>Limitations of <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#limitations-of-k-means" title="Permalink to this headline">¶</a></h2>
+</center></section>
+<section id="limitations-of-k-means">
+<h2>Limitations of <span class="math notranslate nohighlight">\(k\)</span>-means<a class="headerlink" href="#limitations-of-k-means" title="Permalink to this heading">#</a></h2>
 <p>As you can see, <span class="math notranslate nohighlight">\(k\)</span>-means can work very well.</p>
 <p>However, we don’t have any guarantees on the performance of <span class="math notranslate nohighlight">\(k\)</span>-means.</p>
 <p>In particular, there are various settings in which <span class="math notranslate nohighlight">\(k\)</span>-means can fail to do a good job.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means tries to find spherical clusters</strong>.</p></li>
 </ol>
 <p>Because each point is assigned to its closest center, the points in a cluster are implicitly assumed to be arranged in a sphere around the center.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L06-kmeans-nonspherical-clusters.png"><img alt="Figure" src="_images/L06-kmeans-nonspherical-clusters.png" style="width: 600px;" /></a>
-</center><ol class="simple">
+</center><ol class="arabic simple" start="2">
 <li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means tries to find equal-sized clusters.</strong></p></li>
 </ol>
 <p>For the same reason, the sizes of clusters are implicitly assumed to be approximately equal.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L06-kmeans-cluster-size.png"><img alt="Figure" src="_images/L06-kmeans-cluster-size.png" style="width: 600px;" /></a>
-</center><ol class="simple">
+</center><ol class="arabic simple" start="3">
 <li><p><strong><span class="math notranslate nohighlight">\(k\)</span>-means is sensitive to the starting cluster centers.</strong></p></li>
 </ol>
 <p>If the initial guess (Step 1) is a bad one, <span class="math notranslate nohighlight">\(k\)</span>-means may get “stuck” in a bad solution.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L06-kmeans-bad-initialization.png"><img alt="Figure" src="_images/L06-kmeans-bad-initialization.png" style="width: 600px;" /></a>
-</center><div class="section" id="choosing-a-good-initialization">
-<h3>Choosing a Good Initialization<a class="headerlink" href="#choosing-a-good-initialization" title="Permalink to this headline">¶</a></h3>
+</center><section id="choosing-a-good-initialization">
+<h3>Choosing a Good Initialization<a class="headerlink" href="#choosing-a-good-initialization" title="Permalink to this heading">#</a></h3>
 <p>How can we avoid the kind of bad initialization we just saw?</p>
 <p>A good strategy is to pick points that are distant to each other.</p>
 <p>This strategy is called “<span class="math notranslate nohighlight">\(k\)</span>-means++”.</p>
 <p>It works very well in practice, and the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> implementation uses it by default.</p>
 <p>(We will explore it in the next lecture.)</p>
-</div>
-<div class="section" id="choosing-the-right-k">
-<h3>Choosing the right <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#choosing-the-right-k" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="choosing-the-right-k">
+<h3>Choosing the right <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#choosing-the-right-k" title="Permalink to this heading">#</a></h3>
 <p>Generally, we would say that, given some <span class="math notranslate nohighlight">\(k\)</span>, the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm “learns” the cluster centers – that is, the parameters of the model.</p>
 <p>But we have not yet considered how to choose the right number of clusters.</p>
 <p>That’s typically <strong>not</strong> something one knows in advance.</p>
@@ -622,9 +596,9 @@
 <li><p>Iterate through different <span class="math notranslate nohighlight">\(k\)</span> and use some criterion to decide which <span class="math notranslate nohighlight">\(k\)</span> is most appropriate.</p></li>
 <li><p>We will discuss this more in the next lecture.</p></li>
 </ul>
-</div>
-<div class="section" id="feature-scaling">
-<h3>Feature Scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="feature-scaling">
+<h3>Feature Scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this heading">#</a></h3>
 <p>Finally, given the tendency of <span class="math notranslate nohighlight">\(k\)</span>-means to look for spherical clusters, we should consider the scales of the various features.</p>
 <p>In fact, in general when constructing or selecting a distance metric, one needs to think carefully about the scale of the features being used.</p>
 <p>For example, consider the case where we are clustering people based on their age, income, and gender.</p>
@@ -701,7 +675,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/06-Clustering-I-kmeans_67_0.png" src="_images/06-Clustering-I-kmeans_67_0.png" />
+<img alt="_images/630d4f3d3ba09974eeccdc6e4ed3eede1d561b00f1c66eae20432622c9c12810.png" src="_images/630d4f3d3ba09974eeccdc6e4ed3eede1d561b00f1c66eae20432622c9c12810.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -727,7 +701,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/06-Clustering-I-kmeans_70_0.png" src="_images/06-Clustering-I-kmeans_70_0.png" />
+<img alt="_images/f7f713c0f405c9ee1d47e4b16f013f3107a1eebe52a55a914f26686c8499cbe0.png" src="_images/f7f713c0f405c9ee1d47e4b16f013f3107a1eebe52a55a914f26686c8499cbe0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -737,7 +711,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.77635684e-16])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.33226763e-16])
 </pre></div>
 </div>
 </div>
@@ -754,7 +728,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/06-Clustering-I-kmeans_73_0.png" src="_images/06-Clustering-I-kmeans_73_0.png" />
+<img alt="_images/e3c7b13e041917114fc6560a799805c6375d3a26a324043238e2ed91a9527c42.png" src="_images/e3c7b13e041917114fc6560a799805c6375d3a26a324043238e2ed91a9527c42.png" />
 </div>
 </div>
 <p><strong>Example Application of k-means.</strong></p>
@@ -776,9 +750,9 @@ dtype: float64
 </center><p>Finally, we use 1 bit (2 colors) for a compression ratio around 24<span class="math notranslate nohighlight">\(\times\)</span>.</p>
 <center>
 <a class="reference internal image-reference" href="_images/L6-annie_002.png"><img alt="Figure" src="_images/L6-annie_002.png" style="width: 500px;" /></a>
-</center></div>
-</div>
-</div>
+</center></section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -792,7 +766,7 @@ dtype: float64
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -800,56 +774,114 @@ dtype: float64
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="05-Distances-Timeseries.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Distances and Timeseries</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="07-Clustering-II-in-practice.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Clustering In Practice</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05-Distances-Timeseries.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Distances and Timeseries</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="07-Clustering-II-in-practice.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Clustering In Practice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-is-unsupervised-learning">Clustering is Unsupervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-clustering-problem">The Clustering Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-k-means-problem">The <span class="math notranslate nohighlight">\(k\)</span>-means Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-k-means-algorithm">The <span class="math notranslate nohighlight">\(k\)</span>-means Algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">Limitations of <span class="math notranslate nohighlight">\(k\)</span>-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-good-initialization">Choosing a Good Initialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-k">Choosing the right <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling">Feature Scaling</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

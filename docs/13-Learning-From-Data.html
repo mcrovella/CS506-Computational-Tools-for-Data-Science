@@ -1,404 +1,389 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Learning From Data &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '13-Learning-From-Data';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Decision Trees" href="14-Classification-I-Decision-Trees.html" />
     <link rel="prev" title="Gaussian Mixture Models" href="09-Clustering-IV-GMM-EM.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/13-Learning-From-Data.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-</div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
+<div class="article-header-buttons">
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/13-Learning-From-Data.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
 
-        </div>
+</a>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-supervised-learning-problem">
-   The Supervised Learning Problem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-toy-example">
-   A Toy Example
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-fitting">
-     Model Fitting
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-selection">
-     Model Selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-training-data">
-     More Training Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parameters-and-hyperparameters">
-     Parameters and Hyperparameters
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#holding-out-data">
-     Holding Out Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hold-out-strategies">
-     Hold Out Strategies
-    </a>
-   </li>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/13-Learning-From-Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conclusions">
-   Conclusions
-  </a>
- </li>
-</ul>
+</div>
 
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Learning From Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-supervised-learning-problem">The Supervised Learning Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-toy-example">A Toy Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-training-data">More Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#holding-out-data">Holding Out Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hold-out-strategies">Hold Out Strategies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="learning-from-data">
-<h1>Learning From Data<a class="headerlink" href="#learning-from-data" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="learning-from-data">
+<h1>Learning From Data<a class="headerlink" href="#learning-from-data" title="Permalink to this heading">#</a></h1>
 <p>We are now beginnging to discuss how to learn from data.</p>
 <p>The idea of learning from data is one of the most important shifts in thinking about computing to come about in the past 50 years.</p>
 <p>Consider the commonly heard phrase:</p>
@@ -422,8 +407,8 @@
 <p>Instead, those programmers have written programs that <strong>learn from data.</strong></p>
 <p>However, the best methods for learning from data have taken decades to develop.</p>
 <p>So we will spend some time now talking about the general problem of learning from data.</p>
-<div class="section" id="the-supervised-learning-problem">
-<h2>The Supervised Learning Problem<a class="headerlink" href="#the-supervised-learning-problem" title="Permalink to this headline">¶</a></h2>
+<section id="the-supervised-learning-problem">
+<h2>The Supervised Learning Problem<a class="headerlink" href="#the-supervised-learning-problem" title="Permalink to this heading">#</a></h2>
 <p>The supervised learning problem in general is:</p>
 <p>You are given some example data, which we’ll think of abstractly as tuples <span class="math notranslate nohighlight">\(\{(\mathbf{x}_i, y_i)\,|\,i = 1,\dots,N\}\)</span>.</p>
 <p>Your goal is to learn a rule that allows you to predict <span class="math notranslate nohighlight">\(y_j\)</span> for some <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span> that is not in the example data you were given.</p>
@@ -437,15 +422,15 @@
 <p>In the regression case, you will usually be satisfied if your prediction is <strong>close</strong> to the true <span class="math notranslate nohighlight">\(y\)</span> (it doesn’t have to be exact to be useful).</p>
 <p>What do we have to assume to make this problem tractable?</p>
 <p>We assume two things:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>There is a set of functions (“rules”) that could be used to predict <span class="math notranslate nohighlight">\(y_i\)</span> from <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>.   This allows us to turn the learning problem into one that searches through this set for the “right” function.   However, this set is probably <strong>very</strong> large!</p></li>
 </ol>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>The rule for predicting <span class="math notranslate nohighlight">\(y_i\)</span> from <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the same as the rule for predicting <span class="math notranslate nohighlight">\(y_j\)</span> from the new item <span class="math notranslate nohighlight">\(\mathbf{x}_j\)</span>. Speaking probabilistically, we say that <span class="math notranslate nohighlight">\((\mathbf{x}_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((\mathbf{x}_j, y_j)\)</span> are drawn from the <strong>same distribution.</strong></p></li>
 </ol>
-</div>
-<div class="section" id="a-toy-example">
-<h2>A Toy Example<a class="headerlink" href="#a-toy-example" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-toy-example">
+<h2>A Toy Example<a class="headerlink" href="#a-toy-example" title="Permalink to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following is based on <em>Pattern Recognition and Machine Learning,</em> Christopher Bishop (2006), Section 1.1.</p>
@@ -457,6 +442,11 @@
 <p>For each <span class="math notranslate nohighlight">\(x_i\)</span> we have a corresponding numeric value <span class="math notranslate nohighlight">\(y_i\)</span>, and these form <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p>
 <p>Here is a plot of the 10 training points:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
@@ -469,13 +459,19 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_19_0.png" src="_images/13-Learning-From-Data_19_0.png" />
+<img alt="_images/d1ae1b58579917ce9c73b97cc26d89f1f9716e5490b8562698e64ec12b26d588.png" src="_images/d1ae1b58579917ce9c73b97cc26d89f1f9716e5490b8562698e64ec12b26d588.png" />
 </div>
 </div>
 <p>The way we generated these points was to take <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as equal spaced points on the range 0 to 1,</p>
 <p>and for each <span class="math notranslate nohighlight">\(x_i\)</span>, we take <span class="math notranslate nohighlight">\(y_i = \sin(2\pi x_i)\)</span> <strong>plus</strong> a sample of a Gaussian random variable.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">cy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">cx</span><span class="p">)</span>
@@ -486,8 +482,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_21_0.png" src="_images/13-Learning-From-Data_21_0.png" />
+<img alt="_images/1662b7c2503980517dd99ddcb452430bf80464884180562fc49ae0d2c5d068db.png" src="_images/1662b7c2503980517dd99ddcb452430bf80464884180562fc49ae0d2c5d068db.png" />
 </div>
 </div>
 <p>Many data sets are like this!</p>
@@ -509,8 +506,8 @@
 <p>Note that this function <span class="math notranslate nohighlight">\(y(x, \mathbf{w})\)</span> is a nonlinear function in <span class="math notranslate nohighlight">\(x\)</span> … but it is <strong>linear</strong> in <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.  That is, all the <span class="math notranslate nohighlight">\(w_i\)</span>s appear only raised to the first power.</p>
 <p>This model is linear in its parameters – it is called a <strong>linear model.</strong></p>
 <p>Linear models are particularly easy to fit to data.</p>
-<div class="section" id="model-fitting">
-<h3>Model Fitting<a class="headerlink" href="#model-fitting" title="Permalink to this headline">¶</a></h3>
+<section id="model-fitting">
+<h3>Model Fitting<a class="headerlink" href="#model-fitting" title="Permalink to this heading">#</a></h3>
 <p>How will we fit our model, that is, learn the best parameters <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>?</p>
 <p>We will use a objective function to guide our search through the space of model parameters.</p>
 <p>The objective function we will use is called the <strong>least squares criterion</strong>:</p>
@@ -524,9 +521,9 @@
 <p>In other words, the error function <span class="math notranslate nohighlight">\(E(\cdot)\)</span> measures the distance or dissimilarity between the data and the predictions.</p>
 <p>Finding a <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that minimizes <span class="math notranslate nohighlight">\(E(\mathbf{w})\)</span> is a least-squares problem, and we can solve it in closed form (details later in the course).</p>
 <p>The resulting solution <span class="math notranslate nohighlight">\(\mathbf{w}^*\)</span> is the set of parameters that <strong>minimizes the error on the training data.</strong></p>
-</div>
-<div class="section" id="model-selection">
-<h3>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="model-selection">
+<h3>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">#</a></h3>
 <p>So we are done, correct?</p>
 <p>Wait … what about choosing <span class="math notranslate nohighlight">\(k\)</span>, the order of the polynomial?</p>
 <p>The problem of choosing <span class="math notranslate nohighlight">\(k\)</span> is called <strong>model selection.</strong></p>
@@ -534,6 +531,11 @@
 <p>Let’s look at constant (order 0), linear (order 1), and cubic (order 3) models.</p>
 <p>We will fit each one using the least squares criterion:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y = Aw, A is design matrix 1, [1, x^T], [1, x^T, x^T^2], etc, and w-hat = (A^TA)^-1 A^Ty</span>
 <span class="k">def</span> <span class="nf">design_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -554,8 +556,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="c1">#</span>
@@ -588,8 +596,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_38_0.png" src="_images/13-Learning-From-Data_38_0.png" />
+<img alt="_images/13ba9a0c30140c649ce9dc4811294289eee57fb642f17d9f21bd48ee7ac519f9.png" src="_images/13ba9a0c30140c649ce9dc4811294289eee57fb642f17d9f21bd48ee7ac519f9.png" />
 </div>
 </div>
 <p>So it looks like a third-order polynomial (<span class="math notranslate nohighlight">\(k\)</span> = 3) is a good fit!</p>
@@ -599,6 +608,11 @@
 <p>In fact, we can reduce the error to zero!</p>
 <p>By setting <span class="math notranslate nohighlight">\(k = 9\)</span>, we get the following polynomial fit to the data:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_hat_9</span> <span class="o">=</span> <span class="n">fit_poly</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
 <span class="n">cy</span> <span class="o">=</span> <span class="n">design_matrix</span><span class="p">(</span><span class="n">cx</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">@</span> <span class="n">w_hat_9</span>
@@ -610,8 +624,9 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_42_0.png" src="_images/13-Learning-From-Data_42_0.png" />
+<img alt="_images/f9705daabdc06090326ca7f0dad678d85d6d12e93a449db189afe5a3ea897181.png" src="_images/f9705daabdc06090326ca7f0dad678d85d6d12e93a449db189afe5a3ea897181.png" />
 </div>
 </div>
 <p>So … is the 9th order polynomial a “better” model for this dataset?</p>
@@ -625,6 +640,11 @@ the model’s <strong>generalization</strong> ability.</p>
 <p>Let’s assess generalization error.   For each polynomial (value of <span class="math notranslate nohighlight">\(k\)</span>) we will use new data, called <strong>test</strong> data.  This is data that was <strong>not</strong> used to train the model, but comes from the same source.</p>
 <p>In our case, we know how the data is generated – <span class="math notranslate nohighlight">\(\sin(2\pi x)\)</span> plus noise – so we can easily generate more.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">default_rng</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
 <span class="n">max_k</span> <span class="o">=</span> <span class="n">N</span>
@@ -643,8 +663,9 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_48_0.png" src="_images/13-Learning-From-Data_48_0.png" />
+<img alt="_images/0d01e80e419de25897356d9090c087a796b03e49560df950ab27c62a7a531776.png" src="_images/0d01e80e419de25897356d9090c087a796b03e49560df950ab27c62a7a531776.png" />
 </div>
 </div>
 <p>Notice that as we increase the order of the polynomial, the training error always declines.</p>
@@ -653,25 +674,30 @@ the model’s <strong>generalization</strong> ability.</p>
 <p>The phenomenon in which training error declines, but testing error does not, is called <strong>overfitting.</strong></p>
 <p>In a sense we are fitting the training data “too well”.</p>
 <p>There are two ways to think about overfitting:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The number of parameters in the model is too large, compared to the size of the training data.   We can see this in the fact that we have only 10 training points, and the 9th order polynomial has 10 coefficents.</p></li>
 </ol>
-<ol class="simple">
+<ol class="arabic simple" start="2">
 <li><p>The model is more complex than the actual phenomenon being modeled.  As a result, the model is not just fitting the underlying phenomenon, but also the noise in the data.</p></li>
 </ol>
 <p>These suggest techniques we may use to avoid overfitting:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Increase the amount of training data.  All else being equal, more training data is always better.</p></li>
 <li><p>Limit the complexity of the model.  Model complexity is often controlled via <strong>hyperparameters</strong>.</p></li>
 </ol>
-</div>
-<div class="section" id="more-training-data">
-<h3>More Training Data<a class="headerlink" href="#more-training-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="more-training-data">
+<h3>More Training Data<a class="headerlink" href="#more-training-data" title="Permalink to this heading">#</a></h3>
 <p>It’s not necessarily true that a order-3 polynomial is best for this problem.</p>
 <p>After all, we are fitting to a sine function, whose Taylor series includes polynomials of all orders.</p>
 <p>But the higher the order of polynomial we want to fit, the more data we need to avoid overfitting.</p>
 <p>Here we use an order-9 polynomial for increasing amounts of training data (N = 15, 50, 200):</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="p">{</span><span class="n">Nval</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Nval</span><span class="p">)</span> <span class="k">for</span> <span class="n">Nval</span> <span class="ow">in</span> <span class="n">Ns</span><span class="p">}</span>
@@ -679,8 +705,14 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="c1">#</span>
@@ -700,14 +732,15 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_58_0.png" src="_images/13-Learning-From-Data_58_0.png" />
+<img alt="_images/298a0c3bdc2250d39baa222807985de4aabf971ca7d4518e4faff95b2a7ed68f.png" src="_images/298a0c3bdc2250d39baa222807985de4aabf971ca7d4518e4faff95b2a7ed68f.png" />
 </div>
 </div>
 <p>We see that with enough training data, the high order polynomial begins to capture the sine wave well.</p>
-</div>
-<div class="section" id="parameters-and-hyperparameters">
-<h3>Parameters and Hyperparameters<a class="headerlink" href="#parameters-and-hyperparameters" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="parameters-and-hyperparameters">
+<h3>Parameters and Hyperparameters<a class="headerlink" href="#parameters-and-hyperparameters" title="Permalink to this heading">#</a></h3>
 <p>Many times however, we cannot simply get more training data, or enough training data, to solve the overfitting problem.</p>
 <p>In that case, we need to control the complexity of the model.</p>
 <p>Notice that model selection problem required us to choose a value <span class="math notranslate nohighlight">\(k\)</span> that specifies the order of the polynomial model.</p>
@@ -718,9 +751,9 @@ the model’s <strong>generalization</strong> ability.</p>
 <p>Here, the hyperparameter <span class="math notranslate nohighlight">\(k\)</span> controls the complexity (the order) of the polynomial model.</p>
 <p>So, to avoid overfitting, we need to choose the proper value for the hyperparameter <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p>We do that by <strong>holding out data.</strong></p>
-</div>
-<div class="section" id="holding-out-data">
-<h3>Holding Out Data<a class="headerlink" href="#holding-out-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="holding-out-data">
+<h3>Holding Out Data<a class="headerlink" href="#holding-out-data" title="Permalink to this heading">#</a></h3>
 <p>The idea behind holding out data is simple.</p>
 <p>We want to avoid overfitting, which occurs when a model fails to generalize – that is, when it has high error on  data that it was not trained on.</p>
 <p>So: we will hold some data aside, and <strong>not</strong> use it for training the model, but instead use it for testing generalization ability.</p>
@@ -728,6 +761,11 @@ the model’s <strong>generalization</strong> ability.</p>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> has some functions that can be helpful.</p>
 <p>We will use <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code>:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
@@ -735,6 +773,7 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -756,6 +795,11 @@ the model’s <strong>generalization</strong> ability.</p>
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> splits the data <strong>randomly.</strong></p>
 <p>This will be important.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="c1">#</span>
@@ -772,8 +816,9 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_72_0.png" src="_images/13-Learning-From-Data_72_0.png" />
+<img alt="_images/a392c8c8326ed27bacd950b93ad4d28b5b9973dc68e21407b3de474616a4e8ae.png" src="_images/a392c8c8326ed27bacd950b93ad4d28b5b9973dc68e21407b3de474616a4e8ae.png" />
 </div>
 </div>
 <p>Our strategy will be:</p>
@@ -788,9 +833,14 @@ the model’s <strong>generalization</strong> ability.</p>
 <p>What are good possible values for the hyperparameter?  It can depend on the problem, and may involve trial and error.</p>
 <p>This strategy of trying all possible values of the hyperparameter is called a <strong>grid search</strong>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_error</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    This function fits a polynomial of degree k to the training data</span>
 <span class="sd">    and returns the error on both the training and test data.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -803,6 +853,7 @@ the model’s <strong>generalization</strong> ability.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -949,13 +1000,13 @@ the model’s <strong>generalization</strong> ability.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/13-Learning-From-Data_77_0.png" src="_images/13-Learning-From-Data_77_0.png" />
+<img alt="_images/7daf4347fc1ce8ea20612217b437bb0aec41ae410ee144db4966f4f6b863d3f9.png" src="_images/7daf4347fc1ce8ea20612217b437bb0aec41ae410ee144db4966f4f6b863d3f9.png" />
 </div>
 </div>
 <p>From this plot we can conclude that, for this dataset, a polynomial of degree <span class="math notranslate nohighlight">\(k = 3\)</span> shows the best generalization ability.</p>
-</div>
-<div class="section" id="hold-out-strategies">
-<h3>Hold Out Strategies<a class="headerlink" href="#hold-out-strategies" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="hold-out-strategies">
+<h3>Hold Out Strategies<a class="headerlink" href="#hold-out-strategies" title="Permalink to this heading">#</a></h3>
 <p>Deciding how much, and which, data to hold out depends on a number of factors.</p>
 <p>In general we’d like to give the training stage as much data as possible to work with.</p>
 <p>However, the more data we use for training, the less we have for testing – which can decrease the accuracy of the testing stage.</p>
@@ -976,10 +1027,10 @@ the model’s <strong>generalization</strong> ability.</p>
 </center>  <p>The value of <span class="math notranslate nohighlight">\(k\)</span> can vary up to the size of the dataset.</p>
 <p>The larger <span class="math notranslate nohighlight">\(k\)</span> we use, the more data is used for training, but the more folds must be evaluated, which increases the time required.</p>
 <p>In the extreme case where <span class="math notranslate nohighlight">\(k\)</span> is equal to the data size, then each data item is held out by itself; this is called “leave-one-out”.</p>
-</div>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading">#</a></h2>
 <p>We have seen strategies that allow us to learn from data.</p>
 <p>The strategies include:</p>
 <ul class="simple">
@@ -994,8 +1045,8 @@ the model’s <strong>generalization</strong> ability.</p>
 <li><p>We control model complexity using hyperparameters</p></li>
 <li><p>We choose the best hyperparameters based on performance on held out data.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1009,7 +1060,7 @@ the model’s <strong>generalization</strong> ability.</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1017,56 +1068,115 @@ the model’s <strong>generalization</strong> ability.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="09-Clustering-IV-GMM-EM.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Gaussian Mixture Models</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="14-Classification-I-Decision-Trees.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Decision Trees</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09-Clustering-IV-GMM-EM.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gaussian Mixture Models</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="14-Classification-I-Decision-Trees.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Decision Trees</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-supervised-learning-problem">The Supervised Learning Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-toy-example">A Toy Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fitting">Model Fitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-training-data">More Training Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#holding-out-data">Holding Out Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hold-out-strategies">Hold Out Strategies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

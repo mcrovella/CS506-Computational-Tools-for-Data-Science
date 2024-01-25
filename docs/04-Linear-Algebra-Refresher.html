@@ -1,411 +1,394 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Linear Algebra Refresher &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04-Linear-Algebra-Refresher';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Probability and Statistics Refresher" href="03-Probability-and-Statistics-Refresher.html" />
     <link rel="prev" title="Essential Tools: Pandas" href="02B-Pandas.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Regression-III-More-Linear.html">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Regression-III-More-Linear.html">Regularization</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/04-Linear-Algebra-Refresher.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04-Linear-Algebra-Refresher.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/04-Linear-Algebra-Refresher.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear Algebra Refresher</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectors-and-matrices">
-   Vectors and Matrices
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-addition-geometrically">
-   Vector Addition, Geometrically
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-multiplication">
-   Matrix Multiplication
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inner-product">
-   Inner Product
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vector-norm">
-   Vector Norm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distance-in-mathbb-r-n">
-   Distance in
-   <span class="math notranslate nohighlight">
-    \(\mathbb{R}^n\)
-   </span>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#orthogonal-vectors">
-   Orthogonal Vectors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-angle-between-two-vectors">
-   The Angle Between Two Vectors
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-squares">
-   Least Squares
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eigendecomposition">
-   Eigendecomposition
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-addition-geometrically">Vector Addition, Geometrically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product">Inner Product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-norm">Vector Norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-in-mathbb-r-n">Distance in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-vectors">Orthogonal Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-angle-between-two-vectors">The Angle Between Two Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares">Least Squares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigendecomposition">Eigendecomposition</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="linear-algebra-refresher">
-<h1>Linear Algebra Refresher<a class="headerlink" href="#linear-algebra-refresher" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-algebra-refresher">
+<h1>Linear Algebra Refresher<a class="headerlink" href="#linear-algebra-refresher" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup3d</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">13.0</span><span class="p">,</span><span class="o">-</span><span class="mf">3.0</span><span class="p">])</span>
@@ -431,15 +414,16 @@
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_2_0.png" src="_images/04-Linear-Algebra-Refresher_2_0.png" />
+<img alt="_images/d00b775855ab3189853144d194bf67792283b4fd77f88891ed606f3e956635bc.png" src="_images/d00b775855ab3189853144d194bf67792283b4fd77f88891ed606f3e956635bc.png" />
 </div>
 </div>
 <p>This lecture is a review of some aspects of linear algebra that are important for data science.</p>
 <p>Given the prerequisites for this course, I assume that you learned all of this once.</p>
 <p>What I want to do today is bring the material back into your mind fresh.</p>
-<div class="section" id="vectors-and-matrices">
-<h2>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">¶</a></h2>
+<section id="vectors-and-matrices">
+<h2>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this heading">#</a></h2>
 <p>A <strong>matrix</strong> is a rectangular array of numbers, for example:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}X = \left[\begin{array}{rrr}
@@ -470,6 +454,11 @@ $<span class="math notranslate nohighlight">\(
 <p>We will use uppercase letters (<span class="math notranslate nohighlight">\(X\)</span>) for matrices and lowercase <strong>bold</strong> leters for vectors (<span class="math notranslate nohighlight">\(\mathbf{u}\)</span>).</p>
 <p>A vector like <span class="math notranslate nohighlight">\(\left[\begin{array}{c}-2\\-1\end{array}\right]\)</span> (also denoted <span class="math notranslate nohighlight">\((-2,-1)\)</span>) can be thought of as a point on the plane.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># No need to study this code unless you want to.</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -485,12 +474,18 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_10_0.png" src="_images/04-Linear-Algebra-Refresher_10_0.png" />
+<img alt="_images/eaab1f4947d0c8111da37f50da064422f26e7b182d20a5beac316e3840cbe87d.png" src="_images/eaab1f4947d0c8111da37f50da064422f26e7b182d20a5beac316e3840cbe87d.png" />
 </div>
 </div>
 <p>Sometimes we draw an arrow from the origin to the point.  This comes from physics, but can be a helpful visualization in any case.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -507,15 +502,21 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_12_0.png" src="_images/04-Linear-Algebra-Refresher_12_0.png" />
+<img alt="_images/a9285acbb58fc53a1e5408cffc79c1688450f417e18d8ec53e20a036aaab3060.png" src="_images/a9285acbb58fc53a1e5408cffc79c1688450f417e18d8ec53e20a036aaab3060.png" />
 </div>
 </div>
-</div>
-<div class="section" id="vector-addition-geometrically">
-<h2>Vector Addition, Geometrically<a class="headerlink" href="#vector-addition-geometrically" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vector-addition-geometrically">
+<h2>Vector Addition, Geometrically<a class="headerlink" href="#vector-addition-geometrically" title="Permalink to this heading">#</a></h2>
 <p>A geometric interpretation of vector sum is as a parallelogram.  If <span class="math notranslate nohighlight">\({\bf u}\)</span> and <span class="math notranslate nohighlight">\({\bf v}\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> are represented as points in the plane, then <span class="math notranslate nohighlight">\({\bf u} + {\bf v}\)</span> corresponds to the fourth vertex of the parallelogram whose other vertices are <span class="math notranslate nohighlight">\({\bf u}, 0,\)</span> and <span class="math notranslate nohighlight">\({\bf v}\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -531,13 +532,14 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_15_0.png" src="_images/04-Linear-Algebra-Refresher_15_0.png" />
+<img alt="_images/93890622f5014f62410040bcec86235a3eaa3f6bbc955a6349e01a4ad9074ccf.png" src="_images/93890622f5014f62410040bcec86235a3eaa3f6bbc955a6349e01a4ad9074ccf.png" />
 </div>
 </div>
-</div>
-<div class="section" id="matrix-multiplication">
-<h2>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="matrix-multiplication">
+<h2>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this heading">#</a></h2>
 <p>Using addition and multiplication by scalars, we can create equations using vectors.</p>
 <p>Then we make the follow equivalence:</p>
 <p>A vector equation
@@ -567,9 +569,9 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 \[ AC = I \mbox{  and  } CA = I. \]</div>
 <p>In that case <span class="math notranslate nohighlight">\(C\)</span> is called the <em>inverse</em> of <span class="math notranslate nohighlight">\(A\)</span>.   Clearly, <span class="math notranslate nohighlight">\(C\)</span> must also be square and the same size as <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The inverse of <span class="math notranslate nohighlight">\(A\)</span> is denoted <span class="math notranslate nohighlight">\(A^{-1}.\)</span></p>
-</div>
-<div class="section" id="inner-product">
-<h2>Inner Product<a class="headerlink" href="#inner-product" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="inner-product">
+<h2>Inner Product<a class="headerlink" href="#inner-product" title="Permalink to this heading">#</a></h2>
 <p>Now we introduce the <strong>inner product</strong>, also called the <strong>dot product.</strong></p>
 <p>The inner product is defined for two vectors, in which one is transposed to be a single row.  It returns a single number.</p>
 <p>For example, the expression</p>
@@ -584,9 +586,9 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <p>The general definition of the inner product is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}[x_1\;x_2\;\dots\;x_n] \left[\begin{array}{c}y_1\\y_2\\\vdots\\y_n\end{array}\right] = \sum_{i=1}^n x_i y_i\end{split}\]</div>
-</div>
-<div class="section" id="vector-norm">
-<h2>Vector Norm<a class="headerlink" href="#vector-norm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vector-norm">
+<h2>Vector Norm<a class="headerlink" href="#vector-norm" title="Permalink to this heading">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, with entries <span class="math notranslate nohighlight">\(v_1,\dots,v_n,\)</span> then the square root of <span class="math notranslate nohighlight">\(\mathbf{v}^T\mathbf{v}\)</span> is defined because <span class="math notranslate nohighlight">\(\mathbf{v}^T\mathbf{v}\)</span> is nonnegative.</p>
 <p><strong>Definition.</strong> The <strong><span class="math notranslate nohighlight">\(\ell_2\)</span> norm</strong> of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is the nonnegative scalar <span class="math notranslate nohighlight">\(\Vert\mathbf{v}\Vert_2\)</span> defined by</p>
 <div class="math notranslate nohighlight">
@@ -595,6 +597,11 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <p>The (<span class="math notranslate nohighlight">\(\ell_2)\)</span> norm of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is its <strong>length</strong> in the usual sense.</p>
 <p>This follows directly from the Pythagorean theorem:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -610,11 +617,17 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_35_0.png" src="_images/04-Linear-Algebra-Refresher_35_0.png" />
+<img alt="_images/707bc0ceaf2e76b519c272e3541c414e3b2a77d75bd187280dc49211e04344e4.png" src="_images/707bc0ceaf2e76b519c272e3541c414e3b2a77d75bd187280dc49211e04344e4.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">f</span> <span class="o">=</span> <span class="mf">1.25</span>
@@ -627,16 +640,17 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_36_0.png" src="_images/04-Linear-Algebra-Refresher_36_0.png" />
+<img alt="_images/ca37e538eaaa98f69e50b3ce3f04d4cdc982aa09f6dae32aaf8cf92c93f4b9fe.png" src="_images/ca37e538eaaa98f69e50b3ce3f04d4cdc982aa09f6dae32aaf8cf92c93f4b9fe.png" />
 </div>
 </div>
 <p>A vector of length 1 is called a <strong>unit vector</strong>.</p>
 <p>If we divide a nonzero vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> by its length – that is, multiply by <span class="math notranslate nohighlight">\(1/\Vert\mathbf{v}\Vert\)</span> – we obtain a unit vector <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>.</p>
 <p>We say that we have <em>normalized</em> <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, and that <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> is <em>in the same direction</em> as <span class="math notranslate nohighlight">\(\mathbf{v}.\)</span></p>
-</div>
-<div class="section" id="distance-in-mathbb-r-n">
-<h2>Distance in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span><a class="headerlink" href="#distance-in-mathbb-r-n" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="distance-in-mathbb-r-n">
+<h2>Distance in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span><a class="headerlink" href="#distance-in-mathbb-r-n" title="Permalink to this heading">#</a></h2>
 <p>It’s very useful to be able to talk about the <strong>distance</strong> between two points (or vectors) in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p><strong>Definition.</strong>  For <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^n,\)</span> the <strong>distance between <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>,</strong> written as <span class="math notranslate nohighlight">\(\mbox{dist}(\mathbf{u},\mathbf{v}),\)</span> is the length of the vector <span class="math notranslate nohighlight">\(\mathbf{u}-\mathbf{v}\)</span>.  That is,</p>
 <div class="math notranslate nohighlight">
@@ -656,13 +670,18 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <div class="math notranslate nohighlight">
 \[= \Vert\mathbf{u}\Vert^2 + \Vert\mathbf{v}\Vert^2 - 2\mathbf{u}^T\mathbf{v}.\]</div>
 <p>This is an important formula because it relates <strong>distance</strong> between two points to their <strong>lengths</strong> and <strong>inner product.</strong></p>
-</div>
-<div class="section" id="orthogonal-vectors">
-<h2>Orthogonal Vectors<a class="headerlink" href="#orthogonal-vectors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="orthogonal-vectors">
+<h2>Orthogonal Vectors<a class="headerlink" href="#orthogonal-vectors" title="Permalink to this heading">#</a></h2>
 <p>Now we turn to another familiar notion from 2D geometry, which we’ll generalize to <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>: the notion of being <strong>perpendicular.</strong></p>
 <p>We will generally use the fancier term <strong>orthogonal</strong> – which means the same thing as perpendicular.</p>
 <p>We will say that two vectors are orthogonal if they form a right angle at the origin.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
@@ -687,14 +706,20 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_50_0.png" src="_images/04-Linear-Algebra-Refresher_50_0.png" />
+<img alt="_images/59e6caef96e27d0fc3b55582cc0f648e3f0788a3407e7c093872031b45bf3b9d.png" src="_images/59e6caef96e27d0fc3b55582cc0f648e3f0788a3407e7c093872031b45bf3b9d.png" />
 </div>
 </div>
 <p>Draw the line connecting <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 <p>Then <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> are orthogonal if and only if they make a right triangle with the origin.</p>
 <p>So <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> are orthogonal if and only if the Pythagorean Theorem is satisified for this triangle.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
@@ -716,13 +741,19 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_52_0.png" src="_images/04-Linear-Algebra-Refresher_52_0.png" />
+<img alt="_images/4bb2dd3b2c3f5031c6d20a081983366dd53e516f6ec9deb1a25ee52896090ab5.png" src="_images/4bb2dd3b2c3f5031c6d20a081983366dd53e516f6ec9deb1a25ee52896090ab5.png" />
 </div>
 </div>
 <p>What is the length of the red side of the triangle?</p>
 <p>According to the definition of length based on norm, it is <span class="math notranslate nohighlight">\(\Vert \mathbf{u} - \mathbf{v} \Vert\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
@@ -746,8 +777,9 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_54_0.png" src="_images/04-Linear-Algebra-Refresher_54_0.png" />
+<img alt="_images/0dc5df7f4e186639e9e6cccf8e66ba3e2ef0dc2df4a6e98043b78dac53eb53d7.png" src="_images/0dc5df7f4e186639e9e6cccf8e66ba3e2ef0dc2df4a6e98043b78dac53eb53d7.png" />
 </div>
 </div>
 <p>So the blue and green lines are perpendicular if and only if:</p>
@@ -770,15 +802,20 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <p>So now we can define perpendicularity in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>:</p>
 <p><strong>Definition.</strong>  Two vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> are <strong>orthogonal</strong> to each other if <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{v} = 0.\)</span></p>
 <p>This gives us a very simple rule for determining whether two vectors are orthogonal: if and only if their inner product is zero.</p>
-</div>
-<div class="section" id="the-angle-between-two-vectors">
-<h2>The Angle Between Two Vectors<a class="headerlink" href="#the-angle-between-two-vectors" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-angle-between-two-vectors">
+<h2>The Angle Between Two Vectors<a class="headerlink" href="#the-angle-between-two-vectors" title="Permalink to this heading">#</a></h2>
 <p>There is a further connection between the inner product of two vectors and the <strong>angle</strong> between them.</p>
 <p>This connection is very useful (eg, in visualizing data mining operations).</p>
 <p>We start from the <strong>law of cosines:</strong></p>
 <div class="math notranslate nohighlight">
 \[ c^2 = a^2 + b^2 - 2ab\cos\theta\]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
@@ -806,13 +843,19 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_66_0.png" src="_images/04-Linear-Algebra-Refresher_66_0.png" />
+<img alt="_images/c2d207d0fb69bbfe786bbebbf5278c09c686077f673015844d0ba15ef2493100.png" src="_images/c2d207d0fb69bbfe786bbebbf5278c09c686077f673015844d0ba15ef2493100.png" />
 </div>
 </div>
 <p>Now let’s interpret this law in terms of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 <p>Once again, it is the angle that these vectors make at the origin that we are concerned with:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -842,8 +885,9 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_68_0.png" src="_images/04-Linear-Algebra-Refresher_68_0.png" />
+<img alt="_images/9b2b68f8e13549aa69bffb595fcd1f248186930e59179f73186d7c3da9111b2e.png" src="_images/9b2b68f8e13549aa69bffb595fcd1f248186930e59179f73186d7c3da9111b2e.png" />
 </div>
 </div>
 <p>Applying the law of cosines we get:</p>
@@ -866,6 +910,11 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 \[ \frac{\mathbf{u}^T}{\Vert\mathbf{u}\Vert}\frac{\mathbf{v}}{\Vert\mathbf{v}\Vert} = \cos\theta\]</div>
 <p>So we have the very simple rule, that for two unit vectors, their inner product is the cosine of the angle between them!</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mf">0.95</span><span class="p">))])</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
@@ -892,17 +941,18 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_77_0.png" src="_images/04-Linear-Algebra-Refresher_77_0.png" />
+<img alt="_images/937d3c81654eca55bd6d4f49203f0a8701fcd605567c31dcf418ece10aa317ef.png" src="_images/937d3c81654eca55bd6d4f49203f0a8701fcd605567c31dcf418ece10aa317ef.png" />
 </div>
 </div>
 <p>Here <span class="math notranslate nohighlight">\(\mathbf{u} = \left[\begin{array}{c}0.95\\0.31\end{array}\right],\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v} = \left[\begin{array}{c}0.20\\0.98\end{array}\right].\)</span></p>
 <p>So <span class="math notranslate nohighlight">\(\mathbf{u}^T\mathbf{v} = (0.95\cdot 0.20) + (0.31 \cdot 0.98) = 0.5\)</span></p>
 <p>So <span class="math notranslate nohighlight">\(\cos\theta = 0.5.\)</span></p>
 <p>So <span class="math notranslate nohighlight">\(\theta = 60\)</span> degrees.</p>
-</div>
-<div class="section" id="least-squares">
-<h2>Least Squares<a class="headerlink" href="#least-squares" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="least-squares">
+<h2>Least Squares<a class="headerlink" href="#least-squares" title="Permalink to this heading">#</a></h2>
 <p>In many cases we have a linear system</p>
 <div class="math notranslate nohighlight">
 \[ A \mathbf{x} = \mathbf{b}\]</div>
@@ -937,6 +987,11 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <div class="math notranslate nohighlight">
 \[\hat{x} = (A^TA)^{-1}A^T\mathbf{b}\]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup3d</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.0</span><span class="p">,</span><span class="o">-</span><span class="mf">13.0</span><span class="p">,</span><span class="o">-</span><span class="mf">3.0</span><span class="p">])</span>
@@ -962,17 +1017,23 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_90_0.png" src="_images/04-Linear-Algebra-Refresher_90_0.png" />
+<img alt="_images/d00b775855ab3189853144d194bf67792283b4fd77f88891ed606f3e956635bc.png" src="_images/d00b775855ab3189853144d194bf67792283b4fd77f88891ed606f3e956635bc.png" />
 </div>
 </div>
-</div>
-<div class="section" id="eigendecomposition">
-<h2>Eigendecomposition<a class="headerlink" href="#eigendecomposition" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="eigendecomposition">
+<h2>Eigendecomposition<a class="headerlink" href="#eigendecomposition" title="Permalink to this heading">#</a></h2>
 <p>Consider a square matrix <span class="math notranslate nohighlight">\(A\)</span>.   An <strong>eigenvector</strong> of <span class="math notranslate nohighlight">\(A\)</span> is a special vector which <strong>does not change its direction</strong> when multiplied by <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p><strong>Example.</strong></p>
 <p>Let <span class="math notranslate nohighlight">\(A = \left[\begin{array}{rr}3&amp;-2\\1&amp;0\end{array}\right], \mathbf{u} = \left[\begin{array}{r}-1\\1\end{array}\right], \mathbf{v}=\left[\begin{array}{r}2\\1\end{array}\right].\)</span>  The images of <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> under multiplication by <span class="math notranslate nohighlight">\(A\)</span> are shown here:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -992,8 +1053,9 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/04-Linear-Algebra-Refresher_94_0.png" src="_images/04-Linear-Algebra-Refresher_94_0.png" />
+<img alt="_images/569e9e83459632ed4c71e078228c433b2579dac8a81054270d8da0cfb1776ac8.png" src="_images/569e9e83459632ed4c71e078228c433b2579dac8a81054270d8da0cfb1776ac8.png" />
 </div>
 </div>
 <p><strong>Definition.</strong></p>
@@ -1039,8 +1101,8 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
 <p>This decomposition of <span class="math notranslate nohighlight">\(A\)</span> is its <strong>spectral decomposition.</strong></p>
 <p>(The eigenvalues of a matrix are also called its <strong>spectrum.</strong>)</p>
 <p>These facts will be key to understanding the <strong>Singular Value Decomposition,</strong> which we will study later on.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1054,7 +1116,7 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1062,56 +1124,114 @@ $<span class="math notranslate nohighlight">\( x_1{\bf a_1} + x_2{\bf a_2} + ...
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="02B-Pandas.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Essential Tools: Pandas</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="03-Probability-and-Statistics-Refresher.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Probability and Statistics Refresher</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02B-Pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Essential Tools: Pandas</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="03-Probability-and-Statistics-Refresher.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Probability and Statistics Refresher</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-addition-geometrically">Vector Addition, Geometrically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product">Inner Product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-norm">Vector Norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-in-mathbb-r-n">Distance in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-vectors">Orthogonal Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-angle-between-two-vectors">The Angle Between Two Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares">Least Squares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigendecomposition">Eigendecomposition</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

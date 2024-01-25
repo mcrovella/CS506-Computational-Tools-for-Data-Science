@@ -1,0 +1,98 @@
+Traceback (most recent call last):
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/crovella/miniconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+max_clusters = 20
+s = np.zeros(max_clusters+1)
+for k in range(2, max_clusters+1):
+    clusters = hierarchy.fcluster(Z_20ng, k, criterion = 'maxclust')
+    s[k] = metrics.silhouette_score(data, clusters, metric = 'euclidean')
+plt.plot(range(2, len(s)), s[2:], '.-')
+plt.xlabel('Number of clusters')
+plt.ylabel('Silhouette Score');
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[30], line 5[0m
+[1;32m      3[0m [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m2[39m, max_clusters[38;5;241m+[39m[38;5;241m1[39m):
+[1;32m      4[0m     clusters [38;5;241m=[39m hierarchy[38;5;241m.[39mfcluster(Z_20ng, k, criterion [38;5;241m=[39m [38;5;124m'[39m[38;5;124mmaxclust[39m[38;5;124m'[39m)
+[0;32m----> 5[0m     s[k] [38;5;241m=[39m [43mmetrics[49m[38;5;241;43m.[39;49m[43msilhouette_score[49m[43m([49m[43mdata[49m[43m,[49m[43m [49m[43mclusters[49m[43m,[49m[43m [49m[43mmetric[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43meuclidean[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m      6[0m plt[38;5;241m.[39mplot([38;5;28mrange[39m([38;5;241m2[39m, [38;5;28mlen[39m(s)), s[[38;5;241m2[39m:], [38;5;124m'[39m[38;5;124m.-[39m[38;5;124m'[39m)
+[1;32m      7[0m plt[38;5;241m.[39mxlabel([38;5;124m'[39m[38;5;124mNumber of clusters[39m[38;5;124m'[39m)
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/metrics/cluster/_unsupervised.py:117[0m, in [0;36msilhouette_score[0;34m(X, labels, metric, sample_size, random_state, **kwds)[0m
+[1;32m    115[0m     [38;5;28;01melse[39;00m:
+[1;32m    116[0m         X, labels [38;5;241m=[39m X[indices], labels[indices]
+[0;32m--> 117[0m [38;5;28;01mreturn[39;00m np[38;5;241m.[39mmean([43msilhouette_samples[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mlabels[49m[43m,[49m[43m [49m[43mmetric[49m[38;5;241;43m=[39;49m[43mmetric[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m)
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/metrics/cluster/_unsupervised.py:212[0m, in [0;36msilhouette_samples[0;34m(X, labels, metric, **kwds)[0m
+[1;32m    152[0m [38;5;28;01mdef[39;00m [38;5;21msilhouette_samples[39m(X, labels, [38;5;241m*[39m, metric[38;5;241m=[39m[38;5;124m"[39m[38;5;124meuclidean[39m[38;5;124m"[39m, [38;5;241m*[39m[38;5;241m*[39mkwds):
+[1;32m    153[0m [38;5;250m    [39m[38;5;124;03m"""Compute the Silhouette Coefficient for each sample.[39;00m
+[1;32m    154[0m 
+[1;32m    155[0m [38;5;124;03m    The Silhouette Coefficient is a measure of how well samples are clustered[39;00m
+[0;32m   (...)[0m
+[1;32m    210[0m [38;5;124;03m       <https://en.wikipedia.org/wiki/Silhouette_(clustering)>`_[39;00m
+[1;32m    211[0m [38;5;124;03m    """[39;00m
+[0;32m--> 212[0m     X, labels [38;5;241m=[39m [43mcheck_X_y[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43mlabels[49m[43m,[49m[43m [49m[43maccept_sparse[49m[38;5;241;43m=[39;49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mcsc[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mcsr[39;49m[38;5;124;43m"[39;49m[43m][49m[43m)[49m
+[1;32m    214[0m     [38;5;66;03m# Check for non-zero diagonal entries in precomputed distance matrix[39;00m
+[1;32m    215[0m     [38;5;28;01mif[39;00m metric [38;5;241m==[39m [38;5;124m"[39m[38;5;124mprecomputed[39m[38;5;124m"[39m:
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/utils/validation.py:1106[0m, in [0;36mcheck_X_y[0;34m(X, y, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, multi_output, ensure_min_samples, ensure_min_features, y_numeric, estimator)[0m
+[1;32m   1101[0m         estimator_name [38;5;241m=[39m _check_estimator_name(estimator)
+[1;32m   1102[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m   1103[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mestimator_name[38;5;132;01m}[39;00m[38;5;124m requires y to be passed, but the target y is None[39m[38;5;124m"[39m
+[1;32m   1104[0m     )
+[0;32m-> 1106[0m X [38;5;241m=[39m [43mcheck_array[49m[43m([49m
+[1;32m   1107[0m [43m    [49m[43mX[49m[43m,[49m
+[1;32m   1108[0m [43m    [49m[43maccept_sparse[49m[38;5;241;43m=[39;49m[43maccept_sparse[49m[43m,[49m
+[1;32m   1109[0m [43m    [49m[43maccept_large_sparse[49m[38;5;241;43m=[39;49m[43maccept_large_sparse[49m[43m,[49m
+[1;32m   1110[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m,[49m
+[1;32m   1111[0m [43m    [49m[43morder[49m[38;5;241;43m=[39;49m[43morder[49m[43m,[49m
+[1;32m   1112[0m [43m    [49m[43mcopy[49m[38;5;241;43m=[39;49m[43mcopy[49m[43m,[49m
+[1;32m   1113[0m [43m    [49m[43mforce_all_finite[49m[38;5;241;43m=[39;49m[43mforce_all_finite[49m[43m,[49m
+[1;32m   1114[0m [43m    [49m[43mensure_2d[49m[38;5;241;43m=[39;49m[43mensure_2d[49m[43m,[49m
+[1;32m   1115[0m [43m    [49m[43mallow_nd[49m[38;5;241;43m=[39;49m[43mallow_nd[49m[43m,[49m
+[1;32m   1116[0m [43m    [49m[43mensure_min_samples[49m[38;5;241;43m=[39;49m[43mensure_min_samples[49m[43m,[49m
+[1;32m   1117[0m [43m    [49m[43mensure_min_features[49m[38;5;241;43m=[39;49m[43mensure_min_features[49m[43m,[49m
+[1;32m   1118[0m [43m    [49m[43mestimator[49m[38;5;241;43m=[39;49m[43mestimator[49m[43m,[49m
+[1;32m   1119[0m [43m    [49m[43minput_name[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mX[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m   1120[0m [43m[49m[43m)[49m
+[1;32m   1122[0m y [38;5;241m=[39m _check_y(y, multi_output[38;5;241m=[39mmulti_output, y_numeric[38;5;241m=[39my_numeric, estimator[38;5;241m=[39mestimator)
+[1;32m   1124[0m check_consistent_length(X, y)
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/utils/validation.py:737[0m, in [0;36mcheck_array[0;34m(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)[0m
+[1;32m    646[0m [38;5;250m[39m[38;5;124;03m"""Input validation on an array, list, sparse matrix or similar.[39;00m
+[1;32m    647[0m 
+[1;32m    648[0m [38;5;124;03mBy default, the input is checked to be a non-empty 2D array containing[39;00m
+[0;32m   (...)[0m
+[1;32m    734[0m [38;5;124;03m    The converted and validated array.[39;00m
+[1;32m    735[0m [38;5;124;03m"""[39;00m
+[1;32m    736[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(array, np[38;5;241m.[39mmatrix):
+[0;32m--> 737[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
+[1;32m    738[0m         [38;5;124m"[39m[38;5;124mnp.matrix is not supported. Please convert to a numpy array with [39m[38;5;124m"[39m
+[1;32m    739[0m         [38;5;124m"[39m[38;5;124mnp.asarray. For more information see: [39m[38;5;124m"[39m
+[1;32m    740[0m         [38;5;124m"[39m[38;5;124mhttps://numpy.org/doc/stable/reference/generated/numpy.matrix.html[39m[38;5;124m"[39m
+[1;32m    741[0m     )
+[1;32m    743[0m xp, is_array_api [38;5;241m=[39m get_namespace(array)
+[1;32m    745[0m [38;5;66;03m# store reference to original array to check if copy is needed when[39;00m
+[1;32m    746[0m [38;5;66;03m# function returns[39;00m
+
+[0;31mTypeError[0m: np.matrix is not supported. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
+TypeError: np.matrix is not supported. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
+

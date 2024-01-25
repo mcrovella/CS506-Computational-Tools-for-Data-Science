@@ -1,0 +1,22 @@
+numpy
+pandas
+openpyxl
+matplotlib
+seaborn
+scipy
+statsmodels
+jupyter
+scikit-learn
+jupyter-book
+networkx
+pandas_datareader 
+yfinance
+qrcode
+kaggle
+requests
+pydotplus
+pip-tools
+nltk
+#
+# security issue with 4.6.4 and below
+lxml>=4.6.5

@@ -1,0 +1,96 @@
+Traceback (most recent call last):
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/crovella/miniconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+ri = []
+ss = []
+max = len(u)
+for k in range(1,50):
+    vectorsk = u[:,:k] @ np.diag(s[:k])
+    kmeans = KMeans(n_clusters=3, init='k-means++', max_iter=100, n_init=10, random_state=0)
+    kmeans.fit_predict(vectorsk)
+    labelsk = kmeans.labels_
+    ri.append(metrics.adjusted_rand_score(labelsk,news_data.target))
+    ss.append(metrics.silhouette_score(vectorsk,kmeans.labels_,metric='euclidean'))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[20], line 7[0m
+[1;32m      5[0m vectorsk [38;5;241m=[39m u[:,:k] [38;5;241m@[39m np[38;5;241m.[39mdiag(s[:k])
+[1;32m      6[0m kmeans [38;5;241m=[39m KMeans(n_clusters[38;5;241m=[39m[38;5;241m3[39m, init[38;5;241m=[39m[38;5;124m'[39m[38;5;124mk-means++[39m[38;5;124m'[39m, max_iter[38;5;241m=[39m[38;5;241m100[39m, n_init[38;5;241m=[39m[38;5;241m10[39m, random_state[38;5;241m=[39m[38;5;241m0[39m)
+[0;32m----> 7[0m [43mkmeans[49m[38;5;241;43m.[39;49m[43mfit_predict[49m[43m([49m[43mvectorsk[49m[43m)[49m
+[1;32m      8[0m labelsk [38;5;241m=[39m kmeans[38;5;241m.[39mlabels_
+[1;32m      9[0m ri[38;5;241m.[39mappend(metrics[38;5;241m.[39madjusted_rand_score(labelsk,news_data[38;5;241m.[39mtarget))
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/cluster/_kmeans.py:1033[0m, in [0;36m_BaseKMeans.fit_predict[0;34m(self, X, y, sample_weight)[0m
+[1;32m   1010[0m [38;5;28;01mdef[39;00m [38;5;21mfit_predict[39m([38;5;28mself[39m, X, y[38;5;241m=[39m[38;5;28;01mNone[39;00m, sample_weight[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m   1011[0m [38;5;250m    [39m[38;5;124;03m"""Compute cluster centers and predict cluster index for each sample.[39;00m
+[1;32m   1012[0m 
+[1;32m   1013[0m [38;5;124;03m    Convenience method; equivalent to calling fit(X) followed by[39;00m
+[0;32m   (...)[0m
+[1;32m   1031[0m [38;5;124;03m        Index of the cluster each sample belongs to.[39;00m
+[1;32m   1032[0m [38;5;124;03m    """[39;00m
+[0;32m-> 1033[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfit[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43msample_weight[49m[38;5;241;43m=[39;49m[43msample_weight[49m[43m)[49m[38;5;241m.[39mlabels_
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/cluster/_kmeans.py:1417[0m, in [0;36mKMeans.fit[0;34m(self, X, y, sample_weight)[0m
+[1;32m   1390[0m [38;5;250m[39m[38;5;124;03m"""Compute k-means clustering.[39;00m
+[1;32m   1391[0m 
+[1;32m   1392[0m [38;5;124;03mParameters[39;00m
+[0;32m   (...)[0m
+[1;32m   1413[0m [38;5;124;03m    Fitted estimator.[39;00m
+[1;32m   1414[0m [38;5;124;03m"""[39;00m
+[1;32m   1415[0m [38;5;28mself[39m[38;5;241m.[39m_validate_params()
+[0;32m-> 1417[0m X [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_data[49m[43m([49m
+[1;32m   1418[0m [43m    [49m[43mX[49m[43m,[49m
+[1;32m   1419[0m [43m    [49m[43maccept_sparse[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mcsr[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m   1420[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43m[[49m[43mnp[49m[38;5;241;43m.[39;49m[43mfloat64[49m[43m,[49m[43m [49m[43mnp[49m[38;5;241;43m.[39;49m[43mfloat32[49m[43m][49m[43m,[49m
+[1;32m   1421[0m [43m    [49m[43morder[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mC[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m   1422[0m [43m    [49m[43mcopy[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcopy_x[49m[43m,[49m
+[1;32m   1423[0m [43m    [49m[43maccept_large_sparse[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m   1424[0m [43m[49m[43m)[49m
+[1;32m   1426[0m [38;5;28mself[39m[38;5;241m.[39m_check_params_vs_input(X)
+[1;32m   1428[0m random_state [38;5;241m=[39m check_random_state([38;5;28mself[39m[38;5;241m.[39mrandom_state)
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/base.py:565[0m, in [0;36mBaseEstimator._validate_data[0;34m(self, X, y, reset, validate_separately, **check_params)[0m
+[1;32m    563[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mValidation should be done on X, y or both.[39m[38;5;124m"[39m)
+[1;32m    564[0m [38;5;28;01melif[39;00m [38;5;129;01mnot[39;00m no_val_X [38;5;129;01mand[39;00m no_val_y:
+[0;32m--> 565[0m     X [38;5;241m=[39m [43mcheck_array[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43minput_name[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mX[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mcheck_params[49m[43m)[49m
+[1;32m    566[0m     out [38;5;241m=[39m X
+[1;32m    567[0m [38;5;28;01melif[39;00m no_val_X [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m no_val_y:
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/sklearn/utils/validation.py:737[0m, in [0;36mcheck_array[0;34m(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)[0m
+[1;32m    646[0m [38;5;250m[39m[38;5;124;03m"""Input validation on an array, list, sparse matrix or similar.[39;00m
+[1;32m    647[0m 
+[1;32m    648[0m [38;5;124;03mBy default, the input is checked to be a non-empty 2D array containing[39;00m
+[0;32m   (...)[0m
+[1;32m    734[0m [38;5;124;03m    The converted and validated array.[39;00m
+[1;32m    735[0m [38;5;124;03m"""[39;00m
+[1;32m    736[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(array, np[38;5;241m.[39mmatrix):
+[0;32m--> 737[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
+[1;32m    738[0m         [38;5;124m"[39m[38;5;124mnp.matrix is not supported. Please convert to a numpy array with [39m[38;5;124m"[39m
+[1;32m    739[0m         [38;5;124m"[39m[38;5;124mnp.asarray. For more information see: [39m[38;5;124m"[39m
+[1;32m    740[0m         [38;5;124m"[39m[38;5;124mhttps://numpy.org/doc/stable/reference/generated/numpy.matrix.html[39m[38;5;124m"[39m
+[1;32m    741[0m     )
+[1;32m    743[0m xp, is_array_api [38;5;241m=[39m get_namespace(array)
+[1;32m    745[0m [38;5;66;03m# store reference to original array to check if copy is needed when[39;00m
+[1;32m    746[0m [38;5;66;03m# function returns[39;00m
+
+[0;31mTypeError[0m: np.matrix is not supported. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
+TypeError: np.matrix is not supported. Please convert to a numpy array with np.asarray. For more information see: https://numpy.org/doc/stable/reference/generated/numpy.matrix.html
+

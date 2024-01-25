@@ -1,0 +1,96 @@
+Traceback (most recent call last):
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/crovella/miniconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/crovella/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+import pandas_datareader.data as web
+from datetime import datetime
+
+stocks = ['TSLA', 'YELP']
+attr = 'Close'
+data_source = 'yahoo'
+df = web.DataReader(stocks, 
+                    data_source,                               
+                    start=datetime(2014, 1, 1), 
+                    end=datetime(2014, 12, 31))[attr]
+rets = df.pct_change(30)
+rets[['TSLA', 'YELP']].plot(lw=2)
+plt.legend(loc='best');
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[5], line 8[0m
+[1;32m      6[0m attr [38;5;241m=[39m [38;5;124m'[39m[38;5;124mClose[39m[38;5;124m'[39m
+[1;32m      7[0m data_source [38;5;241m=[39m [38;5;124m'[39m[38;5;124myahoo[39m[38;5;124m'[39m
+[0;32m----> 8[0m df [38;5;241m=[39m [43mweb[49m[38;5;241;43m.[39;49m[43mDataReader[49m[43m([49m[43mstocks[49m[43m,[49m[43m [49m
+[1;32m      9[0m [43m                    [49m[43mdata_source[49m[43m,[49m[43m                               [49m
+[1;32m     10[0m [43m                    [49m[43mstart[49m[38;5;241;43m=[39;49m[43mdatetime[49m[43m([49m[38;5;241;43m2014[39;49m[43m,[49m[43m [49m[38;5;241;43m1[39;49m[43m,[49m[43m [49m[38;5;241;43m1[39;49m[43m)[49m[43m,[49m[43m [49m
+[1;32m     11[0m [43m                    [49m[43mend[49m[38;5;241;43m=[39;49m[43mdatetime[49m[43m([49m[38;5;241;43m2014[39;49m[43m,[49m[43m [49m[38;5;241;43m12[39;49m[43m,[49m[43m [49m[38;5;241;43m31[39;49m[43m)[49m[43m)[49m[attr]
+[1;32m     12[0m rets [38;5;241m=[39m df[38;5;241m.[39mpct_change([38;5;241m30[39m)
+[1;32m     13[0m rets[[[38;5;124m'[39m[38;5;124mTSLA[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mYELP[39m[38;5;124m'[39m]][38;5;241m.[39mplot(lw[38;5;241m=[39m[38;5;241m2[39m)
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/pandas/util/_decorators.py:211[0m, in [0;36mdeprecate_kwarg.<locals>._deprecate_kwarg.<locals>.wrapper[0;34m(*args, **kwargs)[0m
+[1;32m    209[0m     [38;5;28;01melse[39;00m:
+[1;32m    210[0m         kwargs[new_arg_name] [38;5;241m=[39m new_arg_value
+[0;32m--> 211[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/pandas_datareader/data.py:370[0m, in [0;36mDataReader[0;34m(name, data_source, start, end, retry_count, pause, session, api_key)[0m
+[1;32m    367[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m(msg)
+[1;32m    369[0m [38;5;28;01mif[39;00m data_source [38;5;241m==[39m [38;5;124m"[39m[38;5;124myahoo[39m[38;5;124m"[39m:
+[0;32m--> 370[0m     [38;5;28;01mreturn[39;00m [43mYahooDailyReader[49m[43m([49m
+[1;32m    371[0m [43m        [49m[43msymbols[49m[38;5;241;43m=[39;49m[43mname[49m[43m,[49m
+[1;32m    372[0m [43m        [49m[43mstart[49m[38;5;241;43m=[39;49m[43mstart[49m[43m,[49m
+[1;32m    373[0m [43m        [49m[43mend[49m[38;5;241;43m=[39;49m[43mend[49m[43m,[49m
+[1;32m    374[0m [43m        [49m[43madjust_price[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m    375[0m [43m        [49m[43mchunksize[49m[38;5;241;43m=[39;49m[38;5;241;43m25[39;49m[43m,[49m
+[1;32m    376[0m [43m        [49m[43mretry_count[49m[38;5;241;43m=[39;49m[43mretry_count[49m[43m,[49m
+[1;32m    377[0m [43m        [49m[43mpause[49m[38;5;241;43m=[39;49m[43mpause[49m[43m,[49m
+[1;32m    378[0m [43m        [49m[43msession[49m[38;5;241;43m=[39;49m[43msession[49m[43m,[49m
+[1;32m    379[0m [43m    [49m[43m)[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43m)[49m
+[1;32m    381[0m [38;5;28;01melif[39;00m data_source [38;5;241m==[39m [38;5;124m"[39m[38;5;124miex[39m[38;5;124m"[39m:
+[1;32m    382[0m     [38;5;28;01mreturn[39;00m IEXDailyReader(
+[1;32m    383[0m         symbols[38;5;241m=[39mname,
+[1;32m    384[0m         start[38;5;241m=[39mstart,
+[0;32m   (...)[0m
+[1;32m    390[0m         session[38;5;241m=[39msession,
+[1;32m    391[0m     )[38;5;241m.[39mread()
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/pandas_datareader/base.py:258[0m, in [0;36m_DailyBaseReader.read[0;34m(self)[0m
+[1;32m    256[0m     df [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_dl_mult_symbols([38;5;28mself[39m[38;5;241m.[39msymbols[38;5;241m.[39mindex)
+[1;32m    257[0m [38;5;28;01melse[39;00m:
+[0;32m--> 258[0m     df [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_dl_mult_symbols[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msymbols[49m[43m)[49m
+[1;32m    259[0m [38;5;28;01mreturn[39;00m df
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/pandas_datareader/base.py:268[0m, in [0;36m_DailyBaseReader._dl_mult_symbols[0;34m(self, symbols)[0m
+[1;32m    266[0m [38;5;28;01mfor[39;00m sym [38;5;129;01min[39;00m sym_group:
+[1;32m    267[0m     [38;5;28;01mtry[39;00m:
+[0;32m--> 268[0m         stocks[sym] [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_read_one_data[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43murl[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_params[49m[43m([49m[43msym[49m[43m)[49m[43m)[49m
+[1;32m    269[0m         passed[38;5;241m.[39mappend(sym)
+[1;32m    270[0m     [38;5;28;01mexcept[39;00m ([38;5;167;01mIOError[39;00m, [38;5;167;01mKeyError[39;00m):
+
+File [0;32m~/miniconda3/lib/python3.9/site-packages/pandas_datareader/yahoo/daily.py:153[0m, in [0;36mYahooDailyReader._read_one_data[0;34m(self, url, params)[0m
+[1;32m    151[0m [38;5;28;01mtry[39;00m:
+[1;32m    152[0m     j [38;5;241m=[39m json[38;5;241m.[39mloads(re[38;5;241m.[39msearch(ptrn, resp[38;5;241m.[39mtext, re[38;5;241m.[39mDOTALL)[38;5;241m.[39mgroup([38;5;241m1[39m))
+[0;32m--> 153[0m     data [38;5;241m=[39m [43mj[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mcontext[39;49m[38;5;124;43m"[39;49m[43m][49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mdispatcher[39;49m[38;5;124;43m"[39;49m[43m][49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mstores[39;49m[38;5;124;43m"[39;49m[43m][49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mHistoricalPriceStore[39;49m[38;5;124;43m"[39;49m[43m][49m
+[1;32m    154[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m:
+[1;32m    155[0m     msg [38;5;241m=[39m [38;5;124m"[39m[38;5;124mNo data fetched for symbol [39m[38;5;132;01m{}[39;00m[38;5;124m using [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m
+
+[0;31mTypeError[0m: string indices must be integers
+TypeError: string indices must be integers
+

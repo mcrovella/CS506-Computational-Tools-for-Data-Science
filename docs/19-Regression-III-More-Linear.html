@@ -1,405 +1,395 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Regularization &#8212; Computational Tools for Data Science</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '19-Regression-III-More-Linear';</script>
+    <link rel="shortcut icon" href="_static/CS506-icon.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Recommender Systems" href="20-Recommender-Systems.html" />
     <link rel="prev" title="Logistic Regression" href="18-Regression-II-Logistic.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/L09-MultivariateNormal.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Computational Tools for Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Preface
-  </a>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  Preliminaries
- </span>
-</p>
+    
+    
+    <img src="_static/CS506-icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/CS506-icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Intro-to-Python.html">
-   Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02A-Git-Jupyter.html">
-   Essential Tools: Git and Jupyter
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02B-Pandas.html">
-   Essential Tools: Pandas
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Linear-Algebra-Refresher.html">
-   Linear Algebra Refresher
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">
-   Probability and Statistics Refresher
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Intro-to-Python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02A-Git-Jupyter.html">Essential Tools: Git and Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02B-Pandas.html">Essential Tools: Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Linear-Algebra-Refresher.html">Linear Algebra Refresher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Probability-and-Statistics-Refresher.html">Probability and Statistics Refresher</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Clustering
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clustering</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="05-Distances-Timeseries.html">
-   Distances and Timeseries
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Clustering-I-kmeans.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -means
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Clustering-II-in-practice.html">
-   Clustering In Practice
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Clustering-III-hierarchical.html">
-   Hierarchical Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Clustering-IV-GMM-EM.html">
-   Gaussian Mixture Models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="05-Distances-Timeseries.html">Distances and Timeseries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Clustering-I-kmeans.html"><span class="math notranslate nohighlight">\(k\)</span>-means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Clustering-II-in-practice.html">Clustering In Practice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Clustering-III-hierarchical.html">Hierarchical Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Clustering-IV-GMM-EM.html">Gaussian Mixture Models</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Classification
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Learning-From-Data.html">
-   Learning From Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Classification-I-Decision-Trees.html">
-   Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Classification-II-kNN.html">
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbors
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Classification-III-NB-SVM.html">
-   Naive Bayes and Support Vector Machines
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="13-Learning-From-Data.html">Learning From Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Classification-I-Decision-Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Classification-II-kNN.html"><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Classification-III-NB-SVM.html">Naive Bayes and Support Vector Machines</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Dimensionality Reduction
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dimensionality Reduction</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Low-Rank-and-SVD.html">
-   Low Rank Approximation and the SVD
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">
-   Dimensionality Reduction and PCA – SVD II
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="10-Low-Rank-and-SVD.html">Low Rank Approximation and the SVD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Dimensionality-Reduction-SVD-II.html">Dimensionality Reduction and PCA – SVD II</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Regression
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Regression-I-Linear.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Regression-II-Logistic.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Regularization
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Regression-I-Linear.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Regression-II-Logistic.html">Logistic Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regularization</a></li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Selected Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Selected Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Recommender-Systems.html">
-   Recommender Systems
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="20-Recommender-Systems.html">Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Networks-I.html">Introduction to Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Networks-II-Centrality-Clustering.html">Network Centrality and Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Gradient-Descent.html">Gradient Descent</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/19-Regression-III-More-Linear.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main">
         
         
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/mcrovella/CS506-Computational-Tools-for-Data-Science" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/19-Regression-III-More-Linear.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/mcrovella/CS506-Computational-Tools-for-Data-Science/master?urlpath=tree/19-Regression-III-More-Linear.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
     </div>
+  
 </div>
+</div>
+              
+              
 
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Regularization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multicollinearity">
-   Multicollinearity
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#condition-number">
-     Condition Number
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sources-of-multicollinearity">
-     Sources of Multicollinearity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#addressing-multicollinearity">
-   Addressing Multicollinearity
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ridge-regression">
-     Ridge Regression
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Ridge Regression
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-selection">
-     Model Selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-lasso">
-     The LASSO
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flexible-modeling">
-   Flexible Modeling
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicollinearity">Multicollinearity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number">Condition Number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-multicollinearity">Sources of Multicollinearity</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-multicollinearity">Addressing Multicollinearity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ridge Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lasso">The LASSO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flexible-modeling">Flexible Modeling</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
@@ -425,13 +415,14 @@
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="section" id="regularization">
-<h1>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="regularization">
+<h1>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h1>
 <p>Today, we’ll look at some additional aspects of Linear Regression.</p>
 <p>Our first topic is multicollinearity.</p>
-<div class="section" id="multicollinearity">
-<h2>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this headline">¶</a></h2>
+<section id="multicollinearity">
+<h2>Multicollinearity<a class="headerlink" href="#multicollinearity" title="Permalink to this heading">#</a></h2>
 <p>To illustrate the multcollinearity problem, we’ll load a standard dataset.</p>
 <p>The Longley dataset contains various US macroeconomic variables from 1947–1962.</p>
 <div class="admonition note">
@@ -653,8 +644,8 @@ and
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        11:45:48   Log-Likelihood:                -117.83
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):           3.70e-09
+Time:                        12:44:03   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -681,7 +672,7 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/miniconda3/lib/python3.9/site-packages/scipy/stats/_stats_py.py:1736: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
   warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
@@ -692,8 +683,8 @@ strong multicollinearity or other numerical problems.
 <div><p>In statistics, multicollinearity (also collinearity) is a phenomenon in which two or more predictor variables in a multiple regression model are highly correlated, meaning that one can be linearly predicted from the others with a substantial degree of accuracy.</p>
 </div></blockquote>
 <p>(Wikipedia)</p>
-<div class="section" id="condition-number">
-<h3>Condition Number<a class="headerlink" href="#condition-number" title="Permalink to this headline">¶</a></h3>
+<section id="condition-number">
+<h3>Condition Number<a class="headerlink" href="#condition-number" title="Permalink to this heading">#</a></h3>
 <p>The condition number being referred to is the condition number of the design matrix.</p>
 <p>That is the <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\(X\beta = y\)</span>.</p>
 <p>Remember that to solve a least-squares problem <span class="math notranslate nohighlight">\(X\beta = y\)</span>, we solve the normal equations</p>
@@ -712,9 +703,9 @@ strong multicollinearity or other numerical problems.
 <p>This happens when the columns of <span class="math notranslate nohighlight">\(X\)</span> are linearly dependent –</p>
 <p>That is, one column can be expressed as a linear combination of the other columns.</p>
 <p>This is the simplest kind of <strong>multicollinearity</strong>.</p>
-</div>
-<div class="section" id="sources-of-multicollinearity">
-<h3>Sources of Multicollinearity<a class="headerlink" href="#sources-of-multicollinearity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sources-of-multicollinearity">
+<h3>Sources of Multicollinearity<a class="headerlink" href="#sources-of-multicollinearity" title="Permalink to this heading">#</a></h3>
 <p>One obvious case is if <span class="math notranslate nohighlight">\(X\)</span> has more columns than rows.   That is, if data have <strong>more features than there are observations</strong>.</p>
 <p>This case is easy to recognize.</p>
 <p>However, a more insidious case occurs when the columns of <span class="math notranslate nohighlight">\(X\)</span> happen to be linearly dependent because of the nature of the data itself.</p>
@@ -754,31 +745,42 @@ with multicollinearity.</p></li>
 <p>Recall that the condition number of our data is around <span class="math notranslate nohighlight">\(10^8\)</span>.</p>
 <p>Let’s look at pairwise scatterplots of the Longley data:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s1">&#39;GNPDEFL&#39;</span><span class="p">,</span> <span class="s1">&#39;GNP&#39;</span><span class="p">,</span> <span class="s1">&#39;UNEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;ARMED&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">]]);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_27_0.png" src="_images/19-Regression-III-More-Linear_27_0.png" />
+<img alt="_images/fd57ffb305eb7204bb43752979e970e5ac7d97c111d1c1008d334f1ffdaca893.png" src="_images/fd57ffb305eb7204bb43752979e970e5ac7d97c111d1c1008d334f1ffdaca893.png" />
 </div>
 </div>
 <p>We can see <strong>very</strong> strong linear relationships between, eg, <strong>GNP Deflator</strong>, <strong>GNP</strong>, and <strong>Population.</strong></p>
-</div>
-</div>
-<div class="section" id="addressing-multicollinearity">
-<h2>Addressing Multicollinearity<a class="headerlink" href="#addressing-multicollinearity" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="addressing-multicollinearity">
+<h2>Addressing Multicollinearity<a class="headerlink" href="#addressing-multicollinearity" title="Permalink to this heading">#</a></h2>
 <p>There are some things that can be done if it does happen.</p>
 <p>We will review two strategies:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Ridge Regression</p></li>
 <li><p>Model Selection via LASSO</p></li>
 </ol>
-<div class="section" id="ridge-regression">
-<h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this headline">¶</a></h3>
+<section id="ridge-regression">
+<h3>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Permalink to this heading">#</a></h3>
 <p>The first thing to note is that when columns of <span class="math notranslate nohighlight">\(X\)</span> are nearly dependent, the components of <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> tend to be <strong>large in magnitude</strong>.</p>
 <p>Consider a regression in which we are predicting the point <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> as a linear function of two <span class="math notranslate nohighlight">\(X\)</span> columns, which we’ll denote <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -797,12 +799,18 @@ with multicollinearity.</p></li>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_34_0.png" src="_images/19-Regression-III-More-Linear_34_0.png" />
+<img alt="_images/9e377cf0d291bb0e5ffceca19e743617563ec3605dd52768855cfd951107b691.png" src="_images/9e377cf0d291bb0e5ffceca19e743617563ec3605dd52768855cfd951107b691.png" />
 </div>
 </div>
 <p>Via least-squares, we determine the coefficients <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\beta_2\)</span>:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -828,12 +836,18 @@ with multicollinearity.</p></li>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_36_0.png" src="_images/19-Regression-III-More-Linear_36_0.png" />
+<img alt="_images/f309d8d21cd93737314821d1d0f7e22e73729db746222df05a06325d49486800.png" src="_images/f309d8d21cd93737314821d1d0f7e22e73729db746222df05a06325d49486800.png" />
 </div>
 </div>
 <p>Now consider if the columns of <span class="math notranslate nohighlight">\(X\)</span> are <strong>nearly dependent</strong>: ie, they are almost in the same direction:</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">ut</span><span class="o">.</span><span class="n">plotSetup</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ut</span><span class="o">.</span><span class="n">centerAxes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -849,16 +863,17 @@ with multicollinearity.</p></li>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_38_0.png" src="_images/19-Regression-III-More-Linear_38_0.png" />
+<img alt="_images/6e48e9dc72f6bb56551e810ac192c82bc89c1798a53e616999bd142263aa007c.png" src="_images/6e48e9dc72f6bb56551e810ac192c82bc89c1798a53e616999bd142263aa007c.png" />
 </div>
 </div>
 <p>If you imagine the values of <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\beta_2\)</span> necessary to create <span class="math notranslate nohighlight">\(\mathbf{y} = \beta_1{\bf u}\)</span>+<span class="math notranslate nohighlight">\(\beta_2{\bf v}\)</span>, you can see that <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\beta_2\)</span> will be <strong>very large</strong> in magnitude.</p>
 <p>This geometric argument illustrates why the regression coefficients will be very large under multicollinearity.</p>
 <p>Put another way, the value of <span class="math notranslate nohighlight">\(\Vert\beta\Vert\)</span> will be very large.</p>
-</div>
-<div class="section" id="id1">
-<h3>Ridge Regression<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Ridge Regression<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Ridge regression adjusts least squares regression by shrinking the estimated coefficients towards zero.</p>
 <p>The purpose is to fix the magnitude inflation of <span class="math notranslate nohighlight">\(\Vert\beta\Vert\)</span>.</p>
 <p>To do this, Ridge regression assumes that the model has no intercept term –</p>
@@ -889,6 +904,11 @@ a linear model and shrinking the coefficients.</p>
 <p>Here is the performance of Ridge regression on the Longley data.</p>
 <p>We are training on half of the data, and using the other half for testing.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
 <span class="n">nreps</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -918,8 +938,14 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:][:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:][:,</span> <span class="mi">1</span><span class="p">],</span> 
@@ -940,22 +966,23 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_53_0.png" src="_images/19-Regression-III-More-Linear_53_0.png" />
+<img alt="_images/01504417a0bc765dc412b5bebaa7e3785f130df8fcf09cd0f81d03a84c91d437.png" src="_images/01504417a0bc765dc412b5bebaa7e3785f130df8fcf09cd0f81d03a84c91d437.png" />
 </div>
 </div>
 <p>To sum up the idea behind Ridge regression:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>There may be many <span class="math notranslate nohighlight">\(\beta\)</span> values that are (approximately) consistent with the equations.</p></li>
 <li><p>However over-fit <span class="math notranslate nohighlight">\(\beta\)</span> values tend to have large magnitudes</p></li>
 <li><p>We apply shrinkage to avoid those solutions</p></li>
 <li><p>We do so by tuning <span class="math notranslate nohighlight">\(\lambda\)</span> via cross-validation</p></li>
 </ol>
-</div>
-<div class="section" id="model-selection">
-<h3>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="model-selection">
+<h3>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">#</a></h3>
 <p>Of course, one might attack the problem of multicollinearity as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Multicollinearity occurs because there are near-dependences among variables (features)</p></li>
 <li><p>The extra variables do not contribute anything “meaningful” to the quality of the model</p></li>
 <li><p>Hence, why not simply remove variables from the model that are causing dependences?</p></li>
@@ -970,9 +997,9 @@ a linear model and shrinking the coefficients.</p>
 <p>Can we use Ridge regression for this problem?</p>
 <p>Ridge regression does not set any coefficients exactly to zero unless <span class="math notranslate nohighlight">\(\lambda = \infty\)</span> (in which case they’re all zero).</p>
 <p>Hence, Ridge regression cannot perform variable selection, and even though it performs well in terms of prediction accuracy, it does not offer a clear interpretation</p>
-</div>
-<div class="section" id="the-lasso">
-<h3>The LASSO<a class="headerlink" href="#the-lasso" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="the-lasso">
+<h3>The LASSO<a class="headerlink" href="#the-lasso" title="Permalink to this heading">#</a></h3>
 <p>LASSO differs from Ridge regression <strong>only in terms of the norm</strong> used by the penalty term.</p>
 <p><strong>Ridge regression:</strong></p>
 <div class="math notranslate nohighlight">
@@ -987,6 +1014,11 @@ a linear model and shrinking the coefficients.</p>
 <p>In terms of prediction error, LASSO performs comparably to Ridge regression,</p>
 <p>… but it has a <strong>big advantage with respect to interpretation.</strong></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
 <span class="n">nreps</span> <span class="o">=</span> <span class="mi">200</span>
@@ -1021,8 +1053,14 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:][:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">:][:,</span> <span class="mi">1</span><span class="p">],</span> 
@@ -1044,11 +1082,17 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_68_0.png" src="_images/19-Regression-III-More-Linear_68_0.png" />
+<img alt="_images/663632da7e3a1a6fcf446ba9273e7af15670ad9757ac796a1b505f9b82f85f4f.png" src="_images/663632da7e3a1a6fcf446ba9273e7af15670ad9757ac796a1b505f9b82f85f4f.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mean_params</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\lambda)$&#39;</span><span class="p">,</span> <span class="s1">&#39;GNPDEFL&#39;</span><span class="p">,</span> <span class="s1">&#39;GNP&#39;</span><span class="p">,</span> <span class="s1">&#39;UNEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;ARMED&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="s1">&#39;const&#39;</span><span class="p">])</span>
 <span class="n">param_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;GNPDEFL&#39;</span><span class="p">,</span> <span class="s1">&#39;GNP&#39;</span><span class="p">,</span> <span class="s1">&#39;UNEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;ARMED&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="s1">&#39;const&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1056,8 +1100,14 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
@@ -1065,14 +1115,15 @@ a linear model and shrinking the coefficients.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/19-Regression-III-More-Linear_70_0.png" src="_images/19-Regression-III-More-Linear_70_0.png" />
+<img alt="_images/03cc94ef54585df96a5d62bb327ea9250e3c1f418e33649f15411b8ea726c29b.png" src="_images/03cc94ef54585df96a5d62bb327ea9250e3c1f418e33649f15411b8ea726c29b.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="flexible-modeling">
-<h2>Flexible Modeling<a class="headerlink" href="#flexible-modeling" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="flexible-modeling">
+<h2>Flexible Modeling<a class="headerlink" href="#flexible-modeling" title="Permalink to this heading">#</a></h2>
 <p>To look at model selection in practice, we will consider another famous dataset.</p>
 <p>The Guerry dataset is a collection of historical data used in support of Andre-Michel Guerry’s 1833 “Essay on the Moral Statistics of France.”</p>
 <blockquote>
@@ -1099,13 +1150,24 @@ physical world.</p>
 <p>Source: “A.-M. Guerry’s Moral Statistics of France: Challenges for Multivariable
 Spatial Analysis”, Michael Friendly.  Statistical Science 2007, Vol. 22, No. 3, 368–399.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;TOTEMP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;TOTEMP ~ GNPDEFL + GNP + UNEMP + ARMED + POP&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -1119,8 +1181,8 @@ Spatial Analysis”, Michael Friendly.  Statistical Science 2007, Vol. 22, No. 3
 Dep. Variable:                 TOTEMP   R-squared:                       0.987
 Model:                            OLS   Adj. R-squared:                  0.981
 Method:                 Least Squares   F-statistic:                     156.4
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):           3.70e-09
-Time:                        11:47:14   Log-Likelihood:                -117.83
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):           3.70e-09
+Time:                        12:44:25   Log-Likelihood:                -117.83
 No. Observations:                  16   AIC:                             247.7
 Df Residuals:                      10   BIC:                             252.3
 Df Model:                           5                                         
@@ -1147,13 +1209,19 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/miniconda3/lib/python3.9/site-packages/scipy/stats/_stats_py.py:1736: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
   warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;TOTEMP ~ GNPDEFL + GNP + UNEMP - 1&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -1167,8 +1235,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                 TOTEMP   R-squared (uncentered):                   1.000
 Model:                            OLS   Adj. R-squared (uncentered):              1.000
 Method:                 Least Squares   F-statistic:                          1.127e+04
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):                    1.92e-22
-Time:                        11:47:14   Log-Likelihood:                         -137.20
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):                    1.92e-22
+Time:                        12:44:25   Log-Likelihood:                         -137.20
 No. Observations:                  16   AIC:                                      280.4
 Df Residuals:                      13   BIC:                                      282.7
 Df Model:                           3                                                  
@@ -1193,11 +1261,12 @@ Notes:
 strong multicollinearity or other numerical problems.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/markcrovella/anaconda3/lib/python3.8/site-packages/scipy/stats/stats.py:1541: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/crovella/miniconda3/lib/python3.9/site-packages/scipy/stats/_stats_py.py:1736: UserWarning: kurtosistest only valid for n&gt;=20 ... continuing anyway, n=16
   warnings.warn(&quot;kurtosistest only valid for n&gt;=20 ... continuing &quot;
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1289,8 +1358,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        11:47:15   Log-Likelihood:                -375.30
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):           1.07e-05
+Time:                        12:44:25   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1337,8 +1406,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.338
 Model:                            OLS   Adj. R-squared:                  0.287
 Method:                 Least Squares   F-statistic:                     6.636
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):           1.07e-05
-Time:                        11:47:15   Log-Likelihood:                -375.30
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):           1.07e-05
+Time:                        12:44:25   Log-Likelihood:                -375.30
 No. Observations:                  85   AIC:                             764.6
 Df Residuals:                      78   BIC:                             781.7
 Df Model:                           6                                         
@@ -1381,8 +1450,8 @@ Notes:
 Dep. Variable:                Lottery   R-squared:                       0.161
 Model:                            OLS   Adj. R-squared:                  0.151
 Method:                 Least Squares   F-statistic:                     15.89
-Date:                Wed, 10 Nov 2021   Prob (F-statistic):           0.000144
-Time:                        11:47:15   Log-Likelihood:                -385.38
+Date:                Wed, 12 Jul 2023   Prob (F-statistic):           0.000144
+Time:                        12:44:25   Log-Likelihood:                -385.38
 No. Observations:                  85   AIC:                             774.8
 Df Residuals:                      83   BIC:                             779.7
 Df Model:                           1                                         
@@ -1405,8 +1474,8 @@ Notes:
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1420,7 +1489,7 @@ Notes:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1428,56 +1497,117 @@ Notes:
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-            
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="18-Regression-II-Logistic.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Logistic Regression</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="20-Recommender-Systems.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Recommender Systems</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Mark Crovella<br/>
-        
-            &copy; Copyright 2021-2022.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="18-Regression-II-Logistic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Logistic Regression</p>
       </div>
-    </div>
+    </a>
+    <a class="right-next"
+       href="20-Recommender-Systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recommender Systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+</div>
 
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicollinearity">Multicollinearity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condition-number">Condition Number</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-multicollinearity">Sources of Multicollinearity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-multicollinearity">Addressing Multicollinearity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ridge Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lasso">The LASSO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flexible-modeling">Flexible Modeling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mark Crovella
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021-2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
